@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db1:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=TFE_2023
+      - POSTGRES_DB=TFE_2023
+    ports:
+      - '5432:5432'
+    volumes:
+      - db1:/var/lib/postgresql/data 
+volumes:
+  db1:
+    driver: local

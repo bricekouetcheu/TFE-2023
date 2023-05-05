@@ -1,65 +1,62 @@
 import React from 'react';
+import logo from "../assets/logo.png";
 
 const Register = () => {
     return (
+      <div className='register'>
+        <div className='register-form-navbar'>
+            <img className = 'register-form-logo' src={logo} alt=""/>
 
-<div className="form_wrapper">
-  <div className="form_container">
-    <div className="title_container">
-      <h2>Registration</h2>
-    </div>
-    <div className="row clearfix">
-      <div className="">
-        <form>
-          <div className="input_field"> <span><i aria-hidden="true" className="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Email" required />
-          </div>
-          <div className="input_field"> <span><i aria-hidden="true" className="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="Password" required />
-          </div>
-          <div className="input_field"> <span><i aria-hidden="true" className="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="Re-type Password" required />
-          </div>
-          <div className="row clearfix">
-            <div className="col_half">
-              <div className="input_field"> <span><i aria-hidden="true" className="fa fa-user"></i></span>
-                <input type="text" name="name" placeholder="First Name" />
-              </div>
+        </div>
+     
+        <form className='register-form'>
+          <h2>Registration</h2>
+          <div className='register-form-content'>
+            <div className='register-form-left'>
+               <input type="text" id="firstName" name="firstName" required placeholder="firstName..."/>
+               <input type="text" id="lastName" name="lastName" required placeholder="lastName"/>
+               <input type="text" id="compagny" name="compagny"  required placeholder="Compagny..."/>
+               
+
             </div>
-            <div className="col_half">
-              <div className="input_field"> <span><i aria-hidden="true" className="fa fa-user"></i></span>
-                <input type="text" name="name" placeholder="Last Name" required />
+
+
+            <div className='register-form-right'>
+              <input type="email" id="email" name="email"  required placeholder="Email..."/>
+              <input type="password" id="password1" name="password1"   required placeholder="Enter your password..."/>
+              <input type="password2" id="password2" name="password2" required placeholder="Confirm your password..."/>
+
+             </div>
+
+          </div>
+          <div className='register-form-checkbox'>
+                <label htmlFor="">
+                      <input type="checkbox" />
+                      <span>I agree to terms & conditions</span>
+
+                </label>
+                      
+
+                 
               </div>
-            </div>
+               
+
+       
+        
+
+          <button className='register-form-btn'>Submit</button>
+          <div className='register-form-signin'>
+          <p>already have an account?   <a href=""> SIGN IN</a></p>
+
           </div>
-          <div className="input_field radio_option">
-            <input type="radio" name="radiogroup1" id="rd1"/>
-            <label htmlFor="rd1">Male</label>
-            <input type="radio" name="radiogroup1" id="rd2"/>
-            <label htmlFor="rd2">Female</label>
-          </div>
-          <div className="input_field select_option">
-            <select>
-              <option>Select a country</option>
-              <option>Option 1</option>
-              <option>Option 2</option>
-            </select>
-            <div className="select_arrow"></div>
-          </div>
-          <div className="input_field checkbox_option">
-            <input type="checkbox" id="cb1"/>
-            <label htmlFor="cb1">I agree with terms and conditions</label>
-          </div>
-          <div className="input_field checkbox_option">
-            <input type="checkbox" id="cb2"/>
-            <label htmlFor="cb2">I want to receive the newsletter</label>
-          </div>
-          <input className="button" type="submit" value="Register" />
+          
+         
+
+
         </form>
+
       </div>
-    </div>
-  </div>
-</div>
+
 
       
     );

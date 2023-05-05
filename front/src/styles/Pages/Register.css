@@ -31,6 +31,7 @@
 .register-form-logo{
     width: 15%;
     padding: 2%;
+    animation: slideInFromTop 1s ease;
 }
 
 .register-form{
@@ -45,6 +46,7 @@
     border-radius: 2px;
     background-color: #FFFFFF ;
     padding-bottom: 5%;
+    animation: slideInFromLeft 1.5s ease;
 }
 
 .register-form h2{
@@ -81,6 +83,7 @@
     padding-left: 5%;
     border: 1px solid #cccccc;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    border-radius: 3px;
    
 }
 .register-form-left input:focus{
@@ -110,6 +113,7 @@
     flex-direction: column;
     gap: 40px;
     padding-right: 1%;
+    border-radius: 3px;
     
 }
 
@@ -176,9 +180,29 @@
   font-weight: 600;
 }
 
-.button-43:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+.register-form-btn {
+  background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
 }
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  
 
 @media (min-width: 768px) {
   .button-43 {
@@ -198,14 +222,26 @@
 
 /* Pour les mobiles */
 @media only screen and (max-width: 767px) {
-    .register-form-navbar {
+   /* .register-form-navbar {
       height: 20%;
     }
     
     .register-form-logo {
       width: 30%;
     }
+    */
+
+    .register-form-navbar {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        margin-top: 20px;
+      }
     
+      .register-form-logo {
+        width: 40%;
+        margin-bottom: 20px;
+      }
     .register-form {
       width: 90%;
       height: 80%;

@@ -1,22 +1,23 @@
-CREATE TABLE role(
+CREATE TABLE roles(
     role_id serial PRIMARY KEY,
-    description VARCHAR(50)
+    role_description VARCHAR(50)
 
 );
-INSERT INTO role (role_id, description) values (DEFAULT ,'LECTURE');
-INSERT INTO role(role_id, description) values (DEFAULT ,' LECTURE ET ECRITURE');
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');
 
 
-CREATE TABLE User( 
+CREATE TABLE users( 
  user_id serial PRIMARY KEY,
  user_name VARCHAR(30) NOT NULL,
  user_surname VARCHAR(20) NOT NULL, 
  user_email VARCHAR(40) NOT NULL, 
  user_password VARCHAR(200) NOT NULL, 
+ user_compagny VARCHAR(200) NOT NULL,
  role_id INTEGER NOT NULL,
   CONSTRAINT fk_role
      FOREIGN KEY(role_id) 
-        REFERENCES role(role_id)
+        REFERENCES roleS(role_id)
         
 );
 

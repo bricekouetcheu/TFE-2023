@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from "../assets/logo.png";
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -10,7 +11,7 @@ const Login = () => {
              </div>
      
             <form className='login-form'>
-                <h2>Login</h2>
+                <h2>SIGN IN</h2>
                 <div className='login-form-content'>
                     <input type="email" id="email" name="email" required placeholder="Email..."/>
                     <input type="password" id="password" name="password" required placeholder="Password..."/>
@@ -30,7 +31,7 @@ const Login = () => {
 
           <button className='login-form-btn'>Login</button>
           <div className='login-form-signin'>
-          <p>you don't have an account yet?<a href=""> SIGN UP</a></p>
+          <p>you don't have an account yet?<NavLink to="/register">SIGN UP</NavLink></p>
 
           </div>
           

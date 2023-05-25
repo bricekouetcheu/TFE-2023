@@ -54,3 +54,77 @@ exports.Register = (req, res)=>{
     }
 
 }
+
+exports.Login = (req , res , next)=>{
+    const {email , password} = req.body; // on recupere les valeurs envoyées par le front
+    
+
+    try{
+         pool.query(`SELECT * FROM users WHERE user_email= $1;`, [email])
+         .then( result=>{
+            console.log(result)
+            const user = result.rows;
+            if(user.length === 0){// check if user is already in database
+                console.log('pas encore de compte');
+                return res.status(401).send({message: 'Vous\'avez pas encore de compte'});
+            }
+    
+            else{
+                
+                const name = user[0].user_name;
+                const surname = user[0].user_surname;
+                const user_id= user[0].user_id
+                bcrypt.compare(password , user[0].user_password) // check matching between password found and password sent
+                .then(valid =>{
+                    if(!valid){ 
+                        console.log('incorrect password');
+                        return res.status(401).json({message:'incorrect password'})
+                    }else{ // password ok!!! send user
+
+                        const token = jwt.sign({
+                            id : user_id}, 
+                            'RANDON TOKEN',
+                            { expiresIn: '24h'})
+
+                        return res.status(200).send({
+                            id : user_id,
+                            name : name,
+                            surname: surname,
+                            email: email,
+                        accessToken: token})
+                    }
+                })
+    
+                .catch(error =>{
+                    res.status(500).json( error )
+                    console.log(error)
+                }
+                   
+                )
+                    
+                     
+                
+    
+    
+                
+    
+            }
+
+        })
+
+        .catch(error =>  {
+            console.log(error),
+            res.status(500).json(error)
+
+        })
+            
+      
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+        error: "Database error occurred while signing in!", //Database connection error
+        });
+}
+
+}

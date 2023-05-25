@@ -1,8 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from "../assets/logo.png";
-import { NavLink } from 'react-router-dom';
+import { NavLink ,useNavigate , Navigate} from 'react-router-dom';
+import validator from 'validator';
+import axios  from 'axios';
+
 
 const Login = () => {
+
+
+    //states
+    const [email , setEmail] = useState('')
+    const [password, setPassword]= useState('')
+    const LoginUrl = 'http://localhost:4000/api/login'
+    const [errorMessage,setErrorMessage] = useState('') ;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const Navigate = useNavigate();
+
+    const handleEmail = (e)=>{
+        setEmail(e.target.value)
+    }
+
+    const handlePassword = (e)=>{
+        setPassword(e.target.value)
+    }
+
+    const handleSubmit = (e)=>{
+        if(validator.isEmail(email)){
+            axios.post(LoginUrl ,{
+                email: email,
+                password : password,
+                
+            }).then(result=>{
+                const data = result.data
+                console.log(data)
+                localStorage.setItem('token',data.accessToken)
+                setIsAuthenticated(true)
+                Navigate('/projects')
+            })
+            .catch(err=>{
+                console.log(err)
+                setErrorMessage('Check your credentials')
+            })
+
+        }else{
+            setErrorMessage('Check your email')
+        }
+
+        e.preventDefault();
+    }
+
+    
+    if (isAuthenticated) {
+        return <Navigate to={'/projects'}/>;
+      }
     return (
         <div className='login'>
             <div className='login-form-navbar'>
@@ -12,9 +62,11 @@ const Login = () => {
      
             <form className='login-form'>
                 <h2>SIGN IN</h2>
+                {errorMessage &&
+                (<label className='ErrorMessage'>{errorMessage}</label>)}
                 <div className='login-form-content'>
-                    <input type="email" id="email" name="email" required placeholder="Email..."/>
-                    <input type="password" id="password" name="password" required placeholder="Password..."/>
+                    <input type="email" id="email" name="email" required placeholder="Email..." value={email} onChange={handleEmail}/>
+                    <input type="password" id="password" name="password" required placeholder="Password..." value={password} onChange={handlePassword}/>
 
 
                 </div>
@@ -29,7 +81,7 @@ const Login = () => {
        
         
 
-          <button className='login-form-btn'>Login</button>
+          <button className='login-form-btn' onClick={handleSubmit}>Login</button>
           <div className='login-form-signin'>
           <p>you don't have an account yet?<NavLink to="/register">SIGN UP</NavLink></p>
 

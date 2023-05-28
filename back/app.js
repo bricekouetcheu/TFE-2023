@@ -4,12 +4,13 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
+const projectRoutes =require('./routes/projects');
 
 
 app.use(express.json()); // qui gere les requetes entrantes de type json.
 app.use(cookieParser()); // qui s'occupe des cookies.
 
-app.use(express.static('IFC')) //qui gere le folder pour l'upload des fichiers.
+app.use(express.static('IFC'))//qui gere le folder pour l'upload des fichiers.
 
 app.use(bodyParser.urlencoded({ // qui gere les requetes entrantes de type formulaires.
   extended: true
@@ -25,6 +26,7 @@ app.use(cors(corsOptions));
 
 //API routes
 app.use('/api',authRoutes);
+app.use('/api',projectRoutes);
 
 
 

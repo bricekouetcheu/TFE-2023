@@ -141,9 +141,9 @@ const Register = () => {
        
         
 
-          <button className='register-form-btn' onClick={handleSubmit}>SUBMIT</button>
+          <button className='form-btn' onClick={handleSubmit}>SUBMIT</button>
           <div className='register-form-signin'>
-          <p>Already have an account?   <NavLink to='/'>SIGN IN</NavLink></p>
+          <p> Already have an account?   <NavLink to='/'>SIGN IN</NavLink></p>
 
           </div>
           
@@ -151,6 +151,10 @@ const Register = () => {
 
 
         </form>
+
+        
+
+
 
       </div>
 

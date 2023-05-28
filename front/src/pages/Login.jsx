@@ -67,23 +67,21 @@ const Login = () => {
                 <div className='login-form-content'>
                     <input type="email" id="email" name="email" required placeholder="Email..." value={email} onChange={handleEmail}/>
                     <input type="password" id="password" name="password" required placeholder="Password..." value={password} onChange={handlePassword}/>
-
+ 
+                </div>
+                <div className='login-form-checkbox'>
+                        <p> <a href=""> Forgot password?</a></p>
 
                 </div>
-          <div className='login-form-checkbox'>
-             <p> <a href=""> Forgot password?</a></p>
-                      
-
-                 
-          </div>
+        
                
 
        
         
 
-          <button className='login-form-btn' onClick={handleSubmit}>Login</button>
+          <button className='form-btn' onClick={handleSubmit}>Login</button>
           <div className='login-form-signin'>
-          <p>you don't have an account yet?<NavLink to="/register">SIGN UP</NavLink></p>
+                <p>You don't have an account yet?<NavLink to="/register"> SIGN UP</NavLink></p>
 
           </div>
           

@@ -1,0 +1,102 @@
+.project-page-header{
+ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    position: relative;
+    background-color: #F6FFFE;
+    width: 100%;
+    height: 100px;
+ 
+}
+
+.project-page-header-Img{
+  margin-left: 3%;
+ 
+    width: 200px;
+    height: 30px;
+}
+
+.project-page-header-logout{
+  margin-right: 3%;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+   
+}
+
+.navbar-dropdown {
+    position: absolute;
+    top: 80%;
+    right: 1%;
+    z-index: 999;
+    display: none;
+    float: left;
+    min-width: 17rem;
+    height: 100%;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+  }
+
+  .navbar-dropdown.is-active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30%;
+  }
+
+  .navbar-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5%;
+    width: 80%;
+    text-decoration: none;
+    color: #212529;
+  }
+
+  /* Small screens */
+@media only screen and (max-width: 600px) {
+
+    /* Hide the logo */
+    .project-page-header-Img {
+      display: none;
+    }
+  
+    /* Reduce padding */
+    .project-page-header {
+      padding: 10px;
+    }
+  
+    /* Make the user profile icon larger */
+    .project-page-header-logout {
+      font-size: 1.5rem;
+    }
+  
+    /* Move the dropdown to the bottom of the screen */
+    .navbar-dropdown {
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: 0;
+      padding: 10px 0;
+      border: none;
+    }
+  
+  }
+  
+ 

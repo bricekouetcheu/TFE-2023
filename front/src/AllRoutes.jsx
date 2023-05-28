@@ -7,7 +7,6 @@ import Projects from './pages/Projects';
 
 const AllRoutes = () => {
     return (
-        <div id='page'>
         <BrowserRouter>
             <Routes>
                 
@@ -19,7 +18,7 @@ const AllRoutes = () => {
             </Routes>
         </BrowserRouter>
             
-        </div>
+
     );
 };
 

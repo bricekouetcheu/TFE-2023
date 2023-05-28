@@ -21,7 +21,7 @@ CREATE TABLE users(
         
 );
 
-CREATE TABLE Project(
+CREATE TABLE projects(
     project_id SERIAL PRIMARY KEY,
     project_name VARCHAR(255),
     project_address VARCHAR(255),
@@ -31,3 +31,15 @@ CREATE TABLE Project(
         FOREIGN KEY (user_id)
             REFERENCES users(user_id)
 )
+
+
+CREATE TABLE ifc_files (
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(id),
+    file_name VARCHAR(255) NOT NULL,
+     project_id SERIAL PRIMARY KEY,
+     CONSTRAINT fk_project
+        FOREIGN KEY (project_id)
+            REFERENCES projects(project_id)
+    
+);

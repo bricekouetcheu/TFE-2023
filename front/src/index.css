@@ -3,4 +3,8 @@
 @import "./styles/Pages/Login.css";
 @import "./styles/Pages/projects.css";
 @import "./styles/composants/Navbar.css";
+@import "./styles/Pages/AddProject.css";
+@import "./styles/composants/Step1.css";
+@import "./styles/composants/Step2.css";
+@import "./styles/composants/Step3.css";
 

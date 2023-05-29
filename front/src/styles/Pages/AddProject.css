@@ -1,0 +1,144 @@
+.AddProject{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F6FFFE;
+    gap: 50px;
+    padding-top: 60px;
+}
+
+.AddProject-ul{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.step-bar {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  0;
+    gap: 25%;
+    width: 50%;
+   
+  }
+  
+  .step-bar li {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+    color: #00BFB6;
+    text-transform: uppercase;
+   
+    padding: 20px;
+  }
+  
+  .step-bar li.active {
+    color: #00BFB6;
+    background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
+    border: 1px solid;
+  }
+
+  .step-bar li.completed {
+    background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
+    color: #fff;
+  }
+
+  .step-bar-item {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
+    color: #00BFB6;
+    border: 1px solid #00BFB6;
+    
+  }
+
+  .step-bar-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 200%;
+    height: 2px;
+    background-color: #00BFB6;
+    transform: translateY(-50%);
+  }
+
+  .step-bar-item:last-child::after {
+    display: none; /* Pour cacher la barre après la dernière étape */
+  }
+  
+  .step-bar-item.active::after,
+  .step-bar-item.completed::after {
+    background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
+  }
+
+
+    .AddProject-information{
+    width: 60%;
+    background-color: #fff;
+    height: 50%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .AddProject-information-step{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+  }
+
+.AddProject-switch{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5%;
+    width: 100%;
+    
+}
+
+.switch-btn{
+        /*background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);*/
+        color: #00BFB6;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 15px;
+        justify-content: center;
+        padding: 1rem 1.75rem;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        margin-top: 10px;
+        font-weight: 600;
+        border: none;
+        background-color: #fff;
+        /*font-family: 'Roboto', sans-serif;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+      }
+ .switch-btn:hover{
+      
+        transform: scale(1.1);
+        transition: 0.5s ease-in-out;
+        background: rgb(1,1,1);
+        background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
+        color: #00BFB6;
+      
+      }

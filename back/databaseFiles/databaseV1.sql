@@ -30,14 +30,13 @@ CREATE TABLE projects(
     CONSTRAINT fk_users
         FOREIGN KEY (user_id)
             REFERENCES users(user_id)
-)
+);
 
 
 CREATE TABLE ifc_files (
     id SERIAL PRIMARY KEY,
-    project_id INTEGER REFERENCES projects(id),
+    project_id INTEGER,
     file_name VARCHAR(255) NOT NULL,
-     project_id SERIAL PRIMARY KEY,
      CONSTRAINT fk_project
         FOREIGN KEY (project_id)
             REFERENCES projects(project_id)

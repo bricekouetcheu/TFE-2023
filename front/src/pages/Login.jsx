@@ -32,7 +32,7 @@ const Login = () => {
                 
             }).then(result=>{
                 const data = result.data
-                console.log(data)
+               
                 localStorage.setItem('token',data.accessToken)
                 setIsAuthenticated(true)
                 Navigate('/projects')

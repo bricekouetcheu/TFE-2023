@@ -85,7 +85,7 @@
 
 
     .AddProject-information{
-    width: 60%;
+    width: 40%;
     background-color: #fff;
     height: 50%;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
@@ -95,21 +95,14 @@
   }
 
   .AddProject-information-step{
-    height: 80%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 5%;
+    padding-top: 3%;
   }
 
-.AddProject-switch{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 5%;
-    width: 100%;
-    
-}
+
 
 .switch-btn{
         /*background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);*/
@@ -142,3 +135,51 @@
         color: #00BFB6;
       
       }
+
+
+      @media only screen and (max-width: 767px) {
+        /* .register-form-navbar {
+           height: 20%;
+         }
+         
+         .register-form-logo {
+           width: 30%;
+         }
+         */
+         .AddProject-ul{
+            width: 100%;
+            gap: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .step-bar {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:  0;
+            gap: 14%;
+            width: 50%;
+            padding-left: 0%;
+           
+          }
+
+          .AddProject-information{
+            width: 80%;
+            background-color: #fff;
+            height: 30%;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .step-bar-item::after {
+           
+            width: 150%;
+            
+          }
+          
+       }
+
+   

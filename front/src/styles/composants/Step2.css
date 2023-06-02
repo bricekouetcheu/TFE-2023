@@ -1,0 +1,150 @@
+.step2{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 13%;
+    height: 100%;
+
+}
+
+.step2-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40%;
+    gap: 12%;
+   
+}
+
+.step2-form-top{
+    display: flex;
+    gap: 5%;
+    width: 80%;
+    align-items: center;
+   
+}
+.step2-form-top div{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+
+
+.step2-form-top .street{
+    width: 80%;
+}
+
+.step2-form-top .number{
+    width: 20%;
+
+}
+.step2-form-top .number input{
+    width: 100%;
+
+}
+
+.step2-form-bottom{
+    display: flex;
+    gap: 5%;
+    width: 80%;
+    align-items: center;
+   
+}
+
+.step2-form-bottom div{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+   
+}
+
+.step2-form-bottom .city{
+    width: 60%;
+}
+
+.step2-form-bottom .code{
+    width: 40%;
+
+}
+.step2-form-bottom .code input{
+    width: 100%;
+    
+
+}
+
+
+.step2-form  label{
+    font-size: medium;
+}
+
+.step2-form input{
+    height: 30px;
+    background-color: #FFFFFF;
+    padding-left: 5%;
+    border: solid 1.5px #D3D3D3;
+    
+    border-radius: 3px;
+
+}
+
+.step2-form input:focus {
+    outline: none !important;
+    border:1px solid #00BFB6;
+    box-shadow: 0 0 10px #719ECE;
+  }
+   
+
+
+  .step2-form input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  color: #555;
+
+}
+.step2-form input::-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #00BFB6 inset !important;
+  color: #555;
+}
+
+
+.step2-navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+
+}
+
+.step2-navigation button{
+    background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
+    border-radius: 50px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 0.6em;
+    justify-content: center;
+    padding: 0.8em ;
+    text-decoration: none;
+    width: 20%;
+    border: 1.5px solid;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 10px;
+    font-weight: 700;
+
+}
+
+.step2-navigation button:hover{
+    transform: scale(1.1);
+    transition: 0.5s ease-in-out;
+    background: rgb(1,1,1);
+    background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
+    color: #00BFB6;
+}
+
+
+

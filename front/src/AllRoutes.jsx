@@ -3,7 +3,6 @@ import { BrowserRouter, Route , Routes } from "react-router-dom";
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Projects from './pages/Projects';
-import AddProject from './pages/AddProject';
 import NewProject from './pages/NewProject';
 
 

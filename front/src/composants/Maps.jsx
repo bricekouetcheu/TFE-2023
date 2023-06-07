@@ -19,7 +19,7 @@ const Maps = () => {
         shadowUrl: iconShadow 
     });
 
-    const APIkey = 'AIzaSyC8M7uA-l0SqfoQfF1A2iAAujYZZ5pEEDU'
+    const APIkey = process.env.APIkey
     const getProjectUrl = 'http://localhost:4000/api/projects'
     const [projects, setProjects] = useState([]);
    

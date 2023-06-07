@@ -4,6 +4,7 @@ const format = require('pg-format');
 
 exports.CreateProject  = (req, res)=>{
     const {name, address} = req.body;
+    //creer un middleweares d'auth
     const user_id = 4
     const files = req.files;
    
@@ -41,6 +42,18 @@ exports.CreateProject  = (req, res)=>{
         res.status(500).send({message:'something went wrong'});
     })
 
+}
+    exports.getAllProjects = (req, res)=>{
+        const id = 4
+        const getAllProjectsQuery = 'select * from projects where user_id = $1'
+    
 
+    pool.query(getAllProjectsQuery,[id])
+    .then(result=>{
+        const data = result.rows;
+        res.send(data)
+    }).catch(err=>{
+        console.log(err)
+    })
 
 }

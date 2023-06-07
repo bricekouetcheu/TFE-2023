@@ -5,6 +5,7 @@ import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 import L from 'leaflet';
+import { popupContent, popupHead, popupText, okText } from "./popupStyles";
 
 
 const MarkerProject = (props) => {
@@ -15,10 +16,16 @@ const MarkerProject = (props) => {
 });
 
     return (
-        <Marker position={props.position} icon={icon}  style={{height:'20px'}}>
-        <Popup>
-          A pretty CSS3 popup.
+        <Marker position={props.position} icon={icon}  style={{height:'20px' }}>
+        <Popup className="request-popup">
+        <div className='cardpopup'>
+          <h3>{props.name}</h3>
+
           <button>open project</button>
+       
+        </div>
+         
+          
         </Popup>
       </Marker>
     );

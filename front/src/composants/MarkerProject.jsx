@@ -6,6 +6,9 @@ import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 import L from 'leaflet';
 import { popupContent, popupHead, popupText, okText } from "./popupStyles";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const MarkerProject = (props) => {
@@ -15,18 +18,25 @@ const MarkerProject = (props) => {
     shadowUrl: iconShadow 
 });
 
+
+
     return (
         <Marker position={props.position} icon={icon}  style={{height:'20px' }}>
-        <Popup className="request-popup">
-        <div className='cardpopup'>
-          <h3>{props.name}</h3>
+         <Popup className="request-popup">
+          <div className='popup-content'>
+            <h3>{props.name}</h3>
+            <div className='popup-option'>
+              <button>Open</button>
+              <FontAwesomeIcon icon={faTrash} />
 
-          <button>open project</button>
-       
-        </div>
-         
+            </div>
+            
           
+            
+          </div>
         </Popup>
+          
+        
       </Marker>
     );
 };

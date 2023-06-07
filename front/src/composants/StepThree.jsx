@@ -14,7 +14,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
 
  
 
-
+    
     const handleSubmit = (e)=>{
        
         e.preventDefault()

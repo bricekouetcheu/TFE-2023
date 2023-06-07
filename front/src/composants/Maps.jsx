@@ -92,7 +92,7 @@ const Maps = () => {
       />
         {projects.length > 0 && (
       projects.map((project, index) => (
-    <MarkerProject key={index} position={[project.coordinates.lat, project.coordinates.lng]} />
+    <MarkerProject key={index} position={[project.coordinates.lat, project.coordinates.lng]} name={project.project_name} />
         ))
       )}
   

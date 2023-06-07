@@ -4,31 +4,17 @@ import Navbar from '../composants/Navbar';
 import { MdAdd } from "react-icons/md";
 import { FaFilter } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+
 
 
 
 
 const Projects = () => {
     const Navigate = useNavigate()
-    const APIkey = 'AIzaSyC8M7uA-l0SqfoQfF1A2iAAujYZZ5pEEDU'
-    const getProjectUrl = 'http://localhost:4000/api/projects'
+   
 
-    useEffect(()=>{
-
-        axios.get('http://localhost:4000/api/projects')
-        .then(result=>{
-            const data = result.data
-            console.log(data)
-
-        }).catch(err=>
-            console.log(err)
-        )
-
-
-
-
-    },[])
 
     return (
         <div className='projects'>
@@ -40,7 +26,12 @@ const Projects = () => {
 
                 </div>
                 <div className='project-content-header-right' >
-                    <input type="search" />
+                    <div className='search-box'>
+                        <button className='btn-search'><FontAwesomeIcon icon={faMagnifyingGlass} /></button> 
+                        <input type="search" placeholder='Search by name ...' className='input-search' />
+
+                    </div>
+                   
                     <div className='filterProject'>
                         <h3>Filter</h3>
                         <FaFilter></FaFilter>

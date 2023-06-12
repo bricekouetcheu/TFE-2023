@@ -29,8 +29,8 @@ const MarkerProject = (props) => {
 
     return (
         <Marker position={props.position} icon={icon}  style={{height:'20px' }}>
-         <Popup className="request-popup">
-          <div className='popup-content'>
+         <Popup className="popup" style = {{width:'450px'}}>
+          <div className='popup-content-option'>
             <h3>{props.name}</h3>
             <div className='popup-option'>
               <button onClick={()=>{Navigate(`/HomeProject/${props.id}`)}}>Open</button>

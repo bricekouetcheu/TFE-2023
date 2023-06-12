@@ -5,7 +5,10 @@ const MyCasting = () => {
         <div className='dashboard-content'>
             <div className='dashboard-nav'>
                 <h1>Project Dashboard</h1>
+               
             </div>
+
+            <div > my casting</div>
             
         
     </div>

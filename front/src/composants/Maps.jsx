@@ -28,7 +28,7 @@ const Maps = () => {
   
     const geocodeAddress = (address) => {
       const APIkey = process.env.REACT_APP_KEY
-      console.log(APIkey)
+     
       const apiKey = 'AIzaSyC8M7uA-l0SqfoQfF1A2iAAujYZZ5pEEDU'; // Remplacez par votre clé d'API de géocodage
       const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
      
@@ -71,7 +71,7 @@ const Maps = () => {
   
           Promise.all(promises)
             .then(projectsWithCoordinates => {
-              console.log(projectsWithCoordinates)
+              
               setProjects(projectsWithCoordinates);
              
              
@@ -84,7 +84,7 @@ const Maps = () => {
           console.log('Erreur lors de la requête API', error);
         });
 
-        console.log(projects)
+       
     }, []);
     
     return (

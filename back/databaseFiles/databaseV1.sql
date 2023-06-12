@@ -3,8 +3,7 @@ CREATE TABLE roles(
     role_description VARCHAR(50)
 
 );
-INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
-INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');
+
 
 
 CREATE TABLE users( 
@@ -42,3 +41,28 @@ CREATE TABLE ifc_files (
             REFERENCES projects(project_id)
     
 );
+
+CREATE TABLE castings (
+  casting _id SERIAL PRIMARY KEY,
+  casting_name VARCHAR NOT NULL,
+  casting_description TEXT ,
+  template_id INT NOT NULL,
+  project_id INT NOT NULL, 
+  CONSTRAINT fk_template
+    FOREIGN KEY (template_id)
+    REFERENCES templates (id)
+  CONSTRAINT fk_project
+    FOREIGN KEY ( project_id)
+    REFERENCES projects ( project_id)
+);
+
+CREATE TABLE templates (
+  template_id SERIAL PRIMARY KEY,
+  template_category VARCHAR NOT NULL,
+  template_subcategory VARCHAR NOT NULL,
+  template_json_data JSON
+);
+
+
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');

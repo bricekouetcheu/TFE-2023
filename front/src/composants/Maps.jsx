@@ -19,15 +19,18 @@ const Maps = () => {
         shadowUrl: iconShadow 
     });
 
-    const APIkey = process.env.APIkey
+   
+   
     const getProjectUrl = 'http://localhost:4000/api/projects'
     const [projects, setProjects] = useState([]);
    
 
   
     const geocodeAddress = (address) => {
+      const APIkey = process.env.REACT_APP_KEY
+      console.log(APIkey)
       const apiKey = 'AIzaSyC8M7uA-l0SqfoQfF1A2iAAujYZZ5pEEDU'; // Remplacez par votre clé d'API de géocodage
-      const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+      const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
      
   
       return axios.get(apiUrl)
@@ -92,7 +95,7 @@ const Maps = () => {
       />
         {projects.length > 0 && (
       projects.map((project, index) => (
-    <MarkerProject key={index} position={[project.coordinates.lat, project.coordinates.lng]} name={project.project_name} />
+    <MarkerProject key={index} position={[project.coordinates.lat, project.coordinates.lng]} name={project.project_name}  id = {project.project_id}/>
         ))
       )}
   

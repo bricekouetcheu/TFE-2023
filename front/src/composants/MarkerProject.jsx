@@ -8,10 +8,17 @@ import L from 'leaflet';
 import { popupContent, popupHead, popupText, okText } from "./popupStyles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 const MarkerProject = (props) => {
+  
+
+  const Navigate = useNavigate()
+
+  
   const icon = L.icon({ 
     iconRetinaUrl:iconRetina, 
     iconUrl: iconMarker, 
@@ -26,7 +33,7 @@ const MarkerProject = (props) => {
           <div className='popup-content'>
             <h3>{props.name}</h3>
             <div className='popup-option'>
-              <button>Open</button>
+              <button onClick={()=>{Navigate(`/HomeProject/${props.id}`)}}>Open</button>
               <FontAwesomeIcon icon={faTrash} />
 
             </div>

@@ -1,0 +1,67 @@
+.sidebar{
+    width: 20%;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+}
+
+.sidebar .logo{
+    padding: 8px;
+    position: relative;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+
+    
+}
+
+.sidebar-logo{
+    width: 80%;
+    padding: 2%;
+    animation: slideInFromTop 1s ease;
+    display: flex;
+    align-items: center;
+    
+}
+
+.sidebar-options{
+    display: flex;
+}
+
+.sidebar-options ul {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    padding: 0;
+    
+}
+
+.sidebar-options ul li{
+    font-weight: 600;
+    list-style: none;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+
+.sidebar-options ul li:hover{
+    color: #fff;
+    background-color: #00bfb6;
+   
+}

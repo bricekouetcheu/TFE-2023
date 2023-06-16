@@ -10,9 +10,12 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.12.1",
+    "@react-three/drei": "^9.56.27",
+    "@react-three/fiber": "^8.11.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/three": "^0.152.1",
     "axios": "^1.4.0",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
@@ -25,7 +28,10 @@
     "sass": "^1.62.0",
     "sweetalert2": "^11.7.5",
     "sweetalert2-react-content": "^5.0.7",
+    "three": "^0.149.0",
+    "three-mesh-bvh": "^0.5.23",
     "validator": "^13.9.0",
+    "web-ifc-three": "0.0.122",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

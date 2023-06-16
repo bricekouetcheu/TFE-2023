@@ -1,0 +1,1298 @@
+{
+    "form": "default",
+    "questions": [
+      {
+        "subQuestions": [],
+        "values": [
+          "voile",
+          "escalier",
+          "poutre",
+          "colonne",
+          "couche_compression_plancher",
+          "sols",
+          "fondation"
+        ],
+        "imageValues": [
+          "img_voile",
+          "img_escalier",
+          "img_poutre",
+          "img_colonne",
+          "img_couche_compression_plancher",
+          "img_sol",
+          "img_fondation"
+        ],
+        "images": [],
+        "question": "type_element",
+        "shortTitle": "short_title_type_element",
+        "type": "matrix",
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "voile_cave",
+          "autres_voiles"
+        ],
+        "imageValues": [
+          "img_voile_cave",
+          "img_autre_voile"
+        ],
+        "images": [],
+        "question": "type_voile",
+        "shortTitle": "short_title_type_voile",
+        "type": "radio_image",
+        "conditions": {
+          "lhs": {
+            "question": "type_element"
+          },
+          "operator": "eq",
+          "rhs": "voile"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "beton_apparent",
+        "shortTitle": "short_title_beton_apparent",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "question": "type_element"
+          },
+          "operator": "in",
+          "rhs": [
+            "voile",
+            "escalier",
+            "poutre",
+            "colonne"
+          ]
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [
+          "img_couche_compression_plancher"
+        ],
+        "question": "epaisseur_couche_compression",
+        "shortTitle": "short_title_epaisseur_couche_compression",
+        "type": "number",
+        "unit": "mm",
+        "validation": {
+          "min": 40,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "question": "type_element"
+          },
+          "operator": "eq",
+          "rhs": "couche_compression_plancher"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "terrasses",
+          "habitation",
+          "stockage",
+          "garage"
+        ],
+        "imageValues": [
+          "img_terrasse",
+          "img_habitation-commerce-bureau",
+          "img_stockage",
+          "img_garage"
+        ],
+        "images": [],
+        "question": "type_sol",
+        "shortTitle": "short_title_type_sol",
+        "type": "matrix",
+        "conditions": {
+          "lhs": {
+            "question": "type_element"
+          },
+          "operator": "eq",
+          "rhs": "sols"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "rayonnage_sol",
+        "shortTitle": "short_title_rayonnage_sol",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_element"
+            },
+            "operator": "eq",
+            "rhs": "sols"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "type_sol"
+            },
+            "operator": "eq",
+            "rhs": "stockage"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "faible_humidite",
+          "humidite_moyenne",
+          "expose_gel",
+          "expose_sel"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "sol_environnement",
+        "shortTitle": "short_title_sol_environnement",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_element"
+            },
+            "operator": "eq",
+            "rhs": "sols"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "type_sol"
+            },
+            "operator": "eq",
+            "rhs": "stockage"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [
+          "img_laserscreed"
+        ],
+        "question": "lasercreed",
+        "shortTitle": "short_title_lasercreed",
+        "info": "info_lasercreed",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_element"
+            },
+            "operator": "eq",
+            "rhs": "sols"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_sol"
+              },
+              "operator": "neq",
+              "rhs": "allees"
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "question": "type_sol"
+              },
+              "operator": "neq",
+              "rhs": "terrasses"
+            }
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "construction_legere",
+          "semelles",
+          "radier",
+          "geotechnique"
+        ],
+        "imageValues": [
+          "img_pour_const_legeres",
+          "img_semelle",
+          "img_radier",
+          "img_trav_geot_specx"
+        ],
+        "images": [],
+        "question": "type_fondation",
+        "shortTitle": "short_title_type_fondation",
+        "info": "info_type_fondation",
+        "subInfo": "sub_info_fondation",
+        "type": "matrix",
+        "conditions": {
+          "lhs": {
+            "question": "type_element"
+          },
+          "operator": "eq",
+          "rhs": "fondation"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "expose_gel",
+        "shortTitle": "short_title_expose_gel",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_element"
+            },
+            "operator": "eq",
+            "rhs": "fondation"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "type_fondation"
+            },
+            "operator": "in",
+            "rhs": [
+              "semelles",
+              "radier"
+            ]
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "parois_moulees",
+          "pieux_fores",
+          "pieux_refoulement"
+        ],
+        "imageValues": [
+          "img_paroi_moulee",
+          "img_pieu-fore",
+          "img_pieu-refoule-sol"
+        ],
+        "images": [],
+        "question": "type_travaux_geotechnique",
+        "shortTitle": "short_title_type_travaux_geotechnique",
+        "info": "info_type_travaux_geotechnique",
+        "type": "radio_image",
+        "conditions": {
+          "lhs": {
+            "question": "type_fondation"
+          },
+          "operator": "eq",
+          "rhs": "geotechnique"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [
+          "img_espacement-barres"
+        ],
+        "question": "espacement_barre_long",
+        "shortTitle": "short_title_espacement_barre_long",
+        "conditionalInfo": [
+          {
+            "conditions": {
+              "lhs": {
+                "question": "type_travaux_geotechnique"
+              },
+              "operator": "eq",
+              "rhs": "parois_moulees"
+            },
+            "info": "info_espacement_barre_long_paroi_moulee"
+          },
+          {
+            "conditions": {
+              "lhs": {
+                "question": "type_travaux_geotechnique"
+              },
+              "operator": "eq",
+              "rhs": "pieux_fores"
+            },
+            "info": "info_espacement_barre_long_pieux_fores"
+          },
+          {
+            "conditions": {
+              "lhs": {
+                "question": "type_travaux_geotechnique"
+              },
+              "operator": "eq",
+              "rhs": "pieux_refoulement"
+            },
+            "info": "info_espacement_barre_long_pieux_refoulement"
+          }
+        ],
+        "type": "number",
+        "unit": "mm",
+        "validation": {
+          "min": 0,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "question": "type_fondation"
+          },
+          "operator": "eq",
+          "rhs": "geotechnique"
+        }
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "120min",
+          "180min",
+          "240min"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "maintien_ouvrabilite",
+        "shortTitle": "short_title_maintien_ouvrabilite",
+        "conditionalInfo": [
+          {
+            "conditions": {
+              "lhs": {
+                "question": "type_travaux_geotechnique"
+              },
+              "operator": "eq",
+              "rhs": "parois_moulees"
+            },
+            "info": "info_maintien_ouvrabilite_paroi_moulee"
+          }
+        ],
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "question": "type_fondation"
+          },
+          "operator": "eq",
+          "rhs": "geotechnique"
+        }
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "cadence_livraison",
+        "shortTitle": "short_title_cadence_livraison",
+        "info": "info_cadence_livraison",
+        "type": "number",
+        "unit": "m3/h",
+        "validation": {
+          "min": 0,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_fondation"
+            },
+            "operator": "eq",
+            "rhs": "geotechnique"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "type_travaux_geotechnique"
+            },
+            "operator": "eq",
+            "rhs": "parois_moulees"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "immergees",
+          "seches"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "conditions_betonnage",
+        "shortTitle": "short_title_conditions_betonnage",
+        "info": "info_conditions_betonnage",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "question": "type_travaux_geotechnique"
+          },
+          "operator": "in",
+          "rhs": [
+            "pieux_fores"
+          ]
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "introduction_armature_apres_betonnage",
+        "shortTitle": "short_title_introduction_armature_apres_betonnage",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_fondation"
+            },
+            "operator": "eq",
+            "rhs": "geotechnique"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "type_travaux_geotechnique"
+            },
+            "operator": "in",
+            "rhs": [
+              "pieux_fores",
+              "pieux_refoulement"
+            ]
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "diametre_plongeur",
+        "shortTitle": "short_title_diametre_plongeur",
+        "info": "info_diametre_plongeur",
+        "type": "number",
+        "unit": "mm",
+        "validation": {
+          "min": 150,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_fondation"
+            },
+            "operator": "eq",
+            "rhs": "geotechnique"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "lhs": {
+                "question": "conditions_betonnage"
+              },
+              "operator": "eq",
+              "rhs": "immergees"
+            },
+            "operator": "or",
+            "rhs": {
+              "lhs": {
+                "question": "type_travaux_geotechnique"
+              },
+              "operator": "eq",
+              "rhs": "parois_moulees"
+            }
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "interieur",
+          "exterieur",
+          "marin"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "environnement",
+        "shortTitle": "short_title_environnement",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "nin",
+              "rhs": [
+                "sols",
+                "fondation"
+              ]
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "question": "type_voile"
+              },
+              "operator": "neq",
+              "rhs": "voile_cave"
+            }
+          },
+          "operator": "or",
+          "rhs": {
+            "lhs": {
+              "question": "type_sol"
+            },
+            "operator": "eq",
+            "rhs": "terrasses"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "humidite_faible",
+          "humidite_elevee"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "environnement_interieur",
+        "shortTitle": "short_title_environnement_interieur",
+        "info": "info_environnement_interieur",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "nin",
+              "rhs": [
+                "sols",
+                "fondation"
+              ]
+            },
+            "operator": "or",
+            "rhs": {
+              "lhs": {
+                "question": "type_sol"
+              },
+              "operator": "eq",
+              "rhs": "terrasses"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "environnement"
+            },
+            "operator": "eq",
+            "rhs": "interieur"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "exterieur_gel",
+          "exterieur_gel_pluie",
+          "exterieur_gel_sels"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "environnement_exterieur",
+        "shortTitle": "short_title_environnement_exterieur",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "nin",
+              "rhs": [
+                "sols",
+                "fondation"
+              ]
+            },
+            "operator": "or",
+            "rhs": {
+              "lhs": {
+                "question": "type_sol"
+              },
+              "operator": "eq",
+              "rhs": "terrasses"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "environnement"
+            },
+            "operator": "eq",
+            "rhs": "exterieur"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "marin_sans_exposition",
+          "marin_gel",
+          "marin_immerge",
+          "marin_eclaboussure"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "environnement_marin",
+        "shortTitle": "short_title_environnement_marin",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "nin",
+              "rhs": [
+                "sols",
+                "fondation"
+              ]
+            },
+            "operator": "or",
+            "rhs": {
+              "lhs": {
+                "question": "type_sol"
+              },
+              "operator": "eq",
+              "rhs": "terrasses"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "environnement"
+            },
+            "operator": "eq",
+            "rhs": "marin"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "nul",
+          "faible",
+          "moyen",
+          "eleve"
+        ],
+        "imageValues": [],
+        "images": [
+          "environnement_agressif_t1",
+          "environnement_agressif_t2"
+        ],
+        "question": "agressivite",
+        "shortTitle": "short_title_agressivite",
+        "type": "radio",
+        "info": "info_agressivite",
+        "subInfo": "sub_info_agressivite",
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "sulfates",
+        "shortTitle": "short_title_sulfates",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "question": "agressivite"
+          },
+          "operator": "in",
+          "rhs": [
+            "moyen",
+            "eleve"
+          ]
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "inconnu",
+          "non_arme",
+          "structure",
+          "structure_grand_ouvrage"
+        ],
+        "imageValues": [],
+        "images": [
+          "ras"
+        ],
+        "question": "application",
+        "shortTitle": "short_title_application",
+        "info": "info_application",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "decision_tree": "b2-2"
+            },
+            "operator": "in",
+            "rhs": [
+              "ea1",
+              "ea2",
+              "ea3"
+            ]
+          },
+          "operator": "or",
+          "rhs": {
+            "lhs": {
+              "decision_tree": "b2-1"
+            },
+            "operator": "neq",
+            "rhs": "ei"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "classique",
+          "auto_placant"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "type_beton",
+        "shortTitle": "short_title_type_beton",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "neq",
+              "rhs": "fondation"
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "neq",
+              "rhs": "escalier"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "lasercreed"
+            },
+            "operator": "neq",
+            "rhs": true
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "ferraillage_dense_complexe",
+        "shortTitle": "short_title_ferraillage_dense_complexe",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_element"
+            },
+            "operator": "neq",
+            "rhs": "fondation"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "type_beton"
+            },
+            "operator": "eq",
+            "rhs": "auto_placant"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "resistance_calculee",
+        "shortTitle": "short_title_resistance_calculee",
+        "type": "bool",
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "C16/20",
+          "C20/25",
+          "C25/30",
+          "C30/37",
+          "C35/45",
+          "C40/50",
+          "C45/55",
+          "C50/60",
+          "C55/67",
+          "C60/75",
+          "C70/85",
+          "C80/95",
+          "C90/105",
+          "C100/115"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "resistance",
+        "shortTitle": "short_title_resistance",
+        "type": "dropdown",
+        "conditions": {
+          "lhs": {
+            "question": "resistance_calculee"
+          },
+          "operator": "eq",
+          "rhs": true
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "beton_armee",
+        "shortTitle": "short_title_beton_armee",
+        "info": "info_beton_armee",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_fondation"
+            },
+            "operator": "in",
+            "rhs": [
+              "construction_legere",
+              "semelles"
+            ]
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "resistance_calculee"
+            },
+            "operator": "eq",
+            "rhs": true
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "beton_armee_fibres",
+        "shortTitle": "short_title_beton_armee_fibres",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_element"
+              },
+              "operator": "in",
+              "rhs": [
+                "couche_compression_plancher",
+                "sols"
+              ]
+            },
+            "operator": "or",
+            "rhs": {
+              "lhs": {
+                "question": "type_fondation"
+              },
+              "operator": "in",
+              "rhs": [
+                "construction_legere",
+                "semelles",
+                "radier"
+              ]
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "decision_tree": "b1"
+            },
+            "operator": "eq",
+            "rhs": "ba"
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "epaisseur_element",
+        "shortTitle": "short_title_epaisseur_element",
+        "info": "info_epaisseur_element",
+        "type": "number",
+        "unit": "mm",
+        "validation": {
+          "min": 40,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "question": "type_element"
+          },
+          "operator": "neq",
+          "rhs": "couche_compression_plancher"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "diametre_armature",
+        "shortTitle": "short_title_diametre_armature",
+        "info": "info_diametre_armature",
+        "type": "number",
+        "unit": "mm",
+        "validation": {
+          "min": 0,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_fondation"
+              },
+              "operator": "neq",
+              "rhs": "geotechnique"
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "decision_tree": "b1"
+              },
+              "operator": "eq",
+              "rhs": "ba"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "beton_armee_fibres"
+            },
+            "operator": "neq",
+            "rhs": true
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [
+          "img_enrobage"
+        ],
+        "question": "enrobage",
+        "shortTitle": "short_title_enrobage",
+        "info": "info_enrobage",
+        "type": "number",
+        "unit": "mm",
+        "validation": {
+          "min": 20,
+          "step": 0.1
+        },
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_fondation"
+              },
+              "operator": "neq",
+              "rhs": "geotechnique"
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "decision_tree": "b1"
+              },
+              "operator": "eq",
+              "rhs": "ba"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "beton_armee_fibres"
+            },
+            "operator": "neq",
+            "rhs": true
+          }
+        },
+        "default_value": {
+          "decision_tree": "enrobage"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [
+          "img_ecart-armature",
+          "img_ecart-armature-sol"
+        ],
+        "question": "armatures_serrees",
+        "shortTitle": "short_title_armatures_serrees",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "question": "type_fondation"
+              },
+              "operator": "neq",
+              "rhs": "geotechnique"
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "decision_tree": "b1"
+              },
+              "operator": "eq",
+              "rhs": "ba"
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "beton_armee_fibres"
+            },
+            "operator": "neq",
+            "rhs": true
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "oui",
+          "non",
+          "inconnu"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "granulats_recycles",
+        "type": "radio",
+        "conditionalInfo": [],
+        "shortTitle": "short_title_granulats_recycles",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "lhs": {
+                "decision_tree": "b2-2"
+              },
+              "operator": "nin",
+              "rhs": [
+                "ea2",
+                "ea3"
+              ]
+            },
+            "operator": "and",
+            "rhs": {
+              "lhs": {
+                "decision_tree": "b2-1"
+              },
+              "operator": "nin",
+              "rhs": [
+                "ee4",
+                "es4"
+              ]
+            }
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "lhs": {
+                "lhs": {
+                  "decision_tree": "b1"
+                },
+                "operator": "eq",
+                "rhs": "ba"
+              },
+              "operator": "and",
+              "rhs": {
+                "lhs": {
+                  "decision_tree": "b2-1"
+                },
+                "operator": "nin",
+                "rhs": [
+                  "es1",
+                  "es2",
+                  "es3"
+                ]
+              }
+            },
+            "operator": "or",
+            "rhs": {
+              "lhs": {
+                "decision_tree": "b1"
+              },
+              "operator": "eq",
+              "rhs": "bna"
+            }
+          }
+        }
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "pompe_lt_50m",
+          "pompe_gt_50m",
+          "dechargement_cufa",
+          "inconnu"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "mode_dechargement",
+        "shortTitle": "short_title_mode_dechargement",
+        "type": "radio",
+        "conditions": {
+          "lhs": {
+            "question": "type_fondation"
+          },
+          "operator": "neq",
+          "rhs": "geotechnique"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "city_pompe",
+        "shortTitle": "short_title_city_pompe",
+        "type": "bool",
+        "conditions": {
+          "lhs": {
+            "lhs": {
+              "question": "type_fondation"
+            },
+            "operator": "neq",
+            "rhs": "geotechnique"
+          },
+          "operator": "and",
+          "rhs": {
+            "lhs": {
+              "question": "mode_dechargement"
+            },
+            "operator": "in",
+            "rhs": [
+              "pompe_gt_50m",
+              "pompe_lt_50m"
+            ]
+          }
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "inconnu",
+          "30",
+          "60",
+          "120"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "duree_dechargement",
+        "shortTitle": "short_title_duree_dechargement",
+        "info": "info_duree_dechargement",
+        "type": "dropdown",
+        "conditions": {
+          "lhs": {
+            "question": "type_fondation"
+          },
+          "operator": "neq",
+          "rhs": "geotechnique"
+        },
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [
+          "oui",
+          "non",
+          "inconnu"
+        ],
+        "imageValues": [],
+        "images": [],
+        "question": "chantier_accessible_camion",
+        "shortTitle": "short_title_chantier_accessible_camion",
+        "info": "info_chantier_accessible_camion",
+        "type": "radio",
+        "conditionalInfo": []
+      },
+      {
+        "subQuestions": [],
+        "values": [],
+        "imageValues": [],
+        "images": [],
+        "question": "information_complementaire",
+        "shortTitle": "short_title_information_complementaire",
+        "type": "long_text",
+        "conditionalInfo": []
+      }
+    ],
+    "prismic": [
+      "beton_app",
+      "common_labels",
+      "common_beton_app"
+    ],
+    "googleTag": "UA-199523593-1"
+  }

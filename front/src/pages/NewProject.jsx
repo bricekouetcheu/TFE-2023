@@ -78,7 +78,7 @@ const NewProject = () => {
         }));
       };
 
-      console.log(formData)
+      
 
       //handle deleting files before submit
       const handleFileDelete = (index) => {
@@ -123,7 +123,7 @@ const NewProject = () => {
         data: Files,
         }
    ).then( result=>{
-    console.log(result)
+    
     Navigate('/projects')
 
    }

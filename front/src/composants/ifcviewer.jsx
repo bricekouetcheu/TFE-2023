@@ -5,16 +5,16 @@ import * as THREE from 'three';
 import { OrbitControls } from "@react-three/drei";
 import { IFCWALLSTANDARDCASE, IFCSLAB } from 'web-ifc';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
-
+import axios from "axios"
 const ifcLoader = new IFCLoader();
 
 const Ifcviewer = () => {
   const [ifcModel, setIfcModel] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
-  const [selectedEntity, setSelectedEntity] = useState(null);
-  const [entities, setEntities] = useState(null);
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedEntity, setSelectedEntity] = useState("");
+  const [entities, setEntities] = useState("");
 
-  console.log(entities)
+
 
   ifcLoader.ifcManager.setWasmPath("../../");
   ifcLoader.ifcManager.setupThreeMeshBVH(
@@ -23,11 +23,24 @@ const Ifcviewer = () => {
     acceleratedRaycast
   );
 
-  const loadIfcModel = async (e) => {
+ /* const loadIfcFileFromServer = async()=>{
+    const response = await axios.get('http://localhost:4000/api/files/10' , {
+      headers:{
+        responseType: 'blob'
+      },
+    })
+
+    const file = await response.data
+    const blob = new Blob([file])
+    const ifcUrl =  URL.createObjectURL(blob);
+    ifcLoader.load(ifcUrl, (model) => setIfcModel(model))
+  }*/
+
+/* const loadIfcModel = async (e) => {
     const file = e.target.files[0];
     const ifcURL = URL.createObjectURL(file);
     ifcLoader.load(ifcURL, (model) => setIfcModel(model));
-  };
+  };*/
 
   async function getAll(category) {
     const manager = ifcLoader.ifcManager;
@@ -46,6 +59,34 @@ const Ifcviewer = () => {
   }
 
   useEffect(() => {
+    let mounted = true;
+  
+    const loadIfcFileFromServer = async () => {
+      const response = await axios.get('http://localhost:4000/api/files/10', {
+        headers: {
+          responseType: 'blob'
+        },
+      });
+  
+      const file = await response.data;
+      const blob = new Blob([file]);
+      const ifcUrl = URL.createObjectURL(blob);
+      ifcLoader.load(ifcUrl, (model) => {
+        if (mounted) {
+          setIfcModel(model);
+        }
+      });
+    };
+  
+    loadIfcFileFromServer();
+  
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    
     let mounted = true;
     const fetchData = async () => {
       if (selectedType === 'IFCWALLSTANDARDCASE') {
@@ -83,14 +124,14 @@ const Ifcviewer = () => {
 
   return (
     <div className='ifcviewer-container'>
-      <input type="file" name="load" className="file-input" onChange={loadIfcModel} />
+      
       <select onChange={handleTypeChange}>
-        <option value="">Select Type</option>
+        <option value="1">Select Type</option>
         <option value="IFCWALLSTANDARDCASE">Wall</option>
         <option value="IFCSLAB">Slab</option>
       </select>
-      {entities && (<select onChange={handleEntityChange} value={selectedEntity}>
-        <option value="">Select Entity</option>
+      {entities && (<select onChange={handleEntityChange}>
+        <option value=" ">Select Entity</option>
         {entities.map((entity, index) => (
           <option key={index} value={entity.Name.value}>{entity.Name.value}</option>
         ))}

@@ -27,7 +27,7 @@ const ifcstorage = multer.diskStorage({
         const file_name = file.originalname.split(' ').join('_');
         const extension = FILE_TYPES[file.mimetype];
 
-            callback(null, Date.now() + file.originalname) 
+            callback(null, file.originalname) 
         
 
 

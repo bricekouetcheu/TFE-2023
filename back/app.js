@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const projectRoutes =require('./routes/projects');
+const fileRoutes = require('./routes/files')
 
 
 app.use(express.json()); // qui gere les requetes entrantes de type json.
@@ -27,6 +28,7 @@ app.use(cors(corsOptions));
 //API routes
 app.use('/api',authRoutes);
 app.use('/api',projectRoutes);
+app.use('/api',fileRoutes);
 
 
 

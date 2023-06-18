@@ -28,7 +28,7 @@ const Side = ({ onItemClick }) => {
 
                     </li>
                     <li onClick={() => handleItemClick('Mycasting')}>
-                        <FontAwesomeIcon icon={faCircleInfo} /> <span>My casting</span>
+                        <FontAwesomeIcon icon={faCircleInfo} /> <span>Casting Overview</span>
 
 
                     </li>

@@ -1,6 +1,7 @@
 const pool = require('../db.js');
 const format = require('pg-format');
-
+const fs = require('fs-extra');
+const path = require('path');
 
 exports.CreateProject  = (req, res)=>{
     const {name, address} = req.body;
@@ -57,3 +58,51 @@ exports.CreateProject  = (req, res)=>{
     })
 
 }
+
+
+
+exports.DeleteProject = async (req, res) => {
+
+    const projectId = req.params.project_id; // Récupérez l'ID du projet depuis les paramètres de la requête
+
+    const client = await pool.connect();
+
+    try {
+
+        await client.query('BEGIN');
+
+        // Récupérez le nom du fichier et le nom du projet associés au projet
+         const query = 'SELECT project_name FROM projects WHERE project_id = $1';
+         const values = [projectId];
+         const result = await client.query(query, values);
+
+         if (result.rows.length === 0) {
+
+           throw new Error('Aucun fichier trouvé pour le projet spécifié');
+         }
+
+         
+         const projectName = result.rows[0].project_name;
+
+         // Supprimez l'enregistrement dans la table "ifc_files"
+         await client.query('DELETE FROM ifc_files WHERE project_id = $1', [projectId]);
+
+         // Supprimez l'enregistrement dans la table "projects"
+         await client.query('DELETE FROM projects WHERE project_id = $1', [projectId]);
+
+         // Supprimez le répertoire du projet du serveur
+         const directoryPath = path.join(__dirname,`../IFC/${projectName}` );
+         await fs.remove(directoryPath);
+
+         await client.query('COMMIT');
+         res.status(200).json({ message: 'Suppression réussie' });
+  } catch (err) {
+
+        await client.query('ROLLBACK');
+        console.error('Erreur lors de la suppression :', err);
+        res.status(500).json({ error: 'Une erreur s\'est produite lors de la suppression' });
+  } 
+  finally {
+         client.release();
+  }
+};

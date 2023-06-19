@@ -59,6 +59,8 @@
     ]
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "jest": "^27.5.1",
+    "rollup": "^2.79.1"
   }
 }

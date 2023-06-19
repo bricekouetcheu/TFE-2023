@@ -18,6 +18,10 @@ const MarkerProject = (props) => {
 
   const Navigate = useNavigate()
 
+  const handleDeleteProject = () => {
+    props.deleteProject(props.id); // Appeler la fonction de suppression de projet depuis les props
+  };
+
   
   const icon = L.icon({ 
     iconRetinaUrl:iconRetina, 
@@ -34,7 +38,7 @@ const MarkerProject = (props) => {
             <h3>{props.name}</h3>
             <div className='popup-option'>
               <button onClick={()=>{Navigate(`/HomeProject/${props.id}`)}}>Open</button>
-              <FontAwesomeIcon icon={faTrash} />
+              <FontAwesomeIcon icon={faTrash} onClick={handleDeleteProject} />
 
             </div>
             

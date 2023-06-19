@@ -6,16 +6,23 @@ import { Link } from 'react-router-dom'
 import { BiLogOut } from "react-icons/bi"
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {faXmark} from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Navbar = ( ) => {
 
+    const [click, setClick] = useState(false);
     const [dropdownOpen , setDropdownOpen] = useState(false)
     const [user, setUser] = useState();
     const getUserProfileUrl = process.env.REACT_APP_HOST+'api/profile';
     const config = {
         headers:{"accessToken" : localStorage.getItem('accessToken')}
     }
+
+    const handleClick = () => setClick(!click);
 
     const handleLogout = ()=>{
        
@@ -34,7 +41,7 @@ const Navbar = ( ) => {
     }
     
    
-
+  
     const closeDropdown = () => {
         setDropdownOpen(false);
       };
@@ -63,6 +70,11 @@ const Navbar = ( ) => {
                  </div>
                 
             </div>
+          
+            <div className="nav-icon" onClick={handleClick}>
+                <FontAwesomeIcon icon={click ? faXmark : faBars} size='xl' />
+            </div>
+            
 
          </div>
        

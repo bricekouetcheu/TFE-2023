@@ -67,36 +67,20 @@
     color: #212529;
   }
 
-  /* Small screens */
-@media only screen and (max-width: 600px) {
+  .nav-icon{
+    display: none;
+  }
 
-    /* Hide the logo */
-    .project-page-header-Img {
-      display: none;
-    }
-  
-    /* Reduce padding */
-    .project-page-header {
-      padding: 10px;
-    }
-  
-    /* Make the user profile icon larger */
-    .project-page-header-logout {
-      font-size: 1.5rem;
-    }
-  
-    /* Move the dropdown to the bottom of the screen */
-    .navbar-dropdown {
-      top: auto;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      border-radius: 0;
-      padding: 10px 0;
-      border: none;
-    }
-  
+
+  @media (max-width: 750px) {
+   .nav-icon{
+    display: block;
+    margin-right: 20px;
+   }
+
+   .project-page-header-logout{
+    display: none;
+   }
   }
   
  

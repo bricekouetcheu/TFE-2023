@@ -6,6 +6,7 @@ import { OrbitControls } from "@react-three/drei";
 import { IFCWALLSTANDARDCASE, IFCSLAB } from 'web-ifc';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
 import axios from "axios"
+import { useParams } from 'react-router-dom';
 const ifcLoader = new IFCLoader();
 
 const NewCasting = () => {
@@ -15,6 +16,8 @@ const NewCasting = () => {
     const [selectedType, setSelectedType] = useState("");
     const [selectedEntity, setSelectedEntity] = useState("");
     const [entities, setEntities] = useState("");
+    const {project_id} = useParams();
+    console.log(project_id)
 
     //config web-ifc-three
     ifcLoader.ifcManager.setWasmPath("../../");
@@ -48,7 +51,8 @@ const NewCasting = () => {
        // fonction permettant de recuperer le fichier ifc sur le serveur
 
         const loadIfcFileFromServer = async () => {
-          const response = await axios.get('http://localhost:4000/api/files/10', {
+            console.log('bonjour')
+          const response = await axios.get(`http://localhost:4000/api/files/${project_id}`, {
             headers: {
               responseType: 'blob'
             },

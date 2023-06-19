@@ -23,13 +23,48 @@ const Maps = () => {
    
     const getProjectUrl = 'http://localhost:4000/api/projects'
     const [projects, setProjects] = useState([]);
+
+    //fonction permettant de recuperer les projets 
+    const getAllProject = ()=>{
+
+      axios.get('http://localhost:4000/api/projects')
+      .then(result => {
+        const data = result.data;
+
+        // Convertir les adresses en coordonnées
+        const promises = data.map(project =>
+          geocodeAddress(project.project_address)
+            .then(coordinates => {
+              return {
+                ...project,
+                coordinates: coordinates
+              };
+             
+            })
+        );
+
+        Promise.all(promises)
+          .then(projectsWithCoordinates => {
+            
+            setProjects(projectsWithCoordinates);
+           
+           
+          })
+          .catch(error => {
+            console.log('Erreur lors de la conversion des adresses en coordonnées', error);
+          });
+      })
+      .catch(error => {
+        console.log('Erreur lors de la requête API', error);
+      });
+    }
    
 
-  
+    // fonction permettant de convertir les addresse en coordonnées
     const geocodeAddress = (address) => {
       const APIkey = process.env.REACT_APP_KEY
      
-      const apiKey = 'AIzaSyC8M7uA-l0SqfoQfF1A2iAAujYZZ5pEEDU'; // Remplacez par votre clé d'API de géocodage
+      
       const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
      
   
@@ -51,38 +86,19 @@ const Maps = () => {
         });
     };
 
+
+    //fonction permettant de supprimer un projet
+    const deleteProject = async (projectId) => {
+      try {
+        await axios.delete(`http://localhost:4000/api/projects/${projectId}`);
+        getAllProject(); // Appeler la fonction de mise à jour des projets après la suppression réussie
+      } catch (error) {
+        console.log('Erreur lors de la suppression du projet', error);
+      }
+    };
     
     useEffect(() => {
-      axios.get('http://localhost:4000/api/projects')
-        .then(result => {
-          const data = result.data;
-  
-          // Convertir les adresses en coordonnées
-          const promises = data.map(project =>
-            geocodeAddress(project.project_address)
-              .then(coordinates => {
-                return {
-                  ...project,
-                  coordinates: coordinates
-                };
-               
-              })
-          );
-  
-          Promise.all(promises)
-            .then(projectsWithCoordinates => {
-              
-              setProjects(projectsWithCoordinates);
-             
-             
-            })
-            .catch(error => {
-              console.log('Erreur lors de la conversion des adresses en coordonnées', error);
-            });
-        })
-        .catch(error => {
-          console.log('Erreur lors de la requête API', error);
-        });
+      getAllProject()
 
        
     }, []);
@@ -95,7 +111,13 @@ const Maps = () => {
       />
         {projects.length > 0 && (
       projects.map((project, index) => (
-    <MarkerProject key={index} position={[project.coordinates.lat, project.coordinates.lng]} name={project.project_name}  id = {project.project_id}/>
+    <MarkerProject
+     key={index} 
+     position={[project.coordinates.lat, project.coordinates.lng]}
+     name={project.project_name} 
+     id = {project.project_id} 
+     deleteProject={deleteProject}
+     />
         ))
       )}
   

@@ -54,7 +54,7 @@ const NewProject = () => {
         postalcode: "",
         files:[]
     })
-    console.log(formData)
+   
    
 
     const handleInputData = input => e => {

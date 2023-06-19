@@ -5,6 +5,8 @@ CREATE TABLE roles(
     role_description VARCHAR(50)
 
 );
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');
 
 
 
@@ -66,5 +68,3 @@ CREATE TABLE templates (
 );
 
 
-INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
-INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');

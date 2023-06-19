@@ -46,7 +46,7 @@ const Ifcviewer = () => {
   useEffect(() => {
     let mounted = true;
   
-    const loadIfcFileFromServer = async () => {
+   /* const loadIfcFileFromServer = async () => {
       const response = await axios.get('http://localhost:4000/api/files/10', {
         headers: {
           responseType: 'blob'
@@ -61,9 +61,9 @@ const Ifcviewer = () => {
           setIfcModel(model);
         }
       });
-    };
+    };*/
   
-    loadIfcFileFromServer();
+    //loadIfcFileFromServer();
   
     return () => {
       mounted = false;

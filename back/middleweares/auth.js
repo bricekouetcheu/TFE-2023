@@ -27,6 +27,7 @@ exports.authMiddleware = (req, res, next)=> {
 
     const decodedToken = jwt.verify(token, 'my-secret-key'); // Vérification et décodage du token
     req.user = decodedToken; // Ajout des informations de l'utilisateur au corps de la requête
+    console.log(req.user)
     next(); // Poursuite du traitement de la requête
   } catch (err) {
     res.status(401).json({ error: 'Invalid token' }); // Gestion de l'erreur d'authentification

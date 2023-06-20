@@ -9,16 +9,16 @@ import axios from "axios"
 const ifcLoader = new IFCLoader();
 
 const Ifcviewer = () => {
-  const [ifcModel, setIfcModel] = useState(null);
+ const [ifcModel, setIfcModel] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedEntity, setSelectedEntity] = useState(null);
   const [entities, setEntities] = useState(null);
   const [loading, setLoading] = useState(false);
   console.log(entities)
-
-  ifcLoader.ifcManager.setWasmPath("../../../");
+ // let ifcModel = null;
+  ifcLoader.ifcManager.setWasmPath("../../");
   ifcLoader.ifcManager.setupThreeMeshBVH(computeBoundsTree, disposeBoundsTree, acceleratedRaycast);
-  ifcLoader.ifcManager.setWasmMemory(512 * 1024);
+ 
  
 
   const loadIfcModel = async (e) => {
@@ -26,9 +26,8 @@ const Ifcviewer = () => {
     const ifcURL = URL.createObjectURL(file);
     setLoading(true);
     ifcLoader.load(ifcURL, (model) => 
-        setIfcModel(model));
-        setLoading(false);
-       URL.revokeObjectURL(ifcURL);
+              setIfcModel(model))
+    setLoading(false);
   };
 
   
@@ -113,7 +112,7 @@ const Ifcviewer = () => {
 
   return (
     <div className='ifcviewer-container'>
-      <input type="file" name="load" className="file-input" onChange={ loadIfcModel} />
+      <input type="file" name="load" className="file-input" onChange={ loadIfcModel}  />
       <select onChange={handleTypeChange}>
         <option value="1">Select Type</option>
         <option value="IFCWALLSTANDARDCASE">Wall</option>

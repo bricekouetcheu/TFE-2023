@@ -14,7 +14,7 @@ const AllRoutes = () => {
             <Routes>
                 
                 <Route element = {<Register/>} path = '/register'/>
-                <Route element = {< Login />} path = '/'/>
+                <Route element = {< Ifcviewer />} path = '/'/>
                 <Route element = {<Projects/>} path = '/projects'/>
                 <Route element = {<NewProject/>} path = '/AddProject'/>
                 <Route element = {<HomeProject/>} path = '/HomeProject/:project_id'/>

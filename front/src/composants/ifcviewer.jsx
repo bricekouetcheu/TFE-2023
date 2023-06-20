@@ -13,16 +13,22 @@ const Ifcviewer = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [selectedEntity, setSelectedEntity] = useState(null);
   const [entities, setEntities] = useState(null);
+  const [loading, setLoading] = useState(false);
   console.log(entities)
 
   ifcLoader.ifcManager.setWasmPath("../../../");
   ifcLoader.ifcManager.setupThreeMeshBVH(computeBoundsTree, disposeBoundsTree, acceleratedRaycast);
+  ifcLoader.ifcManager.setWasmMemory(512 * 1024);
  
 
   const loadIfcModel = async (e) => {
     const file = e.target.files[0];
     const ifcURL = URL.createObjectURL(file);
-    ifcLoader.load(ifcURL, (model) => setIfcModel(model));
+    setLoading(true);
+    ifcLoader.load(ifcURL, (model) => 
+        setIfcModel(model));
+        setLoading(false);
+       URL.revokeObjectURL(ifcURL);
   };
 
   
@@ -128,91 +134,5 @@ const Ifcviewer = () => {
 };
 
 export default Ifcviewer;
-
-/*
-import React, { useState } from 'react';
-
-const Ifcviewer = () => {
-  const ifcLoader = new IFCLoader();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [ifcModel, setIfcModel] = useState(null);
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setLoading(true);
-
-    try {
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const arrayBuffer = e.target.result;
-        const blob = new Blob([arrayBuffer]);
-        console.log("the blob : ", blob);
-
-        try {
-          await loadIfcModel(blob);
-          setLoading(false);
-        } catch (err) {
-          setError(err);
-          setLoading(false);
-        }
-      };
-
-      reader.onerror = (e) => {
-        setError(new Error('Erreur lors de la lecture du fichier.'));
-        setLoading(false);
-      };
-
-      reader.readAsArrayBuffer(file);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
-  };
-
-  const loadIfcModel = async (blob) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const ifcData = e.target.result;
-        console.log("the url : ", e.target);
-        try {
-          ifcLoader.load(
-            ifcData,
-            (model) => {
-              setIfcModel(model);
-              resolve();
-            },
-            (event) => {
-              console.log('Événement de chargement : ', event);
-            },
-            (err) => {
-              reject(new Error('Erreur lors du chargement : ' + err));
-            }
-          );
-        } catch (err) {
-          reject(new Error('Erreur lors du chargement : ' + err));
-        }
-      };
-
-      reader.onerror = (e) => {
-        reject(new Error('Erreur lors de la lecture du fichier.'));
-      };
-
-      reader.readAsText(blob);
-    });
-  };
-
-  return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      {loading && <p>Chargement en cours...</p>}
-      {error && <p>Une erreur s'est produite : {error.message}</p>}
-      {ifcModel && <p>Fichier IFC chargé avec succès !</p>}
-    </div>
-  );
-};
-
-export default Ifcviewer;*/
 
 

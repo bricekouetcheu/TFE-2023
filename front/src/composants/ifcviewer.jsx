@@ -35,18 +35,94 @@ const Ifcviewer = () => {
   async function getAll(category) {
     const manager = ifcLoader.ifcManager;
     const items = await manager.getAllItemsOfType(0, category, false);
+    console.log(items)
     return items;
   }
 
   async function getEntityProperties(ids) {
     const manager = ifcLoader.ifcManager;
     const propertiesArray = [];
+    
+    let p = {};
+    let keyList = ['HasProperties', 'Quantities']
     for (const id of ids) {
-      const properties = await manager.getTypeProperties(0, id, false);
+      const properties = await manager.getPropertySets(0, id, true);
+      
+      for (const property of properties) {
+        for (const keyELement of keyList) {
+          if ( keyELement in property) {
+            for (const property2 of property[keyELement]) {
+              for (const [key, value] of Object.entries(property2)) {
+                /*console.log(key, value);*/
+                if  (key.includes("Value")){
+                  p[property2['Name']['value']] = value['value'];
+                  break;
+                } 
+              }
+            }
+          }
+        }
+      }
+      propertiesArray.push(p);
+    }
+    return propertiesArray
+  }
+
+  function calculerSommeNetVolume(objets) {
+    let somme = 0;
+    console.log('test1',objets)
+  
+    for (let i = 0; i < objets.length; i++) {
+      console.log('bonjour')
+      
+      const objet = objets[i];
+      console.log(objet)
+      if (objet.hasOwnProperty('NetVolume')) {
+        console.log('test1,' , true)
+        somme += objet.NetVolume;
+      }
+    }
+  
+    console.log('test3', somme);
+  }
+
+
+  async function getItemProperties(ids) {
+    const manager = ifcLoader.ifcManager;
+    const propertiesArray = [];
+    for (const id of [ids[0]]) {
+      const properties = await manager.getItemProperties(0, id, true);
       propertiesArray.push(properties);
     }
     return propertiesArray;
   }
+
+  /*const filtrerObjetParPropriete = (arr)=> {
+    const objetFiltre = arr.find(objet => {
+      return objet.Name && objet.Name.value === "BaseQuantities";
+    });
+  
+    if (objetFiltre && objetFiltre.Quantities && Array.isArray(objetFiltre.Quantities)) {
+      const objetQuantite = objetFiltre.Quantities.find(quantite => {
+        return quantite.Name && quantite.Name.value === "GrossVolume";
+      });
+      console.log('test2',objetQuantite.VolumeValue.value);
+    }
+  
+    return undefined;
+  }
+
+ async function getVolume(id){
+      const manager = ifcLoader.ifcManager;
+      const quantity = await manager.getPropertySets(0,id,true)
+    
+        filtrerObjetParPropriete(quantity)
+      console.log('test',quantity)
+  }*/
+
+
+
+
 
   useEffect(() => {
     let mounted = true;
@@ -79,6 +155,11 @@ const Ifcviewer = () => {
     
     let mounted = true;
     const fetchData = async () => {
+     /* getVolume(34509)*/
+     /* getVolume(25322)*/
+     calculerSommeNetVolume(await getEntityProperties([34509, 59290]))
+     /*console.log('toto',await getEntityProperties([34509, 59290]))*/
+     
       if (selectedType === 'IFCWALLSTANDARDCASE') {
         const walls = await getAll(IFCWALLSTANDARDCASE);
         const properties = await getEntityProperties(walls);
@@ -95,6 +176,8 @@ const Ifcviewer = () => {
     };
     if (ifcModel) {
       fetchData();
+      
+
     }
     return () => {
       mounted = false;
@@ -122,7 +205,7 @@ const Ifcviewer = () => {
         <select onChange={handleEntityChange} value={selectedEntity}>
           <option value="">Select Entity</option>
           {entities.map((entity, index) => (
-            <option key={index} value={entity.Name.value}>
+            <option key={index} value={entity.expressID}>
               {entity.Name.value}
             </option>
           ))}

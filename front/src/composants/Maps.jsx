@@ -13,6 +13,7 @@ import MarkerProject from './MarkerProject';
 
 
 const Maps = () => {
+
     const icon = L.icon({ 
         iconRetinaUrl:iconRetina, 
         iconUrl: iconMarker, 
@@ -21,13 +22,18 @@ const Maps = () => {
 
    
    
-    const getProjectUrl = 'http://localhost:4000/api/projects'
+    const getProjectUrl = process.env.REACT_APP_HOST+'api/projects'
+    console.log(getProjectUrl)
     const [projects, setProjects] = useState([]);
+    const config = {
+      headers:{"accessToken" : localStorage.getItem('token')}
+  }
+ 
 
     //fonction permettant de recuperer les projets 
     const getAllProject = ()=>{
 
-      axios.get('http://localhost:4000/api/projects')
+      axios.get(getProjectUrl, config)
       .then(result => {
         const data = result.data;
 
@@ -63,6 +69,7 @@ const Maps = () => {
     // fonction permettant de convertir les addresse en coordonnées
     const geocodeAddress = (address) => {
       const APIkey = process.env.REACT_APP_KEY
+      
      
       
       const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
@@ -105,20 +112,20 @@ const Maps = () => {
     
     return (
       <MapContainer center={[50.84412746075126, 4.346185725867165]} zoom={13} scrollWheelZoom={false} style={{height :'100%', width:'100%'}}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-        {projects.length > 0 && (
-      projects.map((project, index) => (
-    <MarkerProject
-     key={index} 
-     position={[project.coordinates.lat, project.coordinates.lng]}
-     name={project.project_name} 
-     id = {project.project_id} 
-     deleteProject={deleteProject}
-     />
-        ))
+            <TileLayer
+               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+              {projects.length > 0 && (
+              projects.map((project, index) => (
+           <MarkerProject
+              key={index} 
+               position={[project.coordinates.lat, project.coordinates.lng]}
+               name={project.project_name} 
+               id = {project.project_id} 
+               deleteProject={deleteProject}
+           />
+           ))
       )}
   
       

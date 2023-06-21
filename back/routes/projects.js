@@ -9,7 +9,7 @@ const multer = require('multer');
 
 
 
-router.post('/project',authMiddleware, multer({ storage: ifcstorage}).array('ifc'), CreateProject);
+router.post('/project', authMiddleware, multer({ storage: ifcstorage}).array('ifc'), CreateProject);
 router.get('/projects',authMiddleware,  getAllProjects)
 router.delete('/projects/:project_id',authMiddleware,  DeleteProject)
 

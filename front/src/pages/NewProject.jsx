@@ -42,7 +42,10 @@ const createAddress = (street, number, city, postalCode) => {
 
 const NewProject = () => {
     const Navigate = useNavigate();
-    const NewProjectUrl = 'http://localhost:4000/api/project'
+    const NewProjectUrl = process.env.REACT_APP_HOST+'api/project'
+    const config = {
+      headers:{"accessToken" : localStorage.getItem('token')}
+    }
     const [currentStep, setCurrentStep] = useState(1);
     const steps = [ <FontAwesomeIcon icon={faFileSignature} />, <FontAwesomeIcon icon={faLocationDot} />,<FontAwesomeIcon icon={faFile} />];
     const [progress, setProgress] = useState(0);
@@ -117,20 +120,15 @@ const NewProject = () => {
     const submitForm = (e)=>{
         e.preventDefault()
            
-       axios({
-        method:"post",
-        url: NewProjectUrl,
-        data: Files,
-        }
-   ).then( result=>{
-    
-    Navigate('/projects')
-
-   }
-   ).catch(err=>{
-    console.log(err)
-   })
-    }
+       axios
+       .post(NewProjectUrl,Files,config)
+       .then( result=>{
+        Navigate('/projects')
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+          }
     
 
     return (

@@ -62,7 +62,6 @@ exports.Login = (req , res , next)=>{
     try{
          pool.query(`SELECT * FROM users WHERE user_email= $1;`, [email])
          .then( result=>{
-            console.log(result)
             const user = result.rows;
             if(user.length === 0){// check if user is already in database
                 console.log('pas encore de compte');
@@ -83,7 +82,7 @@ exports.Login = (req , res , next)=>{
 
                         const token = jwt.sign({
                             id : user_id}, 
-                            'RANDON TOKEN',
+                            process.env.TOKEN_PASS,
                             { expiresIn: '24h'})
 
                         return res.status(200).send({

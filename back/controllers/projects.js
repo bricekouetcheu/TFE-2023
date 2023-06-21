@@ -8,6 +8,7 @@ exports.CreateProject  = (req, res)=>{
     //creer un middleweares d'auth
     const user_id = req.user.id
     const files = req.files;
+    console.log(user_id)
    
 
     const AddNewProjectRequest = 'INSERT INTO projects ( project_id, project_name, project_address, project_date, user_id) values(DEFAULT,$1, $2, DEFAULT, $3) RETURNING project_id;'
@@ -44,6 +45,9 @@ exports.CreateProject  = (req, res)=>{
     })
 
 }
+
+
+
     exports.getAllProjects = (req, res)=>{
         const user_id = req.user.id
         const getAllProjectsQuery = 'select * from projects where user_id = $1'

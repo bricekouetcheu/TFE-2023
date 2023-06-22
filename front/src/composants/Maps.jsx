@@ -14,20 +14,19 @@ import MarkerProject from './MarkerProject';
 
 const Maps = () => {
 
+  const APIkey = process.env.REACT_APP_KEY
+    
+
     const icon = L.icon({ 
         iconRetinaUrl:iconRetina, 
         iconUrl: iconMarker, 
         shadowUrl: iconShadow 
     });
-
-   
-   
     const getProjectUrl = process.env.REACT_APP_HOST+'api/projects'
-    console.log(getProjectUrl)
     const [projects, setProjects] = useState([]);
     const config = {
       headers:{"accessToken" : localStorage.getItem('token')}
-  }
+    }
  
 
     //fonction permettant de recuperer les projets 
@@ -68,7 +67,7 @@ const Maps = () => {
 
     // fonction permettant de convertir les addresse en coordonnées
     const geocodeAddress = (address) => {
-      const APIkey = process.env.REACT_APP_KEY
+      
       
      
       
@@ -77,6 +76,7 @@ const Maps = () => {
   
       return axios.get(apiUrl)
         .then(response => {
+          console.log(response)
           const { results } = response.data;
           if (results.length > 0) {
            
@@ -105,6 +105,7 @@ const Maps = () => {
     };
     
     useEffect(() => {
+      console.log(APIkey)
       getAllProject()
 
        

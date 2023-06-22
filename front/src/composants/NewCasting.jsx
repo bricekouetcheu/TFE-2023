@@ -1,15 +1,11 @@
 import React, {useState , useEffect} from 'react';
 import { IFCLoader } from "web-ifc-three/IFCLoader";
-import { Canvas } from "@react-three/fiber";
-import * as THREE from 'three';
-import { OrbitControls } from "@react-three/drei";
 import { IFCWALLSTANDARDCASE, IFCSLAB } from 'web-ifc';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
 import axios from "axios"
 import { useParams } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
 import Select, { components } from "react-select";
 import InputOption from './InputOption'
 import { getAllItemByCategory, getItem, getEntityProperties, getTotalVolume } from './ifcUtils';
@@ -38,7 +34,11 @@ const NewCasting = () => {
       const handleEntityChange = (selectedOptions) => {
         const selectedValues = selectedOptions.map((option) => option.value);
         setSelectedEntity(selectedValues);
-      };;
+      };
+
+      const handleSubmit = (e)=>{
+
+      }
    
     //config web-ifc-three
     ifcLoader.ifcManager.setWasmPath("../../");
@@ -114,16 +114,8 @@ const NewCasting = () => {
 
     return (
         <div className='dashboard-content'>
-                 <Backdrop
-                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1, position:'absolute', left:'50', top:'50' }}
-                 open={openCircular}
-                
-                 >
-                 <CircularProgress color="inherit" />
-                </Backdrop> 
-            <div className='dashboard-nav'>
-                <h1>Project Dashboard</h1>
-            </div>
+              
+           
             <div className={ entities ? 'formNewCasting': 'formNewCastingEntities' }>
          
                 <h3> Create a new casting</h3>
@@ -157,7 +149,7 @@ const NewCasting = () => {
                         <textarea></textarea>
                     </div>
                 </div>
-                <button> Create</button>
+                <button className='NewCasting-btn '> Create</button>
             </div>
         
     </div>

@@ -52,7 +52,7 @@
     gap: 7px;
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-top: 7px solid #00BFB6;
+    border-top: 7px solid #007fae;
     border-radius: 2px;
     background-color: #FFFFFF;
     padding-bottom: 0%;
@@ -95,14 +95,14 @@
     background-color: #FFFFFF;
     padding-left: 5%;
     border: 1px solid #cccccc;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    
     border-radius: 3px;
   /*  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
    
 }
 .register-form-left input:focus{
     outline: none !important;
-    border:1px solid #00BFB6;
+    border:1px solid #007fae;
     box-shadow: 0 0 10px #719ECE;
   }
    
@@ -114,7 +114,7 @@
 
 }
 .register-form-left input::-webkit-autofill:focus{
-    -webkit-box-shadow: 0 0 0 1000px #00BFB6 inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #007fae inset !important;
   color: #555;
 }
 
@@ -136,7 +136,7 @@
     height: 30px;
     width: 80%;
     padding-left: 5%;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    
    /* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
 
 }
@@ -147,13 +147,13 @@
 
 }
 .register-form-right input::-webkit-autofill:focus{
-    -webkit-box-shadow: 0 0 0 1000px #00BFB6 inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #007fae inset !important;
   color: #555;
 }
 
 .register-form-right input:focus{
     outline: none !important;
-    border:1px solid #00BFB6;
+    border:1px solid #007fae;
     box-shadow: 0 0 10px #719ECE;
   }
 
@@ -170,32 +170,33 @@
     padding-left: 2%;
     display: flex;
     gap: 5px;
-    font-weight: 600;
+    font-weight: 400;
   /*  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
 }
 
 
 
 .form-btn{
-  background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
-  border-radius: 50px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  display: flex;
-  font-size: 16px;
-  justify-content: center;
-  padding: 1rem 1.75rem;
-  text-decoration: none;
-  width: 20%;
+  background-color: #007fae;
+  border-color: #007fae;
+  color: #fff;
+  align-items: center;
   border: 1.5px solid;
+  border-radius: 999px;
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-top: 10px;
+  display: inline-flex;
+  font-family: neue-haas-unica,sans-serif;
+  font-size: 16px;
   font-weight: 700;
-  /*font-family: 'Roboto', sans-serif;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+  height: 48px;
+  line-height: 100%;
+  padding: 0 22px;
+  position: relative;
+  text-decoration: none;
+  transition: all .2s ease-in-out;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .form-btn:hover{
 
@@ -203,14 +204,14 @@
   transition: 0.5s ease-in-out;
   background: rgb(1,1,1);
   background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
-  color: #00BFB6;
+  color: #007fae;
 
 }
 
 
 .register-form-signin p{
   margin-top: 5%;
-  font-weight: 100;
+  font-weight: 400;
  /* font-family: neue-haas-unica,sans-serif;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
 }
@@ -243,7 +244,7 @@
 
 .register-form-signin p {
     padding-top: 1%;
-    font-weight: 600;
+    font-weight: 400;
    /* font-family: 'Roboto', sans-serif;
 font-family: 'Roboto Condensed', sans-serif;*/
 }

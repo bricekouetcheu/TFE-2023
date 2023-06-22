@@ -1,10 +1,14 @@
 .dashboard-content{
-    width: 80%;
+    width: 60%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
     position: relative;
+    justify-content: center;
+   
+    
    /* padding: 10px;*/
     
 }
@@ -20,32 +24,43 @@
 }
 
 .formNewCasting{
+    
     color:#212529;
     background-color: #fff;
-    width: 50%;
-    height: 55%;
+    width: 70%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
-    padding: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
     position: relative;
 }
 
 .formNewCastingEntities{
+   
     color:#212529;
     background-color: #fff;
-    width: 50%;
-    height: 45%;
+    width: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
-    padding: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+   /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;*/
     position: relative;
 
+}
+
+.formNewCastingEntities h3, .formNewCasting h3{
+    display: block;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 .form-casting{
@@ -80,6 +95,11 @@
 .ifcviewer-container select {
     height: 30px;
     width: 100%;
+    font-size: 1em;
+    
+   /* display: block;*/
+    box-sizing: border-box;
+    
 
 }
 .css-13cymwt-control, .css-t3ipsp-control ,.css-b62m3t-container{
@@ -96,6 +116,7 @@
 .select-input{
     display: flex;
     height: 30px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
    
 }
 
@@ -103,4 +124,55 @@
     display: flex;
     flex-direction: column;
     width: 70%;
+    
 }
+
+.Add-description textarea{
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    font-size: 1rem;
+    padding: 19px 15px;
+    display: block;
+    box-sizing: border-box;
+    width: 100% !important;
+   
+}
+
+
+.Add-description textarea:focus{
+  border-color: #007fae;
+  outline: none;
+   
+}
+
+.NewCasting-btn{
+    background-color: #007fae;
+    border-color: #007fae;
+    color: #fff;
+    align-items: center;
+    border: 1.5px solid;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: neue-haas-unica,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    height: 48px;
+    line-height: 100%;
+    padding: 0 22px;
+    position: relative;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+
+
+}
+
+@media (max-width: 750px) {
+    /* Styles à appliquer pour les écrans d'au plus 750px de large */
+    .dashboard-content {
+      width: 100%; /* Afficher la sidebar */
+    }
+  }

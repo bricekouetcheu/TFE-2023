@@ -48,9 +48,8 @@ CREATE TABLE ifc_files (
 
 CREATE TABLE castings (
   casting _id SERIAL PRIMARY KEY,
-  casting_name VARCHAR NOT NULL,
   casting_description TEXT ,
-  template_id INT NOT NULL,
+  casting_volume_beton INTEGER, 
   project_id INT NOT NULL, 
   CONSTRAINT fk_template
     FOREIGN KEY (template_id)

@@ -13,6 +13,8 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 
 const Projects = () => {
     const Navigate = useNavigate()
+    const APIkey = process.env.REACT_APP_KEY
+    console.log(APIkey)
    
 
 

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import logo from "../assets/logo.png";
-import { NavLink ,useNavigate , Navigate} from 'react-router-dom';
+import { NavLink ,useNavigate} from 'react-router-dom';
 import validator from 'validator';
 import axios  from 'axios';
 
 
 const Login = () => {
 
-
+   
     //states
     const [email , setEmail] = useState('')
     const [password, setPassword]= useState('')
     const LoginUrl = process.env.REACT_APP_HOST+'api/login'
-    console.log(LoginUrl)
     const [errorMessage,setErrorMessage] = useState('') ;
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const Navigate = useNavigate();
@@ -62,7 +61,7 @@ const Login = () => {
              </div>
      
             <form className='login-form'>
-                <h2>SIGN IN</h2>
+                <h2>Sign In</h2>
                 {errorMessage &&
                 (<label className='ErrorMessage'>{errorMessage}</label>)}
                 <div className='login-form-content'>
@@ -82,7 +81,7 @@ const Login = () => {
 
           <button className='form-btn' onClick={handleSubmit}>Login</button>
           <div className='login-form-signin'>
-                <p>You don't have an account yet?<NavLink to="/register"> SIGN UP</NavLink></p>
+                <p>You don't have an account yet?<NavLink to="/register"><span> SignUp</span> </NavLink></p>
 
           </div>
           

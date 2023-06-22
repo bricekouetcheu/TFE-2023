@@ -1,0 +1,12 @@
+.sidebar-logo-dashboard{
+    width: 80%;
+    height: 80%;
+}
+
+.dashboard-side{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    background-color: #F6FFFE;;
+}

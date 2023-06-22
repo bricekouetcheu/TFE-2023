@@ -105,7 +105,7 @@ const Register = () => {
         </div>
      
         <form className='register-form' >
-          <h2>SIGN UP</h2>
+          <h2>Sign up</h2>
           {errorMessage &&
               (<label className='ErrorMessage'>{errorMessage}</label>) }
           <div className='register-form-content'>
@@ -141,9 +141,9 @@ const Register = () => {
        
         
 
-          <button className='form-btn' onClick={handleSubmit}>SUBMIT</button>
+          <button className='form-btn' onClick={handleSubmit}>SignUp</button>
           <div className='register-form-signin'>
-          <p> Already have an account?   <NavLink to='/'>SIGN IN</NavLink></p>
+          <p> Already have an account?   <NavLink to='/'><span>SignIn</span></NavLink></p>
 
           </div>
           

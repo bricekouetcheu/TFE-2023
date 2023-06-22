@@ -8,7 +8,9 @@ import logo from "../assets/logo.png";
 
 const Side = ({ onItemClick }) => {
 
-    
+        
+
+       
         const handleItemClick = (option) => {
           onItemClick(option);
         }
@@ -24,19 +26,13 @@ const Side = ({ onItemClick }) => {
                 <ul>
                     <li onClick={() => handleItemClick('Newcasting')}>
                         <FontAwesomeIcon icon={faPlus} /> <span>Create new casting</span>
-
-
                     </li>
                     <li onClick={() => handleItemClick('Mycasting')}>
                         <FontAwesomeIcon icon={faCircleInfo} /> <span>Casting Overview</span>
-
-
                     </li>
 
                     <li>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} /> <span>logout</span>
-
-
                     </li>
                 </ul>
 

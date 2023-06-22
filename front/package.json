@@ -9,11 +9,10 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.5",
     "@react-three/drei": "^9.56.27",
     "@react-three/fiber": "^8.11.5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/three": "^0.152.1",
     "axios": "^1.4.0",
@@ -23,6 +22,7 @@
     "react-icons": "^4.9.0",
     "react-leaflet": "^4.2.1",
     "react-redux": "^8.0.5",
+    "react-responsive-sidebar": "^0.1.16",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.3",
@@ -38,8 +38,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+     "test": "jest",
+     "coverage": "jest --coverage",
     "eject": "react-scripts eject"
+   
   },
   "eslintConfig": {
     "extends": [
@@ -60,8 +62,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.5",
     "@rollup/plugin-node-resolve": "^15.1.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.5.0",
     "jest": "^27.5.1",
+    "jest-environment-jsdom": "^29.5.0",
     "rollup": "^2.79.1"
   }
 }

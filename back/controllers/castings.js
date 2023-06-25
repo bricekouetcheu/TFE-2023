@@ -1,24 +1,44 @@
-const pool = require('pool')
+const pool = require('../db.js') ;
 
 
 exports.CreateNewCasting = async (req, res)=>{
 
-    const {casting_name, casting_description, category, subcategory}= req.body;
+  try{
+    const {casting_description, casting_volume}= req.body;
     const project_id = req.params['project_id']
+
+    const castingVolumeStartingDate = new Date().toISOString().split('T')[0];
+
+    const query = 'INSERT INTO castings (casting_description, casting_volume_beton, casting_volume_starting_date, project_id, status_id) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const values = [casting_description, casting_volume, castingVolumeStartingDate, project_id , 1];
+
+    const result = await pool.query(query, values);
+
+    res.status(201).send('new casting created')
+
+  }catch (err){
+    console.log(err)
+    res.status(500).json(err)
+  }
+
+
+
+}
+
+
+exports.GetAllCastings = async(req, res)=>{
+  try{
+    const projet_id = req.params['project_id'];
+    console.log(projet_id)
+    const getAllCastingURL = 'SELECT * FROM castings where project_id = $1';
     
+    const result = await pool.query(getAllCastingURL , [projet_id])
+    const data = result.rows;
+  
 
-    //on recupere le template_id pour le lier au casting
-    
-    const templateQuery = 'SELECT template_id FROM templates WHERE template_category = $1 AND template_subcategory = $2';
-    const templateResult = await pool.query(templateQuery, [category, subcategory]);
-
-    if (templateResult.rows.length === 0) {
-        return res.status(404).json({ error: 'Le template spécifié n\'existe pas.' });
-      }
-
-      const templateId = templateResult.rows[0].template_id;
-      
-
-
-
+    res.status(200).send(data)
+  }catch(err){
+    console.log(err)
+    res.status(500).send('something went wrong')
+  }
 }

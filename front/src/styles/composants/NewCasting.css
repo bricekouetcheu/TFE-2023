@@ -28,7 +28,7 @@
     color:#212529;
     background-color: #fff;
     width: 70%;
-    height: 80%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,6 +37,7 @@
     border: 1px solid #e6e6e6;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
     position: relative;
+    margin-top: 100px;
 }
 
 .formNewCastingEntities{
@@ -74,7 +75,7 @@
 
 .form-casting div input {
     height: 20px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .form-casting div textarea {
@@ -107,6 +108,17 @@
   
 }
 
+.css-1u9des2-indicatorSeparator {
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    /*width: 1px;*/
+    /* background-color: hsl(0, 0%, 80%); */
+    margin-bottom: 8px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
 
 .ifcviewer-container select option:hover {
     background-color: #00BFB6 ;
@@ -114,9 +126,9 @@
 
 
 .select-input{
-    display: flex;
+ /*  display: flex;
     height: 30px;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
    
 }
 

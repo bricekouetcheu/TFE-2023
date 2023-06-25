@@ -8,7 +8,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Select, { components } from "react-select";
 import InputOption from './InputOption'
-import { getAllItemByCategory, getItem, getEntityProperties, getTotalVolume } from './ifcUtils';
+/*import { getAllItemByCategory, getItem, getEntityProperties, getTotalVolume } from './ifcUtils';*/
 
 const ifcLoader = new IFCLoader();
 
@@ -25,6 +25,7 @@ const NewCasting = () => {
     const {project_id} = useParams();
     const getFilesUrl =  process.env.REACT_APP_HOST+`api/files/${project_id}`
     console.log(selectedEntity)
+    
    
     const handleTypeChange = (e) => {
         setSelectedType(e.target.value);
@@ -48,7 +49,70 @@ const NewCasting = () => {
       acceleratedRaycast
     );
 
-    // fonction permettant de recuperer les entités selon le type passé en paramettre
+     async function getAllItemByCategory(category) {
+        const manager = ifcLoader.ifcManager;
+        const items = await manager.getAllItemsOfType(0, category, false);
+        return items;
+      }
+    
+      // fonction permettant de recuperer les proprietés des elements du tableau passé en paramettre
+       async function getItem(ids) {
+        const manager = ifcLoader.ifcManager;
+        const propertiesArray = [];
+        for (const id of ids) {
+          const properties = await manager.getItemProperties(0, id, false);
+          propertiesArray.push(properties);
+        }
+        return propertiesArray;
+      }
+    
+      async function getEntityProperties(ids) {
+        const manager = ifcLoader.ifcManager;
+        const propertiesArray = [];
+        
+        let p = {};
+        let keyList = ['HasProperties', 'Quantities']
+        for (const id of ids) {
+          const properties = await manager.getPropertySets(0, id, true);
+          
+          for (const property of properties) {
+            for (const keyELement of keyList) {
+              if ( keyELement in property) {
+                for (const property2 of property[keyELement]) {
+                  for (const [key, value] of Object.entries(property2)) {
+                    /*console.log(key, value);*/
+                    if  (key.includes("Value")){
+                      p[property2['Name']['value']] = value['value'];
+                      break;
+                    } 
+                  }
+                }
+              }
+            }
+          }
+          propertiesArray.push(p);
+        }
+        console.log(propertiesArray);
+      }
+    
+    //fonction permettant de recuperre le volume total du beton a utiliser pour le casting   
+     function getTotalVolume(objets) {
+    let somme = 0;
+    console.log('test1',objets)
+    
+    for (let i = 0; i < objets.length; i++) {
+      console.log('bonjour')
+      
+      const objet = objets[i];
+      console.log(objet)
+      if (objet.hasOwnProperty('NetVolume')) {
+        console.log('test1,' , true)
+        somme += objet.NetVolume;
+      }
+    }
+    
+    console.log('test3', somme);
+    }
    
       useEffect(() => {
         

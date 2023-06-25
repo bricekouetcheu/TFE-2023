@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -32,6 +32,12 @@ function ResponsiveDrawer(props) {
   const handleSidebarItemClick = (option) => {
       setSelectedOption(option);
     };
+
+    useEffect(() => {
+        if (mobileOpen) {
+          setMobileOpen(false);
+        }
+      }, [selectedOption]);
 
 
 
@@ -123,7 +129,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon sx={{fontSize:'0.9em'}}/>
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{alignContent:'center' , marginRight:'40%'}}>
-            Responsive drawer
+            Project dashboard
           </Typography>
         </Toolbar>
       </AppBar>

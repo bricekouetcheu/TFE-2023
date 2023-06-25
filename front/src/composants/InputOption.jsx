@@ -47,7 +47,7 @@ const InputOption = ({
         getStyles={getStyles}
         innerProps={props}
         >
-        <input type="checkbox" defaultChecked={isSelected}  className='select-input'/>
+        <input type="checkbox" checked={isSelected}  className='select-input' readOnly/>
         {children}
         </components.Option>
     );

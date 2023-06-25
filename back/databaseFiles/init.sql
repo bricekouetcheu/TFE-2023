@@ -46,17 +46,25 @@ CREATE TABLE ifc_files (
     
 );
 
+CREATE TABLE statuses (
+  status_id SERIAL PRIMARY KEY,
+  status_name VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE castings (
-  casting _id SERIAL PRIMARY KEY,
+  casting_id SERIAL PRIMARY KEY,
   casting_description TEXT ,
-  casting_volume_beton INTEGER, 
+  casting_volume_beton INTEGER,
+  casting_volume_starting_date DATE, 
+  casting_volume_end_date DATE,
   project_id INT NOT NULL, 
-  CONSTRAINT fk_template
-    FOREIGN KEY (template_id)
-    REFERENCES templates (id)
+  status_id INT NOT NULL,
   CONSTRAINT fk_project
     FOREIGN KEY ( project_id)
-    REFERENCES projects ( project_id)
+    REFERENCES projects ( project_id),
+  CONSTRAINT fk_statuses
+    FOREIGN KEY ( status_id)
+    REFERENCES statuses(status_id)
 );
 
 CREATE TABLE templates (

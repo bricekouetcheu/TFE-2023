@@ -1,4 +1,4 @@
-import React, {useState , useEffect} from 'react';
+import React, {useState , useEffect, useRef} from 'react';
 import { IFCLoader } from "web-ifc-three/IFCLoader";
 import { IFCWALLSTANDARDCASE, IFCSLAB } from 'web-ifc';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
@@ -8,6 +8,9 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Select, { components } from "react-select";
 import InputOption from './InputOption'
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
+import { useNavigate } from 'react-router-dom';
 /*import { getAllItemByCategory, getItem, getEntityProperties, getTotalVolume } from './ifcUtils';*/
 
 const ifcLoader = new IFCLoader();
@@ -15,31 +18,23 @@ const ifcLoader = new IFCLoader();
 
 
 const NewCasting = () => {
+ 
 
     //Declaration des states
+    const [errorMessage, setErrorMessage]= useState('')
     const [ifcModel, setIfcModel] = useState(null);
     const [selectedType, setSelectedType] = useState("");
     const [openCircular, setOpenCircular] = useState(false)
     const [selectedEntity, setSelectedEntity] = useState("");
     const [entities, setEntities] = useState("");
+    const [description, setDescription] = useState("")
     const {project_id} = useParams();
     const getFilesUrl =  process.env.REACT_APP_HOST+`api/files/${project_id}`
-    console.log(selectedEntity)
+    const createCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/casting`
+    const [submitted, setSubmitted] = useState(false)
+    const selectRef = useRef(null);
     
-   
-    const handleTypeChange = (e) => {
-        setSelectedType(e.target.value);
-        setSelectedEntity(null);
-      };
-    
-      const handleEntityChange = (selectedOptions) => {
-        const selectedValues = selectedOptions.map((option) => option.value);
-        setSelectedEntity(selectedValues);
-      };
 
-      const handleSubmit = (e)=>{
-
-      }
    
     //config web-ifc-three
     ifcLoader.ifcManager.setWasmPath("../../");
@@ -49,6 +44,8 @@ const NewCasting = () => {
       acceleratedRaycast
     );
 
+
+    //recuperer tous les elements apartenant a une certaine categorie
      async function getAllItemByCategory(category) {
         const manager = ifcLoader.ifcManager;
         const items = await manager.getAllItemsOfType(0, category, false);
@@ -66,6 +63,7 @@ const NewCasting = () => {
         return propertiesArray;
       }
     
+      //
       async function getEntityProperties(ids) {
         const manager = ifcLoader.ifcManager;
         const propertiesArray = [];
@@ -92,26 +90,22 @@ const NewCasting = () => {
           }
           propertiesArray.push(p);
         }
-        console.log(propertiesArray);
+       
+        return propertiesArray;
       }
     
     //fonction permettant de recuperre le volume total du beton a utiliser pour le casting   
      function getTotalVolume(objets) {
     let somme = 0;
-    console.log('test1',objets)
     
     for (let i = 0; i < objets.length; i++) {
-      console.log('bonjour')
       
       const objet = objets[i];
-      console.log(objet)
       if (objet.hasOwnProperty('NetVolume')) {
-        console.log('test1,' , true)
         somme += objet.NetVolume;
       }
     }
-    
-    console.log('test3', somme);
+    return somme
     }
    
       useEffect(() => {
@@ -121,7 +115,7 @@ const NewCasting = () => {
 
             setOpenCircular(true)
             const response = await axios.get(
-                `${process.env.REACT_APP_HOST}api/files/${project_id}`,
+                getFilesUrl,
                 {
                   headers: {
                     "accessToken": localStorage.getItem('token')
@@ -146,6 +140,21 @@ const NewCasting = () => {
       
     
       }, []);
+
+
+      useEffect(() => {
+        // ...
+    
+        if (submitted) {
+          // Réinitialiser les états apres la soumission du formulaire
+          setDescription("");
+          selectRef.current.clearValue();
+          setSelectedType("1");
+          setSubmitted(false);
+        }
+    
+        // ...
+      }, [submitted]);
     
       useEffect(() => {
         
@@ -172,50 +181,107 @@ const NewCasting = () => {
           mounted = false;
         };
       }, [ifcModel, selectedType]);
+
+
+
+
+
+      const handleDescription = (e)=>{
+        setDescription(e.target.value)
+      }
     
+      const handleTypeChange = (e) => {
+        setSelectedType(e.target.value);
+        setSelectedEntity(null);
+      };
     
+      const handleEntityChange = (selectedOptions) => {
+        const selectedValues = selectedOptions.map((option) => option.value);
+        setSelectedEntity(selectedValues)
+        if(submitted){
+            setSelectedEntity([])
+        }
+        
+      };
+
+      const handleSubmit = async (e)=>{
+        try{
+            if(selectedEntity){
+                const castingData = {
+                    casting_description: description,
+                    casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(selectedEntity)))
+                }
+                const result = await axios.post(createCastingUrl , castingData)
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'New casting created!',
+                    showConfirmButton: true,
+                    confirmButtonColor: '#007fae',
+                    timer: 2500,
+                    
+                  });
+                 setSubmitted(true)
+                 
+                
+                console.log(result.data)
+            }else{
+                setErrorMessage('Please choose the entities')
+              
+                console.log(setErrorMessage)
+
+            }
+
+        }catch(err){
+            console.log(err)
+        }
+
+        e.preventDefault()
+      }
 
 
     return (
         <div className='dashboard-content'>
               
+            
+              
+              <div className={ entities ? 'formNewCasting': 'formNewCastingEntities' }>
+               
+               <h3> Create a new casting</h3>
+               <div className='form-casting'>
+                     <div className='ifcviewer-container'>
+     
+                        <select onChange={handleTypeChange} value={selectedType}>
+                           <option value="1">Select Type</option>
+                           <option value="IFCWALLSTANDARDCASE">Wall</option>
+                           <option value="IFCSLAB">Slab</option>
+                       </select>
+                       {entities && (<Select
+                                           ref={selectRef}
+                                           className='select-checkbox'
+                                            defaultValue={[]}
+                                            isMulti
+                                            closeMenuOnSelect={false}
+                                            hideSelectedOptions={false}
+                                            onChange={ handleEntityChange}
+                                           options={entities.map((entity, index) => ({
+                                               value: entity.expressID,
+                                               label: entity.Name.value
+                                           }))}
+                                           components={{ Option: InputOption }}
+                                           />)}
+                       
+                       </div>
+                   <div className='Add-description'>
+                       <label htmlFor="casting name">
+                           Add a Description
+                       </label>
+                       <textarea onChange={handleDescription} value={description} ></textarea>
+                   </div>
+               </div>
+               <button className='NewCasting-btn' onClick={handleSubmit}  > Create </button>
+           </div>
            
-            <div className={ entities ? 'formNewCasting': 'formNewCastingEntities' }>
-         
-                <h3> Create a new casting</h3>
-                <div className='form-casting'>
-                      <div className='ifcviewer-container'>
-      
-                         <select onChange={handleTypeChange}>
-                            <option value="1">Select Type</option>
-                            <option value="IFCWALLSTANDARDCASE">Wall</option>
-                            <option value="IFCSLAB">Slab</option>
-                        </select>
-                        {entities && (<Select
-                                            className='select-checkbox'
-                                             defaultValue={[]}
-                                             isMulti
-                                             closeMenuOnSelect={false}
-                                             hideSelectedOptions={false}
-                                             onChange={ handleEntityChange}
-                                            options={entities.map((entity, index) => ({
-                                                value: entity.expressID,
-                                                label: entity.Name.value
-                                            }))}
-                                            components={{ Option: InputOption }}
-                                            />)}
-                        
-                        </div>
-                    <div className='Add-description'>
-                        <label htmlFor="casting name">
-                            Add a Description
-                        </label>
-                        <textarea></textarea>
-                    </div>
-                </div>
-                <button className='NewCasting-btn '> Create</button>
-            </div>
-        
     </div>
     );
 };

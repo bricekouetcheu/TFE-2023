@@ -16,7 +16,7 @@ const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
             console.log('Oui')
         } else{
             onNext();
-            console.log('Non')
+            
         }
     }
 

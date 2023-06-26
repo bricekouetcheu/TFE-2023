@@ -175,9 +175,15 @@ function ResponsiveDrawer(props) {
             justifyContent:'center',
             backgroundColor:'fff',
             flexGrow: 1,
-             p: 3,
+            overflowX:'hidden',
             
-            width: { md: `100%` }    
+             
+             
+            
+            width: '100%',
+            maxWidth: {
+             md: '100%',
+    },   
              }}
       >
         {contentComponent}

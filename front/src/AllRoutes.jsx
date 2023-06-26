@@ -7,6 +7,7 @@ import NewProject from './pages/NewProject';
 import Ifcviewer from './composants/ifcviewer';
 import Dashboard from './pages/Dashboard';
 import Test from './composants/Test';
+import Tables from './composants/Tables'
 
 
 const AllRoutes = () => {
@@ -20,7 +21,7 @@ const AllRoutes = () => {
                 <Route element = {<NewProject/>} path = '/AddProject'/>
                 <Route element = {<Dashboard/>} path = '/Dashboard/:project_id'/>
                 <Route element = {<Ifcviewer />} path = '/test'/>
-                <Route element = {<Test />} path = '/test1'/>
+                <Route element = {<Tables />} path = '/test1'/>
                 
 
                 

@@ -13,6 +13,8 @@
 @import "./styles/composants/NewCasting.css";
 @import "./styles/composants/ifcviewer.css";
 @import "./styles/Pages/Dashboard.css";
-
+@import "./styles/composants/Cards.css";
 @import "./styles/composants/Mycasting.css";
+@import "./styles/composants/CastingModal.css";
+@import "./styles/composants/Tables.css";
 

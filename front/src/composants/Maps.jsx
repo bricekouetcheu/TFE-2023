@@ -1,10 +1,10 @@
 import {React , useEffect , useState} from 'react';
-import { MapContainer, TileLayer, Marker , Popup} from 'react-leaflet';
+import { MapContainer, TileLayer} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import iconMarker from 'leaflet/dist/images/marker-icon.png'
+/*import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
-import L from 'leaflet';
+import L from 'leaflet';*/
 import axios from 'axios';
 import MarkerProject from './MarkerProject';
 
@@ -17,11 +17,11 @@ const Maps = () => {
   const APIkey = process.env.REACT_APP_KEY
     
 
-    const icon = L.icon({ 
+   /* const icon = L.icon({ 
         iconRetinaUrl:iconRetina, 
         iconUrl: iconMarker, 
         shadowUrl: iconShadow 
-    });
+    });*/
     const getProjectUrl = process.env.REACT_APP_HOST+'api/projects'
     const [projects, setProjects] = useState([]);
     const config = {

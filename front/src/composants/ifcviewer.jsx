@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { IFCLoader } from "web-ifc-three/IFCLoader";
-import { Canvas } from "@react-three/fiber";
-import * as THREE from 'three';
-import { OrbitControls } from "@react-three/drei";
+
 import { IFCWALLSTANDARDCASE, IFCSLAB } from 'web-ifc';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
-import axios from "axios"
+
 const ifcLoader = new IFCLoader();
 
 const Ifcviewer = () => {
@@ -32,7 +30,7 @@ const Ifcviewer = () => {
 
   
 
-  async function getAll(category) {
+  async function getAllItemByCategory(category) {
     const manager = ifcLoader.ifcManager;
     const items = await manager.getAllItemsOfType(0, category, false);
     console.log(items)
@@ -161,14 +159,14 @@ const Ifcviewer = () => {
      /*console.log('toto',await getEntityProperties([34509, 59290]))*/
      
       if (selectedType === 'IFCWALLSTANDARDCASE') {
-        const walls = await getAll(IFCWALLSTANDARDCASE);
-        const properties = await getEntityProperties(walls);
+        const walls = await getAllItemByCategory(IFCWALLSTANDARDCASE);
+        const properties = await getItemProperties(walls);
         if (mounted) {
           setEntities(properties);
         }
       } else if (selectedType === 'IFCSLAB') {
-        const slabs = await getAll(IFCSLAB);
-        const properties = await getEntityProperties(slabs);
+        const slabs = await getAllItemByCategory(IFCSLAB);
+        const properties = await getItemProperties(slabs);
         if (mounted) {
           setEntities(properties);
         }

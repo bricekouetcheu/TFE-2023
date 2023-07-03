@@ -10,7 +10,6 @@ import Select, { components } from "react-select";
 import InputOption from './InputOption'
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
-import { useNavigate } from 'react-router-dom';
 /*import { getAllItemByCategory, getItem, getEntityProperties, getTotalVolume } from './ifcUtils';*/
 
 const ifcLoader = new IFCLoader();
@@ -33,6 +32,7 @@ const NewCasting = () => {
     const createCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/casting`
     const [submitted, setSubmitted] = useState(false)
     const selectRef = useRef(null);
+    
     
 
    
@@ -149,7 +149,7 @@ const NewCasting = () => {
           // Réinitialiser les états apres la soumission du formulaire
           setDescription("");
           selectRef.current.clearValue();
-          setSelectedType("1");
+          setSelectedType("0");
           setSubmitted(false);
         }
     
@@ -207,10 +207,23 @@ const NewCasting = () => {
       const handleSubmit = async (e)=>{
         try{
             if(selectedEntity){
-                const castingData = {
-                    casting_description: description,
-                    casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(selectedEntity)))
+                let castingData = {};
+                if(selectedType === 'IFCWALLSTANDARDCASE'){
+                     castingData = {
+                        casting_description: description,
+                        casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(selectedEntity))),
+                        template_id: 1
+                    }
+
+                }else if(selectedType === 'IFCSLAB'){
+                    
+                    castingData = {
+                        casting_description: description,
+                        casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(selectedEntity))),
+                        template_id: 2
+                    }
                 }
+             
                 const result = await axios.post(createCastingUrl , castingData)
                 
                 Swal.fire({
@@ -252,7 +265,7 @@ const NewCasting = () => {
                      <div className='ifcviewer-container'>
      
                         <select onChange={handleTypeChange} value={selectedType}>
-                           <option value="1">Select Type</option>
+                           <option value="0">Select Type</option>
                            <option value="IFCWALLSTANDARDCASE">Wall</option>
                            <option value="IFCSLAB">Slab</option>
                        </select>

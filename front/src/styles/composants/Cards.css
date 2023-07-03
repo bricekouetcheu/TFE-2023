@@ -1,0 +1,51 @@
+.casting-card{
+    width: 90%;
+    min-height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    /*border: 1px solid rgb(208, 215, 222);*/
+    margin-top: 10px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+   /* box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
+}
+
+.casting-card:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in;
+}
+.casting-card h3{
+    height: 20%;
+    
+
+}
+
+.casting-card p {
+    height: 60% ;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    font-size: 0.9em;
+}
+
+.casting-card-icon{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    height: 20%;
+    width: 80%;
+    
+    
+    
+    
+
+}
+
+.card-icon{
+   
+    cursor: pointer;
+    color: #007fae;
+}

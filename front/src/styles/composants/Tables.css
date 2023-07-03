@@ -1,0 +1,130 @@
+.table-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-bottom: 100px;
+    background-color: #EDF4FB;
+    
+}
+
+.select-datagrid{
+    font-size: 1.1rem;
+    min-width: 0;
+  max-width: 350px;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align-last: center;
+  
+}
+
+.select-datagrid .option-select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.select-datagrid:focus{
+background-color: #EDF4FB;
+}
+
+.select-datagrid:hover{
+   
+    border-color: rgba(224, 224, 224, 1)
+    
+}
+
+.datagrid-className{
+    height: 1150px;
+    width: 60%;
+}
+
+
+ #datagrid .MuiDataGrid-cell {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    padding: 0;
+    
+    
+}
+
+.css-1lymaxv-MuiDataGrid-root{
+    font-size: 1.1rem;
+    
+}
+
+.header-divider {
+    border-right: 1px solid black;
+    background-color: #007fae;
+    color: #fff;
+  }
+
+  /*.content-cell:nth-child(even) {
+    background-color: #f5f5f5; 
+  }*/
+
+  .content-cell {
+    background-color: #fff;
+  }
+  
+  .MuiDataGrid-row{
+    background-color: #fff;
+  }
+
+  .MuiDataGrid-row:nth-child(even) {
+    background-color: #f5f5f5; 
+  }
+
+  .MuiDataGrid-row:hover{
+   
+    background-color: #00BFB6;
+    color: #fff;
+    border-color: rgba(224, 224, 224, 1)
+  }
+
+  .MuiDataGrid-row:active ,  .MuiDataGrid-row:focus {
+   
+    background-color: #00BFB6;
+    border-color: rgba(224, 224, 224, 1)
+    
+  }
+
+ /* .Mui-hovered{
+    background-color: red;
+    color: #fff;
+  }*/
+
+  #datagrid .css-1lymaxv-MuiDataGrid-root .MuiDataGrid-row:hover, .css-1lymaxv-MuiDataGrid-root .MuiDataGrid-row.Mui-hovered {
+    /*background-color: rgba(0, 0, 0, 0.04); */
+    background-color: #00BFB6;
+    border-color: rgba(224, 224, 224, 1)
+}
+
+#datagrid .css-1lymaxv-MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within, .css-1lymaxv-MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+    outline: solid rgba(224, 224, 224, 1) 1px;
+    outline-width: 1px;
+    outline-offset: -1px;
+}
+
+#datagrid .css-1lymaxv-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1lymaxv-MuiDataGrid-root .MuiDataGrid-cell:focus {
+    outline: solid rgba(224, 224, 224, 1) 1px;
+    border-color: rgba(224, 224, 224, 1);
+}
+
+
+@media (max-width: 750px) {
+    .datagrid-className{
+        height: 1150px;
+        width: 90%;
+    }
+    
+  }

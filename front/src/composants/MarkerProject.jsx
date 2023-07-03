@@ -1,11 +1,10 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker , Popup} from 'react-leaflet';
+import { Marker , Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 import L from 'leaflet';
-import { popupContent, popupHead, popupText, okText } from "./popupStyles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';

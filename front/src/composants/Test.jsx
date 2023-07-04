@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Select, MenuItem } from '@mui/material';
 
 
-export default function Test({ data, onDataChange }) {
+const Test = ({ data, onDataChange })=> {
 
   const handleProcessRowUpdate = (updatedRow, originalRow) => {
     // Find the index of the row that was edited
@@ -79,7 +79,7 @@ export default function Test({ data, onDataChange }) {
       width: 300,
       editable: true,
       renderCell: (params) => {
-        if (params.row.id === "9") {
+        if (params.row.question === "type_beton") {
           // Lignes 1 et 3 auront un menu déroulant avec des options
           return (
            
@@ -104,7 +104,7 @@ export default function Test({ data, onDataChange }) {
        
          
           );
-        }if(params.row.id === "11"){
+        }if(params.row.question=== "resistance"){
           return (
            
             <select className='select-datagrid'
@@ -174,3 +174,5 @@ export default function Test({ data, onDataChange }) {
     </div>
   );
 }
+
+export default Test;

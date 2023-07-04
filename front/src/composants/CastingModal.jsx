@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { GiConcreteBag } from "react-icons/gi";
 import { MdProductionQuantityLimits} from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,7 +18,8 @@ const CastingModal = (props) => {
     const [casting , setCasting] = useState()
     const {project_id} = useParams()
     const getOnCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/casting/${props.castingId}`
-    console.log(casting)
+    const Navigate = useNavigate()
+    
     const handleCloseModal = () => {
         props.onCloseModal();
       };
@@ -34,6 +37,10 @@ const CastingModal = (props) => {
     
         fetchCastingData();
       }, [props.castingId]);
+
+      const switchPage = ()=>{
+        Navigate(`/order/${props.castingId}`)
+      }
 
    
     return (
@@ -54,7 +61,7 @@ const CastingModal = (props) => {
                         <p>{casting[0].casting_volume_beton}</p>
                     </div>
 
-                     <button className='casting-order'> <MdProductionQuantityLimits></MdProductionQuantityLimits> Order concrete </button>
+                     <button className='casting-order' onClick={switchPage}> <MdProductionQuantityLimits></MdProductionQuantityLimits> Order concrete </button>
                 </>
                     
 

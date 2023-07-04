@@ -7,7 +7,7 @@ import NewProject from './pages/NewProject';
 import Ifcviewer from './composants/ifcviewer';
 import Dashboard from './pages/Dashboard';
 import Test from './composants/Test';
-import Tables from './composants/Tables';
+import Order from './pages/Order';
 import Exemple from './composants/Exemple';
 
 
@@ -21,8 +21,8 @@ const AllRoutes = () => {
                 <Route element = {<NewProject/>} path = '/AddProject'/>
                 <Route element = {<Dashboard/>} path = '/Dashboard/:project_id'/>
                 <Route element = {<Exemple />} path = '/test'/>
-                <Route element = {<Tables />} path = '/test1'/>    
-                <Route element = {<Tables />} path = '/order/:casting_id'/>   
+                <Route element = {<Order />} path = '/test1'/>    
+                <Route element = {<Order />} path = '/order/:casting_id'/>   
             </Routes>
         </BrowserRouter>
             

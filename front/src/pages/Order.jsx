@@ -17,6 +17,8 @@ const  Order = ()=>{
   const [order, setOrder] = useState()
   const [submitted, setSubmitted] = useState(false)
 
+  console.log('test1',tableData)
+
   const createOrder = (initialData) => {
     const newData = {};
   
@@ -177,7 +179,7 @@ const  Order = ()=>{
       {/* Autres composants et contenu ici */}
       {tableData && <Test data={tableData} onDataChange={handleTableDataChange} /> }
       
-      <button onClick={submitForm} className='form-btn-order'> commander {submitted && <CircularProgress className='circular' sx={{color:"#fff"}} size={19}/>}</button>
+      <button onClick={submitForm} className='form-btn-order'> Confirmer {submitted && <CircularProgress className='circular' sx={{color:"#fff"}} size={19}/>}</button>
 
       {order && <Test2 data={order} /> }
     </div>

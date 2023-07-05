@@ -32,13 +32,14 @@
 
 .casting-close-btn{
     position: absolute;
-    top: 1%;
-    right: 1%;
+    top: -3%;
+    right:-3%;
    /* color: #fff;*/
     color: #007fae;
     font-size: 23px;
-    z-index: 9999;  
+    z-index: 222;  
     cursor: pointer; 
+    
   
 }
 
@@ -57,6 +58,7 @@
 
 .casting-description p ,.casting-volume p{
     color: gray;
+    word-wrap: break-word;
 }
 
 .casting-order{

@@ -157,7 +157,9 @@ const Test = ({ data, onDataChange })=> {
 
   return (
     <div id='datagrid' className='datagrid-className'>
+      
       <DataGrid
+      
         rows={data}
         columns={columns}
         processRowUpdate={handleProcessRowUpdate}
@@ -167,9 +169,12 @@ const Test = ({ data, onDataChange })=> {
         disableColumnSelector
         disableDensitySelector
         disableSelectionOnClick
-        hideFooter
-        hideToolbar
-        autoPageSize
+        autoHeight
+        hideFooterPagination = {true}
+        hideFooter = {true}
+        hideFooterSelectedRowCount = {true}
+        
+        
       />
     </div>
   );

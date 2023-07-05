@@ -8,6 +8,8 @@ import { GiConcreteBag } from "react-icons/gi";
 import { MdProductionQuantityLimits} from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { IoMdCloseCircle } from "react-icons/io";
+
 
 
 
@@ -48,7 +50,8 @@ const CastingModal = (props) => {
             <div className='casting-modal-card'>
             {casting && casting[0].casting_description && (
                 <>
-                    <FontAwesomeIcon icon={faCircleXmark} onClick={handleCloseModal} className='casting-close-btn' color='#fff' />
+                    <IoMdCloseCircle  onClick={handleCloseModal} className='casting-close-btn'/>
+                    
                     <h4>Casting informations</h4>
                 
                     

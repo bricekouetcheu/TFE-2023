@@ -44,7 +44,7 @@ background-color: #EDF4FB;
 }
 
 .datagrid-className{
-    height: auto;
+   height: auto;
     width: 60%;
 }
 
@@ -129,7 +129,7 @@ background-color: #EDF4FB;
 
 @media (max-width: 750px) {
     .datagrid-className{
-        height: 1150px;
+        height: auto;
         width: 90%;
     }
     
@@ -171,7 +171,27 @@ background-color: #EDF4FB;
     justify-content: center;
     align-items: center;
     margin-top: 80px;
+    flex-direction: column;
+    gap: 20px;
     
+  }
+
+  .pdf-link{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    list-style: none;
+    text-decoration: none;
+    
+
+
+  }
+
+  .pdf-download{
+   display: flex;
+   align-items: center;
+    
+
   }
 
   .table-Order table{

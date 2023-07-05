@@ -1,23 +1,56 @@
 import * as React from 'react';
 import Test from '../composants/Test';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useRef } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import Test2 from '../composants/Test2';
 import { CircularProgress } from '@mui/material';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
 
 // Votre composant parent
 
 const  Order = ()=>{
   const {casting_id} = useParams()
   const getTemplateUrl = process.env.REACT_APP_HOST+`api/templateData/${casting_id}`
+  const updateCastingUrl = process.env.REACT_APP_HOST+`api/castings/${casting_id}`
   const [tableData, setTableData] = useState();
   const [token, setToken] = useState('')
   const [order, setOrder] = useState()
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
+  const scrollRef = useRef(null)
+  const Navigate = useNavigate()
 
-  console.log('test1',tableData)
+  
+  console.log(order)
+
+ 
+
+  const submitOrder = async()=>{
+    try{
+      const result = await axios.put(updateCastingUrl)
+      console.log(result.data)
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Commande effectuée avec success!',
+        showConfirmButton: true,
+        confirmButtonColor: '#007fae',
+        timer: 1500,
+        
+      });
+
+      setTimeout(() => {
+        Navigate(-1)
+        
+      }, (1502));
+     
+
+    }catch(err){
+
+    }
+  }
 
   const createOrder = (initialData) => {
     const newData = {};
@@ -160,16 +193,20 @@ const  Order = ()=>{
         const responseData = response.data;
         // Handle the response data as needed
         
+       
         setOrder(createOrder(responseData))
         setSubmitted(false)
-        
-        console.log(createOrder(responseData));
+        scrollRef.current.scrollIntoView( { behavior: 'smooth' , block:'end'})
+
+       
+      
       } catch (error) {
         console.error('Error submitting form:', error);
         
     }
  
     }
+    
   };
 
   return (
@@ -181,7 +218,9 @@ const  Order = ()=>{
       
       <button onClick={submitForm} className='form-btn-order'> Confirmer {submitted && <CircularProgress className='circular' sx={{color:"#fff"}} size={19}/>}</button>
 
-      {order && <Test2 data={order} /> }
+      {order && <Test2 data={order} className = "order" ref={scrollRef} submit={submitOrder}/> }
+
+     
     </div>
   );
 }

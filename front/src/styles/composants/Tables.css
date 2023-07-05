@@ -219,7 +219,7 @@ background-color: #EDF4FB;
   
   .table-Order th:first-child, .table-Order td:first-child {
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   
   tr{
@@ -232,7 +232,7 @@ background-color: #EDF4FB;
 
   .left-cell{
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .right-cell{

@@ -14,10 +14,11 @@
 
 .casting-card:hover{
     transform: scale(1.1);
-    transition: 0.2s ease-in;
+    transition: 0.1s ease-in;
 }
 .casting-card h3{
     height: 20%;
+    color: #212529;
     
 
 }
@@ -28,13 +29,15 @@
     display: flex;
     padding: 10px;
     justify-content: center;
-    font-size: 0.9em;
+    font-size: 0.8em;
+    font-weight: 200;
+    color:#8E818A ;
 }
 
 .casting-card-icon{
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 15px;
     height: 20%;
     width: 80%;
     
@@ -46,6 +49,7 @@
 
 .card-icon{
    
+    font-size: 0.9em;
     cursor: pointer;
-    color: #007fae;
+    color: #8E818A;
 }

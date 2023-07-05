@@ -74,3 +74,24 @@ exports.getTemplateData = async (req , res)=>{
   }
 
 }
+
+exports.UpdateStatus = async(req, res)=>{
+
+  try{
+    const casting_id  = req.params['casting_id']
+
+    const UpdateStatus = 'UPDATE castings SET status_id = status_id + 1 where casting_id = $1'
+    
+    const result = await pool.query(UpdateStatus,[casting_id])
+
+    res.status(200).send('Status updated successfully');
+
+  }
+  catch(err){
+    console.log(err)
+    res.status(500).send('server Error')
+  }
+
+ 
+
+}

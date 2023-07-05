@@ -2,12 +2,13 @@ import React from 'react';
 import {AiOutlineFilePdf} from "react-icons/ai";
 import { PDFDownloadLink} from '@react-pdf/renderer';
 import createPDF from './CreatePdf';
+import { forwardRef } from 'react';
 
 
-const Test2 = ({data}) => {
+const Test2 = forwardRef (({data , submit},ref) => {
 
     return (
-        <div className='table-Order'>
+        <div className='table-Order'  >
             <h1> Bon de Commande</h1>
               <PDFDownloadLink document={createPDF(data)} fileName='tableau.pdf' className='pdf-link'>
         
@@ -36,10 +37,11 @@ const Test2 = ({data}) => {
       </tbody>
     </table>
   
+        <button ref={ref} className='form-btn-order' onClick={submit}> commander </button>
             
         </div>
     );
-};
+});
 
 
 

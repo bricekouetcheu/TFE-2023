@@ -15,6 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import logo from "../assets/logo.png";
+import logoB from "../assets/logoB.png";
 import { faPlus, faCircleInfo, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MyCasting from '../composants/MyCasting';
@@ -65,25 +66,25 @@ function ResponsiveDrawer(props) {
       }}>
         <img className = 'sidebar-logo-dashboard' src={logo} alt=""/>
 
-     </Box>
+     </Box >
       <Divider />
-      <Box>
-      <List>
-      <ListItemButton onClick={() => handleSidebarItemClick('Newcasting')}>
+      <Box >
+      <List >
+      <ListItemButton onClick={() => handleSidebarItemClick('Newcasting')} id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faPlus} />
+          <FontAwesomeIcon icon={faPlus}  className='sidebar-icon' />
         </ListItemIcon>
         <ListItemText primary="Create new casting" />
       </ListItemButton>
-      <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')}>
+      <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')} id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faCircleInfo} />
+          <FontAwesomeIcon icon={faCircleInfo} className='sidebar-icon'   />
         </ListItemIcon>
         <ListItemText primary="Casting Overview" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton  id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+          <FontAwesomeIcon icon={faArrowRightFromBracket}  className='sidebar-icon' />
         </ListItemIcon>
         <ListItemText primary="Logout" />
       </ListItemButton>

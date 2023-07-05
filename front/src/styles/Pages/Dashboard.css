@@ -8,5 +8,26 @@
     flex-direction: column;
     gap: 20px;
     height: 100vh;
-    background-color: #F6FFFE;
+    background-color: #F6F8FA;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover .MuiButtonBase-root:hover{
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    background-color: #007fae;
+    color: #fff;
+
+}
+
+#sidebar-menu:hover{
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    background-color: #007fae;
+    color: #fff;
+
+}
+
+.sidebar-icon:hover{
+    color: #fff;
+
 }

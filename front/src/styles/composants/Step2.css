@@ -79,6 +79,8 @@
 
 .step2-form  label{
     font-size: medium;
+    color: #111111;
+    font-size: 1rem;
 }
 
 .step2-form input{
@@ -86,8 +88,10 @@
     background-color: #FFFFFF;
     padding-left: 5%;
     border: solid 1.5px #D3D3D3;
-    
+   /* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;*/
     border-radius: 3px;
+    background-color: #f0f5f9;
+    border-color: #f0f5f9
 
 }
 
@@ -120,33 +124,71 @@
 }
 
 .step2-navigation button{
-    background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
-    border-radius: 50px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-size: 0.6em;
-    justify-content: center;
-    padding: 0.8em ;
-    text-decoration: none;
-    width: 20%;
+    background-color: #fff;
+    color: #007fae;
+    align-items: center;
     border: 1.5px solid;
+    border-radius: 999px;
     cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-top: 10px;
+    display: inline-flex;
+    font-family: neue-haas-unica,sans-serif;
+    font-size: 0.7em;
     font-weight: 700;
+    height: 30px;
+    line-height: 100%;
+    padding: 10px 22px;
+    position: relative;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: 20%;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
 
 }
 
 .step2-navigation button:hover{
+    background-color: #007fae;
+    border-color: #007fae;
     transform: scale(1.1);
     transition: 0.5s ease-in-out;
-    background: rgb(1,1,1);
-    background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
-    color: #00BFB6;
+    color: #fff;
 }
 
+
+
+@media (max-width: 450px) {
+    /* Styles à appliquer pour les écrans d'au plus 750px de large */
+    .step2-navigation button{
+        background-color: #007fae;
+        border-color: #007fae;
+        color: #fff;
+        align-items: center;
+        border: 1.5px solid;
+        border-radius: 999px;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: neue-haas-unica,sans-serif;
+        font-size: 0.5em;
+        font-weight: 700;
+        height: 25px;
+        line-height: 100%;
+        padding: 0 22px;
+        position: relative;
+        text-decoration: none;
+        transition: all .2s ease-in-out;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: 20%;
+        display: flex;
+        gap: 3px;
+        justify-content: center;
+        align-items: center;
+    
+    }
+  }
 
 

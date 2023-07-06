@@ -7,6 +7,12 @@
     height: 100%;
     
 }
+.step3 h2{
+    text-align: left;
+    width: 90%;
+    font-size: 1rem;
+
+}
 
 .step3-upload{
     display: flex;
@@ -19,6 +25,7 @@
     padding-top: 2% ;
     gap: 20%;
     cursor: pointer;
+    background-color: #f0f5f9;
 
 
 }
@@ -32,32 +39,38 @@
 }
 
 .step3-navigation button{
-    background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);
-    border-radius: 50px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-size: 0.6em;
-    justify-content: center;
-    padding: 0.8em ;
-    text-decoration: none;
-    width: 20%;
+    background-color: #fff;
+    color: #007fae;
+    align-items: center;
     border: 1.5px solid;
+    border-radius: 999px;
     cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-top: 10px;
+    display: inline-flex;
+    font-family: neue-haas-unica,sans-serif;
+    font-size: 0.7em;
     font-weight: 700;
+    height: 30px;
+    line-height: 100%;
+    padding: 0 22px;
+    position: relative;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: 20%;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
 
 }
 
 .step3-navigation button:hover{
+    background-color: #007fae;
+    border-color: #007fae;
     transform: scale(1.1);
     transition: 0.5s ease-in-out;
-    background: rgb(1,1,1);
-    background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
-    color: #00BFB6;
+    color: #fff;
 }
 
 
@@ -66,9 +79,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
+   
 }
 .step3-upload-icon h2{
     font-size: 1.2rem;
+    width: 100%;
 }
 
 .step3-upload input{
@@ -76,7 +93,7 @@
 }
 
 .icon{
-    color:#00BFB6;
+    color:#007fae;
     font-size: 500%;
     
 
@@ -85,7 +102,7 @@
 .icon-scale{
    
     transform: scale(1.2);
-    color: #00BFB6;
+    color: #007fae;
    animation:jello-horizontal .9s linear both;
 
 }
@@ -126,3 +143,36 @@
 }
 
  @keyframes jello-horizontal{0%{transform:scale3d(1,1,1)}30%{transform:scale3d(1.25,.75,1)}40%{transform:scale3d(.75,1.25,1)}50%{transform:scale3d(1.15,.85,1)}65%{transform:scale3d(.95,1.05,1)}75%{transform:scale3d(1.05,.95,1)}100%{transform:scale3d(1,1,1)}}
+
+
+
+ @media (max-width: 750px) {
+    /* Styles à appliquer pour les écrans d'au plus 750px de large */
+    .step3-navigation button{
+        background-color: #007fae;
+        border-color: #007fae;
+        color: #fff;
+        align-items: center;
+        border: 1.5px solid;
+        border-radius: 999px;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: neue-haas-unica,sans-serif;
+        font-size: 0.5em;
+        font-weight: 700;
+        height: 25px;
+        line-height: 100%;
+        padding: 5px 22px;
+        position: relative;
+        text-decoration: none;
+        transition: all .2s ease-in-out;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: 20%;
+        display: flex;
+        gap: 3px;
+        justify-content: center;
+        align-items: center;
+    
+    }
+  }

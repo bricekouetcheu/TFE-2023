@@ -97,7 +97,7 @@ const Maps = () => {
     //fonction permettant de supprimer un projet
     const deleteProject = async (projectId) => {
       try {
-        await axios.delete(`http://localhost:4000/api/projects/${projectId}`);
+        await axios.delete(process.env.REACT_APP_HOST+`api/projects/${projectId}`);
         getAllProject(); // Appeler la fonction de mise à jour des projets après la suppression réussie
       } catch (error) {
         console.log('Erreur lors de la suppression du projet', error);

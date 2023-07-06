@@ -135,7 +135,7 @@ const NewProject = () => {
         <div className='AddProject'>
             
         <div className='AddProject-ul'>
-        <h1> Create a New Project</h1>
+        <h1>Ajouter Nouveau projet </h1>
         <ul className="step-bar">
                 {steps.map((step, index) => (
                 <li

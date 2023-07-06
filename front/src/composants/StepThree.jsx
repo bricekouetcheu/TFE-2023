@@ -2,6 +2,13 @@ import {useState, React} from 'react';
 import { MdDelete} from "react-icons/md";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import { faHouse} from '@fortawesome/free-solid-svg-icons';
+import { faFileExport} from '@fortawesome/free-solid-svg-icons';
+import { faFileImport} from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -11,7 +18,8 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
     const [uploadedFile, setUploadedFile] = useState([]);
     const [isUploading, setIsUploading] = useState(false);
     const [ErrorMessage, setErrorMessage] = useState('')
-
+    const Navigate = useNavigate();
+  
  
 
     
@@ -29,7 +37,9 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
     }
     return (
         <div className='step3'>
+        
         <div className='step3-upload' onClick={()=>{document.querySelector('.input-field').click()}}>
+        
         {( values.files.length === 0 ) ? (<p> </p>) :
                         <ul>
                             {Array.from(values.files)
@@ -44,8 +54,13 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
                             }
                 <div className='step3-upload-icon'>
                     <input type="file"  className='input-field' hidden multiple  name='file' onChange={handleFormData}/>
-                    <FontAwesomeIcon icon={faCloudArrowUp} beatFade size='xl' className='icon'/>
-                    <h2>Upload your IFC files here</h2>
+                   
+                    <FontAwesomeIcon icon={faFileImport}  size='xl' className='icon'  />
+                    
+                    
+                    
+                    <h2>Importez vos fichiers  </h2>
+                    <h4></h4>
 
                 </div>
                 
@@ -53,9 +68,9 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
 
         </div>
         <div className='step3-navigation'>
-                <button onClick={onPrev}>Previous</button>
-                <button>Home</button>
-                <button onClick={OnSubmit}>Next</button>
+                <button onClick={onPrev}><FontAwesomeIcon icon={faChevronLeft}/> Precedent</button>
+                <button onClick={()=>Navigate('/projects')}>Acceuil<FontAwesomeIcon icon={faHouse}/> </button>
+                <button onClick={OnSubmit}>Creer </button>
 
             </div>
         

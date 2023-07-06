@@ -22,7 +22,7 @@ const Register = () => {
   const [confPassword,setConfPassword] = useState('')
   const [ischecked,setIschecked] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const RegisterUrl = 'http://localhost:4000/api/register'
+  const RegisterUrl = process.env.REACT_APP_HOST+'api/register'
   const Navigate = useNavigate()
 
   const handleName= (e)=>{

@@ -1,21 +1,32 @@
 version: '3.8'
 
 services:
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3050:80"
+
   frontend:
     build:
       context: ./front
       args:
         - REACT_APP_KEY=${REACT_APP_KEY}
-    ports:
-      - '3000:3000'
+    
     #environment:
     #  - BACKEND_HOST=http://localhost/api
-  
+    
   backend:
     build:
       context: ./back
     depends_on:
       - db2
+    
 
   db2:
     image: postgres:14.1-alpine
@@ -26,8 +37,9 @@ services:
       - POSTGRES_DB=TFE_2023
       
     volumes:
-      - ./back/init/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./back/databaseFiles/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
       - db2:/var/lib/postgresql/data 
+    
     
    
 

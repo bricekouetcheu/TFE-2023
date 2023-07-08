@@ -111,12 +111,16 @@ const MyCasting = () => {
       },[])
     
       return (
-        <div className="kanban-board"
+        <div className='home-Board'>
+           <h1>Bonjourcisbosbsnpos</h1>
+          <div className="kanban-board"
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}>
+
+         
             
 
             
@@ -215,6 +219,9 @@ const MyCasting = () => {
       )}
           
         </div>
+
+        </div>
+        
       );
 };
 

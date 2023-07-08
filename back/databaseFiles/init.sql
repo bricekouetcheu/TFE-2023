@@ -3,11 +3,7 @@
 CREATE TABLE roles(
     role_id serial PRIMARY KEY,
     role_description VARCHAR(50)
-
 );
-INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
-INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');
-
 
 
 CREATE TABLE users( 
@@ -52,6 +48,52 @@ CREATE TABLE casting_templates (
   template_data JSONB
 );
 
+
+
+CREATE TABLE statuses (
+  status_id SERIAL PRIMARY KEY,
+  status_name VARCHAR(50) NOT NULL
+);
+
+INSERT INTO statuses (status_name) VALUES
+  ('created'),
+  ('ordered'),
+  ('delivered'),
+  ('ongoing'),
+  ('completed');
+
+CREATE TABLE castings (
+  casting_id SERIAL PRIMARY KEY,
+  casting_description TEXT ,
+  casting_volume_beton INTEGER,
+  casting_volume_starting_date DATE, 
+  casting_volume_end_date DATE,
+  template_id INT,
+  project_id INT NOT NULL, 
+  status_id INT NOT NULL
+);
+
+ALTER TABLE castings
+  ADD CONSTRAINT fk_project
+    FOREIGN KEY (project_id)
+    REFERENCES projects(project_id);
+
+ALTER TABLE castings
+  ADD CONSTRAINT fk_statuses
+    FOREIGN KEY (status_id)
+    REFERENCES statuses(status_id);
+
+ALTER TABLE castings
+  ADD CONSTRAINT fk_template
+    FOREIGN KEY (template_id)
+    REFERENCES casting_templates(template_id);
+
+
+
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
+INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');
+
+
 INSERT INTO casting_templates ( template_type , template_data)
 VALUES ('voile', '[
   { "id": "1", "question": "type_element", "value": "voile" },
@@ -95,39 +137,4 @@ VALUES ('sols', '[
   { "id": "15", "question": "chantier_accessible_camion", "value": "oui" },
   { "id": "16", "question": "information_complementaire" }
 ]');
-
-
-CREATE TABLE statuses (
-  status_id SERIAL PRIMARY KEY,
-  status_name VARCHAR(50) NOT NULL
-);
-
-INSERT INTO statuses (status_name) VALUES
-  ('created'),
-  ('ordered'),
-  ('delivered'),
-  ('ongoing'),
-  ('completed');
-
-CREATE TABLE castings (
-  casting_id SERIAL PRIMARY KEY,
-  casting_description TEXT ,
-  casting_volume_beton INTEGER,
-  casting_volume_starting_date DATE, 
-  casting_volume_end_date DATE,
-  template_id INT,
-  project_id INT NOT NULL, 
-  status_id INT NOT NULL,
-  CONSTRAINT fk_project
-    FOREIGN KEY ( project_id)
-    REFERENCES projects ( project_id),
-  CONSTRAINT fk_statuses
-    FOREIGN KEY ( status_id)
-    REFERENCES statuses(status_id)
-  CONSTRAINT fk_template
-    FOREIGN KEY (template_id)
-    REFERENCES casting_templates(template_id);
-);
-
-
 

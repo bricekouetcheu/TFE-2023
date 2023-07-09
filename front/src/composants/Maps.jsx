@@ -76,7 +76,6 @@ const Maps = () => {
   
       return axios.get(apiUrl)
         .then(response => {
-          console.log(response)
           const { results } = response.data;
           if (results.length > 0) {
            
@@ -105,7 +104,7 @@ const Maps = () => {
     };
     
     useEffect(() => {
-      console.log(APIkey)
+     
       getAllProject()
 
        

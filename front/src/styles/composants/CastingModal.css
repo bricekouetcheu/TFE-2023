@@ -19,51 +19,87 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%;
+    width: 30%;
     height: 50%;
     background-color: #fff;
     position: relative;
     box-sizing: border-box;
-    border-radius: 5px;
-    padding: 2%;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
     gap: 10%;
-    animation:scale-up-center 0.4s; } @keyframes scale-up-center{ 0%{transform:scale(.5)} 100%{transform:scale(1)}
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    animation:scale-up-center 0.4s; } @keyframes scale-up-center{ 0%{transform:scale(.5)} 100%{transform:scale(1)};
+ 
+    
+}
+
+.casting-modal-card h4{
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+   
+}
+
+.card-title{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #009EBC;
+    width: 90%;
+    text-align: left
 }
 
 .casting-close-btn{
     position: absolute;
-    top: -3%;
-    right:-3%;
-   /* color: #fff;*/
-    color: #007fae;
-    font-size: 23px;
-    z-index: 222;  
-    cursor: pointer; 
-    
+    top: 1%;
+    right:1%;
+    color: black;
+    font-size: 18px;
+    z-index: 99;  
+    cursor: pointer;
+    border-radius: 50%;
+    transition: .2s;  
+    padding: 3px;
   
 }
 
+
 .casting-close-btn:hover{
     transform: scale(1.1);
-    color:#bf1600;
+    color: #F0F0F0;
+    background-color: #D11919;
 }
 
 .casting-description ,.casting-volume{
     width: 90%;
     display: flex;
+    height: 40%;
     flex-direction: column;
     gap: 10%;
+    /*color: #007fae;*/
+    color:#009EBC
    
 }
 
+.casting-description h4,.casting-volume h4{
+    color: #009EBC;
+}
+
+
 .casting-description p ,.casting-volume p{
-    color: gray;
+    color: black;;
     word-wrap: break-word;
+    height: 80%;
+    font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
 .casting-order{
-    background-color: #007fae;
-    border-color: #007fae;
+    background-color: #009EBC;
+    border-color: #009EBC;
     color: #fff;
     align-items: center;
     border: 1.5px solid;
@@ -82,6 +118,9 @@
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
+    display: flex;
+    gap: 5px;
+    text-align: left
 }
 
 .casting-order:hover{
@@ -89,3 +128,5 @@
     background-color: #fff;
     transform: scale(1.1);
 }
+
+

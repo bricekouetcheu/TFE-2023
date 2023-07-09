@@ -27,10 +27,10 @@ const corsOptions ={
 app.use(cors(corsOptions));
 
 //API routes
-/*app.use('/',authRoutes);
-app.use('/',projectRoutes);
-app.use('/',fileRoutes);
-app.use('/',castingRoutes)*/
+app.use('/api',authRoutes);
+app.use('/api',projectRoutes);
+app.use('/api',fileRoutes);
+app.use('/api',castingRoutes)
 
 
 

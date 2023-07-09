@@ -1,21 +1,53 @@
 .home-Board{
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
     gap: 50px;
-    margin-top: 30%;
+    padding-top: 320px;
+    background-color: #fff;
+   
    
   
 }
+
+.project-description{
+    padding: 2%;
+    margin-left: 1%;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    background-image: linear-gradient(to right top, #007fae, #0090b7, #00a0bb, #00b0ba, #00bfb6);
+   /* background: rgb(255,255,255);
+    background: linear-gradient(258deg, rgba(255,255,255,1) 0%, rgba(4,137,186,1) 39%);*/
+}
+
+.project-description h1{
+    text-transform: uppercase;
+}
+
+.project-description div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    font-weight: 100;
+    
+    
+}
+
 .kanban-board{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: flex-start; 
     gap: 30px;
-    padding: 5%;
-   
-   
-   
+    padding-left: 1%;
+    padding-right: 2%;
+    padding-bottom: 5%;
     overflow-x: auto;
 }
 
@@ -28,8 +60,9 @@
     background-color: rgb(246, 248, 250);
     min-width: 380px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    max-height: 450px;
+    max-height: 500px;
     padding: 5px;
+    border-top: 6px solid #009EBC;
    
     
     
@@ -44,10 +77,12 @@
     height: 10%;
 }
 
-.column-header h2{
+.column-header h4{
     color: #212529;
     padding: 5px;
     display: flex;
+    font-weight: 700;
+    
    
 
 }
@@ -76,6 +111,45 @@
 
     .column{
         min-width: 400px;
+        
+  }
+}
+
+@media (max-width: 450px) {
+    .kanban-board{
+       
+      overflow-x:scroll;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .home-Board{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        padding-top: 100px;
+        background-color: #fff;
+       
+       
+      
+    }
+
+    .project-description h1{
+        text-transform: uppercase;
+        
+    }
+    
+    .project-description div{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.9rem;
+        font-weight: 100;    
+    }
+
+    .column{
+        min-width: 300px;
         
   }
 }

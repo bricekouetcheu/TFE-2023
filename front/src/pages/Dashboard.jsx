@@ -91,7 +91,7 @@ function ResponsiveDrawer(props) {
       </ListItemButton>
       <ListItemButton  id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faArrowRightFromBracket}  className='sidebar-icon' />
+          <FontAwesomeIcon icon={faArrowRightFromBracket}  className='sidebar-icon' color='' sx={{fontWeight:'700'}}/>
         </ListItemIcon>
         <ListItemText primary="Se deconnecter" />
       </ListItemButton>
@@ -119,7 +119,8 @@ function ResponsiveDrawer(props) {
           height:'15%',
           display:'flex',
           justifyContent:'center',
-          backgroundColor:' #007fae'
+          backgroundColor: '#f6f8fa',
+          /*backgroundColor:' #007fae'*/
          
         }}
       >
@@ -136,8 +137,8 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon sx={{fontSize:'0.9em'}}/>
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{alignContent:'center' , marginRight:'40%'}}>
-            Project dashboard
+          <Typography variant="h6" noWrap component="div" sx={{alignContent:'center' , marginRight:'40%', fontWeight:'700', color:'#000000'}}>
+            Project Dashboard
           </Typography>
         </Toolbar>
       </AppBar>

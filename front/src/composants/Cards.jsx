@@ -12,13 +12,60 @@ const Cards = (props) => {
     const handleOpenModal = () => {
         props.onOpenModal(props.id);
       };
+
+      const renderContent = (OpenModal)=>{
+        switch(props.status_name){
+            case "created":
+                return (
+                    <>
+                        <div onClick={OpenModal } >OUVRIR <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                        <div>SUPPRIMER <FontAwesomeIcon icon={faTrash}  className='card-icon' /></div>
+                    </>
+                )
+               
+            case "ordered":
+                return (
+                    <>
+                        <div onClick={OpenModal}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                    </>
+
+                )
+              
+            case "delivered":
+                return(
+                    <>
+                     <div   >DEMARRER PREDICTION<FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                    </>
+
+                )
+                
+            case "ongoing":
+                return (
+                    <>
+                      <div  >DEMARRER PREDICTION<FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                    </>
+
+                )
+                
+            case "completed":
+                return (
+                    <>
+                     <div  >DEMARRER  PREDICTION<FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                    </>
+
+                )
+               
+            default:
+                return null       
+
+        }
+      }
     return (
         <div className='casting-card'>
-            <h3>{"Casting " + props.id }</h3>
+            <h3>{"Casting " + (props.number+1) }</h3>
             <p>{props.description}</p>
             <div className='casting-card-icon'>
-                <FontAwesomeIcon icon={faEye} className='card-icon' onClick={handleOpenModal} />
-                <FontAwesomeIcon icon={faTrash}  className='card-icon' />
+                {renderContent(handleOpenModal)}
 
             </div>
 

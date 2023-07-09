@@ -8,7 +8,11 @@ import { GiConcreteBag } from "react-icons/gi";
 import { MdProductionQuantityLimits} from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
+import { IoMdCart} from "react-icons/io";
+
+
+
 
 
 
@@ -50,9 +54,9 @@ const CastingModal = (props) => {
             <div className='casting-modal-card'>
             {casting && casting[0].casting_description && (
                 <>
-                    <IoMdCloseCircle  onClick={handleCloseModal} className='casting-close-btn'/>
+                    <IoMdClose onClick={handleCloseModal} className='casting-close-btn'/>
                     
-                    <h4>Casting informations</h4>
+                    <p className='card-title'>information castings</p>
                 
                     
                     <div className='casting-description'>
@@ -61,10 +65,10 @@ const CastingModal = (props) => {
                     </div>
                     <div className='casting-volume'>
                         <h4> <GiConcreteBag></GiConcreteBag> Volume</h4>
-                        <p>{casting[0].casting_volume_beton}</p>
+                        <p>{casting[0].casting_volume_beton}m³</p>
                     </div>
 
-                     <button className='casting-order' onClick={switchPage}> <MdProductionQuantityLimits></MdProductionQuantityLimits> Order concrete </button>
+                     <button className='casting-order' onClick={switchPage}> <IoMdCart></IoMdCart> Order concrete </button>
                 </>
                     
 

@@ -1,6 +1,4 @@
-upstream backend {
-  server backend:4000;
-}
+
 server {
        listen 3000;
        listen [::]:3000;
@@ -11,9 +9,9 @@ server {
        location / {
                try_files $uri $uri/ =404;
        }
-       location /api {
-                 proxy_pass http://backend;
-                proxy_set_header Host $host;
+       location /api{
+                 proxy_pass http://backend:4000;
+                
        }
 }
 

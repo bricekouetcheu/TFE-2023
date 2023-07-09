@@ -1,25 +1,34 @@
 .casting-card{
+    transition: transform .2s; 
     width: 90%;
-    min-height: 30%;
+    min-height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
+    padding: 3%;
     /*border: 1px solid rgb(208, 215, 222);*/
     margin-top: 10px;
     border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+   /* box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
+    /*box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;*/
    /* box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
 }
 
 .casting-card:hover{
-    transform: scale(1.1);
-    transition: 0.1s ease-in;
+    transform: scale(1.1)
 }
 .casting-card h3{
+    width: 100%;
+    margin-bottom: 0.3rem;
+    text-align: left;
     height: 20%;
     color: #212529;
-    
+    font-weight: 700;
+    line-height: 1.5;
+    font-weight: 700;
+    font-style: normal;   
 
 }
 
@@ -27,29 +36,61 @@
     height: 60% ;
     width: 100%;
     display: flex;
-    padding: 10px;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 0.8em;
-    font-weight: 200;
-    color:#8E818A ;
+    font-weight: 400;
+    line-height: 25px;
+    font-style: normal;
+    /*color:#8E818A ;*/
+    opacity: 0.75;
+    border-top: 1px solid #99A3AD;
+    margin-top: 4px;
+    transition: transform .2s
 }
 
 .casting-card-icon{
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
     height: 20%;
-    width: 80%;
-    
-    
-    
-    
+    width: 100%; 
 
+}
+
+
+
+.casting-card-icon div{
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    gap: 5px;
+    color: #009EBC;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.casting-card-icon div:hover{
+    background-color:   #F6F8FA;
 }
 
 .card-icon{
    
     font-size: 0.9em;
     cursor: pointer;
-    color: #8E818A;
+    color: #009EBC;
 }
+
+/*.card-icon:hover{
+   /background-color: #F6F8FA ;
+    background-color: red;
+}*/
+
+@media (max-width: 750px) {
+    /* Styles à appliquer pour les écrans d'au plus 750px de large */
+    .dashboard-content {
+      width: 100%; /* Afficher la sidebar */
+    }
+  }

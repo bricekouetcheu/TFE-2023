@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import Cards from './Cards';
 import axios from 'axios';
 import CastingModal from './CastingModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faLocationDot} from  '@fortawesome/free-solid-svg-icons';
+
+
 
 
 
@@ -16,6 +20,7 @@ const MyCasting = () => {
       };
     const {project_id} = useParams();
     const getAllCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/castings`
+    const getProjectUrl = process.env.REACT_APP_HOST+`api/project/${project_id}`
     const [castings, setCastings]= useState(null)
     const [selectedCastingId, setSelectedCastingId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +29,23 @@ const MyCasting = () => {
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
     const [columns, setColumns] = useState(initialColumns);
+    const [project, setProject]=useState()
+    let count = 0
+
+    console.log(castings);
+    console.log(columns);
+    //fonction permettant d'obtenir le projet en coursp
+
+    const getProject = async()=>{
+      try{
+        const result = await axios.get(getProjectUrl)
+        console.log(result.data)
+        setProject(result.data)
+      } catch(err){
+        console.log(err)
+      }
+
+    }
 
 
     //fonction de gestion du modal
@@ -77,23 +99,6 @@ const MyCasting = () => {
         containerRef.current.scrollLeft = scrollLeft - walk;
       };
     
-    //fonction permettant de deplacer une carte d'une colonne a une autre
-      const moveCard = (card, sourceColumn, targetColumn) => {
-        const updatedColumns = { ...columns };
-        const sourceCards = updatedColumns[sourceColumn];
-        const targetCards = updatedColumns[targetColumn];
-    
-        // Remove card from source column
-        const cardIndex = sourceCards.findIndex((item) => item.casting_id === card.casting_id);
-        if (cardIndex !== -1) {
-          sourceCards.splice(cardIndex, 1);
-        }
-    
-        // Add card to target column
-        targetCards.push(card);
-    
-        setColumns(updatedColumns);
-      };
 
       useEffect(() => {
         if (castings) {
@@ -106,13 +111,22 @@ const MyCasting = () => {
       }, [castings]);
 
       useEffect(()=>{
+        getProject()
         getAllCasting()
 
       },[])
     
       return (
         <div className='home-Board'>
-           <h1>Bonjourcisbosbsnpos</h1>
+           {project
+            &&
+            (<div className='project-description'>
+              <h1> {project[0].project_name} </h1>
+              <div>
+                  <FontAwesomeIcon icon={faLocationDot} />
+                  <p>{project[0].project_address} </p>
+              </div>
+           </div>)}
           <div className="kanban-board"
         ref={containerRef}
         onMouseDown={handleMouseDown}
@@ -129,9 +143,11 @@ const MyCasting = () => {
                 <h4>Created</h4>
             </div>
             <div className='column-content'>
-            {columns.created.map((card) => (
+            {columns.created.map((card,index) => (
             <Cards 
              id = {card.casting_id}
+             number = {count++}
+             status_name = {card.status_name}
              description = {card.casting_description}
              key = {card.casting_id}
              onOpenModal= {handleOpenModal}
@@ -147,9 +163,11 @@ const MyCasting = () => {
                 <h4>Ordered</h4>
             </div>
             <div className='column-content'>
-            {columns.ordered.map((card) => (
+            {columns.ordered.map((card,index) => (
                 <Cards 
                 id = {card.casting_id}
+                status_name = {card.status_name}
+                number = {count++}
                 description = {card.casting_description}
                 key = {card.casting_id}
                 onOpenModal= {handleOpenModal}
@@ -164,9 +182,11 @@ const MyCasting = () => {
                 <h4>Delivered</h4>
             </div>
             <div className='column-content'>
-            {columns.delivered.map((card) => (
+            {columns.delivered.map((card,index) => (
                 <Cards 
                 id = {card.casting_id}
+                number = {count++}
+                status_name = {card.status_name}
                 description = {card.casting_description}
                 key = {card.casting_id}
                 onOpenModal= {handleOpenModal}
@@ -181,9 +201,11 @@ const MyCasting = () => {
                 <h4>Ongoing</h4>
             </div>
             <div className='column-content'>
-            {columns.ongoing.map((card) => (
+            {columns.ongoing.map((card,index) => (
               <Cards 
               id = {card.casting_id}
+              number = {count++}
+              status_name = {card.status_name}
               description = {card.casting_description}
               key = {card.casting_id}
               onOpenModal= {handleOpenModal}
@@ -198,9 +220,11 @@ const MyCasting = () => {
                 <h4>Completed</h4>
             </div>
             <div className='column-content'>
-            {columns.completed.map((card) => (
+            {columns.completed.map((card,index) => (
               <Cards 
               id = {card.casting_id}
+              number = {count++}
+              status_name = {card.status_name}
               description = {card.casting_description}
               key = {card.casting_id}
               onOpenModal= {handleOpenModal}

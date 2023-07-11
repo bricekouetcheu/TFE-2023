@@ -22,7 +22,7 @@ const AllRoutes = () => {
                 <Route element = {<Exemple />} path = '/test'/>
                 <Route element = {<Order />} path = '/test1'/>    
                 <Route element = {<Order />} path = '/order/:casting_id'/>   
-                <Route element = {<Checking />} path = '/checking/:casting_id'/>   
+                <Route element = {<Checking />} path = '/checking/'/>   
             </Routes>
         </BrowserRouter>
             

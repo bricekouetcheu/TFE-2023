@@ -31,9 +31,7 @@ const MyCasting = () => {
     const [columns, setColumns] = useState(initialColumns);
     const [project, setProject]=useState()
     let count = 0
-
-    console.log(castings);
-    console.log(columns);
+    
     //fonction permettant d'obtenir le projet en coursp
 
     const getProject = async()=>{

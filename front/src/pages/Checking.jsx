@@ -11,7 +11,7 @@ const Checking = () => {
     const [drag, setDrag] = useState(false)
     const [progress, setProgress] = useState(0)
 
-    
+    console.log(isMobile)
     console.log(image)
 
     const handleDrag = (e)=>{

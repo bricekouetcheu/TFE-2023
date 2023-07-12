@@ -7,6 +7,7 @@ const authRoutes = require('./routes/auth');
 const projectRoutes =require('./routes/projects');
 const fileRoutes = require('./routes/files')
 const castingRoutes = require('./routes/castings')
+const orderRoutes = require('./routes/order')
 
 
 app.use(express.json()); // qui gere les requetes entrantes de type json.
@@ -30,7 +31,8 @@ app.use(cors(corsOptions));
 app.use('/api',authRoutes);
 app.use('/api',projectRoutes);
 app.use('/api',fileRoutes);
-app.use('/api',castingRoutes)
+app.use('/api',castingRoutes);
+app.use('/api', orderRoutes);
 
 
 

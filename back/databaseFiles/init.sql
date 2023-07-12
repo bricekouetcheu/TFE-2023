@@ -90,6 +90,16 @@ ALTER TABLE castings
 
 
 
+CREATE TABLE Orders (
+  order_id SERIAL primary key,
+  order_data JSONB,
+  casting_id INT,
+  CONSTRAINT fk_casting
+    FOREIGN KEY (casting_id)
+            REFERENCES castings(casting_id)
+ 
+);
+
 INSERT INTO roles (role_id, role_description) values (DEFAULT ,'ADMIN');
 INSERT INTO roles (role_id, role_description) values (DEFAULT ,' SIMPLE USER');
 

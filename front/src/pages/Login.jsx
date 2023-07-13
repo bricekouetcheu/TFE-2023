@@ -30,16 +30,18 @@ const Login = () => {
                 email: email,
                 password : password,
                 
-            }).then(result=>{
-                const data = result.data
+            }, { withCredentials: true }).then(result=>{
                
-                localStorage.setItem('token',data.accessToken)
-                setIsAuthenticated(true)
-                Navigate('/projects')
+                if(result.data === "connexion reussie"){
+                    Navigate('/projects')
+
+                }else{
+                    setErrorMessage('Verifiez vos identifiants')
+                }
             })
             .catch(err=>{
                 console.log(err)
-                setErrorMessage('Check your credentials')
+                setErrorMessage('Verifiez vos identifiants')
             })
 
         }else{

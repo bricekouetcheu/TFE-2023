@@ -30,5 +30,6 @@
     margin: 0;
     padding: 0;
     font-family: "neue-haas-unica", sans-serif;
+    scroll-behavior: smooth;
 /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
 }

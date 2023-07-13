@@ -6,7 +6,7 @@ const path = require('path');
 exports.CreateProject  = (req, res)=>{
     const {name, address} = req.body;
     //creer un middleweares d'auth
-    const user_id = req.user.id
+    const user_id = req.user.user_id
     const files = req.files;
     console.log(user_id)
    
@@ -49,7 +49,7 @@ exports.CreateProject  = (req, res)=>{
 
 
     exports.getAllProjects = (req, res)=>{
-        const user_id = req.user.id
+        const user_id = req.user.user_id
         const getAllProjectsQuery = 'select * from projects where user_id = $1'
     
 

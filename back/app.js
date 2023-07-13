@@ -8,6 +8,7 @@ const projectRoutes =require('./routes/projects');
 const fileRoutes = require('./routes/files')
 const castingRoutes = require('./routes/castings')
 const orderRoutes = require('./routes/order')
+const userRoutes = require('./routes/users')
 
 
 app.use(express.json()); // qui gere les requetes entrantes de type json.
@@ -20,8 +21,8 @@ app.use(bodyParser.urlencoded({ // qui gere les requetes entrantes de type formu
 }));
 
 const corsOptions ={
-  origin:'*', 
-  credentials:true,            //access-control-allow-credentials:true
+  origin: 'http://localhost:3000',
+  credentials: true,           //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
 
@@ -33,6 +34,7 @@ app.use('/api',projectRoutes);
 app.use('/api',fileRoutes);
 app.use('/api',castingRoutes);
 app.use('/api', orderRoutes);
+app.use('/api', userRoutes);
 
 
 

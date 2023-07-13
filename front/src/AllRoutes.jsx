@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Route , Routes } from "react-router-dom";
+import React,{ useState,useEffect } from 'react';
+import { BrowserRouter, Route , Routes, useNavigate } from "react-router-dom";
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Projects from './pages/Projects';
@@ -8,23 +8,67 @@ import Dashboard from './pages/Dashboard';
 import Order from './pages/Order';
 import Exemple from './composants/Exemple';
 import Checking from './pages/Checking';
+import axios from 'axios';
+
+
+
 
 
 const AllRoutes = () => {
+
+    const [isAuthenticated,setIsAuthenticated] = useState(false)
+    const AuthUrl = process.env.REACT_APP_HOST+`api/auth`
+    const navigate = useNavigate()
+
+    const checkAuthentication = async()=>{
+            
+        try{
+            
+            const response = await axios.get(AuthUrl,{ withCredentials: true })
+            
+            if(response.data === "authentifié"){
+    
+                setIsAuthenticated(true)
+            }else{
+                setIsAuthenticated(false) 
+                navigate('/')
+
+            }
+           
+        }catch(err){
+            console.log(err)
+            setIsAuthenticated(false);
+    
+        }
+    }
+    
+    useEffect(()=>{
+    
+    
+        checkAuthentication()
+        console.log(isAuthenticated);
+       
+       
+    },[checkAuthentication]);
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route element = {<Register/>} path = '/register'/>
-                <Route element = {< Login/>} path = '/'/>
-                <Route element = {<Projects/>} path = '/projects'/>
-                <Route element = {<NewProject/>} path = '/AddProject'/>
-                <Route element = {<Dashboard/>} path = '/Dashboard/:project_id'/>
-                <Route element = {<Exemple />} path = '/test'/>
-                <Route element = {<Order />} path = '/test1'/>    
-                <Route element = {<Order />} path = '/order/:casting_id'/>   
-                <Route element = {<Checking />} path = '/checking/'/>   
-            </Routes>
-        </BrowserRouter>
+        
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Login />} />
+  
+          {isAuthenticated ? (
+            <>
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/AddProject" element={<NewProject />} />
+              <Route path="/Dashboard/:project_id" element={<Dashboard />} />
+              <Route path="/test" element={<Exemple />} />
+              <Route path="/test1" element={<Order />} />
+              <Route path="/order/:casting_id" element={<Order />} />
+              <Route path="/checking" element={<Checking />} />
+            </>
+          ) : null}
+        </Routes>
+      
             
 
     );

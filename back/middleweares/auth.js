@@ -1,27 +1,9 @@
-/*const { verify } = require("jsonwebtoken");
-
-exports.validateToken = (req, res, next) => {
-  const accessToken = req.header("accessToken");
-
-  if (!accessToken) return res.json({ error: "User not logged in!" });
-
-  try {
-    const validToken = verify(accessToken, process.env.TOKEN_PASS);
-    req.user = validToken;
-    if (validToken) {
-      return next();
-    }
-  } catch (err) {
-    return res.json({ error: err });
-  }
-};*/
 
 
 const jwt = require('jsonwebtoken');
 
 exports.authMiddleware = (req, res, next)=> {
-  const token = req.header("accessToken"); // Récupération du token dans les cookies
- 
+  const token = req.cookies.accessToken; // on recupere le token
 
   try {
     if (!token) throw new Error('No token provided');

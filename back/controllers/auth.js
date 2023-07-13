@@ -57,7 +57,8 @@ exports.Register = (req, res)=>{
 
 exports.Login = (req , res , next)=>{
     const {email , password} = req.body; // on recupere les valeurs envoyées par le front
-    
+    const hours = 12;
+    const maxAgeInMilliseconds = hours * 60 * 60 * 1000;
 
     try{
          pool.query(`SELECT * FROM users WHERE user_email= $1;`, [email])
@@ -81,16 +82,20 @@ exports.Login = (req , res , next)=>{
                     }else{ // password ok!!! send user
 
                         const token = jwt.sign({
-                            id : user_id}, 
+                            user_id : user_id,
+                            surname: surname,
+                            name : name,
+                            email: email,}, 
                             process.env.TOKEN_PASS,
                             { expiresIn: '24h'})
 
-                        return res.status(200).send({
-                            id : user_id,
-                            name : name,
-                            surname: surname,
-                            email: email,
-                        accessToken: token})
+                        return res.cookie("accessToken" ,token,{
+                            maxAge: maxAgeInMilliseconds,
+                            httpOnly: true,
+                        })
+                        .status(200)
+                        .send("connexion reussie")
+
                     }
                 })
     
@@ -100,11 +105,6 @@ exports.Login = (req , res , next)=>{
                 }
                    
                 )
-                    
-                     
-                
-    
-    
                 
     
             }
@@ -125,5 +125,12 @@ exports.Login = (req , res , next)=>{
         error: "Database error occurred while signing in!", //Database connection error
         });
 }
+
+}
+
+
+
+exports.Logout = (req, res)=>{
+    return res.clearCookie('accessToken').status(200).send("deconnexion reussie")
 
 }

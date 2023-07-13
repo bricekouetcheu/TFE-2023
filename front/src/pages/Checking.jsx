@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {isMobile} from 'react-device-detect';
 import Navbar from '../composants/Navbar';
 import imageIcon from '../assets/image.png';
-import { MdDelete} from "react-icons/md";
+
 import { faXmark,faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Checking = () => {
 
     const [image , setImage] = useState(null)
     const [drag, setDrag] = useState(false)
-    const [progress, setProgress] = useState(0)
-
-    console.log(isMobile)
-    console.log(image)
+    const scrollRef = useRef()
 
     const handleDrag = (e)=>{
         console.log('bonjour')
@@ -37,33 +34,40 @@ const Checking = () => {
 
     }
    
+    //upload du fichier
     const handleFileUpload = (e)=>{
         e.preventDefault()
-        console.log('vvvvv')
+        
         if (e.target.files && e.target.files[0]) {
             setImage(e.target.files[0])
           }
+         
      
-       /* const Timer = setInterval(()=>{
-            setProgress((prevProgress)=>{
-                if(prevProgress<100){
-                    return prevProgress + 10
-                }
-                clearInterval(Timer);
-                return prevProgress
-            });
-        },200)
-        setTimeout(() => {
-            clearInterval(Timer);
-        }, 2000);*/
     }
 
+    // scroll vers le bas au moment de l'upload
+    const scrolltoLastElement = ()=>{
+        
+        const lastElement = scrollRef.current?.lastElement ;
+        lastElement?.scrollIntoView({ behavior: 'smooth' });
+    }
   
 
     const handleFileDelete = ()=>{
         setImage(null)
     }
 
+
+    const handleSubmit = (e)=>{
+        
+    }
+
+    useEffect(()=>{
+        if(image){
+            scrolltoLastElement()
+        }
+       
+    },[image])
   
 
     const renderContent = ()=>{
@@ -85,7 +89,7 @@ const Checking = () => {
                             <div>
                                 <h2>Glissez et Deposez votre <span>image</span></h2>
                                 <span>ou</span>
-                                <p onClick={()=>{document.querySelector('.input-field').click()}}>Selectionnez votre image</p>
+                                <p onClick={()=>{document.querySelector('.input-field').click()}}>Selectionnez la</p> 
 
 
                             </div>
@@ -103,7 +107,7 @@ const Checking = () => {
                                 <img src={URL.createObjectURL(image)} alt='upload file'/>
                                 <span>{image.name}</span>
                             </div>
-                            <FontAwesomeIcon icon={faXmark} onClick={ handleFileDelete} />
+                            <FontAwesomeIcon icon={faXmark} onClick={ handleFileDelete} className='delete-icon' />
 
                         </div>
                         )
@@ -123,9 +127,25 @@ const Checking = () => {
     return (
         <div className='checking-page'>
             <Navbar></Navbar>
-            <div className='checking-page-content'>
+            <div className= {`checking-page-content ${image ? 'checking-page-content-image' : ''}`} ref={scrollRef}>
                 <p className='checking-title'>Verification du Bon de livraison</p>
-                {renderContent()}
+                {image ? (
+                    
+                      <>
+                       {renderContent()}
+                     <button className='checking-btn'> Lancer la Verification</button>
+                     
+                     </>  
+
+                   
+                ):(
+                    renderContent()
+                )
+
+                }
+
+
+                
             
             </div>
             

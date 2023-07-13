@@ -24,15 +24,13 @@ const Maps = () => {
     });*/
     const getProjectUrl = process.env.REACT_APP_HOST+'api/projects'
     const [projects, setProjects] = useState([]);
-    const config = {
-      headers:{"accessToken" : localStorage.getItem('token')}
-    }
+    
  
 
     //fonction permettant de recuperer les projets 
     const getAllProject = ()=>{
 
-      axios.get(getProjectUrl, config)
+      axios.get(getProjectUrl, {withCredentials:true})
       .then(result => {
         const data = result.data;
 

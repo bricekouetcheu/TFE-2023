@@ -12,7 +12,7 @@ const {getOneProject} =  require('../controllers/projects')
 
 router.post('/project', authMiddleware, multer({ storage: ifcstorage}).array('ifc'), CreateProject);
 router.get('/projects',authMiddleware,  getAllProjects)
-router.get('/project/:project_id',getOneProject)
+router.get('/project/:project_id', authMiddleware, getOneProject)
 router.delete('/projects/:project_id',authMiddleware,  DeleteProject)
 
 

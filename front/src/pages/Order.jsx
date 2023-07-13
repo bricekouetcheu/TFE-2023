@@ -25,8 +25,16 @@ const  Order = ()=>{
   
   console.log(order)
 
- 
 
+  //fonction permettant de scroller 
+  const scrolltoLastElement = () =>{
+    const lastElement = scrollRef.current?.lastElement ;
+     lastElement?.scrollIntoView({ behavior: 'smooth' });
+
+  }
+  
+ 
+//fonction permtaant de passer la commande de beton
   const submitOrder = async()=>{
     try{
       const result = await axios.put(updateCastingUrl)
@@ -145,6 +153,12 @@ const  Order = ()=>{
 
   },[])
 
+  useEffect(()=>{
+    if(order){
+      scrolltoLastElement()
+    }
+  },[order])
+
   const handleTableDataChange = (newData) => {
     setTableData(newData);
     
@@ -210,7 +224,7 @@ const  Order = ()=>{
   };
 
   return (
-    <div  className='table-page'>
+    <div  className='table-page' ref={scrollRef}>
       <Navbar></Navbar>
       <h1>Verifiez les informations</h1>
       {/* Autres composants et contenu ici */}
@@ -218,7 +232,7 @@ const  Order = ()=>{
       
       <button onClick={submitForm} className='form-btn-order'> Confirmer {submitted && <CircularProgress className='circular' sx={{color:"#fff"}} size={19}/>}</button>
 
-      {order && <Test2 data={order} className = "order" ref={scrollRef} submit={submitOrder}/> }
+      {order && <Test2 data={order} className = "order"  submit={submitOrder}/> }
 
      
     </div>

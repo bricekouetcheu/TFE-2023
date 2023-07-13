@@ -25,6 +25,8 @@ const Register = () => {
   const RegisterUrl = process.env.REACT_APP_HOST+'api/register'
   const Navigate = useNavigate()
 
+  
+
   const handleName= (e)=>{
     setName(e.target.value)
   }

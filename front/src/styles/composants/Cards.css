@@ -10,6 +10,7 @@
     /*border: 1px solid rgb(208, 215, 222);*/
     margin-top: 10px;
     border-radius: 6px;
+   
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
    /* box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
     /*box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;*/
@@ -24,27 +25,33 @@
     margin-bottom: 0.3rem;
     text-align: left;
     height: 20%;
-    color: #212529;
-    font-weight: 700;
-    line-height: 1.5;
-    font-weight: 700;
-    font-style: normal;   
+    background: linear-gradient(180deg,#555,#000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    font-size: max(13px,min(0.5vw,50px));
+    line-height: 1;
+    letter-spacing: -.05em;
+    padding: 0px;
+    position: relative;  
 
 }
 
 .casting-card p {
+   
     height: 60% ;
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    font-size: 0.8em;
+    color:  #666;
+    font-size: max(12px,min(1vw,20px));
+    line-height: 1.5;
+    letter-spacing: -0.01em;
     font-weight: 400;
-    line-height: 25px;
-    font-style: normal;
     /*color:#8E818A ;*/
     opacity: 0.75;
     border-top: 1px solid #99A3AD;
-    margin-top: 4px;
+    margin-top: 0px;
     transition: transform .2s
 }
 
@@ -63,13 +70,19 @@
 .casting-card-icon div{
     display: flex;
     align-items: center;
-    font-size: 0.7rem;
-    font-weight: 600;
     gap: 5px;
-    color: #009EBC;
     cursor: pointer;
+    font-size: 0.7rem;
     border-radius: 20px;
     padding: 2%;
+   
+    color: #00BCB6;
+    font-size: max(10px,min(0.8vw,20px));
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+   
+  
 }
 
 .casting-card-icon div:hover{
@@ -80,7 +93,7 @@
    
     font-size: 0.9em;
     cursor: pointer;
-    color: #009EBC;
+    color: #00BCB6;
 }
 
 /*.card-icon:hover{

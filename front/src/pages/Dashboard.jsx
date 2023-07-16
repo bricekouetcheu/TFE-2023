@@ -26,7 +26,7 @@ const drawerWidth = 340;
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedOption, setSelectedOption] = useState('Newcasting');
+  const [selectedOption, setSelectedOption] = useState('Mycasting');
 
 
 
@@ -135,10 +135,10 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { md: 'none' }, fontSize:'50px' }}
           >
-            <MenuIcon sx={{fontSize:'0.9em'}}/>
+            <MenuIcon sx={{fontSize:'0.9em', color:'black'}}/>
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{alignContent:'center' , marginRight:'40%', fontWeight:'700', color:'#000000'}}>
-            Project Dashboard
+            Tableau de bord
           </Typography>
         </Toolbar>
       </AppBar>

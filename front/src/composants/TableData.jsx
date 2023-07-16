@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Select, MenuItem } from '@mui/material';
 
 
-const Test = ({ data, onDataChange })=> {
+const TableData = ({ data, onDataChange })=> {
 
   const handleProcessRowUpdate = (updatedRow, originalRow) => {
     // Find the index of the row that was edited
@@ -180,4 +180,4 @@ const Test = ({ data, onDataChange })=> {
   );
 }
 
-export default Test;
+export default TableData ;

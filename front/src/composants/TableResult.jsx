@@ -1,14 +1,15 @@
-import React from 'react';
+import React,{useRef} from 'react';
 import {AiOutlineFilePdf} from "react-icons/ai";
 import { PDFDownloadLink} from '@react-pdf/renderer';
 import createPDF from './CreatePdf';
 import { forwardRef } from 'react';
 
 
-const Test2 = forwardRef (({data , submit},ref) => {
+const TableResult = forwardRef (({data , submit},ref) => {
+ 
 
     return (
-        <div className='table-Order'  >
+        <div className='table-Order' ref={ref}  >
             <h1> Bon de Commande</h1>
               <PDFDownloadLink document={createPDF(data)} fileName='tableau.pdf' className='pdf-link'>
         
@@ -45,4 +46,4 @@ const Test2 = forwardRef (({data , submit},ref) => {
 
 
 
-export default Test2;
+export default TableResult;

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Test from '../composants/Test';
+import Table from '../composants/TableData';
 import { useEffect,useState,useRef } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
-import Test2 from '../composants/Test2';
+import TableResult from '../composants/TableResult';
 import { CircularProgress } from '@mui/material';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
@@ -23,15 +23,18 @@ const  Order = ()=>{
   const Navigate = useNavigate()
 
   
-  console.log(order)
+
 
 
   //fonction permettant de scroller 
   const scrolltoLastElement = () =>{
-    const lastElement = scrollRef.current?.lastElement ;
+    const lastElement = scrollRef.current?.lastElementChild ;
      lastElement?.scrollIntoView({ behavior: 'smooth' });
+     console.log('test1',lastElement)
 
   }
+
+
   
  
 //fonction permtaant de passer la commande de beton
@@ -139,7 +142,6 @@ const  Order = ()=>{
       const result = await axios.get(getTemplateUrl,{withCredentials:true})
       
       const data = result.data[0].template_data;
-      console.log(data)
       setTableData(data)
     }catch(err){
       console.log(err)
@@ -210,7 +212,6 @@ const  Order = ()=>{
        
         setOrder(createOrder(responseData))
         setSubmitted(false)
-        scrollRef.current.scrollIntoView( { behavior: 'smooth' , block:'end'})
 
        
       
@@ -224,15 +225,15 @@ const  Order = ()=>{
   };
 
   return (
-    <div  className='table-page' ref={scrollRef}>
+    <div  className='table-page'>
       <Navbar></Navbar>
       <h1>Verifiez les informations</h1>
       {/* Autres composants et contenu ici */}
-      {tableData && <Test data={tableData} onDataChange={handleTableDataChange} /> }
+      {tableData && <Table data={tableData} onDataChange={handleTableDataChange} /> }
       
       <button onClick={submitForm} className='form-btn-order'> Confirmer {submitted && <CircularProgress className='circular' sx={{color:"#fff"}} size={19}/>}</button>
 
-      {order && <Test2 data={order} className = "order"  submit={submitOrder}/> }
+      {order && <TableResult data={order} className = "order"  submit={submitOrder} ref={scrollRef}/> }
 
      
     </div>

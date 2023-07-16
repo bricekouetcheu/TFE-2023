@@ -5,6 +5,12 @@ import axios from 'axios';
 import CastingModal from './CastingModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationDot} from  '@fortawesome/free-solid-svg-icons';
+import created from '../assets/Add.png'
+import ordered from '../assets/order.png'
+import delivered from '../assets/delivered1.png'
+import ongoing from '../assets/sync.png'
+import completed from '../assets/check.png'
+import location from '../assets/location.png'
 
 
 
@@ -37,7 +43,6 @@ const MyCasting = () => {
     const getProject = async()=>{
       try{
         const result = await axios.get(getProjectUrl , {withCredentials:true})
-        console.log(result.data)
         setProject(result.data)
       } catch(err){
         console.log(err)
@@ -50,7 +55,7 @@ const MyCasting = () => {
     const handleOpenModal = (castingId) => {
         setSelectedCastingId(castingId);
         setIsModalOpen(true);
-        console.log('bonjour')
+       
       };
     
       const handleCloseModal = () => {
@@ -64,7 +69,6 @@ const MyCasting = () => {
         try{
             const result = await axios.get(getAllCastingUrl,{withCredentials:true})
             const data = result.data
-            console.log(data)
             setCastings(data)
         }
         catch(err){
@@ -93,7 +97,7 @@ const MyCasting = () => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - containerRef.current.offsetLeft;
-        const walk = (x - startX) * 1; // Ajustez le multiplicateur selon votre préférence pour la vitesse de défilement
+        const walk = (x - startX) * 3; // Ajustez le multiplicateur selon votre préférence pour la vitesse de défilement
         containerRef.current.scrollLeft = scrollLeft - walk;
       };
     
@@ -121,7 +125,7 @@ const MyCasting = () => {
             (<div className='project-description'>
               <h1> {project[0].project_name} </h1>
               <div>
-                  <FontAwesomeIcon icon={faLocationDot} />
+                  <img className = 'location-icon' src={location} alt='location img'/>
                   <p>{project[0].project_address} </p>
               </div>
            </div>)}
@@ -138,7 +142,8 @@ const MyCasting = () => {
             
           <div className="column">
           <div className='column-header'>
-                <h4>Created</h4>
+                <h4 className='colunm-title'>Created</h4>
+                <img src={created} alt=" created icon" />
             </div>
             <div className='column-content'>
             {columns.created.map((card,index) => (
@@ -158,7 +163,8 @@ const MyCasting = () => {
           </div>
           <div className="column">
           <div className='column-header'>
-                <h4>Ordered</h4>
+                <h4 className='colunm-title'>Ordered</h4>
+                <img src={ordered} alt="ordered icon" />
             </div>
             <div className='column-content'>
             {columns.ordered.map((card,index) => (
@@ -177,7 +183,8 @@ const MyCasting = () => {
           </div>
           <div className="column">
           <div className='column-header'>
-                <h4>Delivered</h4>
+                <h4 className='colunm-title'>Delivered</h4>
+                <img src={delivered} alt="delivered icon" />
             </div>
             <div className='column-content'>
             {columns.delivered.map((card,index) => (
@@ -196,7 +203,8 @@ const MyCasting = () => {
           </div>
           <div className="column">
           <div className='column-header'>
-                <h4>Ongoing</h4>
+                <h4 className='colunm-title'>Ongoing</h4>
+                <img src={ongoing} alt="ongoing icon" />
             </div>
             <div className='column-content'>
             {columns.ongoing.map((card,index) => (
@@ -215,7 +223,8 @@ const MyCasting = () => {
           </div>
           <div className="column">
             <div className='column-header'>
-                <h4>Completed</h4>
+                <h4 className='colunm-title'>Completed</h4>
+                <img src={completed} alt="completed icon" />
             </div>
             <div className='column-content'>
             {columns.completed.map((card,index) => (

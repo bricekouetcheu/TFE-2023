@@ -37,7 +37,7 @@ const CastingModal = (props) => {
             const data = response.data;
             setCasting(data);
           } catch (error) {
-            console.error(error);
+            console.log(error);
           }
         };
     
@@ -52,7 +52,7 @@ const CastingModal = (props) => {
     return (
         <div className='casting-modal'>
             <div className='casting-modal-card'>
-            {casting && casting[0].casting_description && (
+            {casting && (
                 <>
                     <IoMdClose onClick={handleCloseModal} className='casting-close-btn'/>
                     
@@ -68,7 +68,7 @@ const CastingModal = (props) => {
                         <p>{casting[0].casting_volume_beton}m³</p>
                     </div>
 
-                     <button className='casting-order' onClick={switchPage}> <IoMdCart></IoMdCart> Order concrete </button>
+                     <button className='casting-order' onClick={switchPage}> <IoMdCart></IoMdCart> Commander </button>
                 </>
                     
 

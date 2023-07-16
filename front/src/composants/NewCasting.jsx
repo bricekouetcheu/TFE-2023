@@ -255,12 +255,12 @@ const NewCasting = () => {
               
               <div className={ entities ? 'formNewCasting': 'formNewCastingEntities' }>
                
-               <h3> Create a new casting</h3>
+               <h3> Ajouter un nouveau casting</h3>
                <div className='form-casting'>
                      <div className='ifcviewer-container'>
      
                         <select onChange={handleTypeChange} value={selectedType}>
-                           <option value="0">Select Type</option>
+                           <option value="0">Type d'élément</option>
                            <option value="IFCWALLSTANDARDCASE">Wall</option>
                            <option value="IFCSLAB">Slab</option>
                        </select>
@@ -282,12 +282,12 @@ const NewCasting = () => {
                        </div>
                    <div className='Add-description'>
                        <label htmlFor="casting name">
-                           Add a Description
+                           Ajouter une description
                        </label>
                        <textarea onChange={handleDescription} value={description} ></textarea>
                    </div>
                </div>
-               <button className='NewCasting-btn' onClick={handleSubmit}  > Create </button>
+               <button className='NewCasting-btn' onClick={handleSubmit}  > Creer </button>
            </div>
            
     </div>

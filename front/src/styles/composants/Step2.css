@@ -118,41 +118,34 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     
 
 }
 
 .step2-navigation button{
-    background-color: #fff;
-    color: #007fae;
-    align-items: center;
-    border: 1.5px solid;
-    border-radius: 999px;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: neue-haas-unica,sans-serif;
-    font-size: 0.7em;
-    font-weight: 700;
-    height: 30px;
-    line-height: 100%;
-    padding: 10px 22px;
-    position: relative;
-    text-decoration: none;
-    transition: all .2s ease-in-out;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: 20%;
-    display: flex;
-    gap: 3px;
-    justify-content: center;
-    align-items: center;
+    font-weight: 600;
+  font-size: max(0.7em ,min(0.9vw,40px));
+  line-height: 2;
+  letter-spacing: -.05em;
+  position: relative;
+  background-color: #00BCB6;
+  color: #fff;
+  align-items: center;
+  border: 1.5px solid;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 30px;
+  padding: 0 20px;
+  transition: all .2s ease-in-out;
+  width: fit-content;
+  display: flex;
+  gap: 3px;
 
 }
 
 .step2-navigation button:hover{
-    background-color: #007fae;
-    border-color: #007fae;
+    
     transform: scale(1.1);
     transition: 0.5s ease-in-out;
     color: #fff;

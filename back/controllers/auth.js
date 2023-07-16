@@ -10,7 +10,7 @@ const client = new OAuth2Client(
     'postmessage')
 
     const getUserByEmail = 'select * from users where user_email = $1'
-    const addUserRequest = 'INSERT INTO users (user_id,user_name,user_surname,user_email, access_token, refresh_token, role_id) values(DEFAULT,$1,$2,$3,$4,$5,2) RETURNING  user_id';
+    const addUserRequest = 'INSERT INTO users (user_id,user_name,user_surname,user_email, access_token, refresh_token, role_id ,user_picture) values(DEFAULT,$1,$2,$3,$4,$5,2 ,$6) RETURNING  user_id';
     const updateTokensQuery = 'UPDATE users SET access_token = $1, refresh_token = $2 WHERE user_id = $3';
 
     const generateToken = (user_id, given_name, family_name, email )=>{
@@ -39,7 +39,7 @@ const client = new OAuth2Client(
             
             // on decode l'id token afin de recupere les infos user
             const decodedToken = jwt.decode(id_token);
-            const { sub, given_name, family_name, email } = decodedToken;
+            const { sub, given_name, family_name, email , picture } = decodedToken;
 
             // on verifie si le user existe deja
             const result = await pool.query(getUserByEmail,[email])
@@ -67,7 +67,9 @@ const client = new OAuth2Client(
                         family_name,
                         email,
                         access_token,
-                        refreshToken
+                        refresh_token,
+                        picture 
+
                     ]);
                     const user_id = result.rows[0].user_id;
                     const token = generateToken(user_id,given_name, family_name, email);

@@ -6,8 +6,8 @@ const { authMiddleware } = require('../middleweares/auth');
 
 
 
-router.get('/files/:project_id',  GetIfcProject);
-router.get('/files/:project_id/:fileName', GetIfcfiles);
+router.get('/files/:project_id',authMiddleware,  GetIfcProject);
+router.get('/files/:project_id/:fileName',authMiddleware, GetIfcfiles);
 
 
 module.exports = router;

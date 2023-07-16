@@ -36,7 +36,7 @@ const MyCasting = () => {
 
     const getProject = async()=>{
       try{
-        const result = await axios.get(getProjectUrl)
+        const result = await axios.get(getProjectUrl , {withCredentials:true})
         console.log(result.data)
         setProject(result.data)
       } catch(err){
@@ -62,7 +62,7 @@ const MyCasting = () => {
     // fonction permettant de recuperer tous les castings
     const getAllCasting = async()=>{
         try{
-            const result = await axios.get(getAllCastingUrl)
+            const result = await axios.get(getAllCastingUrl,{withCredentials:true})
             const data = result.data
             console.log(data)
             setCastings(data)

@@ -59,7 +59,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
                     
                     
                     
-                    <h2>Importez vos fichiers  </h2>
+                    <h2>Importez vos fichiers IFC  </h2>
                     <h4></h4>
 
                 </div>
@@ -70,7 +70,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
         <div className='step3-navigation'>
                 <button onClick={onPrev}><FontAwesomeIcon icon={faChevronLeft}/> Precedent</button>
                 <button onClick={()=>Navigate('/projects')}>Acceuil<FontAwesomeIcon icon={faHouse}/> </button>
-                <button onClick={OnSubmit}>Creer </button>
+                <button onClick={OnSubmit}>Creer Projet</button>
 
             </div>
         

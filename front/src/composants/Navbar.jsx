@@ -9,16 +9,18 @@ import { useNavigate  } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
+import userIcon from '../assets/user.png'
+import profile1 from '../assets/profile1.png'
 
 
 
-const Navbar = ( ) => {
+const Navbar = () => {
 
     const [click, setClick] = useState(false);
     const [dropdownOpen , setDropdownOpen] = useState(false)
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState();
     const getUserProfileUrl = process.env.REACT_APP_API_HOST+'api/profile';
-    console.log(userData)
+   
    
    
 
@@ -47,6 +49,7 @@ const Navbar = ( ) => {
 
     useEffect(()=>{
         getUserProfile()
+       
         
     },[])
    
@@ -62,32 +65,36 @@ const Navbar = ( ) => {
    
 
     return (
-        
+   
         <div className='project-page-header'>
-            <img className = 'project-page-header-Img' src={logo} alt=""/>
+                { userData && (
+                        <>
+                        
+                <img className = 'project-page-header-Img' src={logo} alt=""/>
             <div className='project-page-header-logout' onClick={()=>setDropdownOpen(!dropdownOpen)}>
-            {userData && (<p className='userInfo'>{userData[0].user_name}  {userData[0]. user_surname}</p>) }
-                <HiUserCircle size={50}/>
-               
+                <p className='userInfo'>{userData[0].user_name}  {userData[0].user_surname}</p>
+                <img src={profile1} alt='img-profile'/>
+                
 
                 <div className={`navbar-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
-                    <Link to="/profile" className="navbar-item" onClick={closeDropdown}>
-                    <HiUserCircle size={25}/> My Profile
-                    </Link>
+                    
                     <div className="navbar-item" onClick={handleLogout}>
-                    <BiLogOut size={25}/> Logout
+                    <BiLogOut size={25}/> Se deconnecter
                     </div>
-                 </div>
+                    </div>
                 
             </div>
-          
-            <div className="nav-icon" onClick={handleClick}>
-                <FontAwesomeIcon icon={click ? faXmark : faBars} size='xl' />
-            </div>
-            
+                
+                <div className="nav-icon" onClick={handleClick}>
+                    <FontAwesomeIcon icon={click ? faXmark : faBars} size='xl' />
+                </div></>
 
-         </div>
-         
+          
+      
+      )}
+       
+        
+       </div>   
        
     );
 };

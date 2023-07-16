@@ -6,6 +6,7 @@ exports.authMiddleware = (req, res, next)=> {
   const token = req.cookies.SessionToken; // on recupere le token
 
 
+
   try {
     if (!token) throw new Error('No token provided');
 

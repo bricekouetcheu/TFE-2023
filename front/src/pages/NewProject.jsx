@@ -43,9 +43,6 @@ const createAddress = (street, number, city, postalCode) => {
 const NewProject = () => {
     const Navigate = useNavigate();
     const NewProjectUrl = process.env.REACT_APP_API_HOST+'api/project'
-    const config = {
-      headers:{"accessToken" : localStorage.getItem('token')}
-    }
     const [currentStep, setCurrentStep] = useState(1);
     const steps = [ <FontAwesomeIcon icon={faFileSignature} />, <FontAwesomeIcon icon={faLocationDot} />,<FontAwesomeIcon icon={faFile} />];
     const [progress, setProgress] = useState(0);
@@ -121,7 +118,7 @@ const NewProject = () => {
         e.preventDefault()
            
        axios
-       .post(NewProjectUrl,Files,config)
+       .post(NewProjectUrl,Files,{withCredentials:true})
        .then( result=>{
         Navigate('/projects')
         })

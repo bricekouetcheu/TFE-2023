@@ -116,12 +116,7 @@ const NewCasting = () => {
             setOpenCircular(true)
             const response = await axios.get(
                 getFilesUrl,
-                {
-                  headers: {
-                    "accessToken": localStorage.getItem('token')
-                  },
-                  responseType: 'blob'
-                }
+                {withCredentials:true}
               );
             
             const file = await response.data;
@@ -224,7 +219,7 @@ const NewCasting = () => {
                     }
                 }
              
-                const result = await axios.post(createCastingUrl , castingData)
+                const result = await axios.post(createCastingUrl , castingData ,{withCredentials:true})
                 
                 Swal.fire({
                     icon: 'success',

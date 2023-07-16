@@ -26,6 +26,7 @@
     gap: 20%;
     cursor: pointer;
     background-color: #f0f5f9;
+    border-radius: 20px;
 
 
 }
@@ -33,41 +34,34 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     margin-bottom: 5%;
 
 }
 
 .step3-navigation button{
-    background-color: #fff;
-    color: #007fae;
+    font-weight: 600;
+    font-size: max(0.7em ,min(0.9vw,40px));
+    line-height: 2;
+    letter-spacing: -.05em;
+    position: relative;
+    background-color: #00BCB6;
+    color: #fff;
     align-items: center;
     border: 1.5px solid;
     border-radius: 999px;
     cursor: pointer;
-    display: inline-flex;
-    font-family: neue-haas-unica,sans-serif;
-    font-size: 0.7em;
-    font-weight: 700;
     height: 30px;
-    line-height: 100%;
-    padding: 0 22px;
-    position: relative;
-    text-decoration: none;
+    padding: 0 20px;
     transition: all .2s ease-in-out;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: 20%;
+    width: fit-content;
     display: flex;
     gap: 3px;
-    justify-content: center;
-    align-items: center;
 
 }
 
 .step3-navigation button:hover{
-    background-color: #007fae;
-    border-color: #007fae;
+    
     transform: scale(1.1);
     transition: 0.5s ease-in-out;
     color: #fff;
@@ -149,30 +143,46 @@
  @media (max-width: 750px) {
     /* Styles à appliquer pour les écrans d'au plus 750px de large */
     .step3-navigation button{
-        background-color: #007fae;
-        border-color: #007fae;
+            font-weight: 600;
+        font-size: max(0.7em ,min(0.9vw,40px));
+        line-height: 2;
+        letter-spacing: -.05em;
+        position: relative;
+        background-color: #00BCB6;
         color: #fff;
         align-items: center;
         border: 1.5px solid;
         border-radius: 999px;
         cursor: pointer;
-        display: inline-flex;
-        font-family: neue-haas-unica,sans-serif;
-        font-size: 0.5em;
-        font-weight: 700;
-        height: 25px;
-        line-height: 100%;
-        padding: 5px 22px;
-        position: relative;
-        text-decoration: none;
+        height: 30px;
+        padding: 0 20px;
         transition: all .2s ease-in-out;
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: 20%;
+        width: fit-content;
         display: flex;
         gap: 3px;
-        justify-content: center;
-        align-items: center;
     
     }
+
+    .step3-upload{
+      
+        border-radius: 20px;
+    }
+  }
+
+  @media (max-width: 450px) {
+
+    .step3-navigation{
+        width: 95%;
+    }
+
+    .step3-navigation button{
+        font-weight: 600;
+        font-size: max(0.6em ,min(0.9vw,40px));
+
+}
+.step3-upload{
+    width: 80%;
+    border-radius: 20px;
+}
+    
   }

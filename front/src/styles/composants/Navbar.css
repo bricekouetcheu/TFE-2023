@@ -4,9 +4,10 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    box-shadow: inset 0 -1px 0 0 var( #eaeaea);
+   
     position: relative;
-    background-color: #fff;
+    background-image: linear-gradient(to right bottom, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #fefeff, #fdfefe, #fcfdfe, #f9fbfd, #f6fafc, #f3f8fb, #f0f7fa);
     width: 100%;
     height: 100px;
     
@@ -30,6 +31,11 @@
    
 }
 
+
+.project-page-header-logout img{
+  width: 35px;
+  height: 35px;
+}
 .userInfo{
   display: flex;
 }
@@ -42,17 +48,18 @@
     display: none;
     float: left;
     min-width: 17rem;
-    height: 100%;
-    padding: 0.5rem 0;
+    height: 80%;
+    padding: 0.1rem 0;
     margin: 0.125rem 0 0;
     font-size: 1rem;
-    color: #212529;
     text-align: left;
     list-style: none;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
+    color: #BF1823;
+    animation:scale-up-center 0.4s;
   }
 
   .navbar-dropdown.is-active {
@@ -60,7 +67,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30%;
+    gap: 20%;
+    color: #BF1823;
   }
 
   .navbar-item{
@@ -70,12 +78,14 @@
     gap: 5%;
     width: 80%;
     text-decoration: none;
-    color: #212529;
+    color:#E6101E;
   }
 
   .nav-icon{
     display: none;
   }
+
+  @keyframes scale-up-center{ 0%{transform:scale(.5)} 100%{transform:scale(1)} }
 
 
   @media (max-width: 750px) {

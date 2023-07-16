@@ -14,7 +14,7 @@ const StepOne = ({onNext, handleFormData, values}) => {
         e.preventDefault();
 
         if(validator.isEmpty(values.projectName)){
-            setErrorMessage('Enter the project Name')
+            setErrorMessage('Veuillez entrer le nom du projet')
 
 
         }else{

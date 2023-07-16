@@ -33,7 +33,7 @@ const CastingModal = (props) => {
       useEffect(() => {
         const fetchCastingData = async () => {
           try {
-            const response = await axios.get(getOnCastingUrl); 
+            const response = await axios.get(getOnCastingUrl , {withCredentials:true} ); 
             const data = response.data;
             setCasting(data);
           } catch (error) {

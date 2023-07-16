@@ -37,7 +37,7 @@ const  Order = ()=>{
 //fonction permtaant de passer la commande de beton
   const submitOrder = async()=>{
     try{
-      const result = await axios.put(updateCastingUrl)
+      const result = await axios.put(updateCastingUrl,{withCredentials:true})
       console.log(result.data)
 
       Swal.fire({
@@ -136,7 +136,7 @@ const  Order = ()=>{
   //recuperer le template lié au casting
   const gettemplateData = async()=>{
     try{
-      const result = await axios.get(getTemplateUrl)
+      const result = await axios.get(getTemplateUrl,{withCredentials:true})
       
       const data = result.data[0].template_data;
       console.log(data)

@@ -18,22 +18,23 @@ const Projects = () => {
     return (
         <div className='projects'>
             <Navbar></Navbar>
+            <h2>Mes Projets</h2>
             <div className='project-content-header'>
+               
                 <div className='project-content-header-left' onClick={()=>Navigate('/AddProject')}>
-                    <h3>Create a new project</h3>
-                    <MdAdd></MdAdd>
+                  
 
                 </div>
                 <div className='project-content-header-right' >
                     <div className='search-box'>
                         <button className='btn-search'><FontAwesomeIcon icon={faMagnifyingGlass} /></button> 
-                        <input type="search" placeholder='Search by name ...' className='input-search' />
+                        <input type="search" placeholder='Rechercher projet...' className='input-search' />
 
                     </div>
                    
-                    <div className='filterProject'>
-                        <h3>Filter</h3>
-                        <FaFilter></FaFilter>
+                    <div className='create-projet' onClick={()=>Navigate('/AddProject')}>
+                         <h3>Ajouter Nouveau Projet</h3>
+                        <MdAdd className='create-projet-icon'></MdAdd>
                    </div>
                 </div>
                

@@ -5,8 +5,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    /*background-color: #F6FFFE;*/
-    background-color: #fff;
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #fcfcfe, #f8f9fc, #f4f6fb, #e9f0f8, #ddeaf5, #cfe4f1, #c0dfeb);
     gap: 50px;
     padding-top: 60px;
     animation:scale-up-top 0.4s;
@@ -20,6 +19,18 @@
     align-items: center;
     gap: 25px;
 }
+.AddProject-ul h1{
+  background: linear-gradient(180deg,#555,#000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: max(30px,min(1vw,50px));
+  line-height: 1;
+  letter-spacing: -.05em;
+  padding: 0px;
+  position: relative;
+}
+
 
 .step-bar {
     list-style-type: none;
@@ -37,7 +48,7 @@
     flex-grow: 1;
     text-align: center;
     font-weight: bold;
-    color: #007fae;
+    color: #00BCB6;
     text-transform: uppercase;
    
     padding: 2%;
@@ -45,7 +56,7 @@
   }
   
   .step-bar li.active {
-    color: #007fae;
+    color: #00BCB6;
     background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
     border: 1px solid;
     display: flex;
@@ -55,7 +66,7 @@
   }
 
   .step-bar li.completed {
-    background-image: linear-gradient(-180deg, #007fae 0%, #007fae 100%);
+    background-image: linear-gradient(-180deg, #00BCB6 0%, #00BCB6 100%);
     color: #fff;
     display: flex;
     align-items: center;
@@ -71,8 +82,8 @@
     text-transform: uppercase;
     position: relative;
     background: linear-gradient(90deg, rgba(1,1,1,0) 0%, rgba(255,255,255,1) 0%);
-    color: #007fae;
-    border: 1px solid #007fae;
+    color: #00BCB6;
+    border: 1px solid #00BCB6;
     
   }
 
@@ -84,7 +95,7 @@
     width: 700%;
     height: 2px;
     
-    background-color: #007fae;
+    background-color: #00BCB6;
     transform: translateY(-50%);
   }
 
@@ -94,7 +105,7 @@
   
   .step-bar-item.active::after,
   .step-bar-item.completed::after {
-    background-image: linear-gradient(-180deg, #007fae 0%, #007fae 100%);
+    background-image: linear-gradient(-180deg, #00BCB6 0%, #00BCB6 100%);
   }
 
 
@@ -123,7 +134,7 @@
 
 .switch-btn{
         /*background-image: linear-gradient(-180deg, #00BFB6 0%, #00BFB6 100%);*/
-        color: #007fae;
+        color: #00BCB6;
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -158,14 +169,17 @@
 
 
       @media only screen and (max-width: 767px) {
-        /* .register-form-navbar {
-           height: 20%;
-         }
+        .AddProject-information{
+          width: 80%;
+        
+        }
+
+         .step-bar li {
+    
          
-         .register-form-logo {
-           width: 30%;
-         }
-         */
+          padding: 4%;
+          
+        } 
          .AddProject-ul{
             width: 100%;
             gap: 60px;
@@ -179,25 +193,17 @@
             justify-content: space-between;
             align-items: center;
             padding:  0;
-            gap: 14%;
-            width: 50%;
+            gap: 31%;
+            width: 83%;
             padding-left: 0%;
             font-size: 1rem;
            
           }
 
-          .AddProject-information{
-            width: 80%;
-            background-color: #fff;
-            height: 60%;
-            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
+         
           .step-bar-item::after {
            
-            width: 150%;
+            width: 350%;
             
           }
           
@@ -213,6 +219,13 @@
            width: 30%;
          }
          */
+
+         .AddProject-information{
+          width: 80%;
+          border: none;
+          box-shadow: none;
+          border-radius: 0;
+        }
          .AddProject-ul{
             width: 100%;
             gap: 60px;
@@ -226,8 +239,8 @@
             justify-content: space-between;
             align-items: center;
             padding:  0;
-            gap: 14%;
-            width: 50%;
+            gap: 31%;
+            width: 83%;
             padding-left: 0%;
            
           }
@@ -236,15 +249,18 @@
             width: 100%;
             background-color: #fff;
             height: 40%;
-            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
             display: flex;
             flex-direction: column;
             align-items: center;
           }
           .step-bar-item::after {
            
-            width: 150%;
+            width: 268%;
             
+          }
+
+          .AddProject-information-step{
+           border: none;
           }
           
        }

@@ -6,7 +6,7 @@ exports.getProfile = async(req, res)=>{
         const user_id = req.user.user_id
 
 
-        const getProfileQuery = ('select * from users where user_id = $1')
+        const getProfileQuery = ('select user_name, user_surname, user_email from users where user_id = $1')
         const result = await pool.query(getProfileQuery,[user_id])
     
         const data = result.rows

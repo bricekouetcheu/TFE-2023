@@ -16,11 +16,11 @@ const Navbar = ( ) => {
 
     const [click, setClick] = useState(false);
     const [dropdownOpen , setDropdownOpen] = useState(false)
-    const [user, setUser] = useState();
-    const getUserProfileUrl = process.env.REACT_APP_HOST+'api/profile';
-    const config = {
-        headers:{"accessToken" : localStorage.getItem('accessToken')}
-    }
+    const [userData, setUserData] = useState([]);
+    const getUserProfileUrl = process.env.REACT_APP_API_HOST+'api/profile';
+    console.log(userData)
+   
+   
 
     const handleClick = () => setClick(!click);
 
@@ -28,18 +28,27 @@ const Navbar = ( ) => {
        
     }
 
-    const getUserProfile = ()=>{
-        axios.get(getUserProfileUrl , config)
-        .then(response => {
+    const getUserProfile = async()=>{
+        try{
             
+            const response = await axios.get(getUserProfileUrl , {withCredentials:true})
             const data = response.data
-            setUser(data)
-        }).catch(err=>{
-            console.log(err)
-        })
+            
+            setUserData(data)
+            
 
+        } catch(err){
+            console.log(err)
+        }
+       
+        
     }
-    
+
+
+    useEffect(()=>{
+        getUserProfile()
+        
+    },[])
    
   
     const closeDropdown = () => {
@@ -57,8 +66,9 @@ const Navbar = ( ) => {
         <div className='project-page-header'>
             <img className = 'project-page-header-Img' src={logo} alt=""/>
             <div className='project-page-header-logout' onClick={()=>setDropdownOpen(!dropdownOpen)}>
+            {userData && (<p className='userInfo'>{userData[0].user_name}  {userData[0]. user_surname}</p>) }
                 <HiUserCircle size={50}/>
-                {user && (<p>{user.name}  {user.surname}</p>) }
+               
 
                 <div className={`navbar-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
                     <Link to="/profile" className="navbar-item" onClick={closeDropdown}>

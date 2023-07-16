@@ -13,8 +13,8 @@ import 'sweetalert2/dist/sweetalert2.css';
 
 const  Order = ()=>{
   const {casting_id} = useParams()
-  const getTemplateUrl = process.env.REACT_APP_HOST+`api/templateData/${casting_id}`
-  const updateCastingUrl = process.env.REACT_APP_HOST+`api/castings/${casting_id}`
+  const getTemplateUrl = process.env.REACT_APP_API_HOST+`api/templateData/${casting_id}`
+  const updateCastingUrl = process.env.REACT_APP_API_HOST+`api/castings/${casting_id}`
   const [tableData, setTableData] = useState();
   const [token, setToken] = useState('')
   const [order, setOrder] = useState()

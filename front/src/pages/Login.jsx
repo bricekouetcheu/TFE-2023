@@ -11,7 +11,7 @@ const Login = () => {
     //states
     const [email , setEmail] = useState('')
     const [password, setPassword]= useState('')
-    const LoginUrl = process.env.REACT_APP_HOST+'api/login'
+    const LoginUrl = process.env.REACT_APP_API_HOST+'api/login'
     const [errorMessage,setErrorMessage] = useState('') ;
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const Navigate = useNavigate();

@@ -15,7 +15,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import logo from "../assets/logo.png";
-import logoB from "../assets/logoB.png";
 import { faPlus, faCircleInfo, faArrowRightFromBracket, faCubes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MyCasting from '../composants/MyCasting';

@@ -14,7 +14,7 @@ import MarkerProject from './MarkerProject';
 
 const Maps = () => {
 
-  const APIkey = process.env.REACT_APP_KEY
+  const APIkey = process.env.REACT_APP_API_KEY
     
 
    /* const icon = L.icon({ 
@@ -22,7 +22,7 @@ const Maps = () => {
         iconUrl: iconMarker, 
         shadowUrl: iconShadow 
     });*/
-    const getProjectUrl = process.env.REACT_APP_HOST+'api/projects'
+    const getProjectUrl = process.env.REACT_APP_API_HOST+'api/projects'
     const [projects, setProjects] = useState([]);
     
  
@@ -94,7 +94,7 @@ const Maps = () => {
     //fonction permettant de supprimer un projet
     const deleteProject = async (projectId) => {
       try {
-        await axios.delete(process.env.REACT_APP_HOST+`api/projects/${projectId}`);
+        await axios.delete(process.env.REACT_APP_API_HOST+`api/projects/${projectId}`);
         getAllProject(); // Appeler la fonction de mise à jour des projets après la suppression réussie
       } catch (error) {
         console.log('Erreur lors de la suppression du projet', error);

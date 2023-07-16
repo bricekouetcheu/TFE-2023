@@ -19,8 +19,8 @@ const MyCasting = () => {
         completed: []
       };
     const {project_id} = useParams();
-    const getAllCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/castings`
-    const getProjectUrl = process.env.REACT_APP_HOST+`api/project/${project_id}`
+    const getAllCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/castings`
+    const getProjectUrl = process.env.REACT_APP_API_HOST+`api/project/${project_id}`
     const [castings, setCastings]= useState(null)
     const [selectedCastingId, setSelectedCastingId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);

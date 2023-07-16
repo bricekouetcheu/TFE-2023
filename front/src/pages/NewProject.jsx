@@ -42,7 +42,7 @@ const createAddress = (street, number, city, postalCode) => {
 
 const NewProject = () => {
     const Navigate = useNavigate();
-    const NewProjectUrl = process.env.REACT_APP_HOST+'api/project'
+    const NewProjectUrl = process.env.REACT_APP_API_HOST+'api/project'
     const config = {
       headers:{"accessToken" : localStorage.getItem('token')}
     }

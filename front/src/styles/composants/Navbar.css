@@ -24,15 +24,20 @@
   margin-right: 3%;
     display: flex;
     align-items: center;
-    font-weight: 600;
+    font-weight: 400;
     cursor: pointer;
+    gap: 10px;
    
+}
+
+.userInfo{
+  display: flex;
 }
 
 .navbar-dropdown {
     position: absolute;
     top: 80%;
-    right: 1%;
+    right: 3%;
     z-index: 999;
     display: none;
     float: left;

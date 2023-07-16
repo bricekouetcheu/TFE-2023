@@ -14,6 +14,7 @@
     "@mui/x-data-grid": "^6.9.0",
     "@mui/x-data-grid-generator": "^6.9.1",
     "@mui/x-data-grid-pro": "^6.9.0",
+    "@react-oauth/google": "^0.11.0",
     "@react-pdf/renderer": "^3.1.12",
     "@react-three/drei": "^9.56.27",
     "@react-three/fiber": "^8.11.5",
@@ -25,6 +26,7 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
+    "react-google-button": "^0.7.2",
     "react-icons": "^4.9.0",
     "react-icons-kit": "^2.0.0",
     "react-image-crop": "^10.1.5",
@@ -40,6 +42,7 @@
     "sweetalert2-react-content": "^5.0.7",
     "three": "^0.149.0",
     "three-mesh-bvh": "^0.5.23",
+    "universal-cookie": "^4.0.4",
     "validator": "^13.9.0",
     "web-ifc-three": "^0.0.124",
     "web-vitals": "^2.1.4"

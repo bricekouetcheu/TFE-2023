@@ -28,8 +28,8 @@ const NewCasting = () => {
     const [entities, setEntities] = useState("");
     const [description, setDescription] = useState("")
     const {project_id} = useParams();
-    const getFilesUrl =  process.env.REACT_APP_HOST+`api/files/${project_id}`
-    const createCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/casting`
+    const getFilesUrl =  process.env.REACT_APP_API_HOST+`api/files/${project_id}`
+    const createCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting`
     const [submitted, setSubmitted] = useState(false)
     const selectRef = useRef(null);
     

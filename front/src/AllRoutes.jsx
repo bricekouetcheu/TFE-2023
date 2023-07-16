@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Order from './pages/Order';
 import Exemple from './composants/Exemple';
 import Checking from './pages/Checking';
+import LoginTest from './pages/LoginTest';
 import axios from 'axios';
 
 
@@ -17,7 +18,7 @@ import axios from 'axios';
 const AllRoutes = () => {
 
     const [isAuthenticated,setIsAuthenticated] = useState(false)
-    const AuthUrl = process.env.REACT_APP_HOST+`api/auth`
+    const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`
     const navigate = useNavigate()
 
     const checkAuthentication = async()=>{
@@ -30,8 +31,9 @@ const AllRoutes = () => {
     
                 setIsAuthenticated(true)
             }else{
-                setIsAuthenticated(false) 
                 navigate('/')
+                setIsAuthenticated(false) 
+                
 
             }
            
@@ -49,12 +51,13 @@ const AllRoutes = () => {
         console.log(isAuthenticated);
        
        
-    },[checkAuthentication]);
+    },[]);
     return (
         
         <Routes>
+
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<LoginTest />} />
   
           {isAuthenticated ? (
             <>

@@ -23,7 +23,7 @@ const CastingModal = (props) => {
 
     const [casting , setCasting] = useState()
     const {project_id} = useParams()
-    const getOnCastingUrl = process.env.REACT_APP_HOST+`api/projects/${project_id}/casting/${props.castingId}`
+    const getOnCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting/${props.castingId}`
     const Navigate = useNavigate()
     
     const handleCloseModal = () => {

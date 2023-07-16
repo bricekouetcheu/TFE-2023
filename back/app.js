@@ -9,6 +9,7 @@ const fileRoutes = require('./routes/files')
 const castingRoutes = require('./routes/castings')
 const orderRoutes = require('./routes/order')
 const userRoutes = require('./routes/users')
+require("dotenv").config();
 
 
 app.use(express.json()); // qui gere les requetes entrantes de type json.
@@ -21,7 +22,7 @@ app.use(bodyParser.urlencoded({ // qui gere les requetes entrantes de type formu
 }));
 
 const corsOptions ={
-  origin: 'http://localhost:3000',
+  origin: process.env.FRONTEND_HOST,
   credentials: true,           //access-control-allow-credentials:true
   optionSuccessStatus:200
 }

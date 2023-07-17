@@ -20,13 +20,26 @@ const Navbar = () => {
     const [dropdownOpen , setDropdownOpen] = useState(false)
     const [userData, setUserData] = useState();
     const getUserProfileUrl = process.env.REACT_APP_API_HOST+'api/profile';
+    const logoutUrl = process.env.REACT_APP_API_HOST+'api/logout';
+    const Navigate = useNavigate()
    
    
    
 
     const handleClick = () => setClick(!click);
 
-    const handleLogout = ()=>{
+    const handleLogout = async()=>{
+        try{
+            const response = await axios.get(logoutUrl, {withCredentials:true}) 
+            if(response.data == "deconnexion reussie"){
+                Navigate('/')
+
+            }  
+
+        }catch(err){
+            console.log(err)
+
+        }
        
     }
 
@@ -66,7 +79,7 @@ const Navbar = () => {
 
     return (
    
-        <div className='project-page-header'>
+        <div className='project-page-header' data-testid='navbar'>
                 { userData && (
                         <>
                         

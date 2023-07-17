@@ -1,12 +1,28 @@
 
 from fastapi import FastAPI, UploadFile, File
 from text_detection import mark_region, extract_text , create_text_object
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 import os
 import re
 
 
 app = FastAPI()
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/detect-text")
 async def detect_text(image: UploadFile = File(...)):

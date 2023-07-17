@@ -233,7 +233,7 @@ exports.Login = (req , res , next)=>{
 
 
 exports.Logout = (req, res)=>{
-    return res.clearCookie('accessToken').status(200).send("deconnexion reussie")
+    return res.clearCookie('SessionToken').status(200).send("deconnexion reussie")
 
 }
 

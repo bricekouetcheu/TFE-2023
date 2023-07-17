@@ -117,8 +117,9 @@
       }
 
       .loginTest-form-navbar img{
-        width: 60%;
-        padding: 3%;
+        width: 40%;
+        padding-top: 3%;
+        height: 20%;
         
         
       }

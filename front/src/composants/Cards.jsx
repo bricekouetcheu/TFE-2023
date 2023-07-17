@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faTrash} from '@fortawesome/free-solid-svg-icons';
 import CastingModal from './CastingModal';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Cards = (props) => {
 
+    const Navigate = useNavigate()
 
     const handleOpenModal = () => {
         props.onOpenModal(props.id);
@@ -26,7 +28,7 @@ const Cards = (props) => {
             case "ordered":
                 return (
                     <>
-                        <div onClick={OpenModal}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                        <div onClick={()=>Navigate(`/checking/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )

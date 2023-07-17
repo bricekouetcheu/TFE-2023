@@ -9,6 +9,7 @@ import Order from './pages/Order';
 import Exemple from './composants/Exemple';
 import Checking from './pages/Checking';
 import LoginTest from './pages/LoginTest';
+import Check from './pages/Check';
 import axios from 'axios';
 
 
@@ -25,10 +26,14 @@ const AllRoutes = () => {
             
         try{
             
-            const response = await axios.get(AuthUrl,{ withCredentials: true })
+            const response = await axios.get(AuthUrl,{withCredentials:true})
+          
+            
+           
             
             if(response.data === "authentifié"){
     
+                
                 setIsAuthenticated(true)
             }else{
                 navigate('/')
@@ -43,33 +48,33 @@ const AllRoutes = () => {
     
         }
     }
-    
+
     useEffect(()=>{
-    
-    
         checkAuthentication()
-        console.log(isAuthenticated);
-       
-       
-    },[]);
+    },[])
+    
+  
     return (
         
         <Routes>
-
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<LoginTest />} />
-  
+          
+            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Check />} />
+            
           {isAuthenticated ? (
             <>
+              <Route path="/check" element={<Check />} />
+             <Route path="/checking/:casting_id" element={<Checking />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/AddProject" element={<NewProject />} />
               <Route path="/Dashboard/:project_id" element={<Dashboard />} />
               <Route path="/test" element={<Exemple />} />
               <Route path="/test1" element={<Order />} />
               <Route path="/order/:casting_id" element={<Order />} />
-              <Route path="/checking" element={<Checking />} />
+             
             </>
-          ) : null}
+          ) : 
+          null}
         </Routes>
       
             

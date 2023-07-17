@@ -1,0 +1,209 @@
+.checking-page{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(to left bottom, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #fdfdfe, #fcfcfe, #fafafd, #f5f7fc, #eff4fa, #e7f1f8, #e0eff5);
+    gap: 15px;
+    scroll-behavior: smooth;
+}
+
+.Checking-Page-Content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 100px);
+    margin-bottom: 100px;
+    padding-top: 5%;
+    gap: 50px;
+    animation:scale-up-center 0.4s; 
+}
+
+.checking-page-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checking-page-title h1{
+    background: linear-gradient(180deg,#555,#000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: max(24px,min(2vw,76px));
+    line-height: 1;
+    letter-spacing: -.05em;
+    position: relative;
+}
+
+.checking-page-options{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    gap:5%;
+}
+
+.take-photo-content,.upload-photo-content{
+    padding: 2%;
+    border-radius: 20px;
+    background-color:#F7F8FA;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    gap: 30px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.take-photo-content h2 , .upload-photo-content h2{
+    text-transform: capitalize;
+    background: linear-gradient(180deg,#555,#000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: max(18px,min(0.8vw,25px));
+    line-height: 1;
+    letter-spacing: -.05em;
+    position: relative;
+}
+
+.take-photo-content img ,.upload-photo-content img{
+    width: 20%;
+    height: 30%;
+    cursor: pointer;
+
+}
+.between{
+    display: flex;
+    align-items: center;
+    width: 5%;
+    justify-content: center;
+}
+
+.image-content{
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    background-color:#F7F8FA;
+    margin-top: 5%;
+    height: auto;
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 1%;
+    align-items: center;
+    animation:scale-up-center 0.4s; 
+
+}
+
+.image-content .image-content-div{
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+}
+.image-infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    gap: 2px;
+}
+
+.image-infos .image-name{
+    font-weight: 600;
+   
+
+}
+   
+
+.image-infos .image-size{
+    font-weight: 300;
+    font-size: 0.8em;
+}
+
+
+.image-content img{
+    height: 40px;
+    width: 40px;
+}
+
+.image-content .delete-icon:hover{
+
+    background-color: #A9A9A9;
+    border-radius: 50%;
+    padding: 1%;
+    color: #fff;
+    transition: 1s ease-in-out ease-in;
+    cursor: pointer;
+}
+
+.check-btn{
+    margin-top: 30px;
+    background-color: #00BCB6;
+    border-color: #00BCB6;
+    color: #fff;
+    align-items: center;
+    border: 1.5px solid;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 600;
+  font-size: max(0.9em ,min(0.9vw,40px));
+    font-weight: 700;
+    height: 48px;
+    line-height: 100%;
+    padding: 0 22px;
+    position: relative;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    width: fit-content;
+    display: flex;
+    text-align: center;
+  
+
+
+}
+
+.check-btn:hover{
+    background-color: #fff;
+    border-color: #00BCB6;
+    color: #00BCB6;
+    transition: 0.5s ease-in-out;
+    transform: scale(1.1);
+}
+
+
+ @keyframes scale-up-center{ 0%{transform:scale(.5)} 100%{transform:scale(1)} }
+
+@media screen and (max-width: 450px){
+
+    .take-photo-content{
+        margin-top: 80px;
+        width: 100%;
+    }
+    .between , .upload-photo-content {
+        display: none;
+    }
+
+    .image-content{
+        height: 15px;
+        width: 70%;
+        text-align: left;
+        padding: 3%;
+       
+    
+    }
+
+   
+
+
+   
+}

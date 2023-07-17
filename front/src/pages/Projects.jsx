@@ -14,6 +14,10 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 const Projects = () => {
     const Navigate = useNavigate()
 
+    useEffect(()=>{
+        console.log('hellooo')
+    },[])
+
 
     return (
         <div className='projects'>

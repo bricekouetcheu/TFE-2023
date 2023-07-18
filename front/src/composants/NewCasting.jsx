@@ -225,7 +225,7 @@ const NewCasting = () => {
                     icon: 'success',
                     title: 'New casting created!',
                     showConfirmButton: true,
-                    confirmButtonColor: '#007fae',
+                    confirmButtonColor: '#00BCB6',
                     timer: 2500,
                     
                   });

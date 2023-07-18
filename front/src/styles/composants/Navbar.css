@@ -26,7 +26,7 @@
     align-items: center;
     font-weight: 400;
     cursor: pointer;
-    gap: 10px;
+    gap: 50px;
    
 }
 
@@ -37,6 +37,26 @@
 }
 .userInfo{
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: linear-gradient(180deg,#555,#000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-size: max(17px,min(1vw,20px));
+  line-height: 1;
+  letter-spacing: -.05em;
+  position: relative;
+  text-align: center;
+}
+
+.userInfo:hover{
+  transform: scale(1.1);
+  transition: 0.5s transform;
+  text-decoration: underline;
+  text-decoration-color: #00BCB6;
+ 
 }
 
 .navbar-dropdown {

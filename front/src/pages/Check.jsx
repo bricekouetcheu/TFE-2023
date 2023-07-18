@@ -8,8 +8,10 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
-
+import {checkValidity} from './utils'
+import { ModifyObject } from './utils';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
 const Check = () => {
 
 
@@ -17,16 +19,18 @@ const Check = () => {
     const [image , setImage] = useState()
     const [drag, setDrag] = useState(false)
     const [order, setOrder] = useState()
-    const getOneOrderUrl = process.env.REACT_APP_API_HOST+`/order/${casting_id}`
+    const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${casting_id}`
     const scrollRef = useRef()
     const [openBackdrop, setOpenBackdrop] = useState(false);
     const postImageUrl = 'http://127.0.0.1:8000/detect-text'
 
+   
+    
 
     const getOrder = async()=>{
         try{
             const response =  await axios.get(getOneOrderUrl,{withCredentials:true})
-            setOrder(response.data)
+            setOrder(response.data.order_data)
         }catch(err){
             console.log(err)
         }
@@ -57,6 +61,7 @@ const Check = () => {
           }  
     }
 
+    
     const handleImageCapture = (e)=>{
         e.preventDefault()
         if (e.target.files && e.target.files[0]) {
@@ -83,14 +88,33 @@ const Check = () => {
             
             }) 
             if(response){
+                const deliveryData = response.data
+                if(checkValidity(ModifyObject(order), deliveryData)){
                 setOpenBackdrop(false)
-                console.log(response)
+                Swal.fire({
+                        icon: 'success',
+                        title: 'Les caracteristiques correspondent bien à la commande',
+                        showConfirmButton: true,
+                        confirmButtonColor: '#00BCB6',
+                        timer: 10000,
+                        
+                      });
+                }else{
+                    setOpenBackdrop(false)
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Les caracteristiques ne correspondent pas à la commande',
+                        showConfirmButton: true,
+                        confirmButtonColor: '#00BCB6',
+                        timer: 10000,
+                        
+                      });
+
+                }
+               
+                
 
             }
-            
-            
-            
-            console.log(response)
         
                
         }catch(err){

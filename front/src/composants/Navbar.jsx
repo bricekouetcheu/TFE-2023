@@ -84,29 +84,32 @@ const Navbar = ({currentPage}) => {
                         <>
                         
                 <img className = 'project-page-header-Img' src={logo} alt=""/>
-                <div className='project-page-header-logout' onClick={()=>setDropdownOpen(!dropdownOpen)}>
-                <p className='userInfo'>{userData[0].user_name}  {userData[0].user_surname}</p>
-                <img src={profile1} alt='img-profile'/>
+                <div className='project-page-header-logout' >
+                {currentPage ==='home'?
+
+                (<>
+                <p className='userInfo' onClick={()=>setDropdownOpen(!dropdownOpen)}>{userData[0].user_name}  {userData[0].user_surname}</p>
+                <img src={profile1} alt='img-profile' onClick={()=>setDropdownOpen(!dropdownOpen)}/>
+                </> ):
+                (
+                    <>
+                     <p className='userInfo' onClick={()=>Navigate('/projects')}>Acceuil</p>
+                     <p className='userInfo' onClick={()=>Navigate(-1)} >Tableau de bord</p>
+                     <div className='userInfo' onClick={()=>setDropdownOpen(!dropdownOpen)}>
+                        <p className=''>{userData[0].user_name}  {userData[0].user_surname}</p>
+                        <img src={profile1} alt='img-profile'/>
+                     </div>
+                     
+                    </>
+                )}
+               
                 
 
                 <div className={`navbar-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
-                    {currentPage === 'home'?
-                    ( <div className="navbar-item" onClick={handleLogout}>
-                    <BiLogOut size={25}/> Se deconnecter
-                    </div>)
-                    :
-
-                    (<>
-                    <div className="navbar-item" onClick={()=>Navigate(-1)}>
-                        Tableau de bord
-                    </div>
-                    <div className="navbar-item" onClick={handleLogout}>
+                   <div className="navbar-item" onClick={handleLogout}>
                     <BiLogOut size={25}/> Se deconnecter
                     </div>
-                    </>)
-                    }
-                   
-                    </div>
+                </div>
                 
             </div>
                 

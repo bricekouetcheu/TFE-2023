@@ -1,3 +1,9 @@
+export function ModifyObject(data){
+    const { "Donnéees Complementaires": _, ...newData } = data;
+    return newData
+}
+
+
 export function checkValidity (order, delivery){
     const orderKeys = Object.keys(order);
      

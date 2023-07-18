@@ -13,6 +13,11 @@ describe('Navbar component', () => {
       
     });
 
+
+    it('should render a dropdown', ()=>{
+
+    })
+
     it('should render navbar with userProfile', async()=>{
 
       //fake data
@@ -20,7 +25,8 @@ describe('Navbar component', () => {
         user_name:'brice',
         user_surname : 'kouetcheu'
       }];
-
+      
+      //simuler l'envoie de la requete
       axios.get.mockResolvedValueOnce({data: userData})
       render (<Navbar/>)
       await screen.findByText('brice kouetcheu');

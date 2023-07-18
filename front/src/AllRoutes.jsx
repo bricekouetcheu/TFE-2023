@@ -6,9 +6,7 @@ import Projects from './pages/Projects';
 import NewProject from './pages/NewProject';
 import Dashboard from './pages/Dashboard';
 import Order from './pages/Order';
-import Exemple from './composants/Exemple';
-import Checking from './pages/Checking';
-import LoginTest from './pages/LoginTest';
+import LoginGoogle from './pages/LoginGoogle';
 import Check from './pages/Check';
 import axios from 'axios';
 
@@ -59,16 +57,14 @@ const AllRoutes = () => {
         <Routes>
           
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<LoginTest/>} />
+            <Route path="/" element={<LoginGoogle/>} />
             
           {isAuthenticated ? (
             <>
-              <Route path="/check" element={<Check />} />
-             <Route path="/checking/:casting_id" element={<Checking />} />
+              <Route path="/check/:casting_id" element={<Check />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/AddProject" element={<NewProject />} />
               <Route path="/Dashboard/:project_id" element={<Dashboard />} />
-              <Route path="/test" element={<Exemple />} />
               <Route path="/test1" element={<Order />} />
               <Route path="/order/:casting_id" element={<Order />} />
              

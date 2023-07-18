@@ -8,7 +8,6 @@ import TableResult from '../composants/TableResult';
 import { CircularProgress } from '@mui/material';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
-import { checkValidity } from './utils';
 
 // Votre composant parent
 
@@ -16,6 +15,7 @@ const  Order = ()=>{
   const {casting_id} = useParams()
   const getTemplateUrl = process.env.REACT_APP_API_HOST+`api/templateData/${casting_id}`
   const updateCastingUrl = process.env.REACT_APP_API_HOST+`api/castings/${casting_id}`
+  const createOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${casting_id}`
   const [tableData, setTableData] = useState();
   const [token, setToken] = useState('')
   const [order, setOrder] = useState()
@@ -35,20 +35,32 @@ console.log(order)
 
   }
 
+  const UpdateCastingStatus = async()=>{
+    try{
+      const result = await axios.put(updateCastingUrl,{withCredentials:true})
+      console.log(result.data)
+
+    }catch(err){
+      console.log(err)
+    }
+    
+
+  }
 
   
  
 //fonction permtaant de passer la commande de beton
   const submitOrder = async()=>{
     try{
-      const result = await axios.put(updateCastingUrl,{withCredentials:true})
-      console.log(result.data)
+      const response =  await axios.post(createOrderUrl,order,{withCredentials:true})
 
+       UpdateCastingStatus()
+       console.log(response)
       Swal.fire({
         icon: 'success',
         title: 'Commande effectuée avec success!',
         showConfirmButton: true,
-        confirmButtonColor: '#007fae',
+        confirmButtonColor: '#00BCB6',
         timer: 1500,
         
       });

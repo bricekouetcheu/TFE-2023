@@ -7,14 +7,26 @@ import camera from '../assets/camera1.png';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
 const Check = () => {
+
+
+    const {casting_id} = useParams()
     const [image , setImage] = useState()
     const [drag, setDrag] = useState(false)
+    const [order, setOrder] = useState()
+    const getOneOrderUrl = process.env.REACT_APP_API_HOST+`/order/${casting_id}`
     const scrollRef = useRef()
     const [openBackdrop, setOpenBackdrop] = useState(false);
     const postImageUrl = 'http://127.0.0.1:8000/detect-text'
+
+
+    const getOrder = async()=>{
+        await axios.get(getOneOrderUrl,{withCredentials:true})
+
+    }
     
 
     const scrolltolastElement = ()=>{

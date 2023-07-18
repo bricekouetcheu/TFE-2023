@@ -4,7 +4,8 @@ const pool = require('../db.js')
 exports.AddNewOrder = async (req,res)=>{
     try{
         const casting_id = req.params['casting_id']
-        const {orderData} = req.body;
+        const orderData = req.body;
+      
 
         //verification de l'existence du casting
         const castingExists = await pool.query('SELECT * FROM castings WHERE casting_id = $1', [casting_id]);

@@ -9,7 +9,7 @@ import { NavLink ,useNavigate} from 'react-router-dom';
 
 
 
-const LoginTest = () => {
+const LoginGoogle = () => {
     const LoginUrl = process.env.REACT_APP_API_HOST+'api/login/google'
     const Navigate = useNavigate()
 
@@ -70,4 +70,4 @@ const LoginTest = () => {
     );
 };
 
-export default LoginTest;
+export default LoginGoogle;

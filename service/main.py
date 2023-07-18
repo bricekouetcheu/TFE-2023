@@ -39,7 +39,7 @@ async def detect_text(image: UploadFile = File(...)):
 
     filtered_text = []
 
-    expressions = [r"Classe de resistance", r"Classe\(s\)", r"Classe de consistance", r"Dmax", r"Heure chargement"]
+    expressions = [r"Classe de resistance", r"Classe\(s\)", r"Classe de consistance", r"Classe armature", r"Dmax", r"Heure chargement"]
     for line in result_text['lines']:
         if any(re.search(expression, line) for expression in expressions ):
             filtered_text.append(line)

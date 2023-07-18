@@ -23,4 +23,26 @@ exports.AddNewOrder = async (req,res)=>{
 }
 
 
-exports.getOneOrder
+exports.getOneOrder = async(req, res)=>{
+
+    try{
+        const casting_id = req.params['casting_id']
+
+        const getOneOrderQuery = 'select order_data from Orders where casting_id = $1'
+    
+        const result = await pool.query(getOneOrderQuery,[casting_id])
+        const data = result.rows[0]
+    
+        res.status(200).send(data)
+
+    }catch(err){
+        console.log(err)
+        res.status(500).send('Erreur serveur')
+
+    }
+  
+
+
+    
+
+}

@@ -59,7 +59,7 @@ const AllRoutes = () => {
         <Routes>
           
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<Check />} />
+            <Route path="/" element={<LoginTest/>} />
             
           {isAuthenticated ? (
             <>

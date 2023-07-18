@@ -8,6 +8,7 @@ import TableResult from '../composants/TableResult';
 import { CircularProgress } from '@mui/material';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
+import { checkValidity } from './utils';
 
 // Votre composant parent
 
@@ -24,7 +25,7 @@ const  Order = ()=>{
 
   
 
-
+console.log(order)
 
   //fonction permettant de scroller 
   const scrolltoLastElement = () =>{

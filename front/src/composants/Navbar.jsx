@@ -14,7 +14,7 @@ import profile1 from '../assets/profile1.png'
 
 
 
-const Navbar = () => {
+const Navbar = ({currentPage}) => {
 
     const [click, setClick] = useState(false);
     const [dropdownOpen , setDropdownOpen] = useState(false)
@@ -84,16 +84,28 @@ const Navbar = () => {
                         <>
                         
                 <img className = 'project-page-header-Img' src={logo} alt=""/>
-            <div className='project-page-header-logout' onClick={()=>setDropdownOpen(!dropdownOpen)}>
+                <div className='project-page-header-logout' onClick={()=>setDropdownOpen(!dropdownOpen)}>
                 <p className='userInfo'>{userData[0].user_name}  {userData[0].user_surname}</p>
                 <img src={profile1} alt='img-profile'/>
                 
 
                 <div className={`navbar-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
-                    
+                    {currentPage === 'home'?
+                    ( <div className="navbar-item" onClick={handleLogout}>
+                    <BiLogOut size={25}/> Se deconnecter
+                    </div>)
+                    :
+
+                    (<>
+                    <div className="navbar-item" onClick={()=>Navigate(-1)}>
+                        Tableau de bord
+                    </div>
                     <div className="navbar-item" onClick={handleLogout}>
                     <BiLogOut size={25}/> Se deconnecter
                     </div>
+                    </>)
+                    }
+                   
                     </div>
                 
             </div>

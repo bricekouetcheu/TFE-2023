@@ -239,7 +239,7 @@ console.log(order)
 
   return (
     <div  className='table-page'>
-      <Navbar></Navbar>
+      <Navbar currentPage='order'></Navbar>
       <h1>Verifiez les informations</h1>
       {/* Autres composants et contenu ici */}
       {tableData && <Table data={tableData} onDataChange={handleTableDataChange} /> }

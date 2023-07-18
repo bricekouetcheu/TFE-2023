@@ -21,7 +21,7 @@ const Projects = () => {
 
     return (
         <div className='projects'>
-            <Navbar></Navbar>
+            <Navbar currentPage='home'></Navbar>
             <h2>Mes Projets</h2>
             <div className='project-content-header'>
                

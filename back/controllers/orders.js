@@ -41,9 +41,6 @@ exports.getOneOrder = async(req, res)=>{
         res.status(500).send('Erreur serveur')
 
     }
-  
-
-
     
 
 }

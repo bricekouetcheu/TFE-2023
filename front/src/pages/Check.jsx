@@ -24,7 +24,13 @@ const Check = () => {
 
 
     const getOrder = async()=>{
-        await axios.get(getOneOrderUrl,{withCredentials:true})
+        try{
+            const response =  await axios.get(getOneOrderUrl,{withCredentials:true})
+            setOrder(response.data)
+        }catch(err){
+            console.log(err)
+        }
+       
 
     }
     
@@ -102,14 +108,16 @@ const Check = () => {
 
         return roundedKilo + 'ko'
     }
-
+    useEffect(()=>{
+        getOrder()
+    },[])
 
     useEffect(()=>{
         scrolltolastElement()
     },[image])
     return (
         <div className='checking-page'>
-           
+           <Navbar currentPage='check'></Navbar>
             <div className='Checking-Page-Content'>
                 <div className='checking-page-title'>
                     <h1>Verification de la livraison</h1>

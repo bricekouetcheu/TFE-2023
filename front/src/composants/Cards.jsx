@@ -28,7 +28,7 @@ const Cards = (props) => {
             case "ordered":
                 return (
                     <>
-                        <div onClick={()=>Navigate(`/checking/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                        <div onClick={()=>Navigate(`/check/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )

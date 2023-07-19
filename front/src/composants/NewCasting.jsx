@@ -45,14 +45,30 @@ const NewCasting = () => {
     );
 
 
-    //recuperer tous les elements apartenant a une certaine categorie
-     async function getAllItemByCategory(category) {
+  /**
+   * Retrieves all elements of a specified category from the IFC manager.
+   *
+   * @async
+   * @function
+   * @name getAllItemByCategory
+   * @param {string} category - element category to retrieve
+   * @returns {Promise<Array>} -A promise resolved with an array containing all elements of the specified category..
+   */
+    const getAllItemByCategory = async(category) => {
         const manager = ifcLoader.ifcManager;
         const items = await manager.getAllItemsOfType(0, category, false);
         return items;
       }
     
-      // fonction permettant de recuperer les proprietés des elements du tableau passé en paramettre
+      /**
+       * Retrieves the properties of the elements specified by their identifiers.
+       *
+       * @async
+       * @function
+       * @name getItem
+       * @param {Array<number>} ids - An array containing the identifiers of the elements whose properties we want to retrieve.
+       * @returns {Promise<Array>} - A promise resolved with an array containing the properties of the specified elements.
+       */
        async function getItem(ids) {
         const manager = ifcLoader.ifcManager;
         const propertiesArray = [];
@@ -63,7 +79,15 @@ const NewCasting = () => {
         return propertiesArray;
       }
     
-      //
+    /**
+     * Retrieves the properties of entities specified by their identifiers.
+     *
+     * @async
+     * @function
+     * @name getEntityProperties
+     * @param {Array<number>} ids - An array containing the identifiers of the entities whose properties we want to retrieve.
+     * @returns {Promise<Array>} - A promise resolved with an array containing the properties of the specified entities.
+     */
       async function getEntityProperties(ids) {
         const manager = ifcLoader.ifcManager;
         const propertiesArray = [];
@@ -94,7 +118,16 @@ const NewCasting = () => {
         return propertiesArray;
       }
     
-    //fonction permettant de recuperre le volume total du beton a utiliser pour le casting   
+  
+
+/**
+ * Calculates the total volume from the given objects.
+ *
+ * @function
+ * @name getTotalVolume
+ * @param {Array<object>} objets -A table containing the objects for which we want to calculate the total volume.
+ * @returns {number} - The sum of the volumes of the objects having the "NetVolume" property.
+ */
      function getTotalVolume(objets) {
     let somme = 0;
     
@@ -110,7 +143,14 @@ const NewCasting = () => {
    
       useEffect(() => {
         
-         // fonction permettant de recuperer le fichier ifc sur le serveur
+       /**
+       * get an ifc file from server
+       *
+       * @function
+       * @name loadIfcFileFromServer
+       * @async
+       * @returns {Promise<void>} - A promise that resolves when the file upload is complete.
+       */
         const loadIfcFileFromServer = async () => {
 
             setOpenCircular(true)
@@ -154,6 +194,15 @@ const NewCasting = () => {
       useEffect(() => {
         
         let mounted = true;
+
+      /**
+       * gets the entities of selected type
+       *
+       * @function
+       * @name fetchData
+       * @async
+       * @returns {Promise<void>} - A promise that resolves when entity retrieval is complete.
+       */
         const fetchData = async () => {
           if (selectedType === 'IFCWALLSTANDARDCASE') {
             const walls = await getAllItemByCategory(IFCWALLSTANDARDCASE);
@@ -199,6 +248,16 @@ const NewCasting = () => {
         
       };
 
+
+    /**
+     * Submits the form to create a new cast based on the selected entities.
+     *
+     * @function
+     * @name handleSubmit
+     * @async
+     * @param {Event} e - submit event.
+     * @returns {Promise<void>} - A promise that resolves when the form submission is complete.
+     */
       const handleSubmit = async (e)=>{
         try{
             if(selectedEntity){

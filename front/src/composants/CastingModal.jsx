@@ -26,20 +26,42 @@ const CastingModal = (props) => {
     const getOnCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting/${props.castingId}`
     const Navigate = useNavigate()
     
+
+  /**
+   * handling modal closure.
+   *
+   * @function
+   * @name handleCloseModal
+   * @returns {void}
+   */
     const handleCloseModal = () => {
         props.onCloseModal();
       };
 
+
+      /**
+   * get casting data.
+   *
+   * @async
+   * @function
+   * @name fetchCastingData
+   * @returns {Promise<void>} - A promise successfully resolved when casting data is retrieved and updated in the state.
+   */
+    const fetchCastingData = async () => {
+      try {
+        const response = await axios.get(getOnCastingUrl , {withCredentials:true} ); 
+        const data = response.data;
+        setCasting(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
+    
+    
+
       useEffect(() => {
-        const fetchCastingData = async () => {
-          try {
-            const response = await axios.get(getOnCastingUrl , {withCredentials:true} ); 
-            const data = response.data;
-            setCasting(data);
-          } catch (error) {
-            console.log(error);
-          }
-        };
     
         fetchCastingData();
       }, [props.castingId]);

@@ -28,10 +28,21 @@ const Navbar = ({currentPage}) => {
 
     const handleClick = () => setClick(!click);
 
+
+
+    /**
+     * make a http get request to logout the user
+     * if logout went successfully the user is redirect to login page
+     *
+     * @async
+     * @function
+     * @name handleLogout
+     * @returns {void}
+     */
     const handleLogout = async()=>{
         try{
             const response = await axios.get(logoutUrl, {withCredentials:true}) 
-            if(response.data == "deconnexion reussie"){
+            if(response.data === "deconnexion reussie"){
                 Navigate('/')
 
             }  
@@ -43,6 +54,16 @@ const Navbar = ({currentPage}) => {
        
     }
 
+
+    /**
+     * make a http request to get an user profile
+     * setUserData is updated with data 
+     *
+     * @async
+     * @function
+     * @name getUserProfile
+     * @returns {void}
+     */
     const getUserProfile = async()=>{
         try{
             

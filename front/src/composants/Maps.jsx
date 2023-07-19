@@ -14,20 +14,20 @@ import MarkerProject from './MarkerProject';
 
 const Maps = () => {
 
-  const APIkey = process.env.REACT_APP_API_KEY
-    
-
-   /* const icon = L.icon({ 
-        iconRetinaUrl:iconRetina, 
-        iconUrl: iconMarker, 
-        shadowUrl: iconShadow 
-    });*/
-    const getProjectUrl = process.env.REACT_APP_API_HOST+'api/projects'
-    const [projects, setProjects] = useState([]);
+  const APIkey = process.env.REACT_APP_API_KEY 
+  const getProjectUrl = process.env.REACT_APP_API_HOST+'api/projects'
+  const [projects, setProjects] = useState([]);
     
  
 
-    //fonction permettant de recuperer les projets 
+  /**
+   * Retrieves all projects from the API, converts their addresses to geographic coordinates and updates the list of projects with the obtained coordinates.
+   *
+   * @function
+   * @name getAllProject
+   * @param {Function} setProjects - The function to update the list of projects with geographical coordinates.
+   * @returns {void}
+   */
     const getAllProject = ()=>{
 
       axios.get(getProjectUrl, {withCredentials:true})
@@ -63,11 +63,15 @@ const Maps = () => {
     }
    
 
-    // fonction permettant de convertir les addresse en coordonnées
+  /**
+   * get an address coordonnates.
+   *
+   * @function
+   * @name geocodeAddress
+   * @param {string} address - address to get geocoded.
+   * @returns {Promise<{lat: number, lng: number}> | null} - A promise with the geographic coordinates (latitude and longitude) of the address, or null if the address could not be geocoded.
+   */
     const geocodeAddress = (address) => {
-      
-      
-     
       
       const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
      
@@ -91,11 +95,19 @@ const Maps = () => {
     };
 
 
-    //fonction permettant de supprimer un projet
+   /**
+   * Make a http delete request to delete a project.
+   *
+   * @async
+   * @function
+   * @name deleteProject
+   * @param {string} projectId - project ids' project to delete.
+   * @returns {Promise<void>} -  A promise successfully resolved when project deletionis ok and project's list is updated.
+   */
     const deleteProject = async (projectId) => {
       try {
         await axios.delete(process.env.REACT_APP_API_HOST+`api/projects/${projectId}`);
-        getAllProject(); // Appeler la fonction de mise à jour des projets après la suppression réussie
+        getAllProject(); 
       } catch (error) {
         console.log('Erreur lors de la suppression du projet', error);
       }

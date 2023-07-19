@@ -11,10 +11,28 @@ const Cards = (props) => {
 
     const Navigate = useNavigate()
 
+    /**
+     * handle modal status.
+     *
+     * @function
+     * @name handleOpenModal
+     * @returns {void}
+     */
     const handleOpenModal = () => {
         props.onOpenModal(props.id);
-      };
+    };
 
+
+    
+
+    /**
+     * display component based on "props.status_name".
+     *
+     * @function
+     * @name renderContent
+     * @param {Function} OpenModal - function handling modal opening/closing.
+     * @returns {JSX.Element|null} - JSX to rend based on status name.
+     */
       const renderContent = (OpenModal)=>{
         switch(props.status_name){
             case "created":

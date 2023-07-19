@@ -38,8 +38,14 @@ const MyCasting = () => {
     const [project, setProject]=useState()
     let count = 0
     
-    //fonction permettant d'obtenir le projet en coursp
-
+  /**
+   * Retrieves project information by making a GET request to the API
+   *
+   * @async
+   * @function
+   * @name getProject
+   * @returns {void}
+   */
     const getProject = async()=>{
       try{
         const result = await axios.get(getProjectUrl , {withCredentials:true})
@@ -51,20 +57,39 @@ const MyCasting = () => {
     }
 
 
-    //fonction de gestion du modal
+    /**
+     * handling modal opening
+     * @function
+     * @name handleOpenModal
+     * @param {number} castingId casting id to display in modal
+     * @returns {void}
+     */
     const handleOpenModal = (castingId) => {
         setSelectedCastingId(castingId);
         setIsModalOpen(true);
        
       };
-    
+
+    /**
+     * Close the modal by resetting the selected casting id and closing the modal.
+     *
+     * @function
+     * @name handleCloseModal
+     * @returns {void}
+     */
       const handleCloseModal = () => {
         setSelectedCastingId(null);
         setIsModalOpen(false);
       };
    
   
-    // fonction permettant de recuperer tous les castings
+  /**
+   * Retrieves all castings from the API and updates the "castings" state with the received data.
+   *
+   * @function
+   * @name getAllCasting
+   * @returns {void}
+   */
     const getAllCasting = async()=>{
         try{
             const result = await axios.get(getAllCastingUrl,{withCredentials:true})
@@ -78,21 +103,53 @@ const MyCasting = () => {
     
 
    
-      //fonction permettant de gerer le defilement a l'aide de la souris
+    /**
+     * Handles the "mousedown" event on the container to enable horizontal scrolling.
+     *
+     * @function
+     * @name handleMouseDown
+     * @param {Object} e - mouse event.
+     * @returns {void}
+     */
       const handleMouseDown = (e) => {
         setIsDown(true);
         setStartX(e.pageX - containerRef.current.offsetLeft);
         setScrollLeft(containerRef.current.scrollLeft);
       };
-    
+
+
+    /**
+     * Handles the "mouseleave" event on the container to disable horizontal scrolling.
+     *
+     * @function
+     * @name handleMouseLeave
+     * @returns {void}
+     */
       const handleMouseLeave = () => {
         setIsDown(false);
       };
-    
+      
+
+    /**
+     * Handles the "mouseup" event on the container to disable horizontal scrolling.
+     *
+     * @function
+     * @name handleMouseUp
+     * @returns {void}
+     */
       const handleMouseUp = () => {
         setIsDown(false);
       };
     
+
+    /**
+     * Handles the "mousemove" event on the container to perform horizontal scrolling.
+     *
+     * @function
+     * @name handleMouseMove
+     * @param {Object} e - L'événement de la souris (mousemove).
+     * @returns {void}
+     */
       const handleMouseMove = (e) => {
         if (!isDown) return;
         e.preventDefault();

@@ -17,8 +17,16 @@ const MarkerProject = (props) => {
 
   const Navigate = useNavigate()
 
+
+ /**
+ * Handles deleting a project by calling the delete project function passed as a prop.
+ *
+ * @function
+ * @name handleDeleteProject
+ * @returns {void}
+ */
   const handleDeleteProject = () => {
-    props.deleteProject(props.id); // Appeler la fonction de suppression de projet depuis les props
+    props.deleteProject(props.id); // Call delete project function from props
   };
 
   

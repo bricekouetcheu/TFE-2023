@@ -10,6 +10,15 @@ const StepOne = ({onNext, handleFormData, values}) => {
     const [errorMessage, setErrorMessage] = useState('')
     const Navigate = useNavigate()
 
+
+     /**
+     * Handles changing the project name when submitting the form.
+     *
+     * @function
+     * @name handleProjectName
+     * @param {Event} e -The project name change event.
+     * @returns {void}
+     */
     const handleProjectName = (e) =>{
         e.preventDefault();
 

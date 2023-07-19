@@ -20,12 +20,24 @@ const Check = () => {
     const [drag, setDrag] = useState(false)
     const [order, setOrder] = useState()
     const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${casting_id}`
+    const updateCastingUrl = process.env.REACT_APP_API_HOST+`api/castings/${casting_id}`
     const scrollRef = useRef()
     const [openBackdrop, setOpenBackdrop] = useState(false);
     const postImageUrl = 'http://127.0.0.1:8000/detect-text'
 
    
     
+  const UpdateCastingStatus = async()=>{
+    try{
+      const result = await axios.put(updateCastingUrl,{withCredentials:true})
+      console.log(result.data)
+
+    }catch(err){
+      console.log(err)
+    }
+    
+
+  }
 
     const getOrder = async()=>{
         try{
@@ -99,6 +111,7 @@ const Check = () => {
                         timer: 10000,
                         
                       });
+                      UpdateCastingStatus()
                 }else{
                     setOpenBackdrop(false)
                     Swal.fire({

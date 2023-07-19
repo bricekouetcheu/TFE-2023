@@ -1,0 +1,10 @@
+.viewer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 320px;
+    background-color: #fff;
+
+}

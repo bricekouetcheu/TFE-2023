@@ -154,7 +154,7 @@ const MyCasting = () => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - containerRef.current.offsetLeft;
-        const walk = (x - startX) * 3; // Ajustez le multiplicateur selon votre préférence pour la vitesse de défilement
+        const walk = (x - startX) * 3; 
         containerRef.current.scrollLeft = scrollLeft - walk;
       };
     

@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faTrash} from '@fortawesome/free-solid-svg-icons';
 import CastingModal from './CastingModal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
 const Cards = (props) => {
 
     const Navigate = useNavigate()
+    const {project_id} = useParams()
 
     /**
      * handle modal status.
@@ -23,7 +24,7 @@ const Cards = (props) => {
     };
 
 
-    
+
 
     /**
      * display component based on "props.status_name".
@@ -46,7 +47,7 @@ const Cards = (props) => {
             case "ordered":
                 return (
                     <>
-                        <div onClick={()=>Navigate(`/check/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                        <div onClick={()=>Navigate(`${project_id}/check/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )

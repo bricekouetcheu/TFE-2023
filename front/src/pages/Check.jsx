@@ -3,7 +3,7 @@ import Navbar from '../composants/Navbar';
 import { faXmark,faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import imageIcon from '../assets/image.png';
-import camera from '../assets/camera1.png';
+import camera from '../assets/photo.png';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
@@ -25,12 +25,13 @@ const Check = () => {
     const [openBackdrop, setOpenBackdrop] = useState(false);
     const postImageUrl = 'http://127.0.0.1:8000/detect-text'
 
+    console.log(order)
    
     
   const UpdateCastingStatus = async()=>{
     try{
       const result = await axios.put(updateCastingUrl,{withCredentials:true})
-      console.log(result.data)
+     
 
     }catch(err){
       console.log(err)
@@ -42,7 +43,7 @@ const Check = () => {
     const getOrder = async()=>{
         try{
             const response =  await axios.get(getOneOrderUrl,{withCredentials:true})
-            setOrder(response.data.order_data)
+            setOrder(ModifyObject(response.data.order_data))
         }catch(err){
             console.log(err)
         }

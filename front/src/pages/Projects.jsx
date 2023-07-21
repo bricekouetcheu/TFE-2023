@@ -14,35 +14,10 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 const Projects = () => {
     const Navigate = useNavigate()
 
-    useEffect(()=>{
-        console.log('hellooo')
-    },[])
-
-
     return (
         <div className='projects'>
             <Navbar currentPage='home'></Navbar>
-            <h2>Mes Projets</h2>
-            <div className='project-content-header'>
-               
-                <div className='project-content-header-left' onClick={()=>Navigate('/AddProject')}>
-                  
-
-                </div>
-                <div className='project-content-header-right' >
-                    <div className='search-box'>
-                        <button className='btn-search'><FontAwesomeIcon icon={faMagnifyingGlass} /></button> 
-                        <input type="search" placeholder='Rechercher projet...' className='input-search' />
-
-                    </div>
-                   
-                    <div className='create-projet' onClick={()=>Navigate('/AddProject')}>
-                         <h3>Ajouter Nouveau Projet</h3>
-                        <MdAdd className='create-projet-icon'></MdAdd>
-                   </div>
-                </div>
-               
-            </div>
+         
             <div className='projects-maps'>
             
 

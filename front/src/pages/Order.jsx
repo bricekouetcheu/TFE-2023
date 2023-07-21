@@ -56,14 +56,14 @@ console.log(order)
 
        UpdateCastingStatus()
        console.log(response)
-      Swal.fire({
+       Swal.fire({
         icon: 'success',
         title: 'Commande effectuée avec success!',
         showConfirmButton: true,
         confirmButtonColor: '#00BCB6',
         timer: 1500,
         
-      });
+       });
 
       setTimeout(() => {
         Navigate(-1)

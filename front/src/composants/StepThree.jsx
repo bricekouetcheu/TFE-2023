@@ -22,7 +22,10 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
   
  
 
-    
+    /**
+     * submits informations
+     * @param {Event} -submit form event
+     */
     const handleSubmit = (e)=>{
        
         e.preventDefault()

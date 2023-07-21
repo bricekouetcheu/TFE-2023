@@ -1,5 +1,5 @@
-export function ModifyObject(data){
-    const { "Donnéees Complementaires": _, ...newData } = data;
+export  function ModifyObject(data){
+    const { "Donnéees Complementaires": _, ...newData } =  data;
     return newData
 }
 

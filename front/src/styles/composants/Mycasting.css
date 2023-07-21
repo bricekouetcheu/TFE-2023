@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    padding-top: 320px;
+    padding-top: 250px;
     background-color: #fff;
    
    
@@ -163,6 +163,16 @@
 
 
 @media (max-width: 900px) {
+    .home-Board{
+     
+        padding-top: 180px;
+       
+       
+       
+      
+    }
+
+
     .kanban-board{
        
       overflow-x:scroll;
@@ -177,6 +187,8 @@
 }
 
 @media (max-width: 450px) {
+
+   
     .kanban-board{
        
       overflow-x:scroll;
@@ -189,7 +201,7 @@
         display: flex;
         flex-direction: column;
         gap: 50px;
-        padding-top: 100px;
+        padding-top: 50px;
         background-color: #fff;
        
        
@@ -213,4 +225,16 @@
         min-width: 300px;
         
   }
+}
+
+
+@media (min-width: 1600px) {
+    .home-Board{
+        padding-top: 185px;
+       
+        
+       
+       
+      
+    }
 }

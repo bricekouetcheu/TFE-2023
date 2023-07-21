@@ -1,6 +1,7 @@
 .sidebar-logo-dashboard{
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
+    cursor: pointer;
 }
 
 .dashboard-side{
@@ -30,4 +31,21 @@
 .sidebar-icon:hover{
     color: #fff;
 
+}
+
+.sidebar-icon{
+    font-size: 15px;
+    width: 18px;
+    height: 18px;
+}
+
+
+@media (min-width: 1600px) {
+    .dashboard-side{
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+        height: 100vh;
+        background-color: #F6F8FA;
+    }
 }

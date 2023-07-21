@@ -19,6 +19,11 @@ import { faPlus, faCircleInfo, faArrowRightFromBracket, faCubes } from '@fortawe
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MyCasting from '../composants/MyCasting';
 import NewCasting from '../composants/NewCasting';
+import plus from '../assets/plus.png'
+import schedule from '../assets/schedule.png'
+import logout from '../assets/logout.png'
+import dashboard from '../assets/dashboard.png'
+import { useNavigate } from 'react-router-dom';
 
 
 const drawerWidth = 340;
@@ -27,6 +32,8 @@ function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedOption, setSelectedOption] = useState('Mycasting');
+  const Navigate = useNavigate()
+
 
 
 
@@ -64,7 +71,7 @@ function ResponsiveDrawer(props) {
         justifyContent:'center',
         
       }}>
-        <img className = 'sidebar-logo-dashboard' src={logo} alt=""/>
+        <img className = 'sidebar-logo-dashboard' src={logo} alt="" onClick={()=>Navigate('/projects')}/>
 
      </Box >
       <Divider />
@@ -72,27 +79,28 @@ function ResponsiveDrawer(props) {
       <List >
       <ListItemButton onClick={() => handleSidebarItemClick('Newcasting')} id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faPlus}  className='sidebar-icon' />
+          <img src={plus} alt='' className='sidebar-icon'/>
+        
         </ListItemIcon>
         <ListItemText primary="Ajouter un nouveau casting" />
       </ListItemButton>
       <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')} id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faCircleInfo} className='sidebar-icon'   />
+          <img src={dashboard} alt='' className='sidebar-icon'/>
         </ListItemIcon>
         <ListItemText primary="Mes Castings" />
       </ListItemButton>
       <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')} id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={ faCubes} className='sidebar-icon'   />
+          <img src={schedule} alt='' className='sidebar-icon'/>
         </ListItemIcon>
-        <ListItemText primary="Viewer" />
+        <ListItemText primary="Calendar" />
       </ListItemButton>
       <ListItemButton  id='sidebar-menu'>
         <ListItemIcon>
-          <FontAwesomeIcon icon={faArrowRightFromBracket}  className='sidebar-icon' color='' sx={{fontWeight:'700'}}/>
+          <img src={logout} alt='' className='sidebar-icon'/>
         </ListItemIcon>
-        <ListItemText primary="Se deconnecter" />
+        <ListItemText primary="Se deconnecter"  sx={{color:'#F64953'}}/>
       </ListItemButton>
     </List>
 
@@ -147,7 +155,7 @@ function ResponsiveDrawer(props) {
         sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        {}
         <Drawer
           container={container}
           variant="temporary"
@@ -202,10 +210,7 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
+
   window: PropTypes.func,
 };
 

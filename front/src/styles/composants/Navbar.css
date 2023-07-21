@@ -40,15 +40,28 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: linear-gradient(180deg,#555,#000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #1b1b1b;
+  font-size: 17px;
   font-weight: 500;
-  font-size: max(17px,min(1vw,20px));
-  line-height: 1;
-  letter-spacing: -.05em;
-  position: relative;
-  text-align: center;
+  margin: 0 1.5rem 0 0;
+  text-decoration: none;
+  transition: color .2s ease-in-out
+}
+
+.userInfo1{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+letter-spacing: 0.8px;
+word-spacing: 1.8px;
+color: #000000;
+font-weight: 500;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+transition: color .2s ease-in-out
+
 }
 
 .userInfo:hover{

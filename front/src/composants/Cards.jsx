@@ -1,16 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faTrash} from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import CastingModal from './CastingModal';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { ModifyObject } from '../pages/utils';
+import {getConcreteStrengthValue} from './utils'
+import PredictionModal from './PredictionModal';
 
-
-
-const Cards = (props) => {
+const Cards = (props , {getPrediction}) => {
 
     const Navigate = useNavigate()
     const {project_id} = useParams()
+    
+  
+ 
+  
+   
+  
+    /**
+     * handle modal status.
+     *
+     * @function
+     * @name handleOpenPrevisionModal
+     * @returns {void}
+     */
+    const handleOpenPrevisionModal = () => {
+        props.onOpenPredictionModal(props.id);
+    };
+
+
+
+
+    
+
+
 
     /**
      * handle modal status.
@@ -47,7 +72,7 @@ const Cards = (props) => {
             case "ordered":
                 return (
                     <>
-                        <div onClick={()=>Navigate(`${project_id}/check/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                        <div onClick={()=>Navigate(`/${project_id}/check/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )
@@ -55,7 +80,10 @@ const Cards = (props) => {
             case "delivered":
                 return(
                     <>
-                     <div   >DEMARRER PREDICTION<FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                     <div >
+                        <p onClick={handleOpenPrevisionModal}>Lancer la prediction<FontAwesomeIcon icon={faEye} className='card-icon'  /></p>
+                        <p>Date de debut <FontAwesomeIcon icon={faEye} className='card-icon'  /> </p>
+                    </div>
                     </>
 
                 )
@@ -89,6 +117,7 @@ const Cards = (props) => {
                 {renderContent(handleOpenModal)}
 
             </div>
+            
 
             
         </div>

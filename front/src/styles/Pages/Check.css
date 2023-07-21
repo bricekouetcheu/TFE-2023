@@ -50,6 +50,7 @@
 }
 
 .take-photo-content,.upload-photo-content{
+    cursor: pointer;
     padding: 2%;
     border-radius: 20px;
     background-color:#F7F8FA;

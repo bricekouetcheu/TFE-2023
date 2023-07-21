@@ -180,7 +180,6 @@
     border-radius: 999px;
     cursor: pointer;
     display: inline-flex;
-    font-family: neue-haas-unica,sans-serif;
     font-size: 16px;
     font-weight: 700;
     height: 48px;
@@ -189,12 +188,9 @@
     position: relative;
     text-decoration: none;
     transition: all .2s ease-in-out;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
     width: fit-content;
     display: flex;
-    gap: 5px;
-    text-align: left
+  
 
 
 }

@@ -109,17 +109,24 @@ const Navbar = ({currentPage}) => {
                 {currentPage ==='home'?
 
                 (<>
-                <p className='userInfo' onClick={()=>setDropdownOpen(!dropdownOpen)}>{userData[0].user_name}  {userData[0].user_surname}</p>
-                <img src={profile1} alt='img-profile' onClick={()=>setDropdownOpen(!dropdownOpen)}/>
+                        <>
+                        
+                        <p className='userInfo1' onClick={()=>Navigate('/AddProject')} >Ajouter un nouveau projet</p>
+                        <div className='userInfo1' onClick={()=>setDropdownOpen(!dropdownOpen)}>
+                            <p className=''>{userData[0].user_name}  {userData[0].user_surname}</p>
+                            <img src={profile1} alt='img-profile'/>
+                        </div>
+                     
+                    </>
                 </> ):
                 (
                     <>
-                     <p className='userInfo' onClick={()=>Navigate('/projects')}>Acceuil</p>
-                     <p className='userInfo' onClick={()=>Navigate(-1)} >Tableau de bord</p>
-                     <div className='userInfo' onClick={()=>setDropdownOpen(!dropdownOpen)}>
-                        <p className=''>{userData[0].user_name}  {userData[0].user_surname}</p>
-                        <img src={profile1} alt='img-profile'/>
-                     </div>
+                        <p className='userInfo' onClick={()=>Navigate('/projects')}>Acceuil</p>
+                        <p className='userInfo' onClick={()=>Navigate(-1)} >Tableau de bord</p>
+                        <div className='userInfo' onClick={()=>setDropdownOpen(!dropdownOpen)}>
+                            <p className=''>{userData[0].user_name}  {userData[0].user_surname}</p>
+                            <img src={profile1} alt='img-profile'/>
+                        </div>
                      
                     </>
                 )}

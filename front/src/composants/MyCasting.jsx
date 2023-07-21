@@ -11,6 +11,8 @@ import delivered from '../assets/delivered1.png'
 import ongoing from '../assets/sync.png'
 import completed from '../assets/check.png'
 import location from '../assets/location.png'
+import { ModifyObject } from '../pages/utils';
+import PredictionModal from './PredictionModal';
 
 
 
@@ -36,7 +38,29 @@ const MyCasting = () => {
     const [scrollLeft, setScrollLeft] = useState(0);
     const [columns, setColumns] = useState(initialColumns);
     const [project, setProject]=useState()
+    const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${selectedCastingId}`
+    const [openPrediction, setOpenPrediction] = useState(false)
     let count = 0
+
+
+  
+   /**
+     * handle prediction modal status.
+     *
+     * @function
+     * @name handleOpenModal
+     * @returns {void}
+     */
+   const handleopenPrediction= (casting_id) => {
+    setSelectedCastingId(casting_id)
+    setOpenPrediction(true)
+};
+
+    const handleClosePrediction = ()=>{
+        setOpenPrediction(false)
+    }
+
+
     
   /**
    * Retrieves project information by making a GET request to the API
@@ -251,7 +275,8 @@ const MyCasting = () => {
                 status_name = {card.status_name}
                 description = {card.casting_description}
                 key = {card.casting_id}
-                onOpenModal= {handleOpenModal}
+                onOpenPredictionModal= { handleopenPrediction}
+               
    
                 ></Cards>
             ))}
@@ -305,6 +330,10 @@ const MyCasting = () => {
           onCloseModal={handleCloseModal}
         />
       )}
+
+{openPrediction && (
+                <PredictionModal casting_id = {selectedCastingId}  onCloseModal={handleClosePrediction } ></PredictionModal>
+            )}
           
         </div>
 

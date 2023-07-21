@@ -3,7 +3,7 @@ import pytesseract
 from PIL import Image
 import matplotlib.pyplot as plt
 
-# Chemin vers le fichier Tesseract OCR (à adapter selon votre installation)
+# Chemin vers le fichier Tesseract OCR 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\tess\tesseract.exe'
 
 

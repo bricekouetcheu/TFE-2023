@@ -40,7 +40,7 @@ const LoginGoogle = () => {
                <div className='loginTest'>
             <div className='left-login'>
                 <div className='loginTest-form-navbar'>
-                    <img className  src={logo} alt=""/>
+                    <img src={logo} alt=""/>
 
                  </div>
                  <div className='login-content'>

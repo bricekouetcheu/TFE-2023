@@ -61,12 +61,12 @@ const AllRoutes = () => {
             
           {isAuthenticated ? (
             <>
-              <Route path=":project_id/check/:casting_id" element={<Check />} />
+              <Route path="/:project_id/check/:casting_id" element={<Check />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/AddProject" element={<NewProject />} />
               <Route path="/Dashboard/:project_id" element={<Dashboard />} />
               <Route path="/test1" element={<Order />} />
-              <Route path=":project_id/order/:casting_id" element={<Order />} />
+              <Route path="/:project_id/order/:casting_id" element={<Order />} />
              
             </>
           ) : 

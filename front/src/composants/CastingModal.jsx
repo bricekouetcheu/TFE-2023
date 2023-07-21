@@ -25,6 +25,7 @@ const CastingModal = (props) => {
     const {project_id} = useParams()
     const getOnCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting/${props.castingId}`
     const Navigate = useNavigate()
+   
     
 
   /**
@@ -67,7 +68,7 @@ const CastingModal = (props) => {
       }, [props.castingId]);
 
       const switchPage = ()=>{
-        Navigate(`/order/${props.castingId}`)
+        Navigate(`${project_id}/order/${props.castingId}`)
       }
 
    

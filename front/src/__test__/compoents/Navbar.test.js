@@ -2,12 +2,15 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Navbar from '../../composants/Navbar';
 import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
 
 jest.mock('axios')
 
 describe('Navbar component', () => {
     it('renders correctly', () => {
-      render( <Navbar/>);
+      render( <BrowserRouter>
+      <Navbar/>
+      </BrowserRouter>);
 
       expect(screen.getByTestId('navbar')).toBeInTheDocument();
       
@@ -28,7 +31,9 @@ describe('Navbar component', () => {
       
       //simuler l'envoie de la requete
       axios.get.mockResolvedValueOnce({data: userData})
-      render (<Navbar/>)
+      render (<BrowserRouter>
+      <Navbar/>
+      </BrowserRouter>)
       await screen.findByText('brice kouetcheu');
 
    

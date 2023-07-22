@@ -54,7 +54,7 @@ const NewCasting = () => {
    * @param {string} category - element category to retrieve
    * @returns {Promise<Array>} -A promise resolved with an array containing all elements of the specified category..
    */
-    const getAllItemByCategory = async(category) => {
+   async function getAllItemByCategory(category){
         const manager = ifcLoader.ifcManager;
         const items = await manager.getAllItemsOfType(0, category, false);
         return items;

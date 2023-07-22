@@ -77,7 +77,7 @@ const CastingModal = (props) => {
             <div className='casting-modal-card'>
             {casting && (
                 <>
-                    <IoMdClose onClick={handleCloseModal} className='casting-close-btn'/>
+                    <IoMdClose onClick={handleCloseModal} className='casting-close-btn' data-testid = 'casting-close-btn'/>
                     
                     <p className='card-title'>Information castings</p>
                 

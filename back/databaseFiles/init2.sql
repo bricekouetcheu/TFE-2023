@@ -26,6 +26,7 @@ CREATE TABLE projects(
     project_address VARCHAR(255),
     project_date DATE DEFAULT CURRENT_DATE,
     user_id INTEGER NOT NULL,
+    agenda_id VARCHAR(255),
     CONSTRAINT fk_users
         FOREIGN KEY (user_id)
             REFERENCES users(user_id)

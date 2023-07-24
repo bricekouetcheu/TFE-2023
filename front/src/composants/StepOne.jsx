@@ -1,14 +1,28 @@
-import {useState,React} from 'react';
+import {useState,React, useEffect} from 'react';
 import validator from 'validator';
 import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const StepOne = ({onNext, handleFormData, values}) => {
     const [errorMessage, setErrorMessage] = useState('')
+    const [agendas, setAgenda] = useState()
+    const getAgendaUrl =  process.env.REACT_APP_API_HOST+`api/agendas`
     const Navigate = useNavigate()
+
+
+    const getAllAgendas = async()=>{
+        try{
+            const response = await axios.get(getAgendaUrl , {withCredentials:true})
+            console.log(response.data)
+
+        }catch(err){
+            console.log(err)
+        }
+    }
 
 
      /**
@@ -31,6 +45,11 @@ const StepOne = ({onNext, handleFormData, values}) => {
           
         }
     }
+
+    useEffect(()=>{
+        getAllAgendas()
+
+    },[])
 
 
     return (

@@ -9,6 +9,7 @@ const fileRoutes = require('./routes/files')
 const castingRoutes = require('./routes/castings')
 const orderRoutes = require('./routes/order')
 const userRoutes = require('./routes/users')
+const agendaRoutes = require('./routes/agenda')
 require("dotenv").config();
 
 
@@ -34,8 +35,9 @@ app.use('/api',authRoutes);
 app.use('/api',projectRoutes);
 app.use('/api',fileRoutes);
 app.use('/api',castingRoutes);
-app.use('/api', orderRoutes);
-app.use('/api', userRoutes);
+app.use('/api',orderRoutes);
+app.use('/api',userRoutes);
+app.use('/api' ,agendaRoutes )
 
 
 

@@ -2,12 +2,35 @@ const pool = require('../db.js');
 const bcrypt = require ('bcrypt');
 const jwt = require("jsonwebtoken");
 const saltRounds = 10;
+const { google } = require('googleapis');
+const { OAuth2 } = google.auth;
 require("dotenv").config();
-const { OAuth2Client } = require('google-auth-library')
+
+/*const oauth2Client = new OAuth2 (
+    process.env.GOOGLE_ID_CLIENT,
+    process.env.GOOGLE_CLIENT_SECRET,
+    'postmessage',
+
+)
+
+const scopes = [
+    'https://www.googleapis.com/auth/blogger',
+    'https://www.googleapis.com/auth/calendar'
+  ];
+
+  const url = oauth2Client.generateAuthUrl({
+    // 'online' (default) or 'offline' (gets refresh_token)
+    access_type: 'offline',
+  
+    // If you only need one scope you can pass it as a string
+    scope: scopes
+  });*/
+const { OAuth2Client, UserRefreshClient } = require('google-auth-library')
 const client = new OAuth2Client(
     process.env.GOOGLE_ID_CLIENT,
     process.env.GOOGLE_CLIENT_SECRET,
-    'postmessage')
+    'postmessage',
+    ['https://www.googleapis.com/auth/calendar'])
 
     const getUserByEmail = 'select * from users where user_email = $1'
     const addUserRequest = 'INSERT INTO users (user_id,user_name,user_surname,user_email, access_token, refresh_token, role_id ,user_picture) values(DEFAULT,$1,$2,$3,$4,$5,2 ,$6) RETURNING  user_id';
@@ -35,6 +58,7 @@ const client = new OAuth2Client(
             //on recupere les informations envoyées par le user au moment de la connexion
             const {tokens} = await client.getToken(req.body.code)
             const {access_token,id_token,refresh_token}= tokens
+            console.log(access_token)
            
             
             // on decode l'id token afin de recupere les infos user
@@ -92,6 +116,30 @@ const client = new OAuth2Client(
     }
 
 
+    const getUserIdFromRefreshToken = async(token)=>{
+        try{
+            const query = 'select user_id from users where  refresh_token = $1'
+            const result = await pool.query(query ,) [token]
+
+            const data = result.rows[0].user_id
+            return data
+        }catch(err){
+            console.log(token)
+        }
+    }
+
+    /*const updateAccessTokenInDatabase = async(userId, newAccessToken)=>{
+        try{
+            const updateTokensQuery = 'UPDATE users SET access_token = $1 WHERE user_id = $2';
+            await
+
+        }catch(err){
+            console.log(err)
+        }
+    }*/
+
+
+
 
 
 
@@ -106,127 +154,12 @@ const client = new OAuth2Client(
 
 
 exports.Register = (req, res)=>{
-    const {name,surname,email, password,compagny}= req.body; // recover data send by the frontend
-
-
-    try{
-        pool.query(`select * from users where user_email =$1;`,[email])
-        .then(result =>{
-            const user_found = result.rows; //check if user exists
-            if(user_found.length != 0 ){
-                return res.status(404).json({
-                    message:"Email already used",
-                })
-
-            }else{
-                bcrypt.genSalt(saltRounds, (err , salt)=>{ //hash the password before save it into DB
-                    bcrypt.hash(password,salt ,(err, hashed_password)=>{
-                        if(err){
-                            console.log(err)
-                        }else{
-                            const addUserRequest = 'INSERT INTO users (user_id,user_name,user_surname,user_email,user_password,user_compagny,role_id) values(DEFAULT,$1,$2,$3,$4,$5,2) RETURNING *';
-                            pool.query(addUserRequest,[name,surname,email,hashed_password,compagny],(err , results)=>{ //save new user into DB
-                                if(err){
-                                    console.log(err);
-                                }else{
-                                    
-                                    res.status(201).send({
-                                       
-                                        message:'sign up ok'
-                                    })
-                                }
-                            })
-                        }
-
-                    })
-                })
-
-            }
-        })
-
-    }
-    catch(err) {
-        (err);
-        res.status(500).send(
-            {
-                error : "Database error while registering new user" //Database connection error
-            }
-        )
-
-    }
+    
 
 }
 
 exports.Login = (req , res , next)=>{
-    const {email , password} = req.body; // on recupere les valeurs envoyées par le front
-    const hours = 12;
-    const maxAgeInMilliseconds = hours * 60 * 60 * 1000;
 
-    try{
-         pool.query(`SELECT * FROM users WHERE user_email= $1;`, [email])
-         .then( result=>{
-            const user = result.rows;
-            if(user.length === 0){// check if user is already in database
-                console.log('pas encore de compte');
-                return res.status(401).send({message: 'Vous\'avez pas encore de compte'});
-            }
-    
-            else{
-                
-                const name = user[0].user_name;
-                const surname = user[0].user_surname;
-                const user_id= user[0].user_id
-                bcrypt.compare(password , user[0].user_password) // check matching between password found and password sent
-                .then(valid =>{
-                    if(!valid){ 
-                        console.log('incorrect password');
-                        return res.status(401).json({message:'incorrect password'})
-                    }else{ // password ok!!! send user
-
-                        const token = jwt.sign({
-                            user_id : user_id,
-                            surname: surname,
-                            name : name,
-                            email: email,}, 
-                            process.env.TOKEN_PASS,
-                            { expiresIn: '24h'})
-
-                        return res.cookie("accessToken" ,token,{
-                            maxAge: maxAgeInMilliseconds,
-                            httpOnly: true,
-                        })
-                        .status(200)
-                        .send("connexion reussie")
-
-                    }
-                })
-    
-                .catch(error =>{
-                    res.status(500).json( error )
-                    console.log(error)
-                }
-                   
-                )
-                
-    
-            }
-
-        })
-
-        .catch(error =>  {
-            console.log(error),
-            res.status(500).json(error)
-
-        })
-            
-      
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({
-        error: "Database error occurred while signing in!", //Database connection error
-        });
-}
 
 }
 

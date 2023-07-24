@@ -17,7 +17,9 @@ const LoginGoogle = () => {
     const getUser = async(code)=>{
         const result = await axios.post(LoginUrl,
             {
-                code:code
+                code:code,
+                grant_type: 'authorization_code',
+                
             },
             {
                  withCredentials: true
@@ -30,7 +32,7 @@ const LoginGoogle = () => {
             }
     }
     const loginF = useGoogleLogin({
-
+        scope: 'https://www.googleapis.com/auth/calendar',
         onSuccess: tokenResponse => getUser(tokenResponse.code),
         flow: 'auth-code'
       });

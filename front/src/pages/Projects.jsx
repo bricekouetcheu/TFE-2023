@@ -18,7 +18,7 @@ const Projects = () => {
         <div className='projects'>
             <Navbar currentPage='home'></Navbar>
          
-            <div className='projects-maps'>
+            <div data-testid ='btn-home' className='projects-maps'>
             
 
             

@@ -37,21 +37,21 @@ const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
             <div className='step2-form-top'>
                 <div className='street'>
                     <label htmlFor="street">Rue </label>
-                    <input type="text" id='1' defaultValue={values.street}  placeholder='Rue des marais' name='street' onChange={handleFormData('street')}  />
+                    <input data-testid ='street-input' type="text" id='1' defaultValue={values.street}  placeholder='Rue des marais' name='street' onChange={handleFormData('street')}  />
                 </div>
                 <div className='number'>
                     <label htmlFor="number"> Numero </label>
-                    <input type="text" className='number' defaultValue={values.number}  placeholder='50' name='number'   onChange={handleFormData('number')} />
+                    <input data-testid ='number-input' type="text" className='number' defaultValue={values.number}  placeholder='50' name='number'   onChange={handleFormData('number')} />
                 </div>
             </div>
             <div className='step2-form-bottom'>
                 <div className='city'>
                     <label htmlFor="city"> Ville </label>
-                    <input type="text" placeholder='bruxelles' defaultValue={values.city}  name='city'  onChange={handleFormData('city')}  />
+                    <input   data-testid ='city-input' type="text" placeholder='bruxelles' defaultValue={values.city}  name='city'  onChange={handleFormData('city')}  />
                 </div>
                 <div className='code'>
-                    <label htmlFor="postalCode"> Code postal</label>
-                    <input type="text"  placeholder='1080' defaultValue={values.postalcode} name='postalcode' onChange={handleFormData('postalcode')}   />
+                    <label htmlFor="postalCode" > Code postal</label>
+                    <input data-testid ='postalcode-input' type="text"  placeholder='1080' defaultValue={values.postalcode} name='postalcode' onChange={handleFormData('postalcode')}   />
                 </div>
 
             </div>

@@ -14,16 +14,21 @@ const testAgendasData = [
 
 it('render component with conditionnal props', async () => {
   // simulate api call
-  axios.get.mockResolvedValue({ data: testAgendasData });
+  axios.get.mockResolvedValueOnce({ data: testAgendasData });
 
   //render component
   render(<BrowserRouter><StepOne onNext={() => {}} handleFormData={() => {}} handleSelectData={() => {}} values={{}} /></BrowserRouter>);
 
  
   expect(axios.get).toHaveBeenCalledTimes(1);
-  await screen.findByText('Nom du Projet');
-  // expect h1 to by in page
-  expect(screen.getByText('Nom du Projet')).toBeInTheDocument();
+
+  await waitFor(() => {
+    
+    expect(screen.getByText('Nom du Projet')).toBeInTheDocument();
+    // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+    expect(screen.getByTestId('agenda-select')).toBeInTheDocument();
+  });
+  
 });
 
 

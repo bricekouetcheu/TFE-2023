@@ -55,7 +55,7 @@ const StepOne = ({onNext, handleFormData, handleSelectData, values}) => {
     }
 
     useEffect(()=>{
-       /* values.AgendaId='Selectionnez un agenda pour ce projet'*/
+        values.AgendaId='Selectionnez un agenda pour ce projet'
         getAllAgendas()
 
     },[])
@@ -67,9 +67,9 @@ const StepOne = ({onNext, handleFormData, handleSelectData, values}) => {
                 <>
                 
                 <h1>Nom du Projet </h1>
-                         <input placeholder='Nom du projet'defaultValue={values.projectName} name='projectName' onChange={handleFormData('projectName')}/>
+                         <input placeholder='Nom du projet'defaultValue={values.projectName} name='projectName' onChange={handleFormData('projectName')} data-testid ='project-name-input'/>
                          {agendas && (
-                <select name="AgendaId" id="agenda" className='select-stepOne' onChange={handleSelectData('AgendaId')}>
+                <select name="AgendaId" id="agenda" className='select-stepOne' onChange={handleSelectData('AgendaId')} data-testid ='agenda-select'>
                     <option>Selectionnez un agenda pour ce projet</option>
                     {agendas.map((agenda,index)=>(
                         <option key= {index} value={agenda.id}>

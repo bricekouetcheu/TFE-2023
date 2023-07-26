@@ -120,8 +120,10 @@ const NewProject = () => {
     }
 
     const Files = new FormData()
+
     //continuer le formData
     Files.append("name",formData.projectName)
+    Files.append("agenda" , formData.AgendaId)
     Files.append("address",createAddress (formData.street, formData.number, formData.postalcode, formData.city))
     formData.files.forEach((file)=>{
         Files.append('ifc',file,file.name)
@@ -130,9 +132,9 @@ const NewProject = () => {
     
 
     //submit formdata
-    const submitForm = (e)=>{
-        e.preventDefault()
-           
+    const submitForm = ()=>{
+      
+           console.log(Files)
        axios
        .post(NewProjectUrl,Files,{withCredentials:true})
        .then( result=>{

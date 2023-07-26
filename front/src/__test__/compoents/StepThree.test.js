@@ -30,7 +30,7 @@ it('calls OnSubmit when form is submitted with files', () => {
 
 
 
-    render(<BrowserRouter><StepThree values={{ files: [] }} handleFormData={handleFormData} onPrev={onPrev} OnSubmit={OnSubmit} deleteFile={deleteFile} /></BrowserRouter>);
+    render(<BrowserRouter><StepThree values={{ files: [] }} handleFormData={handleFormData} onPrev={onPrev} OnSubmit={OnSubmit} deleteFile={deleteFile}  /></BrowserRouter>);
 
     const submitButton = screen.getByTestId('btn-submit');
     fireEvent.click(submitButton);

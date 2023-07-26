@@ -41,7 +41,7 @@ const MyCasting = () => {
     const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${selectedCastingId}`
     const [openPrediction, setOpenPrediction] = useState(false)
     let count = 0
-
+    console.log(project)
 
   
    /**
@@ -74,6 +74,7 @@ const MyCasting = () => {
       try{
         const result = await axios.get(getProjectUrl , {withCredentials:true})
         setProject(result.data)
+        console.log(result.data)
       } catch(err){
         console.log(err)
       }

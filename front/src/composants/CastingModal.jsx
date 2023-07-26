@@ -68,7 +68,7 @@ const CastingModal = (props) => {
       }, [props.castingId]);
 
       const switchPage = ()=>{
-        Navigate(`${project_id}/order/${props.castingId}`)
+        Navigate(`/${project_id}/order/${props.castingId}`)
       }
 
    

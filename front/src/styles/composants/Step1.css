@@ -15,7 +15,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
-  font-size: max(26px,min(2vw,50px));
+  font-size: max(22px,min(1.7vw,50px));
   line-height: 1;
   letter-spacing: -.05em;
   padding: 0px;
@@ -47,9 +47,41 @@
     border: solid 1.5px #D3D3D3;
      background-color: #F0F7FA;
     border-color: #f0f5f9;
-    text-align: center;
+   
 
 }
+
+.step1 .select-stepOne {
+  width: 75%;
+    height: 40px;
+    background-color: #FFFFFF;
+    padding-left: 5%;
+    border: 1px solid #cccccc;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 3px;
+    border: solid 1.5px #D3D3D3;
+     background-color: #F0F7FA;
+    border-color: #f0f5f9;
+    
+
+}
+
+
+
+/*.step1 .select-stepOne option {
+  margin-top: 30px;
+  background: linear-gradient(180deg,#555,#000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 200;
+  font-size: max(12px,min(1vw,50px));
+  line-height: 1;
+  letter-spacing: -.05em;
+  padding: 0px;
+  position: relative;
+  border-top: 1px solid red;
+
+}*/
 
 .btn-step1{
 
@@ -104,10 +136,12 @@
 .step1-navigation{
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 75%;
   margin-bottom: 5%;
   justify-content: space-between;
 }
+
+
 
 
 @media screen and (max-width: 450px) {

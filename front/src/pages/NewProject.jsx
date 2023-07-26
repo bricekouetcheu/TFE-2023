@@ -48,12 +48,15 @@ const NewProject = () => {
     const [progress, setProgress] = useState(0);
     const [formData, setFormData]= useState({
         projectName: "",
+        AgendaId : " ",
         street: " ",
         number:" ",
         city:"",
         postalcode: "",
         files:[]
     })
+
+    console.log(formData)
    
    
 
@@ -67,6 +70,19 @@ const NewProject = () => {
           [input]: value
       }));
       }
+
+      const handleSelectData = select => e => {
+        // input value from the form
+        const {value } = e.target;
+    
+        // updating for data state taking previous state and then adding new value to create new object
+        setFormData(prevState => ({
+          ...prevState,
+          [select]: value
+      }));
+      }
+
+
       
       // handle file upload
       const handleFileUpload = (e) => {
@@ -150,7 +166,7 @@ const NewProject = () => {
         <div className='AddProject-information'>
 
             <div className='AddProject-information-step'>
-                 {currentStep === 1  && <StepOne onNext={nextStep} handleFormData={handleInputData} values={formData} />}
+                 {currentStep === 1  && <StepOne onNext={nextStep} handleFormData={handleInputData} handleSelectData = {handleSelectData}values={formData} />}
                  {currentStep === 2 && <StepTwo  onNext={nextStep} onPrev={prevStep} handleFormData={handleInputData} values={formData} />}
                  {currentStep === 3 && <StepThree onPrev={prevStep} handleFormData={handleFileUpload } values={formData} OnSubmit={submitForm } deleteFile={handleFileDelete} />}
                

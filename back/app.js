@@ -10,6 +10,8 @@ const castingRoutes = require('./routes/castings')
 const orderRoutes = require('./routes/order')
 const userRoutes = require('./routes/users')
 const agendaRoutes = require('./routes/agenda')
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 require("dotenv").config();
 
 
@@ -21,6 +23,20 @@ app.use(express.static('IFC'))//qui gere le folder pour l'upload des fichiers.
 app.use(bodyParser.urlencoded({ // qui gere les requetes entrantes de type formulaires.
   extended: true
 }));
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Express API for JSONPlaceholder',
+    version: '1.0.0',
+  },
+};
+
+const options = {
+  swaggerDefinition,
+  // Paths to files containing OpenAPI definitions
+  apis: ['./routes/*.js'],
+};
+const swaggerSpec = swaggerJSDoc(options);
 
 const corsOptions ={
   origin: process.env.FRONTEND_HOST,
@@ -30,6 +46,8 @@ const corsOptions ={
 
 app.use(cors(corsOptions));
 
+app.use('/docs', swaggerUi.serve);
+app.get('/docs',swaggerUi.setup(swaggerSpec) )
 //API routes
 app.use('/api',authRoutes);
 app.use('/api',projectRoutes);

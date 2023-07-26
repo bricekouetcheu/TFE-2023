@@ -4,18 +4,18 @@ const fs = require('fs-extra');
 const path = require('path');
 
 exports.CreateProject  = (req, res)=>{
-    const {name, address} = req.body;
+    const {name, address , agenda} = req.body;
     //creer un middleweares d'auth
     const user_id = req.user.user_id
     const files = req.files;
     console.log(user_id)
    
 
-    const AddNewProjectRequest = 'INSERT INTO projects ( project_id, project_name, project_address, project_date, user_id) values(DEFAULT,$1, $2, DEFAULT, $3) RETURNING project_id;'
+    const AddNewProjectRequest = 'INSERT INTO projects ( project_id, project_name, project_address, project_date, user_id , agenda_id) values(DEFAULT,$1, $2, DEFAULT, $3 , $4) RETURNING project_id;'
     const AddNewFileRequest = 'INSERT INTO ifc_files(file_name,project_id) VALUES %L';
 
     //add A new project
-    pool.query(AddNewProjectRequest, [name,address ,user_id ] )
+    pool.query(AddNewProjectRequest, [name, address ,user_id, agenda ] )
     .then((result)=>{
         const id_projet = result.rows[0].project_id;
         

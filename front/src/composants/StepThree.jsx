@@ -31,7 +31,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
         e.preventDefault()
 
         if(values.files.length === 0 ){
-            setErrorMessage('Please fill in all fields' )
+            setErrorMessage('Veuillez telecharger un fichier')
             
         } else{
             OnSubmit();
@@ -71,9 +71,9 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
 
         </div>
         <div className='step3-navigation'>
-                <button onClick={onPrev}><FontAwesomeIcon icon={faChevronLeft}/> Precedent</button>
-                <button onClick={()=>Navigate('/projects')}>Acceuil<FontAwesomeIcon icon={faHouse}/> </button>
-                <button onClick={OnSubmit}>Creer Projet</button>
+                <button onClick={onPrev}><FontAwesomeIcon icon={faChevronLeft} data-testid="btn-prev"/ > Precedent</button>
+                <button onClick={()=>Navigate('/projects')} >Acceuil<FontAwesomeIcon icon={faHouse}/> </button>
+                <button onClick={handleSubmit} data-testid="btn-submit">Creer Projet</button>
 
             </div>
         

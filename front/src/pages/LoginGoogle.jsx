@@ -32,7 +32,7 @@ const LoginGoogle = () => {
             }
     }
     const loginF = useGoogleLogin({
-        scope: 'https://www.googleapis.com/auth/calendar',
+        scope: 'https://www.googleapis.com/auth/calendar  https://www.googleapis.com/auth/gmail.send',
         onSuccess: tokenResponse => getUser(tokenResponse.code),
         flow: 'auth-code'
       });

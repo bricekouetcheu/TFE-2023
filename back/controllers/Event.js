@@ -159,7 +159,7 @@ exports.createNewEvent = async(req, res)=>{
           });
 
           const createdEvent = response.data
-          console.log(createdEvent)
+      
 
           res.status(201).send('Nouvel evennement crée')
 

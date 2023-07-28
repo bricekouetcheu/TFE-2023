@@ -10,6 +10,7 @@ const castingRoutes = require('./routes/castings')
 const orderRoutes = require('./routes/order')
 const userRoutes = require('./routes/users')
 const agendaRoutes = require('./routes/agenda')
+const eventRoutes = require('./routes/Event')
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 require("dotenv").config();
@@ -56,6 +57,7 @@ app.use('/api',castingRoutes);
 app.use('/api',orderRoutes);
 app.use('/api',userRoutes);
 app.use('/api' ,agendaRoutes )
+app.use('/api' ,eventRoutes )
 
 
 

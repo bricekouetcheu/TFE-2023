@@ -23,8 +23,7 @@ const filterIFCFiles = (files) => {
   
     if (invalidFiles.length > 0) {
       const errorMessage = "Seuls les fichiers de type IFC sont autorisés.";
-      // Faites quelque chose avec le message d'erreur, par exemple, l'afficher à l'utilisateur ou effectuer une action spécifique.
-      console.log(errorMessage);
+     
     }
   
     return filteredFiles;
@@ -56,7 +55,7 @@ const NewProject = () => {
         files:[]
     })
 
-    console.log(formData)
+  
    
    
 
@@ -133,8 +132,7 @@ const NewProject = () => {
 
     //submit formdata
     const submitForm = ()=>{
-      
-           console.log(Files)
+    
        axios
        .post(NewProjectUrl,Files,{withCredentials:true})
        .then( result=>{

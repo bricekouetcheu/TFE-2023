@@ -56,8 +56,8 @@ app.use('/api',fileRoutes);
 app.use('/api',castingRoutes);
 app.use('/api',orderRoutes);
 app.use('/api',userRoutes);
-app.use('/api' ,agendaRoutes )
-app.use('/api' ,eventRoutes )
+app.use('/api' ,agendaRoutes)
+app.use('/api' ,eventRoutes)
 
 
 

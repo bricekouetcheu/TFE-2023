@@ -64,15 +64,16 @@ const Cards = (props , {getPrediction}) => {
             case "created":
                 return (
                     <>
-                        <div onClick={OpenModal } >OUVRIR <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
-                        <div>SUPPRIMER <FontAwesomeIcon icon={faTrash}  className='card-icon' /></div>
+                        <div onClick={OpenModal } >Ouvrir <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                        <div>Supprimer <FontAwesomeIcon icon={faTrash}  className='card-icon' /></div>
                     </>
                 )
                
             case "ordered":
                 return (
                     <>
-                        <div onClick={()=>Navigate(`/${project_id}/check/${props.id}`)}  >CHECK CONFORMITE <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                  
+                        <div onClick={()=>Navigate(`/${project_id}/check/${props.id}`)}  >Check conformite <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )
@@ -80,10 +81,7 @@ const Cards = (props , {getPrediction}) => {
             case "delivered":
                 return(
                     <>
-                     <div >
-                        <p onClick={handleOpenPrevisionModal}>Lancer la prediction<FontAwesomeIcon icon={faEye} className='card-icon'  /></p>
-                        <p>Date de debut <FontAwesomeIcon icon={faEye} className='card-icon'  /> </p>
-                    </div>
+                   <div onClick={handleOpenPrevisionModal}  >Demarrer la prediction  <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )

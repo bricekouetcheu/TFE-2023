@@ -106,22 +106,51 @@ axiosInstance.interceptors.request.use(async (config) => {
 });
 
 
+const timestampToDatetime = (timestamp)=>{
+
+   const dateInMilliseconds = timestamp * 1000;
+  const dateObject = new Date(dateInMilliseconds);
+  const year = dateObject.getFullYear();
+  const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+  const day = String(dateObject.getDate()).padStart(2, '0');
+  const hours = String(dateObject.getHours()).padStart(2, '0');
+  const minutes = String(dateObject.getMinutes()).padStart(2, '0');
+  const seconds = String(dateObject.getSeconds()).padStart(2, '0');
+
+  const timezoneOffset = -dateObject.getTimezoneOffset() / 60;
+  const timezoneOffsetString = timezoneOffset >= 0 ? `+${String(timezoneOffset).padStart(2, '0')}:00` : `${String(timezoneOffset).padStart(3, '0')}:00`;
+
+  const dateTimeString = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}${timezoneOffsetString}`;
+  return dateTimeString;
+}
+
+
 exports.createNewEvent = async(req, res)=>{
     const { agendaId, timestamp, summary, description } = req.body;
+    
 
     try{
-        const eventTime = new Date(timestamp).toISOString();
+        
         const event = {
             summary: summary,
             description: description,
             start: {
-              dateTime: eventTime,
-              timeZone: 'Europe/Brussels', // Remplacez par le fuseau horaire de l'événement
+              dateTime: timestampToDatetime(timestamp),
+              timeZone: 'Europe/Brussels', 
             },
             end: {
-              dateTime: eventTime,
-              timeZone: 'Europe/Brussels', // Remplacez par le fuseau horaire de l'événement
+              dateTime: timestampToDatetime(timestamp),
+              timeZone: 'Europe/Brussels', 
             },
+            reminders: {
+              useDefault: false,
+              overrides: [
+                {
+                  method: 'email',
+                  minutes: 2 * 24 * 60, // reminder 2 days before event
+                },
+              ],
+            }
           };
 
           const response = await axiosInstance.post(`https://www.googleapis.com/calendar/v3/calendars/${agendaId}/events` , event,
@@ -130,6 +159,7 @@ exports.createNewEvent = async(req, res)=>{
           });
 
           const createdEvent = response.data
+          console.log(createdEvent)
 
           res.status(201).send('Nouvel evennement crée')
 

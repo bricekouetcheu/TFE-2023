@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCalendarDays} from  '@fortawesome/free-solid-svg-icons';
 import { IoMdClose } from "react-icons/io";
 import { useParams} from 'react-router-dom'
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
 
 const PredictionModal = (props , {onClose}) => {
 
@@ -13,14 +15,85 @@ const PredictionModal = (props , {onClose}) => {
     const {project_id} = useParams()
     const target = 20;
     const concretePredictionUrl = `http://127.0.0.1:8000/prediction/${target}`
+    const createEventUrl = process.env.REACT_APP_API_HOST+`api/event`
     const [Prediction, setPrediction] = useState()
     const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${props.casting_id}`
     const getOneProjectInformationsUrl = process.env.REACT_APP_API_HOST+`api/project/${project_id}`
     const APIkey = process.env.REACT_APP_API_KEY 
     const [temp_next, setTemp_next] = useState() 
     const [time_next ,setTime_next] = useState() 
+    const [project ,setProject] = useState()
+
+
+
+
+       
+      /**
+   * handling modal closure.
+   *
+   * @function
+   * @name handleCloseModal
+   * @returns {void}
+   */
+      const handleCloseModal = () => {
+        props.onCloseModal();
+      }; 
+
+
+
+
+    const createEvent = async()=>{
+      
+        try{
+            const data = {
+                agendaId:project.agenda_id,
+                timestamp: Prediction.uncasting_timestamp,
+                summary : "test",
+                description : `Decoffrage beton pour ${project.project_name}`
+
+            }
+
+            await axios.post(createEventUrl, data, { withCredentials:true})
+            handleCloseModal()
+            
+            Swal.fire({
+                icon: 'success',
+                title: "nouveau casting ajouté à l'agenda",
+                showConfirmButton: true,
+                confirmButtonColor: '#00BCB6',
+                timer: 10000,
+                
+              });
+
+            
+                
+
+            
+        
+            
+
+        }catch(err){
+            console.log(err)
+
+        }
+        
+    }
     
 
+
+
+    /**
+     * get next 5 five days temperatures
+     * @async
+     * @function
+     * @param {number} lat 
+     * @param {number} long 
+     * @returns {Promise<void>} - 
+     * @throws {Error} - Une erreur est levée si la requête vers l'API échoue.
+     *
+     * }
+     *    
+     */
 
     const getTemperature = async(lat , long)=>{
 
@@ -33,18 +106,18 @@ const PredictionModal = (props , {onClose}) => {
             const temperaturesByDay = {};
             const timestampsByDay = {};
 
-            // Parcourez les prévisions et groupez les températures par jour
+           
             forecasts.forEach((forecast) => {
-              const date = forecast.dt_txt.split(" ")[0];// Obtenez la date au format "AAAA-MM-JJ"
+              const date = forecast.dt_txt.split(" ")[0];// get Each date
               const timestamp = forecast.dt; 
-              const temperatureInKelvin = forecast.main.temp; // Obtenez la température
+              const temperatureInKelvin = forecast.main.temp; 
               const temperatureInCelsius = temperatureInKelvin - 273.15
         
               if (temperaturesByDay[date]) {
-                // Si la date existe dans l'objet, ajoutez la température à la liste des températures pour ce jour
+                
                 temperaturesByDay[date].push(temperatureInCelsius);
               } else {
-                // Si la date n'existe pas dans l'objet, créez une nouvelle liste avec la température
+              
                 temperaturesByDay[date] = [temperatureInCelsius];
                 timestampsByDay[date] = timestamp;
               }
@@ -57,14 +130,9 @@ const PredictionModal = (props , {onClose}) => {
               const totalTemperature = temperatures.reduce((sum, temp) => sum + temp, 0);
               const averageTemperature = totalTemperature / temperatures.length;
               averageTemperatures.push(averageTemperature);
-        
-              // Ajouter le timestamp correspondant à la date
               timestamps.push(timestampsByDay[date]);
             }
-        
-            // Vous avez maintenant deux tableaux :
-            // averageTemperatures contenant les températures moyennes en degrés Celsius pour chaque jour
-            // timestamps contenant les timestamps correspondants aux jours de ces températures
+    
              setTemp_next(averageTemperatures);
              setTime_next(timestamps);
 
@@ -111,6 +179,7 @@ const PredictionModal = (props , {onClose}) => {
   const getProjectInformations = async()=>{
     try{
         const response  = await axios.get(getOneProjectInformationsUrl , {withCredentials:true})
+        setProject(response.data)
         const project_address = response.data.project_address
       const coordonnates = await geocodeAddress(project_address)
       getTemperature(coordonnates.lat , coordonnates.lng)
@@ -130,8 +199,7 @@ const PredictionModal = (props , {onClose}) => {
   */
   const getOrderfromCasting = async()=>{
     try{
-        console.log("test1" , temp_next)
-        console.log("test2", time_next)
+
         const response =  await axios.get(getOneOrderUrl,{withCredentials:true})
         const order = ModifyObject(response.data.order_data)
         const data = {
@@ -142,7 +210,6 @@ const PredictionModal = (props , {onClose}) => {
             "t_cast": 0
         }
         const PredictionResponse = await axios.post(concretePredictionUrl, data)
-        console.log(PredictionResponse.data)
         setPrediction(PredictionResponse.data)
 
     }catch(err){
@@ -150,17 +217,7 @@ const PredictionModal = (props , {onClose}) => {
     }
 
   }
-   
-      /**
-   * handling modal closure.
-   *
-   * @function
-   * @name handleCloseModal
-   * @returns {void}
-   */
-      const handleCloseModal = () => {
-        props.onCloseModal();
-      };
+
 
       useEffect(()=>{
         if(temp_next && time_next){
@@ -194,7 +251,7 @@ const PredictionModal = (props , {onClose}) => {
                 </div>
 
                 <div className='prediction-btn'>
-                    <button>
+                    <button onClick={createEvent}>
                     Ajouter a l'agenda
                     <FontAwesomeIcon icon={faCalendarDays} />
 

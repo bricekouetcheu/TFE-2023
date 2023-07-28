@@ -66,9 +66,11 @@ exports.CreateProject  = (req, res)=>{
 exports.getOneProject = async(req, res)=>{
     try{
         const project_id = req.params.project_id;
-        const getOneProjectQuery = 'select *  from projects where project_id = $1'
+        const getOneProjectQuery = 'select * from projects where project_id = $1'
         const result = await pool.query(getOneProjectQuery , [project_id])
-        const data = result.rows;
+        const data = result.rows[0];
+
+       
         res.status(200).send(data)
 
     }catch(err){
@@ -77,6 +79,9 @@ exports.getOneProject = async(req, res)=>{
     }
    
 }
+
+    
+    
 
 
 

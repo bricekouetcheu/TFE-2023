@@ -10,7 +10,6 @@
     flex-direction: column;
     background-color: #fff;
     gap: 50px;
-    background-image: linear-gradient(to top, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #fefeff, #fdfefe, #fcfdfe, #f9fbfd, #f6fafc, #f3f8fb, #f0f7fa);
     animation:scale-up-center 0.4s;
 }
 

@@ -41,8 +41,7 @@ const MyCasting = () => {
     const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${selectedCastingId}`
     const [openPrediction, setOpenPrediction] = useState(false)
     let count = 0
-    console.log(project)
-
+  
   
    /**
      * handle prediction modal status.
@@ -74,7 +73,6 @@ const MyCasting = () => {
       try{
         const result = await axios.get(getProjectUrl , {withCredentials:true})
         setProject(result.data)
-        console.log(result.data)
       } catch(err){
         console.log(err)
       }
@@ -205,10 +203,10 @@ const MyCasting = () => {
            {project
             &&
             (<div className='project-description'>
-              <h1> {project[0].project_name} </h1>
+              <h1> {project.project_name} </h1>
               <div>
                   <img className = 'location-icon' src={location} alt='location img'/>
-                  <p>{project[0].project_address} </p>
+                  <p>{project.project_address} </p>
               </div>
            </div>)}
           <div className="kanban-board"

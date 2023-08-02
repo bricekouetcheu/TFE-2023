@@ -6,13 +6,14 @@ require("dotenv").config();
 
 exports.getPrediction = async(req, res)=>{
     const data = req.body 
+    console.log(req.body)
+    
+    const target = 20
         
         try{
-            const response = await axios.post(data)
+            const response = await axios.post(process.env.PREDICTION_SERVICE, data)
 
-            const data = response.data
-
-            res.status(200).send(data)
+            res.status(200).send(response.data)
 
         }catch(err){
             console.log(err)

@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
-const projectRoutes =require('./routes/projects');
+const projectRoutes = require('./routes/projects');
 const fileRoutes = require('./routes/files')
 const castingRoutes = require('./routes/castings')
 const orderRoutes = require('./routes/order')
@@ -61,10 +61,6 @@ app.use('/api' ,eventRoutes)
 
 
 
-app.get('/', (req,res)=>{
-    res.send('hello')
-  })
-  
   
   
   module.exports = app;

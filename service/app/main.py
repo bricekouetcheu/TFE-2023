@@ -26,13 +26,13 @@ app.add_middleware(
 
 @app.post("/detect-text")
 async def detect_text(image: UploadFile = File(...)):
-    print('test',image.filename)  # Vérifier le nom du fichier
-    # Enregistrer l'image dans un fichier temporaire
+    print('test',image.filename)  #check filename
+    # Save img in temporay directory
     file_path = f"./temp/{image.filename}"
     with open(file_path, "wb") as buffer:
         buffer.write(image.file.read())
 
-    # Effectuer la détection de texte
+    # apply detection
     marked_image, line_items_coordinates = mark_region(file_path)
     extracted_text = extract_text(file_path, line_items_coordinates)
     result_text =  create_text_object(extracted_text)
@@ -44,7 +44,7 @@ async def detect_text(image: UploadFile = File(...)):
         if any(re.search(expression, line) for expression in expressions ):
             filtered_text.append(line)
 
-    # Supprimer le fichier temporaire
+    # delete file
     os.remove(file_path)
     
 

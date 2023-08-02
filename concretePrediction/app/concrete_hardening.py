@@ -63,10 +63,13 @@ class ConcreteStrength():
 
         return array
 
-    def setTempHistory(self, time, temperature, timeFactor=24*3600, k=3):
+    def setTempHistory(self, time, temperature, timeFactor=24*3600):
         self.t = time
         self.temperature = temperature
         self.timeFactor = timeFactor
+        k = 3
+        if len(self.t) <= 3 : 
+            k = len(self.t)-1
         self.splTemp = splrep(self.t, self.temperature, k=k)
 
     def getTemperatureHistory(self, time):

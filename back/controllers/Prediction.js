@@ -4,7 +4,7 @@ const multer = require('multer');
 require("dotenv").config();
 
 
-exports.Prediction = async(req, res)=>{
+exports.getPrediction = async(req, res)=>{
     const data = req.body 
         
         try{

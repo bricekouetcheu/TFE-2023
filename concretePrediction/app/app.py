@@ -1,6 +1,6 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import datetime
 import time
@@ -8,10 +8,6 @@ import random
 import numpy as np
 
 from concrete_hardening import StrengthClass, CementType, ConcreteStrength
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
-
-
 
 
 
@@ -25,21 +21,6 @@ class ConcreteModel(BaseModel):
 
 app = FastAPI()
 
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:3000",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 
 @app.get("/health/")
 def health():
@@ -49,31 +30,49 @@ def health():
 def prediction(concrete: ConcreteModel, target : float):
     """
     Create a concrete strength prediction.
+
+    * I create the fake temperature history
+    * t --> time (in timestamp)
+    * T --> Temperature
+    * t0 -> time when the measurement starts
+    * tCast -> time when the casting start
+
     """
 
     # factor to convert second to days
     s2d = 1./(3600.*24)
 
-    # I create the fake temperature history
-    # t --> time (in timestamp)
-    # T --> Temperature
-    # t0 -> time when the measurement starts
-    # tCast -> time when the casting start
+    
 
-    Duration = 35  # days
+    
     now = time.time()
     
     if concrete.t_cast == 0 : 
+        Duration = 35  # days
         tCast = now 
         t0 = tCast 
+        
     else : 
         tCast = concrete.t_cast
         t0 = tCast 
-    t = np.linspace(t0, t0+Duration/s2d, 100)
-   
-    T = np.array(concrete.temperature_hist)
-    T= np.array(t) *0 + 20.0
+        
 
+    if (len(concrete.temperature_hist) != len(concrete.time_hist)):
+        raise HTTPException(status_code=404, detail="temperature_hist and time_hist must have the same length")
+    
+    
+    if (len(concrete.temperature_hist) ==0 ) :
+        t = np.linspace(t0, t0+Duration/s2d, 100)
+        T= np.array(t) *0 + 20.0
+    else :
+        t = np.array(concrete.time_hist)
+        T = np.array(concrete.temperature_hist)
+ 
+
+        if (tCast < np.min(t)): raise HTTPException(status_code=404, detail="tcast %f must be higher than the first timestamp %f" % (tCast, np.min(t)))
+        if (tCast > np.max(t)): raise HTTPException(status_code=404, detail="tcast must be lower than the last timestamp")
+
+    
     # I create a concrete cast with their properties (Strength CLass, Cement TYpe)
     myConcreteCast = ConcreteStrength(concrete.strengthClass, concrete.cementType)
     # I provide the Temperature History

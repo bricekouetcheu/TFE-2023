@@ -25,3 +25,4 @@ export function getBetonTypes(betonType){
 
     return values.get(betonType) || null;
 }
+

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
@@ -11,13 +12,15 @@ const orderRoutes = require('./routes/order')
 const userRoutes = require('./routes/users')
 const agendaRoutes = require('./routes/agenda')
 const eventRoutes = require('./routes/Event')
+const detectionRoutes = require('./routes/detection')
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 require("dotenv").config();
 
-
+app.use(fileUpload());
 app.use(express.json()); // qui gere les requetes entrantes de type json.
 app.use(cookieParser()); // qui s'occupe des cookies.
+app.use(express.static('public'));
 
 app.use(express.static('IFC'))//qui gere le folder pour l'upload des fichiers.
 
@@ -58,6 +61,8 @@ app.use('/api',orderRoutes);
 app.use('/api',userRoutes);
 app.use('/api' ,agendaRoutes)
 app.use('/api' ,eventRoutes)
+app.use('/api' ,detectionRoutes)
+
 
 
 

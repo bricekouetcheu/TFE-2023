@@ -1,0 +1,86 @@
+version: '3.3'
+
+services:
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+
+    ports:
+      - "3050:80"
+
+  frontend:
+    build:
+      context: ./front
+    #args:
+    #    - REACT_APP_KEY=${REACT_APP_KEY}
+
+    environment:
+      - REACT_APP_API_HOST=http://localhost:3050/api/
+      - REACT_APP_API_KEY= fake
+      - REACT_APP_GOOGLEID= fake
+
+  backend_concrete:
+    build:
+      context: ./concretePrediction
+    depends_on:
+      - db2
+      - backend
+    healthcheck:
+      test: curl --fail http://localhost:80/health/ || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+
+  backend_compliance:
+    build:
+      context: ./compliance
+    depends_on:
+      - db2
+      - backend
+    healthcheck:
+      test: curl --fail http://localhost:80/health/ || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+
+  backend:
+    build:
+      context: ./back
+    depends_on:
+      - db2
+
+    environment:
+      - TOKEN_PASS=fake
+      - DB_USER=fake
+      - DB_PASSWORD=fake
+      - DB_NAME=TFE_2023
+      - DB_HOST=db2
+      - DB_PORT=5432
+      - FRONTEND_HOST=http://localhost:3050/
+      - GOOGLE_ID_CLIENT=fake
+      - GOOGLE_CLIENT_SECRET=fake
+
+    volumes:
+    - IFC:/app/IFC
+
+  db2:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD= fake
+      - POSTGRES_DB=fake
+    volumes:
+      - ./back/databaseFiles/init2.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - db2:/var/lib/postgresql/data
+
+volumes:
+  db2:
+    driver: local
+  IFC:
+    driver: local

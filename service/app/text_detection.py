@@ -4,13 +4,11 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 # Chemin vers le fichier Tesseract OCR 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\tess\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\tess\tesseract.exe'
 
 
 def mark_region(image_path):
     img = cv2.imread(image_path)
-    
-    #convert img to 
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     
     #reduce noise and smooth edges
@@ -34,7 +32,7 @@ def mark_region(image_path):
 
     return img, line_items_coordinates
 
-
+# extract text from images
 def extract_text(image_path, line_items_coordinates):
     
 

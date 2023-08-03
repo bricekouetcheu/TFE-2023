@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
@@ -21,7 +20,6 @@ require("dotenv").config();
 app.use(fileUpload());
 app.use(express.json()); // qui gere les requetes entrantes de type json.
 app.use(cookieParser()); // qui s'occupe des cookies.
-app.use(express.static('public'));
 
 app.use(express.static('IFC'))//qui gere le folder pour l'upload des fichiers.
 

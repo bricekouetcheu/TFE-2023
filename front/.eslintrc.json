@@ -4,7 +4,6 @@
         "es2021": true
     },
     "extends": [
-        "standard-with-typescript",
         "plugin:react/recommended"
     ],
     "parserOptions": {
@@ -17,7 +16,7 @@
     "rules": {
         "indent": ["error", 2],
         "semi": ["error", "always"],
-        "quotes": ["error", "double"],
+        "quotes": ["error", "simple"],
         "comma-dangle": ["error", "always-multiline"],
         "require-jsdoc": ["error", {
             "require": {

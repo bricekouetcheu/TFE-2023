@@ -90,6 +90,24 @@ describe('Test de la route /projects', () => {
   });
 
 
+  it('should delete a project' , async()=>{
+    const project_id = 1;
+
+    const mockDbResult = {'rows':[]}
+     mockDbResult.rows = [{
+      project_id: project_id , project_name: 'Projet 1', user_id: 1
+    }]
+
+    const { query } = require('../db.js');
+    query.mockResolvedValue(mockDbResult);
+
+    const response = await request(app).get(`/api/project/${project_id}`)
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(mockDbResult.rows[0]);
+
+  })
+
+
 
 });
 

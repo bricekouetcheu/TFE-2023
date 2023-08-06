@@ -169,3 +169,39 @@ exports.createNewEvent = async(req, res)=>{
 
     }
 }
+
+
+exports.getAllEventFromCalendar = async(req, res)=>{
+
+  const {agendaId} = req.params
+  try{
+    const response = await axiosInstance.get(`https://www.googleapis.com/calendar/v3/calendars/${agendaId}/events`, {
+      userId: req.user.user_id,
+    });
+
+    const Events = response.data.items
+
+    //sort events by starting date
+
+    Events.sort((a, b) => {
+      const dateA = new Date(a.start.dateTime);
+      const dateB = new Date(b.start.dateTime);
+      return dateA - dateB;
+    });
+
+    
+    const firstUpcomingEvent = Events.find(event => {
+      const eventDate = new Date(event.start.dateTime);
+      const currentDate = new Date();
+      return eventDate >= currentDate;
+    });
+
+
+    res.status(200).json(firstUpcomingEvent);
+  }catch(err){
+    console.log(err)
+    res.status(500).send('erreur serveur')
+  
+  }
+
+}

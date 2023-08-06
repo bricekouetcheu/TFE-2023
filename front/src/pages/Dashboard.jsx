@@ -14,48 +14,59 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import logo from "../assets/logo.png";
+import logo from '../assets/logo.png';
 import { faPlus, faCircleInfo, faArrowRightFromBracket, faCubes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MyCasting from '../composants/MyCasting';
 import NewCasting from '../composants/NewCasting';
-import plus from '../assets/plus.png'
-import schedule from '../assets/schedule.png'
-import logout from '../assets/logout.png'
-import dashboard from '../assets/dashboard.png'
+import CalendarContent from '../composants/CalendarContent';
+import plus from '../assets/plus.png';
+import schedule from '../assets/schedule.png';
+import logout from '../assets/logout.png';
+import dashboard from '../assets/dashboard.png';
 import { useNavigate } from 'react-router-dom';
 
 
 const drawerWidth = 340;
 
+
+/**
+ * 
+ * @param {*} props 
+ * @returns 
+ */
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedOption, setSelectedOption] = useState('Mycasting');
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
 
 
 
 
   const handleSidebarItemClick = (option) => {
-      setSelectedOption(option);
-    };
+    setSelectedOption(option);
+  };
 
-    useEffect(() => {
-        if (mobileOpen) {
-          setMobileOpen(false);
-        }
-      }, [selectedOption]);
+  useEffect(() => {
+    if (mobileOpen) {
+      setMobileOpen(false);
+    }
+  }, [selectedOption]);
 
 
 
-    let contentComponent = null;
+  let contentComponent = null;
 
-    if (selectedOption === 'Newcasting') {
-      contentComponent = <NewCasting />;
-    } else if (selectedOption === 'Mycasting') {
-      contentComponent = <MyCasting></MyCasting>;}
+  if (selectedOption === 'Newcasting') {
+    contentComponent = <NewCasting/>;
+  } else if (selectedOption === 'Mycasting') {
+    contentComponent = <MyCasting></MyCasting>;
+  } else if(selectedOption === 'MyCalendar'){
+    contentComponent = <CalendarContent></CalendarContent>;
+  };
 
+  
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -73,28 +84,28 @@ function ResponsiveDrawer(props) {
       }}>
         <img className = 'sidebar-logo-dashboard' src={logo} alt="" onClick={()=>Navigate('/projects')}/>
 
-     </Box >
+      </Box >
       <Divider />
       <Box >
-      <List >
-      <ListItemButton onClick={() => handleSidebarItemClick('Newcasting')} id='sidebar-menu'>
-        <ListItemIcon>
-          <img src={plus} alt='' className='sidebar-icon'/>
+        <List >
+          <ListItemButton onClick={() => handleSidebarItemClick('Newcasting')} id='sidebar-menu'>
+            <ListItemIcon>
+              <img src={plus} alt='' className='sidebar-icon'/>
         
-        </ListItemIcon>
-        <ListItemText primary="Ajouter un nouveau casting" />
-      </ListItemButton>
-      <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')} id='sidebar-menu'>
-        <ListItemIcon>
-          <img src={dashboard} alt='' className='sidebar-icon'/>
-        </ListItemIcon>
-        <ListItemText primary="Mes Castings" />
-      </ListItemButton>
-      <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')} id='sidebar-menu'>
+            </ListItemIcon>
+            <ListItemText primary="Ajouter un nouveau casting" />
+          </ListItemButton>
+          <ListItemButton onClick={() => handleSidebarItemClick('Mycasting')} id='sidebar-menu'>
+            <ListItemIcon>
+              <img src={dashboard} alt='' className='sidebar-icon'/>
+            </ListItemIcon>
+            <ListItemText primary="Mes Castings" />
+          </ListItemButton>
+      <ListItemButton onClick={() => handleSidebarItemClick('MyCalendar')} id='sidebar-menu'>
         <ListItemIcon>
           <img src={schedule} alt='' className='sidebar-icon'/>
         </ListItemIcon>
-        <ListItemText primary="Calendar" />
+        <ListItemText primary="Calendrier" />
       </ListItemButton>
       <ListItemButton  id='sidebar-menu'>
         <ListItemIcon>

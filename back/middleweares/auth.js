@@ -18,7 +18,7 @@ exports.authMiddleware = (req, res, next)=> {
     req.user = decodedToken; //add user informations to request body
    
     next(); 
-    console.log('bonjour')
+  
   } catch (err) {
     res.status(401).json({ error: 'Invalid token' }); 
   }
@@ -45,16 +45,13 @@ exports.checkAuthorization = async(req, res, next)=>{
     const query = 'SELECT EXISTS (SELECT 1 FROM projects WHERE project_id = $1 AND user_id = $2) AS is_owner;';
     const result = await pool.query(query,[project_id, user_id])
 
-    console.log('bonjour' , result)
 
     if(result.rows[0].is_owner){
-        console.log('test1',user_id)
-        console.log('test1', project_id)
+        
            next();
-           console.log('bonjour')
+           
     }else{
-      console.log('test2',user_id)
-      console.log('test2', project_id)
+      
       return res.status(403).send("vous n'avez pas acces a ce projet")
     }
 

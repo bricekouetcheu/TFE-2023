@@ -1,0 +1,41 @@
+.calendar-content{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 250px;
+    background-color: #fff;
+    
+
+}   
+
+
+@media (max-width: 900px) {
+    .calendar-content{
+     
+        padding-top: 180px;
+       
+       
+       
+      
+    }
+
+}
+
+@media (max-width: 450px) {
+
+   
+    .calendar-content{
+        padding-top: 130px;
+
+    }
+}
+
+
+@media (min-width: 1600px) {
+    .calendar-content{
+        padding-top: 115px; 
+      
+    }
+}

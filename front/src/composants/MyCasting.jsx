@@ -29,6 +29,8 @@ const MyCasting = () => {
   const {project_id} = useParams();
   const getAllCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/castings`;
   const getProjectUrl = process.env.REACT_APP_API_HOST+`api/project/${project_id}`;
+  const [project, setProject]=useState();
+  const [FirstEvent,setFirstEvent] = useState()
   const [castings, setCastings]= useState(null);
   const [selectedCastingId, setSelectedCastingId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,11 +39,12 @@ const MyCasting = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [columns, setColumns] = useState(initialColumns);
-  const [project, setProject]=useState();
   const getOneOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${selectedCastingId}`;
   const [openPrediction, setOpenPrediction] = useState(false);
   let count = 0;
   
+  //on recuperer deja le premier event maintenant faut construire ui
+  console.log(FirstEvent);
   /**
      * handle prediction modal status.
      *
@@ -72,10 +75,34 @@ const MyCasting = () => {
     try{
       const result = await axios.get(getProjectUrl , {withCredentials:true});
       setProject(result.data);
+
+      getEvents(result.data.agenda_id);
     } catch(err){
       console.log(err);
     }
 
+  };
+
+  /**
+   * @function
+   * @name getEvents
+   * @param {*} agenda_id agenda linked to the project
+   * @returns {void}
+   */
+  const getEvents = async(agenda_id)=>{
+
+    const getEventsUrl = process.env.REACT_APP_API_HOST+`api/events/${agenda_id}`;
+    try{
+      const response = await axios.get(getEventsUrl , {withCredentials:true});
+      console.log('test1', response);
+      setFirstEvent(response.data);
+
+
+    }catch(err){
+      console.log(err);
+
+
+    }
   };
 
 

@@ -66,10 +66,11 @@ exports.CreateProject  = (req, res)=>{
 exports.getOneProject = async(req, res)=>{
     try{
         const project_id = req.params.project_id;
+        const user_id = req.user.user_id
 
     
-        const getOneProjectQuery = 'select * from projects where project_id = $1'
-        const result = await pool.query(getOneProjectQuery , [project_id])
+        const getOneProjectQuery = 'select * from projects where project_id = $1 and user_id = $2'
+        const result = await pool.query(getOneProjectQuery , [project_id , user_id])
       
         const data = result.rows[0];
 
@@ -122,7 +123,7 @@ exports.DeleteProject = async (req, res) => {
          await fs.remove(directoryPath);
 
          await client.query('COMMIT');
-         res.status(200).json({ message: 'Suppression réussie' });
+         res.status(200).send('Suppression réussie' );
   } catch (err) {
 
         await client.query('ROLLBACK');

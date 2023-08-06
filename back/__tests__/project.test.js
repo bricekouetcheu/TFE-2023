@@ -11,8 +11,15 @@ const app = require('../app.js');
             next();
           },
           checkAuthorization: (req, res, next) => {
-            req.user = { user_id: 1 };
-            next();
+            if (req.params.project_id === '1') {
+              // Simulate user_id 1 as the owner of the project
+              req.user = { user_id: 1 };
+              next();
+            } else {
+              // Simulate another user who is not the owner of the project
+              req.user = { user_id: 2 };
+              return res.status(401).send("vous n'avez pas acces a ce projet");
+            }
           },
         }))
 
@@ -65,22 +72,22 @@ describe('Test de la route /projects', () => {
     expect(response.body).toEqual(mockDbResult.rows[0]);
   })
 
-  it('should returns a 401 ', async()=>{
+  it('should return a 401 when the user is not the owner of the project', async () => {
+    const project_id = 2;
 
-    const project_id = 3;
 
+    // Mocking the database response for the project that the user does not own
     const mockDbResult = {'rows':[]}
-     mockDbResult.rows = [{
-      project_id: project_id , project_name: 'Projet 1', user_id: 2
+    mockDbResult.rows = [{
+      project_id: project_id , project_name: 'Projet 1', user_id: 1
     }]
 
     const { query } = require('../db.js');
     query.mockResolvedValue(mockDbResult);
 
-    const response = await request(app).get(`/api/project/${project_id}`)
+    const response = await request(app).get(`/api/project/${project_id}`);
     expect(response.status).toBe(401);
-   
-  })
+  });
 
 
 

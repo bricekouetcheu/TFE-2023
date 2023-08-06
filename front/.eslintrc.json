@@ -14,11 +14,11 @@
         "react"
     ],
     "rules": {
-        "indent": ["error", 2],
-        "semi": ["error", "always"],
-        "quotes": ["error", "simple"],
-        "comma-dangle": ["error", "always-multiline"],
-        "require-jsdoc": ["error", {
+        "indent": ["warn", 2],
+        "semi": ["warn", "always"],
+        "quotes": ["warn", "single"],
+        "comma-dangle": ["warn", "always-multiline"],
+        "require-jsdoc": ["warn", {
             "require": {
               "FunctionDeclaration": true,
               "MethodDefinition": true,

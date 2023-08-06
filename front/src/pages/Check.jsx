@@ -1,10 +1,10 @@
-import React , {useState , useRef, useEffect} from 'react';
-import Navbar from '../composants/Navbar';
-import { faXmark,faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import imageIcon from '../assets/image.png';
-import camera from '../assets/photo.png';
-import Backdrop from '@mui/material/Backdrop';
+import React , {useState , useRef, useEffect} from "react";
+import Navbar from "../composants/Navbar";
+import { faXmark,faImage, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import imageIcon from "../assets/image.png";
+import camera from "../assets/photo.png";
+import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -23,10 +23,9 @@ const Check = () => {
     const updateCastingUrl = process.env.REACT_APP_API_HOST+`api/castings/${casting_id}`
     const scrollRef = useRef()
     const [openBackdrop, setOpenBackdrop] = useState(false);
-    const postImageUrl = 'http://127.0.0.1:8000/detect-text'
+    const postImageUrl = process.env.REACT_APP_API_HOST+'api/detection'
 
-    console.log(order)
-   
+
     
   const UpdateCastingStatus = async()=>{
     try{

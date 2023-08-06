@@ -17,7 +17,6 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 require("dotenv").config();
 
-app.use(fileUpload());
 app.use(express.json()); // qui gere les requetes entrantes de type json.
 app.use(cookieParser()); // qui s'occupe des cookies.
 

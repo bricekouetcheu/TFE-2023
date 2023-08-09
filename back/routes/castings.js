@@ -9,98 +9,265 @@ const { checkAuthorization  } = require('../middleweares/auth');
 
 
 
-/**
- * @swagger
- * /users/{id}/projects:
- *   get:
- *     summary: Get all projects for a user
- *     description: Use this route to retrieve a list of all projects associated with a user ID. A valid token is required to access this endpoint.
- *     tags:
- *       - Projects
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         description: User ID
- *         schema:
- *           type: integer
- *           example: 1234
- *     security:
- *       - BearerAuth: []
- *     responses:
- *       '200':
- *         description: List of projects
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The project ID.
- *                         example: 1
- *                       name:
- *                         type: string
- *                         description: The project's name.
- *                         example: Project One
- *       '401':
- *         description: Unauthorized access, invalid or missing token
- *       '404':
- *         description: User not found
- *       '500':
- *         description: Internal server error, failed to retrieve projects
- */
-
 router.post('/projects/:project_id/casting' , checkAuthorization , CreateNewCasting)
-
-/**
- * @swagger
- * path:
- *   /projects/{project_id}/castings:
- *     get:
- *       summary: Récupère tous les castings d'un projet spécifié
- *       tags: [Castings]
- *       parameters:
- *         - in: path
- *           name: project_id
- *           required: true
- *           description: L'ID du projet pour lequel récupérer les castings
- *           schema:
- *             type: string
- *       responses:
- *         200:
- *           description: Liste des castings récupérée avec succès
- *           content:
- *             application/json:
- *               schema:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     casting_id:
- *                       type: string
- *                     role:
- *                       type: string
- *                     requirements:
- *                       type: string
- *         401:
- *           description: Non autorisé - l'utilisateur n'a pas les droits nécessaires
- *         404:
- *           description: Projet non trouvé
- *         500:
- *           description: Erreur serveur - impossible de récupérer les castings
- *       security:
- *         - bearerAuth: []
- */
 router.get('/projects/:project_id/castings' , checkAuthorization , GetAllCastings)
 router.get('/projects/:project_id/casting/:casting_id',getOneCastingById)
 router.get('/templateData/:casting_id' , getTemplateData)
 router.put('/castings/:casting_id',UpdateStatus)
 
+/**
+ * @swagger
+ *
+ * /projects/{project_id}/casting:
+ *   post:
+ *     summary: Créer un nouveau casting pour un projet.
+ *     description: Crée un nouveau casting pour le projet avec l'ID spécifié. Nécessite un jeton d'accès valide.
+ *     tags:
+ *       - Castings
+ *     parameters:
+ *       - in: path
+ *         name: project_id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'ID du projet pour lequel créer un casting.
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Un jeton d'accès obtenu en authentifiant un utilisateur.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               casting_description:
+ *                 type: string
+ *                 description: La description du casting.
+ *                 example: Casting pour le projet XYZ.
+ *               casting_volume:
+ *                 type: number
+ *                 description: Le volume du casting.
+ *                 example: 10.5
+ *               template_id:
+ *                 type: integer
+ *                 description: L'ID du modèle de casting associé.
+ *                 example: 1
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Casting créé avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Un message confirmant que le casting a été créé.
+ *                   example: Casting créé avec succès.
+ *       400:
+ *         description: Paramètres de requête invalides.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Un message décrivant l'erreur survenue.
+ *                   example: Description du casting manquante.
+ *       401:
+ *         description: Le jeton d'accès est manquant ou invalide.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Un message indiquant que l'utilisateur n'est pas autorisé à effectuer l'action demandée.
+ *                   example: Jeton d'accès invalide.
 
+ * /projects/{project_id}/castings:
+ *   get:
+ *     summary: Récupérer tous les castings d'un projet.
+ *     description: Récupère tous les castings du projet spécifié pour l'utilisateur authentifié. Nécessite un jeton d'accès valide.
+ *     tags:
+ *       - Castings
+ *     parameters:
+ *       - in: path
+ *         name: project_id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'ID du projet dont on veut récupérer les castings.
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Un jeton d'accès obtenu en authentifiant un utilisateur.
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Liste de castings récupérée avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Casting'
+ *       401:
+ *         description: Le jeton d'accès est manquant ou invalide.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Un message indiquant que l'utilisateur n'est pas autorisé à effectuer l'action demandée.
+ *                   example: Jeton d'accès invalide.
+ * 
+ * /projects/{project_id}/casting/{casting_id}:
+ *   get:
+ *     summary: Récupérer un casting spécifique d'un projet.
+ *     description: Récupère un casting spécifique du projet pour l'utilisateur authentifié. Nécessite un jeton d'accès valide.
+ *     tags:
+ *       - Castings
+ *     parameters:
+ *       - in: path
+ *         name: project_id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'ID du projet auquel appartient le casting.
+ *       - in: path
+ *         name: casting_id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'ID du casting à récupérer.
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Un jeton d'accès obtenu en authentifiant un utilisateur.
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Casting récupéré avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Casting'
+ *       401:
+ *         description: Le jeton d'accès est manquant ou invalide.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Un message indiquant que l'utilisateur n'est pas autorisé à effectuer l'action demandée.
+ *                   example: Jeton d'accès invalide.
+ */
+
+/**
+ * @swagger
+ *
+ * /templateData/{casting_id}:
+ *   get:
+ *     summary: Récupérer les données de modèle associées à un casting.
+ *     description: Récupère les données de modèle associées au casting spécifié pour l'utilisateur authentifié. Nécessite un jeton d'accès valide.
+ *     tags:
+ *       - Castings
+ *     parameters:
+ *       - in: path
+ *         name: casting_id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'ID du casting dont on veut récupérer les données de modèle.
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Un jeton d'accès obtenu en authentifiant un utilisateur.
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Données de modèle récupérées avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TemplateData'
+ *       401:
+ *         description: Le jeton d'accès est manquant ou invalide.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Un message indiquant que l'utilisateur n'est pas autorisé à effectuer l'action demandée.
+ *                   example: Jeton d'accès invalide.
+ *
+ * /castings/{casting_id}:
+ *   put:
+ *     summary: Mettre à jour le statut d'un casting.
+ *     description: Met à jour le statut du casting spécifié pour l'utilisateur authentifié. Nécessite un jeton d'accès valide.
+ *     tags:
+ *       - Castings
+ *     parameters:
+ *       - in: path
+ *         name: casting_id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'ID du casting à mettre à jour.
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Un jeton d'accès obtenu en authentifiant un utilisateur.
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Statut du casting mis à jour avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Un message confirmant que le statut du casting a été mis à jour.
+ *                   example: Statut du casting mis à jour avec succès.
+ *       401:
+ *         description: Le jeton d'accès est manquant ou invalide.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Un message indiquant que l'utilisateur n'est pas autorisé à effectuer l'action demandée.
+ *                   example: Jeton d'accès invalide.
+ */
 module.exports = router;

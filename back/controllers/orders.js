@@ -147,15 +147,7 @@ exports.AddNewOrder = async(req,res)=>{
         const orderData = req.body
        
         const pdfBytes = await generatePDFBuffer(orderData)
-        const destinationEmail = 'he201902@students.ephec.be'
-        console.log('test1',pdfBytes)
-      
-
-        //checking if castings exists
-        const castingExists = await pool.query('SELECT * FROM castings WHERE casting_id = $1', [casting_id]);
-        if (castingExists.rows.length === 0) {
-          return res.status(404).json({ message: 'Le casting_id spécifié n\'existe pas.' });
-        }
+        const destinationEmail = process.env.DESTINATION_EMAIL;
 
         //getting email address user
         const getUserEmailQuery = `
@@ -177,19 +169,19 @@ exports.AddNewOrder = async(req,res)=>{
         if (isAccessTokenIsExpired) {
             const newAccessToken = await refreshAccessToken(refresh_token);
             oauth2Client.setCredentials({
-                access_token: newAccessToken // Remplacez par le véritable access_token de l'utilisateur
+                access_token: newAccessToken 
             });
 
-                // Utilisation de l'API Gmail pour envoyer un e-mail
+        //sending email
         const gmail = google.gmail({
             version: 'v1',
             auth: oauth2Client
         });
         const messagePayload = {
             subject: "Nouvelle commande créée",
-            to: destinationEmail, // Remplacez par l'adresse e-mail de destination
+            to: destinationEmail,
             from: user_email,
-            attachments: [{ filename: 'commande.pdf', content: pdfBytes }],
+            attachments: [{ filename: 'exigences.pdf', content: pdfBytes }],
         };
 
         const mail = new MailComposer(messagePayload);
@@ -207,34 +199,9 @@ exports.AddNewOrder = async(req,res)=>{
             },
         });
     
-        console.log(result.data);
+       
      
-        // Préparer le message
-       /* const destinationEmail = 'he201902@students.ephec.be'
-        const rawMessage = `From: Votre Adresse Email <votre_adresse_email@gmail.com>\r\n` +
-            `To: ${destinationEmail}\r\n` +
-            `Subject: Nouvelle commande créée\r\n\r\n` +
-            `Une nouvelle commande a été créée pour le casting `;
-
-        const encodedMessage = Buffer.from(rawMessage)
-            .toString('base64')
-            .replace(/\+/g, '-')
-            .replace(/\//g, '_')
-            .replace(/=+$/, '');
-
-        // Envoyer le message
-        await gmail.users.messages.send({
-            userId: 'me',
-            requestBody: {
-                raw: encodedMessage,
-                attachments: [
-                    {
-                        filename: 'commande.pdf',
-                        content: pdfBytes.toString('base64'), 
-                    },
-                ],
-            },
-        });*/
+      
 
 
 
@@ -253,9 +220,11 @@ exports.AddNewOrder = async(req,res)=>{
         // Préparer le message
         const messagePayload = {
             subject: "Nouvelle commande créée",
-            to: destinationEmail, // Remplacez par l'adresse e-mail de destination
+            to: destinationEmail, 
             from: user_email,
-            attachments: [{ filename: 'commande.pdf', content: pdfBytes }],
+            text: "Bonjour,\n\nUne nouvelle commande .",
+            html: "<p>Bonjour,</p><p>Une nouvelle commande.</p>",
+            attachments: [{ filename: 'exigences.pdf', content: pdfBytes }],
         };
 
         const mail = new MailComposer(messagePayload);
@@ -273,33 +242,7 @@ exports.AddNewOrder = async(req,res)=>{
             },
         });
     
-        console.log(result.data);
 
-      /*  const destinationEmail = 'he201902@students.ephec.be'
-        const rawMessage = `From: Votre Adresse Email <votre_adresse_email@gmail.com>\r\n` +
-            `To: ${destinationEmail }\r\n` +
-            `Subject: Nouvelle commande créée\r\n\r\n` +
-            `Une nouvelle commande a été créée pour le casting `;
-
-        const encodedMessage = Buffer.from(rawMessage)
-            .toString('base64')
-            .replace(/\+/g, '-')
-            .replace(/\//g, '_')
-            .replace(/=+$/, '');
-
-        // Envoyer le message
-        const response = await gmail.users.messages.send({
-            userId: 'me',
-            requestBody: {
-                raw: encodedMessage,
-                attachments: [
-                    {
-                        filename: 'commande.pdf',
-                        content : pdfBytes,
-                    },
-                ],
-            },
-        });*/
 
   
     } 

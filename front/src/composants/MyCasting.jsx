@@ -30,7 +30,7 @@ const MyCasting = () => {
   const getAllCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/castings`;
   const getProjectUrl = process.env.REACT_APP_API_HOST+`api/project/${project_id}`;
   const [project, setProject]=useState();
-  const [FirstEvent,setFirstEvent] = useState()
+  const [FirstEvent,setFirstEvent] = useState();
   const [castings, setCastings]= useState(null);
   const [selectedCastingId, setSelectedCastingId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

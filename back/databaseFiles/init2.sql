@@ -33,6 +33,8 @@ CREATE TABLE projects(
 );
 
 
+
+
 CREATE TABLE ifc_files (
     id SERIAL PRIMARY KEY,
     project_id INTEGER,
@@ -51,17 +53,11 @@ CREATE TABLE casting_templates (
 
 
 
+
 CREATE TABLE statuses (
   status_id SERIAL PRIMARY KEY,
   status_name VARCHAR(50) NOT NULL
 );
-
-INSERT INTO statuses (status_name) VALUES
-  ('created'),
-  ('ordered'),
-  ('delivered'),
-  ('ongoing'),
-  ('completed');
 
 CREATE TABLE castings (
   casting_id SERIAL PRIMARY KEY,
@@ -73,6 +69,16 @@ CREATE TABLE castings (
   project_id INT NOT NULL, 
   status_id INT NOT NULL
 );
+
+
+INSERT INTO statuses (status_name) VALUES
+  ('created'),
+  ('ordered'),
+  ('delivered'),
+  ('ongoing'),
+  ('completed');
+
+
 
 ALTER TABLE castings
   ADD CONSTRAINT fk_project

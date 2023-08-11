@@ -20,9 +20,9 @@ services:
     #    - REACT_APP_KEY=${REACT_APP_KEY}
 
     environment:
-      - REACT_APP_API_HOST=http://localhost:3050/api/
-      - REACT_APP_API_KEY= fake
-      - REACT_APP_GOOGLEID= fake
+      - REACT_APP_API_HOST=https://bimcasting.digitalconstruction.cloud/api/
+      - REACT_APP_API_KEY=AIzaSyA2qvtdcz2v7p8OhKrMHsds9vJuorlCifY
+      - REACT_APP_GOOGLEID=1002668994830-unpc8nig84ourgkekoaa89oph7umtp9q.apps.googleusercontent.com
 
   backend_concrete:
     build:
@@ -31,19 +31,19 @@ services:
       - db2
       - backend
     healthcheck:
-      test: curl --fail http://localhost:80/health/ || exit 1
+      test: curl --fail http://localhost:8000/health/ || exit 1
       interval: 40s
       timeout: 30s
       retries: 3
 
   backend_compliance:
     build:
-      context: ./compliance
+      context: ./service
     depends_on:
       - db2
       - backend
     healthcheck:
-      test: curl --fail http://localhost:80/health/ || exit 1
+      test: curl --fail http://localhost:8000/health/ || exit 1
       interval: 40s
       timeout: 30s
       retries: 3
@@ -55,15 +55,15 @@ services:
       - db2
 
     environment:
-      - TOKEN_PASS=fake
-      - DB_USER=fake
-      - DB_PASSWORD=fake
+      - TOKEN_PASS="thisisasecuretoken"
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
       - DB_NAME=TFE_2023
       - DB_HOST=db2
       - DB_PORT=5432
-      - FRONTEND_HOST=http://localhost:3050/
-      - GOOGLE_ID_CLIENT=fake
-      - GOOGLE_CLIENT_SECRET=fake
+      - FRONTEND_HOST=https://bimcasting.digitalconstruction.cloud/
+      - GOOGLE_ID_CLIENT=1002668994830-unpc8nig84ourgkekoaa89oph7umtp9q.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
 
     volumes:
     - IFC:/app/IFC
@@ -73,8 +73,8 @@ services:
     restart: always
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD= fake
-      - POSTGRES_DB=fake
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=TFE_2023
     volumes:
       - ./back/databaseFiles/init2.sql:/docker-entrypoint-initdb.d/create_tables.sql
       - db2:/var/lib/postgresql/data

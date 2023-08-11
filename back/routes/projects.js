@@ -18,7 +18,7 @@ const {getOneProject} =  require('../controllers/projects')
  *     summary: Créer un nouveau projet.
  *     description: Crée un nouveau projet en utilisant des fichiers IFC fournis. L'utilisateur doit être authentifié et fournir un jeton d'accès.
  *     tags:
- *       - Projets
+ *       - Project
  *     security:
  *       - BearerAuth: []
  *     consumes:
@@ -79,7 +79,7 @@ const {getOneProject} =  require('../controllers/projects')
  *     summary: Obtenir la liste de tous les projets.
  *     description: Renvoie la liste de tous les projets associés à l'utilisateur authentifié.
  *     tags:
- *       - Projets
+ *       - Project
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -112,7 +112,7 @@ const {getOneProject} =  require('../controllers/projects')
  *     summary: Obtenir les détails d'un projet.
  *     description: Renvoie les détails du projet avec l'ID spécifié, sous réserve que l'utilisateur soit autorisé.
  *     tags:
- *       - Projets
+ *       - Project
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -161,7 +161,7 @@ const {getOneProject} =  require('../controllers/projects')
  *     summary: Supprimer un projet.
  *     description: Supprime le projet avec l'ID spécifié, sous réserve que l'utilisateur soit autorisé.
  *     tags:
- *       - Projets
+ *       - Project
  *     security:
  *       - BearerAuth: []
  *     parameters:

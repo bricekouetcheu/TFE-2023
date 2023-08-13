@@ -1,13 +1,14 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, {useState , useEffect, useRef} from 'react';
 import { IFCLoader } from "web-ifc-three/IFCLoader";
 import { IFCWALLSTANDARDCASE, IFCSLAB } from 'web-ifc';
 import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
-import axios from "axios"
+import axios from "axios";
 import { useParams } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Select, { components } from "react-select";
-import InputOption from './InputOption'
+import InputOption from './InputOption';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 /*import { getAllItemByCategory, getItem, getEntityProperties, getTotalVolume } from './ifcUtils';*/
@@ -20,17 +21,17 @@ const NewCasting = () => {
  
 
     //Declaration des states
-    const [errorMessage, setErrorMessage]= useState('')
+    const [errorMessage, setErrorMessage]= useState('');
     const [ifcModel, setIfcModel] = useState(null);
-    const [selectedType, setSelectedType] = useState("");
-    const [openCircular, setOpenCircular] = useState(false)
-    const [selectedEntity, setSelectedEntity] = useState("");
-    const [entities, setEntities] = useState("");
-    const [description, setDescription] = useState("")
+    const [selectedType, setSelectedType] = useState('');
+    const [openCircular, setOpenCircular] = useState(false);
+    const [selectedEntity, setSelectedEntity] = useState('');
+    const [entities, setEntities] = useState('');
+    const [description, setDescription] = useState('');
     const {project_id} = useParams();
-    const getFilesUrl =  process.env.REACT_APP_API_HOST+`api/files/${project_id}`
-    const createCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting`
-    const [submitted, setSubmitted] = useState(false)
+    const getFilesUrl =  process.env.REACT_APP_API_HOST+`api/files/${project_id}`;
+    const createCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting`;
+    const [submitted, setSubmitted] = useState(false);
     const selectRef = useRef(null);
     
     

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import {useState,React} from 'react';
 import StepOne from '../composants/StepOne';
 import StepTwo from '../composants/StepTwo';

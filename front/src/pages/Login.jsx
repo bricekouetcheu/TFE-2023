@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react';
 import logo from "../assets/logo.png";
 import { NavLink ,useNavigate} from 'react-router-dom';

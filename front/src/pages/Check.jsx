@@ -2,13 +2,15 @@ import React , {useState , useRef, useEffect} from 'react';
 import Navbar from '../composants/Navbar';
 import { faXmark,faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import imageIcon from '../assets/image.png;';
+// eslint-disable-next-line quotes
+import imageIcon from "../assets/image.png";
+// eslint-disable-next-line quotes
 import camera from "../assets/photo.png";
-import Backdrop from "@mui/material/Backdrop";
+import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import {checkValidity} from './utils'
+import {checkValidity} from './utils';
 import { ModifyObject } from './utils';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
@@ -29,26 +31,26 @@ const Check = () => {
     
   const UpdateCastingStatus = async()=>{
     try{
-      const result = await axios.put(updateCastingUrl,{withCredentials:true})
+      const result = await axios.put(updateCastingUrl,{withCredentials:true});
      
 
     }catch(err){
-      console.log(err)
+      console.log(err);
     }
     
 
-  }
+  };
 
-    const getOrder = async()=>{
-        try{
-            const response =  await axios.get(getOneOrderUrl,{withCredentials:true})
-            setOrder(ModifyObject(response.data.order_data))
-        }catch(err){
-            console.log(err)
-        }
-       
-
+  const getOrder = async()=>{
+    try{
+      const response =  await axios.get(getOneOrderUrl,{withCredentials:true});
+      setOrder(ModifyObject(response.data.order_data));
+    }catch(err){
+      console.log(err);
     }
+    
+
+  };
     
 
     const scrolltolastElement = ()=>{

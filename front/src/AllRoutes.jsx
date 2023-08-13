@@ -16,9 +16,9 @@ import axios from 'axios';
 
 const AllRoutes = () => {
 
-    const [isAuthenticated,setIsAuthenticated] = useState(false)
-    const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`
-    const navigate = useNavigate()
+    const [isAuthenticated,setIsAuthenticated] = useState(false);
+    const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`;
+    const navigate = useNavigate();
 
     const checkAuthentication = async()=>{
             

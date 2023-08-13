@@ -3,7 +3,7 @@
 const request = require('supertest');
 
 const app = require('../app.js');
-const { isType } = require('pdf-lib');
+
 
         // mocking auth middlewares
         jest.mock('../middleweares/auth', () => ({
@@ -35,9 +35,6 @@ jest.mock('../db.js', () => ({
 describe('test casting routes' ,()=>{
     it('should create new casting', async()=>{
         const mockDbResult = {'rows': [{
-            casting_id: 1,
-            casting_description:'test',
-            casting_volume : 20
         }]};
 
         const { query } = require('../db.js');
@@ -74,16 +71,16 @@ describe('test casting routes' ,()=>{
 
 
     it('should update a casting status', async()=>{
-         // Mock DB response for checkAuthorization middleware
+         
     const mockDbResult = {'rows': []};
-    // ... Mock the response with the casting_id and user_id values
+
 
     const { query } = require('../db.js');
     query.mockResolvedValue(mockDbResult);
 
-    const casting_id = 1; // Changer pour le casting_id que vous voulez tester
+    const casting_id = 1; 
 
-    // Mock DB response for UpdateStatus controller
+    
     const pool = require('../db.js');
     const mockUpdateResult = {
       rows: [],
@@ -98,14 +95,12 @@ describe('test casting routes' ,()=>{
     })
 
     it('should render 404 error  ', async()=>{
-        // Mock DB response for checkAuthorization middleware
+        
    const mockDbResult = {'rows': []};
-   // ... Mock the response with the casting_id and user_id values
-
    const { query } = require('../db.js');
    query.mockResolvedValue(mockDbResult);
 
-   const casting_id = 1; // Changer pour le casting_id que vous voulez tester
+   const casting_id = 1; 
 
    // Mock DB response for UpdateStatus controller
    const pool = require('../db.js');

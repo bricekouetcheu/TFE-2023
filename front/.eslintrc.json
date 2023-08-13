@@ -14,7 +14,7 @@
         "react"
     ],
     "rules": {
-        "react/display-name": "off",
+      /*  "react/display-name": "off",
         "react/prop-types": "off",
         "indent": ["warn", 2],
         "semi": ["warn", "always"],
@@ -27,5 +27,5 @@
               "ClassDeclaration": true
             }
           }]
-    }
+    */}
 }

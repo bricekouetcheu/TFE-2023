@@ -52,42 +52,41 @@ const Check = () => {
 
   };
     
-
-    const scrolltolastElement = ()=>{
-        const element = scrollRef?.current
-        element?.scrollIntoView({ behavior: 'smooth' });
-    }
-
-
-    const handleClose = () => {
-        setOpenBackdrop(false);
-    };
-    const handleOpen = () => {
-        setOpenBackdrop(true);
-    };
+  const scrolltolastElement = ()=>{
+    const element = scrollRef?.current;
+    element?.scrollIntoView({ behavior: 'smooth' });
+};
 
 
-    const handleImageUpload = (e)=>{
-        e.preventDefault()
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
+  const handleOpen = () => {
+    setOpenBackdrop(true);
+  };
+
+
+  const handleImageUpload = (e)=>{
+    e.preventDefault();
         
-        if (e.target.files && e.target.files[0]) {
-            setImage(e.target.files[0])
-          }  
-    }
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }  
+
+  };
 
     
-    const handleImageCapture = (e)=>{
-        e.preventDefault()
-        if (e.target.files && e.target.files[0]) {
-            setImage(e.target.files[0])
-          }  
+  const handleImageCapture = (e)=>{
+    e.preventDefault();
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }  
 
+  };
 
-    }
-
-    const handleImageDelete = ()=>{
-        setImage(null)
-    }
+  const handleImageDelete = ()=>{
+    setImage(null);
+  };
 
     const handleSubmitImage = async()=>{
         try{

@@ -94,7 +94,7 @@ const NewCasting = () => {
         const propertiesArray = [];
         
         let p = {};
-        let keyList = ['HasProperties', 'Quantities']
+        let keyList = ['HasProperties', 'Quantities'];
         for (const id of ids) {
           const properties = await manager.getPropertySets(0, id, true);
           

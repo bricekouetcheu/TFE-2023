@@ -1,16 +1,17 @@
+/* eslint-disable react/prop-types */
 import React, {useEffect, useState } from 'react';
 import { MdOutlineLogout} from "react-icons/md";
 import logo from "../assets/logo.png";
-import { HiUserCircle } from "react-icons/hi"
-import { Link } from 'react-router-dom'
-import { BiLogOut } from "react-icons/bi"
+import { HiUserCircle } from "react-icons/hi";
+import { Link } from 'react-router-dom';
+import { BiLogOut } from "react-icons/bi";
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
-import userIcon from '../assets/user.png'
-import profile1 from '../assets/profile1.png'
+import userIcon from '../assets/user.png'; // process.env.REACT_HOST+assets/image.png
+import profile1 from '../assets/profile1.png';
 
 
 

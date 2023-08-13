@@ -76,7 +76,7 @@ const {authMiddleware} = require('../middleweares/auth');
  *     summary: Récupérer tous les événements d'un agenda.
  *     description: Récupère tous les événements de l'agenda spécifié pour l'utilisateur authentifié.
  *     tags:
- *       - Événements
+ *       - Évents
  *     parameters:
  *       - in: path
  *         name: agendaId

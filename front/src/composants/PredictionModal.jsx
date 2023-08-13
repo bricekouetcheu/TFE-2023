@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React,{useEffect, useState } from 'react';
 import axios  from 'axios';
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 
 const PredictionModal = (props , {onClose}) => {
-
+  const updateCastingUrl = process.env.REACT_APP_API_HOST+`api/castings/${props.casting_id}`;
   const openWeatherMapKey = process.env.REACT_APP_WEATHERMAP_KEY;
   const {project_id} = useParams();
   const concretePredictionUrl = process.env.REACT_APP_API_HOST+'api/prediction';
@@ -26,7 +27,17 @@ const PredictionModal = (props , {onClose}) => {
   const [project ,setProject] = useState();
 
 
+  const UpdateCastingStatus = async()=>{
+    try{
+      const result = await axios.put(updateCastingUrl,{withCredentials:true});
+     
 
+    }catch(err){
+      console.log(err);
+    }
+    
+
+  };
 
        
   /**
@@ -56,11 +67,12 @@ const PredictionModal = (props , {onClose}) => {
       };
 
       await axios.post(createEventUrl, data, { withCredentials:true});
+      UpdateCastingStatus();
       handleCloseModal();
             
       Swal.fire({
         icon: 'success',
-        title: 'nouveau casting ajouté ',
+        title: 'nouveau casting ajouté au planning',
         showConfirmButton: true,
         confirmButtonColor: '#00BCB6',
         timer: 10000,

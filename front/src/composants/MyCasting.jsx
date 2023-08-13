@@ -43,6 +43,7 @@ const MyCasting = () => {
   const [openPrediction, setOpenPrediction] = useState(false);
   let count = 0;
   
+  
   //on recuperer deja le premier event maintenant faut construire ui
   console.log(FirstEvent);
   /**
@@ -206,6 +207,18 @@ const MyCasting = () => {
     const walk = (x - startX) * 3; 
     containerRef.current.scrollLeft = scrollLeft - walk;
   };
+
+  const getRemainingDay = (start)=>{
+    const startingDate = new Date(start);
+    const nowDate = new Date();
+    
+    const difference = startingDate - nowDate
+
+    const DaysRemaining = Math.ceil(difference/(1000 * 60 * 60 * 24) -1);
+
+    return DaysRemaining
+
+  }
     
 
   useEffect(() => {
@@ -228,13 +241,33 @@ const MyCasting = () => {
     <div className='home-Board'>
       {project
             &&
-            (<div className='project-description'>
-              <h1> {project.project_name} </h1>
-              <div>
-                <img className = 'location-icon' src={location} alt='location img'/>
-                <p>{project.project_address} </p>
+            (
+            <div className='project-header'>
+              <div className='project-description'>
+                <h1> {project.project_name} </h1>
+                <div>
+                  <img className = 'location-icon' src={location} alt='location img'/>
+                  <p>{project.project_address} </p>
+                </div>
               </div>
-            </div>)}
+
+              <div className='project-firstEvent'>
+                {FirstEvent ?
+                 (<div className='firstEvent'>
+                  <p className='first'> Prochain decoffrage prevu dans</p>
+                  <p className='second'>{getRemainingDay(FirstEvent.start.dateTime)}</p>
+                  <p className='third'>jours</p>
+                 </div>)
+                :
+                (<div className='no-Event'>
+                  <p>Aucun decoffrage</p>
+                  <p>prevu</p>
+                  <p>pour le moment</p></div>)
+                 }
+              </div>
+
+            </div>
+           )}
       <div className="kanban-board"
         ref={containerRef}
         onMouseDown={handleMouseDown}

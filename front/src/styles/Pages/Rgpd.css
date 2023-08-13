@@ -1,0 +1,90 @@
+.main{
+    position: relative;
+    padding-bottom: 6.74rem;
+    margin: 0 auto;
+    justify-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    width: 100%;
+    max-width: 1500px;
+    border-bottom: 1px solid grey;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0 auto;
+    top: 0;
+
+}
+
+.title1{
+    color: #026b30;
+    font-size: 25px;
+
+}
+
+.item1{
+    font-weight: bold;
+    color: #026b30;
+    font-size: 30px;
+}
+
+.item2{
+    font-weight: bold;
+    color: grey;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 8px;
+    
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    row-gap: 20px;
+    font-style: normal;
+    top: 100px;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 2%;
+
+   
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1em;
+}
+
+p{
+    font-size: 0.7em;
+
+
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+   
+   justify-content: center;
+    font-size: 0.7em;
+}
+
+li{
+  
+
+}

@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Order from './pages/Order';
 import LoginGoogle from './pages/LoginGoogle';
 import Check from './pages/Check';
+import Rgpd from './pages/Rgpd';
 import axios from 'axios';
 
 
@@ -55,7 +56,7 @@ const AllRoutes = () => {
     return (
         
         <Routes>
-          
+            <Route path="/rgpd" element={<Rgpd/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<LoginGoogle/>} />
             

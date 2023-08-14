@@ -55,6 +55,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
+          cp /home/brice/docker-compose-deployment.yml /home/brice/TFE-2023/
           cd /home/brice/TFE-2023
           docker-compose -f docker-compose-deployment.yml down
           git pull

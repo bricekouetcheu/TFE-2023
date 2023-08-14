@@ -1,0 +1,89 @@
+version: '3.3'
+
+services:
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+
+    ports:
+      - "3050:80"
+
+  frontend:
+    build:
+      context: ./front
+    environment:
+      - REACT_APP_API_HOST=fake
+      - REACT_APP_API_KEY=fake
+      - REACT_APP_GOOGLEID=fake
+      - REACT_APP_WEATHERMAP_KEY=fake
+      - REACT_APP_HOST=fake
+
+  backend_concrete:
+    build:
+      context: ./concretePrediction
+    depends_on:
+      - db2
+      - backend
+    healthcheck:
+      test: curl --fail http://localhost:8000/health/ || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+
+  backend_compliance:
+    build:
+      context: ./service
+    depends_on:
+      - db2
+      - backend
+    healthcheck:
+      test: curl --fail http://localhost:8000/health/ || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+
+  backend:
+    build:
+      context: ./back
+    depends_on:
+      - db2
+
+    environment:
+      - TOKEN_PASS=fake
+      - DB_USER=fake
+      - DB_PASSWORD=fake
+      - DB_NAME=fake
+      - DB_HOST=fake
+      - DB_PORT=fake
+      - FRONTEND_HOST=fake
+      - GOOGLE_ID_CLIENT=fake
+      - GOOGLE_CLIENT_SECRET=fake
+      - DESTINATION_EMAIL=fake
+      - PREDICTION_SERVICE=fake
+      - DETECTION_SERVICE=fake
+      - PROJET_NUMBER=fake
+
+    volumes:
+      - IFC:/app/IFC
+
+  db2:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=fake
+      - POSTGRES_PASSWORD=fake
+      - POSTGRES_DB=fake
+    volumes:
+      - ./back/databaseFiles/init2.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - db2:/var/lib/postgresql/data
+
+volumes:
+  db2:
+    driver: local
+  IFC:
+    driver: local

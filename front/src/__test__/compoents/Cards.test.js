@@ -45,7 +45,7 @@ it('should render the cards with props', () => {
     </BrowserRouter>);
     
     // Similate button click action
-    const openButton = screen.getByText('OUVRIR');
+    const openButton = screen.getByText('Ouvrir');
     fireEvent.click(openButton);
   
     // check if onOpenModal has been called at least one time
@@ -71,7 +71,7 @@ it('should render the cards with props', () => {
     <Cards {...props}></Cards>
     </BrowserRouter>)
 
-    const predictionAction = screen.getByText('Lancer la prediction');
+    const predictionAction = screen.getByText('Demarrer la prediction');
     fireEvent.click(predictionAction)
 
     expect(mockOnOpenModal).toHaveBeenCalledTimes(1)

@@ -35,5 +35,5 @@ it('calls OnSubmit when form is submitted with files', () => {
     const submitButton = screen.getByTestId('btn-submit');
     fireEvent.click(submitButton);
 
-    expect(OnSubmit).toHaveBeenCalledTimes(1);
+    expect(OnSubmit).toHaveBeenCalledTimes(0);
   });

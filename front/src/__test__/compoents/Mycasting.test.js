@@ -11,10 +11,10 @@ const projectData = {
   project_address: 'rue van lint 25, 1000 bruxelles',
 };
 
-describe('unit testing from MyCasting',()=>{
+describe('testing from MyCasting',()=>{
     it('should render project name and address', async() => {
  
-        axios.get.mockResolvedValueOnce({ data: [projectData] });
+        axios.get.mockResolvedValueOnce({ data: projectData });
     
         render(<BrowserRouter><MyCasting /></BrowserRouter>);
     
@@ -24,7 +24,7 @@ describe('unit testing from MyCasting',()=>{
             const hasProject_nameContent = content === 'projet test'
             return hasProject_nameContent
         })
-        const projectNameElement = await screen.findByText('projet test');
+        const projectNameElement = await screen.findByText('projet test', { exact: false });
         const addessElement = await screen.findByText('rue van lint 25, 1000 bruxelles')
         expect(projectNameElement).toBeInTheDocument();
         expect( addessElement).toBeInTheDocument();

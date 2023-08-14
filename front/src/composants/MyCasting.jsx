@@ -44,8 +44,7 @@ const MyCasting = () => {
   let count = 0;
   
   
-  //on recuperer deja le premier event maintenant faut construire ui
-  console.log(FirstEvent);
+  
   /**
      * handle prediction modal status.
      *
@@ -95,7 +94,6 @@ const MyCasting = () => {
     const getEventsUrl = process.env.REACT_APP_API_HOST+`api/events/${agenda_id}`;
     try{
       const response = await axios.get(getEventsUrl , {withCredentials:true});
-      console.log('test1', response);
       setFirstEvent(response.data);
 
 

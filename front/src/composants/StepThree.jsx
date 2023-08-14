@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {useState, React} from 'react';
 import { MdDelete} from "react-icons/md";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -279,7 +279,7 @@ const MyCasting = () => {
             
         <div className="column">
           <div className='column-header'>
-            <h4 className='colunm-title'>Created</h4>
+            <h4 className='colunm-title'>Nouveau</h4>
             <img src={created} alt=" created icon" />
           </div>
           <div className='column-content'>
@@ -299,7 +299,7 @@ const MyCasting = () => {
         </div>
         <div className="column">
           <div className='column-header'>
-            <h4 className='colunm-title'>Ordered</h4>
+            <h4 className='colunm-title'>Commandes</h4>
             <img src={ordered} alt="ordered icon" />
           </div>
           <div className='column-content'>
@@ -319,7 +319,7 @@ const MyCasting = () => {
         </div>
         <div className="column">
           <div className='column-header'>
-            <h4 className='colunm-title'>Delivered</h4>
+            <h4 className='colunm-title'>Livraisons</h4>
             <img src={delivered} alt="delivered icon" />
           </div>
           <div className='column-content'>
@@ -340,7 +340,7 @@ const MyCasting = () => {
         </div>
         <div className="column">
           <div className='column-header'>
-            <h4 className='colunm-title'>Ongoing</h4>
+            <h4 className='colunm-title'>En cours</h4>
             <img src={ongoing} alt="ongoing icon" />
           </div>
           <div className='column-content'>
@@ -360,7 +360,7 @@ const MyCasting = () => {
         </div>
         <div className="column">
           <div className='column-header'>
-            <h4 className='colunm-title'>Completed</h4>
+            <h4 className='colunm-title'>Terminé</h4>
             <img src={completed} alt="completed icon" />
           </div>
           <div className='column-content'>

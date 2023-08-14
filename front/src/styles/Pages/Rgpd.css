@@ -7,6 +7,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth;
 }
 .header{
     width: 100%;
@@ -23,11 +24,7 @@
 
 }
 
-.title1{
-    color: #026b30;
-    font-size: 25px;
 
-}
 
 .item1{
     font-weight: bold;
@@ -61,13 +58,14 @@
    
 }
 
-h1{
+.title{
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     text-decoration: underline;
     font-size: 1em;
+    font-weight: 600;
 }
 
 p{

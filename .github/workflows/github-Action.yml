@@ -20,6 +20,30 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install Frontend dependencies
+      working-directory: ./front
+      run: npm install
+
+    - name: Run Frontend tests
+      working-directory: ./front
+      run: npm test
+
+    - name: Install Backend dependencies
+      working-directory: ./back
+      run: npm install
+
+    - name: Run Backend tests
+      working-directory: ./back
+      run: npm test
+      
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:

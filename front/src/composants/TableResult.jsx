@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
 import React,{useRef} from 'react';
 import {AiOutlineFilePdf} from 'react-icons/ai';
 import { PDFDownloadLink} from '@react-pdf/renderer';

@@ -43,7 +43,7 @@ const Rgpd = () => {
            </ul>
 
            <h1 className="title">III- Consentement</h1>
-           <p>En utilisant le site BimdigitalConstruction.cloud, les utilisateurs consentent à </p>
+           <p>En utilisant le site https://bimcasting.digitalconstruction.cloud/, les utilisateurs consentent à </p>
            <ul>
             <li>	Toutes les conditions incluses dans la présente politique de confidentialité. </li>
             <li>	La collecte, l'utilisation et la conservation des données listées dans la présente politique de confidentialité.</li>
@@ -52,7 +52,7 @@ const Rgpd = () => {
            <h1 className="title">IV- Données personnelles collectées</h1>
 
            <p>
-                Les données personnelles suivantes collectées et utilisées sur le site  BimdigitalConstruction.cloud sont : l'addresse email, la date de naissance, le sexe, le nom et le prenom.
+                Les données personnelles suivantes collectées et utilisées sur le site  https://bimcasting.digitalconstruction.cloud/ sont : l'addresse email, la date de naissance, le sexe, le nom et le prenom.
                 Aucune donnée supplémentaire n'est collectée sans vous en informer au préalable.
 
  
@@ -60,13 +60,13 @@ const Rgpd = () => {
             </p>
             <h1 className="title">V- Traitement de ces données</h1>
 
-            <p>Les données personnelles recueillies sur le site BimdigitalConstruction.cloud ne sont collectées et traitées que dans le cadre des fins précisées dans la présente politique de confidentialité et / ou dans les pages pertinentes du site. Les données personnelles que nous collectons ne seront pas utilisées à d’autres fins.</p>
+            <p>Les données personnelles recueillies sur le site https://bimcasting.digitalconstruction.cloud/ ne sont collectées et traitées que dans le cadre des fins précisées dans la présente politique de confidentialité et / ou dans les pages pertinentes du site. Les données personnelles que nous collectons ne seront pas utilisées à d’autres fins.</p>
             <h1 className="title"> VI /Stockage et protection des données personnelles</h1>
-            <p> Le site BimdigitalConstruction.cloud ne conserve pas les données personnelles plus longtemps que ce qui est nécessaire à la réalisation des fins pour lesquelles elles sont collectées.</p>
+            <p> Le site https://bimcasting.digitalconstruction.cloud/ ne conserve pas les données personnelles plus longtemps que ce qui est nécessaire à la réalisation des fins pour lesquelles elles sont collectées.</p>
             <p> Nous prenons des mesures de sécurité appropriées pour protéger vos données personnelles contre tout accès non autorisé ou utilisation abusive.</p>
 
             <h1 className="title">VII- Droits de l'utilisateur</h1>
-            <p>Conformément au chapitre 3, art 12-23 du RGPD, les utilisateurs du site  BimdigitalConstruction.cloud ont, en ce qui concerne leurs données personnelles, les droits suivants :</p>
+            <p>Conformément au chapitre 3, art 12-23 du RGPD, les utilisateurs du site  https://bimcasting.digitalconstruction.cloud/ ont, en ce qui concerne leurs données personnelles, les droits suivants :</p>
             <ul>
                 <li>	Droit d'accès</li>
                 <li>	Droit de rectification</li>

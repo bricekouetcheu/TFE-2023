@@ -39,9 +39,32 @@ function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedOption, setSelectedOption] = useState('Mycasting');
+  const logoutUrl = process.env.REACT_APP_API_HOST+'api/logout';
   const Navigate = useNavigate();
 
+    /**
+     * make a http get request to logout the user
+     * if logout went successfully the user is redirect to login page
+     *
+     * @async
+     * @function
+     * @name handleLogout
+     * @returns {void}
+     */
+    const handleLogout = async()=>{
+      try{
+          const response = await axios.get(logoutUrl, {withCredentials:true}) 
+          if(response.data === "deconnexion reussie"){
+              Navigate('/')
 
+          }  
+
+      }catch(err){
+          console.log(err)
+
+      }
+     
+  }
 
 
   const handleSidebarItemClick = (option) => {
@@ -105,7 +128,7 @@ function ResponsiveDrawer(props) {
         <ListItemIcon>
           <img src={schedule} alt='' className='sidebar-icon'/>
         </ListItemIcon>
-        <ListItemText primary="Calendrier" />
+        <ListItemText primary="Calendrier" onClick={()=> handleLogout() } />
       </ListItemButton>
       <ListItemButton  id='sidebar-menu'>
         <ListItemIcon>

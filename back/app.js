@@ -61,6 +61,9 @@ app.use('/api' ,agendaRoutes)
 app.use('/api' ,eventRoutes)
 app.use('/api' ,detectionRoutes)
 app.use('/api' , predictionRoutes)
+app.get('/', (req, res)=>{
+  res.send('hello')
+})
 
 
 

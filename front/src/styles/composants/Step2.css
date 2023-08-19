@@ -19,6 +19,13 @@
    
 }
 
+.errorMessage{
+    font-weight: 200;
+    color: #F24D4D;
+    font-size: 1em;
+
+}
+
 .step2-form-top{
     display: flex;
     gap: 5%;

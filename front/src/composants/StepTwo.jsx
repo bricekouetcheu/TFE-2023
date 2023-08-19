@@ -1,38 +1,147 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState,useEffect } from 'react';
 import validator from 'validator';
 import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import { faHouse} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
+const createAddress = (street, number, city, postalCode) => {
+    const address = `${street}  ${number}, ${city} ${postalCode}`;
+    return address;
+  }
+
+const normalizeAddress = (address)=>{
+    return address
+    .toLowerCase()
+    .replace(/\s+/g, ' ') 
+    .trim(); 
+
+}
+  
 
 
 const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
 
-    const [ErrorMessage, setErrorMessage] = useState('')
-    const Navigate = useNavigate()
 
-    const handleSubmit = (e)=>{
+    const getProjectUrl = process.env.REACT_APP_API_HOST+'api/projects';
+    const [addresses, setAddresses] = useState([]);
+    const [ErrorMessage, setErrorMessage] = useState('');
+    const APIkey = process.env.REACT_APP_API_KEY ;
+    const Navigate = useNavigate();
+
+      /**
+   * get an address coordonnates.
+   *
+   * @function
+   * @name geocodeAddress
+   * @param {string} address - address to get geocoded.
+   * @returns {Promise<{lat: number, lng: number}> | null} - A promise with the geographic coordinates (latitude and longitude) of the address, or null if the address could not be geocoded.
+   */
+      const geocodeAddress = async (address) => {
+        console.log(address)
+        try {
+            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
+            const result = await axios.get(apiUrl);
+            const { results } =  result.data;
+           
+            if (results.length > 0) {
+              const { lat, lng } = results[0].geometry.location;
+              return { lat, lng };
+            } else {
+              return null;
+            }
+          } catch (err) {
+            console.log(err);
+            return null;
+          }
+      
+      };
+
+
+
+  /**
+   * Retrieves all projects from the API, converts their addresses to geographic coordinates and updates the list of projects with the obtained coordinates.
+   *
+   * @function
+   * @name getAllProject
+   * @param {Function} setProjects - The function to update the list of projects with geographical coordinates.
+   * @returns {void}
+   */
+      const getAllAddress = async ()=>{
+
+        try{
+            const result = await axios.get(getProjectUrl, {withCredentials:true});
+            const data = result.data
+            
+
+            setAddresses(data.map(project=>project.project_address))
+
+        }
+        catch(err){
+            console.log(err)
+
+        }
+
+       
+       
+        
+      }
+     
+
+    const handleSubmit = async(e)=>{
        
         e.preventDefault()
+        let newAddress = createAddress(values.street ,values.number,values.city, values.postalcode);
+        if(validator.isEmpty(values.street) ||
+           validator.isEmpty(values.number) ||
+           validator.isEmpty(values.city) ||
+           validator.isEmpty(values.postalcode)){
 
-        if(validator.isEmpty(values.street) || validator.isEmpty(values.number) || validator.isEmpty(values.city) || validator.isEmpty(values.postalcode)){
-            setErrorMessage('remplissez tous les champs' )
-            console.log('Oui')
-        } else{
-            onNext();
+            setErrorMessage('veuillez remplir tous les champs');
+          
+        } 
+        else{
+            const addressExists = await geocodeAddress(newAddress);
+            console.log(addressExists)
+            if(addressExists){
+              
+                const normalizedNewAddress = normalizeAddress(newAddress);
+                const normalizedAddresses = addresses.map(address=>normalizeAddress(address))
+               
+                setErrorMessage('Cette addresse est deja enregistrée');
+                if(normalizedAddresses.includes(normalizedNewAddress)){
+                    setErrorMessage('Cette adresse est déjà enregistrée');
+
+                } else{
+                    onNext();
+                    
+                }
+
+            }else{
+                setErrorMessage('Cette adresse n\'existe pas.');
+            }
+            
             
         }
+       
+     
+       
     }
+
+    useEffect(()=>{
+        getAllAddress()
+    },[])
 
     return (
         <div className='step2'>
         <h2>Localisation</h2>
       
         <div className='step2-form'>
-        <h3>{ErrorMessage}</h3>
+        <h3 className = 'errorMessage'>{ErrorMessage}</h3>
             
             <div className='step2-form-top'>
                 <div className='street'>

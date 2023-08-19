@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {useState,React, useEffect} from 'react';
 import validator from 'validator';
 import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
@@ -66,7 +67,7 @@ const StepOne = ({onNext, handleFormData, handleSelectData, values}) => {
             {agendas && (
                 <>
                 
-                <h1>Nom du Projet </h1>
+                <h1 className = 'project-title'>Nom du Projet </h1>
                          <input placeholder='Nom du projet'defaultValue={values.projectName} name='projectName' onChange={handleFormData('projectName')} data-testid ='project-name-input'/>
                          {agendas && (
                 <select name="AgendaId" id="agenda" className='select-stepOne' onChange={handleSelectData('AgendaId')} data-testid ='agenda-select'>
@@ -79,7 +80,7 @@ const StepOne = ({onNext, handleFormData, handleSelectData, values}) => {
                 </select>
             ) }
                      
-                         <p>{errorMessage}</p>
+                         <h1 className='errorMessage'>{errorMessage}</h1>
                          <div className='step1-navigation'>
                              <button className='btn-step1' onClick={()=>Navigate('/projects')} data-testid="btn-home"> Acceuil<FontAwesomeIcon icon={faHouse}/> </button>
                              <button className='btn-step1' onClick={handleProjectName} data-testid="btn-next">Suivant <span> </span> <FontAwesomeIcon icon={faChevronRight} /></button>

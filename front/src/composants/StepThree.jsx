@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
     const [uploadedFile, setUploadedFile] = useState([]);
     const [isUploading, setIsUploading] = useState(false);
-    const [ErrorMessage, setErrorMessage] = useState('')
+    const [ErrorMessage, setErrorMessage] = useState()
     const Navigate = useNavigate();
   
  
@@ -30,7 +30,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
     const handleSubmit = (e)=>{
        
         e.preventDefault()
-        console.log('test1000', values.files.length)
+       
         if(values.files.length === 0 ){
             setErrorMessage('Veuillez telecharger un fichier')
             
@@ -41,6 +41,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
     }
     return (
         <div className='step3'>
+        {ErrorMessage && (<h3 className='errorMessage'> {ErrorMessage}</h3>)}
         
         <div className='step3-upload'  onClick={()=>{document.querySelector('.input-field').click()}}>
         
@@ -57,13 +58,13 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
                         
                             }
                 <div className='step3-upload-icon'>
-                    <input type="file"  className='input-field' hidden multiple  name='file' onChange={handleFormData} data-testid ='file-upload-input' />
+                    <input type="file"  className='input-field' hidden  name='file' onChange={handleFormData} data-testid ='file-upload-input' />
                    
                     <FontAwesomeIcon icon={faFileImport}  size='xl' className='icon'  />
                     
                     
                     
-                    <h2>Importez vos fichiers IFC  </h2>
+                    <h2>Importez votre fichier IFC  </h2>
                     <h4></h4>
 
                 </div>

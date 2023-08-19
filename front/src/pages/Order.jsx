@@ -14,6 +14,9 @@ import createPDF from '../composants/CreatePdf';
 
 const  Order = ()=>{
   const {casting_id} = useParams();
+  const [casting , setCasting] = useState();
+  const {project_id} = useParams();
+  const getOnCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting/${casting_id}`;
   const getTemplateUrl = process.env.REACT_APP_API_HOST+`api/templateData/${casting_id}`;
   const updateCastingUrl = process.env.REACT_APP_API_HOST+`api/castings/${casting_id}`;
   const createOrderUrl = process.env.REACT_APP_API_HOST+`api/order/${casting_id}`;
@@ -23,8 +26,26 @@ const  Order = ()=>{
   const [submitted, setSubmitted] = useState(false);
   const scrollRef = useRef(null);
   const Navigate = useNavigate();
+  console.log(casting);
 
 
+    /**
+   * get casting data.
+   *
+   * @async
+   * @function
+   * @name fetchCastingData
+   * @returns {Promise<void>} - A promise successfully resolved when casting data is retrieved and updated in the state.
+   */
+    const fetchCastingData = async () => {
+      try {
+        const response = await axios.get(getOnCastingUrl , {withCredentials:true} ); 
+        const data = response.data;
+        setCasting(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   
   //handle scrolling
@@ -77,48 +98,61 @@ const  Order = ()=>{
   };
 
   const createOrder = (initialData) => {
-    const newData = {};
-  
-    initialData.results.forEach((item) => {
-      switch (item.group) {
-      case 'a':
-        newData['classe De Resistance'] = Array.isArray(item.answer) ? item.answer[0] : item.answer;
-        break;
-      case 'b1':
-        newData['Domaine utilisation'] = item.answer;
-        break;
-      case 'b2':
-        if (item.requirementTitle === 'exigence_b2') {
-          if (Array.isArray(item.answer)) {
-            newData['Classe Environnement'] = item.answer.join('');
-          } 
-        }
-        break;
-      case 'c':
-        newData['Consistance: Valeur cible affaissement'] = item.answer;
-        break;
-      case 'd':
-        if(item.answer){
-          newData['Diametre maximal des granulats'] = item.answer+''+item.suffix;
-        }
-          
-        break;
-      case 'e':
-        if (item.requirementTitle === 'exigence_e') {
-          if (Array.isArray(item.answer)) {
-            newData['Donnéees Complementaires'] = item.answer.join('<br>');
-          } else {
-            newData['Donnéees Complementaires']  = item.answer;
+
+    if(casting){
+      let newData = {
+        "volume" : casting[0].casting_volume_beton+ "m³"
+    };
+
+      initialData.results.forEach((item) => {
+        switch (item.group) {
+        case 'a':
+          newData['classe De Resistance'] = Array.isArray(item.answer) ? item.answer[0] : item.answer;
+          break;
+        case 'b1':
+          newData['Domaine utilisation'] = item.answer;
+          break;
+        case 'b2':
+          if (item.requirementTitle === 'exigence_b2') {
+            if (Array.isArray(item.answer)) {
+              newData['Classe Environnement'] = item.answer.join('');
+            } 
           }
+          break;
+        case 'c':
+          newData['Consistance: Valeur cible affaissement'] = item.answer;
+          break;
+        case 'd':
+          if(item.answer){
+            newData['Diametre maximal des granulats'] = item.answer+''+item.suffix;
+          }
+            
+          break;
+        case 'e':
+          if (item.requirementTitle === 'exigence_e') {
+            if (Array.isArray(item.answer)) {
+              newData['Donnéees Complementaires'] = item.answer.join('<br>');
+            } else {
+              newData['Donnéees Complementaires']  = item.answer;
+            }
+          }
+          break;
+          // ... (ajouter d'autres cas pour les autres groupes et exigences si nécessaire)
+        default:
+          break;
         }
-        break;
-        // ... (ajouter d'autres cas pour les autres groupes et exigences si nécessaire)
-      default:
-        break;
-      }
-    });
+      });
+    
+      return newData;
+
+    }
   
-    return newData;
+    
+
+    
+    
+  
+   
   };
   
 
@@ -164,6 +198,7 @@ const  Order = ()=>{
 
   useEffect(()=>{
     gettemplateData();
+    fetchCastingData()
     login();
 
   },[]);
@@ -209,7 +244,6 @@ const  Order = ()=>{
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + token,
       };
-  
       const questions = ParseData(tableData);
   
       try {
@@ -221,9 +255,9 @@ const  Order = ()=>{
         );
   
         const responseData = response.data;
+        console.log('test', responseData);
         // Handle the response data as needed
         
-       
         setOrder(createOrder(responseData));
         setSubmitted(false);
 

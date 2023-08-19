@@ -16,12 +16,12 @@ const Rgpd = () => {
             </p>
             <h1 className="title">I- L'objectif de la politique de confidentialité</h1>
             <p>  Cette politique de confidentialité est établie dans le but d'informer les utilisateurs de l'application BimDigitalconstruction, des modalités suivantes :</p>
-            <ul>
-                <li>	Les données personnelles recueillies par le site internet </li>
-                <li> L'utilisation faite de ces données</li>
-                <li>  L'accès à ces données</li>
-                <li>  Les droits que possèdent les utilisateurs du site</li>
-                <li> La politique liée à l'utilisation de cookies</li>
+            <ul className='ul-rgpd'>
+                <li className='li-rgpd'>	Les données personnelles recueillies par le site internet </li>
+                <li className='li-rgpd'> L'utilisation faite de ces données</li>
+                <li className='li-rgpd'>  L'accès à ces données</li>
+                <li className='li-rgpd'>  Les droits que possèdent les utilisateurs du site</li>
+                <li className='li-rgpd'> La politique liée à l'utilisation de cookies</li>
             </ul>
         
             <h1 className="title">
@@ -33,13 +33,13 @@ const Rgpd = () => {
             <p>
                 Les données personnelles sont :
             </p>
-           <ul>
-            <li> traitées de manière licite et transparente </li>
-            <li>	collectées à des fins déterminées, explicites et légitimes, et ne seront pas traitées ultérieurement d'une manière incompatible avec ces fins. Conformément à l'article 89, paragraphe 1 du RGPD, le stockage et le traitement de ces données à des fins archivistiques dans l’intérêt public, à des fins de recherche scientifique ou historique ou à des fins statistiques, n’est pas considéré comme incompatible avec les finalités initiales ;</li>
-            <li>	adéquates, pertinentes et limitées à ce qui est nécessaire dans le cadre des finalités pour lesquelles elles sont traitées ;</li>
-            <li>	exactes, et si nécessaires tenues à jour. Toutes les mesures raisonnables seront prises pour corriger des données incorrectes au regard de la finalité pour laquelle celles-si sont collectées ;</li>
-            <li>	conservées sous une forme permettant l'identification des personnes concernées pour une durée suffisante pour leur traitement ;</li>
-            <li>   traitées d'une façon qui garantit la sécurité de celles-ci, y compris en ce qui concerne le traitement non-autorisé ou illicite, la perte ou la destruction de ces données, accidentelle ou volontaire.</li>
+           <ul className='ul-rgpd'>
+            <li className='li-rgpd'> traitées de manière licite et transparente </li>
+            <li className='li-rgpd'>	collectées à des fins déterminées, explicites et légitimes, et ne seront pas traitées ultérieurement d'une manière incompatible avec ces fins. Conformément à l'article 89, paragraphe 1 du RGPD, le stockage et le traitement de ces données à des fins archivistiques dans l’intérêt public, à des fins de recherche scientifique ou historique ou à des fins statistiques, n’est pas considéré comme incompatible avec les finalités initiales ;</li>
+            <li className='li-rgpd'>	adéquates, pertinentes et limitées à ce qui est nécessaire dans le cadre des finalités pour lesquelles elles sont traitées ;</li>
+            <li className='li-rgpd'>	exactes, et si nécessaires tenues à jour. Toutes les mesures raisonnables seront prises pour corriger des données incorrectes au regard de la finalité pour laquelle celles-si sont collectées ;</li>
+            <li className='li-rgpd'>	conservées sous une forme permettant l'identification des personnes concernées pour une durée suffisante pour leur traitement ;</li>
+            <li className='li-rgpd' >   traitées d'une façon qui garantit la sécurité de celles-ci, y compris en ce qui concerne le traitement non-autorisé ou illicite, la perte ou la destruction de ces données, accidentelle ou volontaire.</li>
            </ul>
 
            <h1 className="title">III- Consentement</h1>
@@ -67,13 +67,13 @@ const Rgpd = () => {
 
             <h1 className="title">VII- Droits de l'utilisateur</h1>
             <p>Conformément au chapitre 3, art 12-23 du RGPD, les utilisateurs du site  https://bimcasting.digitalconstruction.cloud/ ont, en ce qui concerne leurs données personnelles, les droits suivants :</p>
-            <ul>
-                <li>	Droit d'accès</li>
-                <li>	Droit de rectification</li>
-                <li>	Droit à l'effacement</li>
-                <li>	Droit d'objection</li>
-                <li>	Droit de restreindre le traitement</li>
-                <li>	Droit de restreindre le traitement</li>
+            <ul className='ul-rgpd'>
+                <li className='li-rgpd'>	Droit d'accès</li>
+                <li className='li-rgpd'>	Droit de rectification</li>
+                <li className='li-rgpd'>	Droit à l'effacement</li>
+                <li className='li-rgpd'>	Droit d'objection</li>
+                <li className='li-rgpd'>	Droit de restreindre le traitement</li>
+                <li className='li-rgpd'>	Droit de restreindre le traitement</li>
                 
             </ul>
             <p>Pour faire valoir l'un de ses droits, accéder à vos données, les modifier ou les supprimer d'une quelconque manière, vous pouvez communiquer nous contacter via les addresses email suivantes:</p>

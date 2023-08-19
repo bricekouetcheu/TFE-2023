@@ -34,6 +34,7 @@ const AllRoutes = () => {
     
                 
                 setIsAuthenticated(true)
+                console.log('test1 bonjour')
             }else{
                 navigate('/')
                 setIsAuthenticated(false) 
@@ -50,7 +51,7 @@ const AllRoutes = () => {
 
     useEffect(()=>{
         checkAuthentication()
-    },[])
+    },[isAuthenticated])
     
   
     return (
@@ -59,11 +60,13 @@ const AllRoutes = () => {
             <Route path="/rgpd" element={<Rgpd/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<LoginGoogle/>} />
+           
             
           {isAuthenticated ? (
             <>
               <Route path="/:project_id/check/:casting_id" element={<Check />} />
               <Route path="/projects" element={<Projects />} />
+              
               <Route path="/AddProject" element={<NewProject />} />
               <Route path="/Dashboard/:project_id" element={<Dashboard />} />
               <Route path="/test1" element={<Order />} />

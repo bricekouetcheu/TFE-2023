@@ -74,7 +74,7 @@ p{
 
 }
 
-ul{
+.ul-rgpd{
     display: flex;
     flex-direction: column;
    
@@ -82,7 +82,7 @@ ul{
     font-size: 0.7em;
 }
 
-li{
+.li-rgpd{
   
 
 }

@@ -237,7 +237,7 @@ const MyCasting = () => {
     
   return (
     <div className='home-Board'>
-      {project && FirstEvent
+      {project 
             &&
             (
             <div className='project-header'>

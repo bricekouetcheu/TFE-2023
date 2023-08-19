@@ -11,10 +11,16 @@ const projectData = {
   project_address: 'rue van lint 25, 1000 bruxelles',
 };
 
+const Event = {
+  startTime: '',
+  endTime: ' '
+}
+
 describe('testing from MyCasting',()=>{
     it('should render project name and address', async() => {
  
         axios.get.mockResolvedValueOnce({ data: projectData });
+        
     
         render(<BrowserRouter><MyCasting /></BrowserRouter>);
     

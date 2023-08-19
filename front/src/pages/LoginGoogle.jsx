@@ -27,6 +27,7 @@ const LoginGoogle = () => {
             )
 
          if(result.data === "connexion reussie"){
+            console.log('test2 bonjour')
                 Navigate('/projects')
 
             }

@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
@@ -17,12 +19,20 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 require("dotenv").config();
 
-app.use(express.json()); // qui gere les requetes entrantes de type json.
-app.use(cookieParser()); // qui s'occupe des cookies.
+app.use(helmet());
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minuts
+  max: 100, // Limits the number of requests to 100 per IP during the specified window
+});
+app.use(limiter);
 
-app.use(express.static('IFC'))//qui gere le folder pour l'upload des fichiers.
+app.use(express.json()); // which handles incoming json type requests.
+app.use(cookieParser()); // handling cookies
+app.use(helmet()); //Using Helmet middleware to enhance HTTP header security
 
-app.use(bodyParser.urlencoded({ // qui gere les requetes entrantes de type formulaires.
+app.use(express.static('IFC'))//which manages the folder for uploading files.
+
+app.use(bodyParser.urlencoded({ // which handles incoming form-type requests.
   extended: true
 }));
 const swaggerDefinition = {

@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Select, { components } from "react-select";
+import MultiSelectWithRef from './Multiselect';
 import InputOption from './InputOption';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
@@ -25,7 +26,7 @@ const NewCasting = () => {
     const [ifcModel, setIfcModel] = useState(null);
     const [selectedType, setSelectedType] = useState('');
     const [openCircular, setOpenCircular] = useState(false);
-    const [selectedEntity, setSelectedEntity] = useState('');
+    const [selectedEntity, setSelectedEntity] = useState();
     const [entities, setEntities] = useState('');
     const [description, setDescription] = useState('');
     const {project_id} = useParams();
@@ -184,7 +185,7 @@ const NewCasting = () => {
         if (submitted) {
           // Réinitialiser les états apres la soumission du formulaire
           setDescription("");
-          selectRef.current.clearValue();
+          setSelectedEntity([])
           setSelectedType("0");
           setSubmitted(false);
         }
@@ -209,13 +210,17 @@ const NewCasting = () => {
             const walls = await getAllItemByCategory(IFCWALLSTANDARDCASE);
             const properties = await getItem( walls )
             if (mounted) {
-              setEntities( properties );
+              setEntities([
+                ...properties
+            ]);
             }
           } else if (selectedType === 'IFCSLAB') {
             const slabs = await getAllItemByCategory(IFCSLAB);
             const properties = await getItem(slabs)
             if (mounted) {
-              setEntities(properties);
+              setEntities([
+                ...properties
+            ]);
             }
           }
         };
@@ -241,13 +246,17 @@ const NewCasting = () => {
       };
     
       const handleEntityChange = (selectedOptions) => {
-        const selectedValues = selectedOptions.map((option) => option.value);
-        setSelectedEntity(selectedValues)
+        /*const selectedValues = selectedOptions.map((option) => option.value);*/
+        setSelectedEntity(selectedOptions)
         if(submitted){
             setSelectedEntity([])
         }
         
       };
+    
+    
+    
+    
 
 
     /**
@@ -263,10 +272,11 @@ const NewCasting = () => {
         try{
             if(selectedEntity){
                 let castingData = {};
+                const entityIDs = selectedEntity.map(option => option.value);
                 if(selectedType === 'IFCWALLSTANDARDCASE'){
                      castingData = {
                         casting_description: description,
-                        casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(selectedEntity))),
+                        casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(entityIDs))),
                         template_id: 1
                     }
 
@@ -274,7 +284,7 @@ const NewCasting = () => {
                     
                     castingData = {
                         casting_description: description,
-                        casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(selectedEntity))),
+                        casting_volume: Math.ceil(getTotalVolume(await getEntityProperties(entityIDs))),
                         template_id: 2
                     }
                 }
@@ -324,20 +334,19 @@ const NewCasting = () => {
                            <option value="IFCWALLSTANDARDCASE">Wall</option>
                            <option value="IFCSLAB">Slab</option>
                        </select>
-                       {entities && (<Select
-                                           ref={selectRef}
-                                           className='select-checkbox'
-                                            defaultValue={[]}
-                                            isMulti
-                                            closeMenuOnSelect={false}
-                                            hideSelectedOptions={false}
-                                            onChange={ handleEntityChange}
-                                           options={entities.map((entity, index) => ({
-                                               value: entity.expressID,
-                                               label: entity.Name.value
-                                           }))}
-                                           components={{ Option: InputOption }}
-                                           />)}
+                       {entities && ( <MultiSelectWithRef
+                                          ref={selectRef}
+                                        key="example_id"
+                                        options={entities.map((entity, index) => ({
+                                          value: entity.expressID,
+                                          label: entity.Name.value
+                                        }))}
+                                        value={selectedEntity}
+                                        onChange={handleEntityChange}  
+                                        isSelectAll={true}
+                                        menuPlacement={"bottom"}
+                                      />)
+                                      }
                        
                        </div>
                    <div className='Add-description'>

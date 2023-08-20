@@ -2,24 +2,17 @@
 import React, { useState, useRef } from "react";
 import ReactSelect, { components } from "react-select";
 
-
-const MultiSelect = (props) => {
-  const [input, setInput] = useState("");
-  const isAllSelected = useRef(false);
-  const selectAllLabel = useRef("Selectionner tout");
-  const allOption = { value: "*", label: selectAllLabel.current };
-
   /**
    * sorting option based on input value
    * @param {Array} options - option to filter
    * @param {string} input  - input fot filtering
    * @return {array} - the filtered options
    */
-    const filterOptions = (options, input) => {
+  export const filterOptions = (options, input) => {
     return options.filter(({ label }) =>
-        label.toLowerCase().includes(input.toLowerCase())
+      label.toLowerCase().includes(input.toLowerCase())
     );
-    };
+  };
  
 
 
@@ -32,10 +25,19 @@ const MultiSelect = (props) => {
     * @param {Object} v2 - The second value to compare.
     * @returns {number} - The comparison value.
    */
-  const comparator = (value1, value2) => {
+  export const comparator = (value1, value2) => {
     return value1.value - value2.value;
 
   }
+
+
+const MultiSelect = (props) => {
+  const [input, setInput] = useState("");
+  const isAllSelected = useRef(false);
+  const selectAllLabel = useRef("Selectionner tout");
+  const allOption = { value: "*", label: selectAllLabel.current };
+
+
    
   
 

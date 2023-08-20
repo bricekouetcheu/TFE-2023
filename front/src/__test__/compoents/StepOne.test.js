@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -25,7 +26,7 @@ it('render component with conditionnal props', async () => {
   await waitFor(() => {
     
     expect(screen.getByText('Nom du Projet')).toBeInTheDocument();
-    // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+    
     expect(screen.getByTestId('agenda-select')).toBeInTheDocument();
   });
   

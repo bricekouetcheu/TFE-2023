@@ -293,7 +293,7 @@ const NewCasting = () => {
                 
                 Swal.fire({
                     icon: 'success',
-                    title: 'New casting created!',
+                    title: 'Nouveau casting crée !',
                     showConfirmButton: true,
                     confirmButtonColor: '#00BCB6',
                     timer: 2500,

@@ -76,7 +76,7 @@ const MyCasting = () => {
       const result = await axios.get(getProjectUrl , {withCredentials:true});
       setProject(result.data);
 
-      getEvents(result.data.agenda_id);
+      //getEvents(result.data.agenda_id);
     } catch(err){
       console.log(err);
     }

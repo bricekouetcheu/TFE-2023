@@ -8,19 +8,18 @@ import { faHouse} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
-const createAddress = (street, number, city, postalCode) => {
+export const createAddress = (street, number, city, postalCode) => {
     const address = `${street}  ${number}, ${city} ${postalCode}`;
     return address;
   }
 
-const normalizeAddress = (address)=>{
-    return address
-    .toLowerCase()
-    .replace(/\s+/g, ' ') 
-    .trim(); 
-
+ export const normalizeAddress = (address)=>{
+    if(address){
+        return address.toLowerCase().replace(/\s+/g, ' ') .trim(); 
+    }
+  
 }
+
   
 
 
@@ -42,12 +41,11 @@ const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
    * @returns {Promise<{lat: number, lng: number}> | null} - A promise with the geographic coordinates (latitude and longitude) of the address, or null if the address could not be geocoded.
    */
       const geocodeAddress = async (address) => {
-        console.log(address)
+        
         try {
             const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${APIkey}`;
             const result = await axios.get(apiUrl);
             const { results } =  result.data;
-           
             if (results.length > 0) {
               const { lat, lng } = results[0].geometry.location;
               return { lat, lng };
@@ -60,6 +58,9 @@ const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
           }
       
       };
+
+
+     
 
 
 
@@ -106,9 +107,10 @@ const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
         } 
         else{
             const addressExists = await geocodeAddress(newAddress);
-            console.log(addressExists)
+           
+            
             if(addressExists){
-              
+                
                 const normalizedNewAddress = normalizeAddress(newAddress);
                 const normalizedAddresses = addresses.map(address=>normalizeAddress(address))
                

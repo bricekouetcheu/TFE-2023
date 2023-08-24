@@ -63,9 +63,10 @@ const StepOne = ({ onNext, handleFormData, handleSelectData, values }) => {
                 <span>{selectedAgenda ? selectedAgenda.summary : 'Selectionnez un agenda'}</span>
                 
             </div>
-              <ul className='dropdown__list'>
+              <ul className='dropdown__list' data-testid ='agenda-select'>
                 {agendas.map((agenda) => (
                   <li
+                    
                     key={agenda.id}
                     onClick={() => {
                         setSelectedAgenda(agenda);

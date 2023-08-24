@@ -65,6 +65,7 @@ CREATE TABLE castings (
   casting_volume_beton INTEGER,
   casting_volume_starting_date DATE, 
   casting_volume_end_date DATE,
+  event_id VARCHAR(255),
   template_id INT,
   project_id INT NOT NULL, 
   status_id INT NOT NULL

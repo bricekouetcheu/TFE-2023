@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const app = express();
+const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
@@ -25,6 +26,7 @@ const limiter = rateLimit({
   max: 100, // Limits the number of requests to 100 per IP during the specified window
 });
 app.use(limiter);
+app.use(fileUpload());
 
 app.use(express.json()); // which handles incoming json type requests.
 app.use(cookieParser()); // handling cookies

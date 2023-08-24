@@ -8,7 +8,40 @@ const pool = require('../db.js');
 
 const api_key = process.env.API_KEY
 
+const addEventToCasting = async(castId , eventId)=>{
 
+  try{
+    const addEventToCastingQuery = `  UPDATE castings SET event_id = $1 WHERE casting_id = $2`;
+
+   await pool.query(addEventToCastingQuery , [eventId , castId])
+
+  } catch(err){
+    console.log(err)
+  }
+  
+}
+
+
+const getProjectInfosFromId = async (event_id) => {
+  try {
+    const getProjectInfosQuery = `
+      SELECT p.project_name, p.project_address
+      FROM projects p
+      JOIN castings c ON p.project_id = c.project_id
+      WHERE c.event_id = $1
+    `;
+
+    const getProjectInfosResult = await pool.query(getProjectInfosQuery, [event_id]);
+    const projectInfo = getProjectInfosResult.rows[0];
+    
+    
+
+    return projectInfo;
+  } catch (error) {
+    console.error('Error getting project information:', error);
+    throw error;
+  }
+};
 
 // refreshToken function
 const refreshAccessToken = async(refreshToken)=>{
@@ -83,9 +116,8 @@ const refreshAccessToken = async(refreshToken)=>{
   }
   
   // interceptors before any request
- // intercepteurs avant chaque requête
 axiosInstance.interceptors.request.use(async (config) => {
-  if (config.userId) { // Vérifiez si userId est présent dans la configuration
+  if (config.userId) { 
     const accessToken = await getAccessTokenfromUser(config.userId);
 
     const isAccessTokenIsExpired = checkAccessToken(accessToken);
@@ -125,8 +157,9 @@ const timestampToDatetime = (timestamp)=>{
 }
 
 
+
 exports.createNewEvent = async(req, res)=>{
-    const { agendaId, timestamp, summary, description } = req.body;
+    const { agendaId, timestamp, summary, description , castingId } = req.body;
     
 
     try{
@@ -159,6 +192,9 @@ exports.createNewEvent = async(req, res)=>{
           });
 
           const createdEvent = response.data
+
+          console.log(createdEvent.id)
+          await addEventToCasting(castingId, createdEvent.id);
       
 
           res.status(201).send('Nouvel evennement crée')
@@ -181,23 +217,28 @@ exports.getAllEventFromCalendar = async(req, res)=>{
 
     const Events = response.data.items
 
-    //sort events by starting date
-
-    Events.sort((a, b) => {
-      const dateA = new Date(a.start.dateTime);
-      const dateB = new Date(b.start.dateTime);
-      return dateA - dateB;
-    });
-
+    console.log(Events)
+    console.log('test1',Events.length)
     
-    const firstUpcomingEvent = Events.find(event => {
-      const eventDate = new Date(event.start.dateTime);
-      const currentDate = new Date();
-      return eventDate >= currentDate;
-    });
 
 
-    res.status(200).json(firstUpcomingEvent);
+    const enrichedEvents = await Promise.all(
+      Events.map(async (Event) => {
+        const event_id = Event.id; // ID de l'événement
+
+        // Obtenez les informations du projet en utilisant l'event_id
+        const projectInfo = await getProjectInfosFromId(event_id);
+
+        // Associez les informations du projet à l'événement
+        return {
+          ...Event,
+          project_name: projectInfo.project_name,
+          project_address: projectInfo.project_address,
+        };
+      })
+    );
+
+    res.status(200).send(enrichedEvents);
   }catch(err){
     console.log(err)
     res.status(500).send('erreur serveur')

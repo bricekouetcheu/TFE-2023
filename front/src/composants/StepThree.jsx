@@ -64,7 +64,7 @@ const StepThree = ( {values, handleFormData, onPrev, OnSubmit,deleteFile }) => {
                     
                     
                     
-                    <h2>Importez votre fichier IFC  </h2>
+                    <h2>Importez votre fichier IFC</h2>
                     <h4></h4>
 
                 </div>

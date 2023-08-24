@@ -8,6 +8,8 @@ exports.getPrediction = async(req, res)=>{
     const data = req.body 
         try{
 
+            console.log(data)
+
             const response = await axios.post(process.env.PREDICTION_SERVICE, data)
 
             res.status(200).send(response.data)

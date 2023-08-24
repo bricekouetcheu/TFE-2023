@@ -10,6 +10,7 @@ const CalendarContent = () => {
   const [calendarID , setCalendarID] = useState();
   const getProjectUrl = process.env.REACT_APP_API_HOST+`api/project/${project_id}`;
   const ApiKey = process.env.REACT_APP_API_KEY;
+  const language = 'FR'
 
 
 
@@ -53,7 +54,7 @@ const CalendarContent = () => {
       border: 1px solid red;
     `,
   }; 
-  
+
   
 
 
@@ -67,7 +68,7 @@ const CalendarContent = () => {
     <div className='calendar-content'>
       {calendarID && (
         <div>
-          <Calendar apiKey={ApiKey} calendars={calendars} styles={styles} language='fr'  />
+          <Calendar apiKey={ApiKey} calendars={calendars} styles={styles} language={language} />
         </div>
       )}
 

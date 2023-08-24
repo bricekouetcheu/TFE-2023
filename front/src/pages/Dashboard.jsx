@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MyCasting from '../composants/MyCasting';
 import NewCasting from '../composants/NewCasting';
 import CalendarContent from '../composants/CalendarContent';
+import NewCalendar from '../composants/NewCalendar';
 import plus from '../assets/plus.png';
 import schedule from '../assets/schedule.png';
 import logout from '../assets/logout.png';
@@ -86,7 +87,7 @@ function ResponsiveDrawer(props) {
   } else if (selectedOption === 'Mycasting') {
     contentComponent = <MyCasting></MyCasting>;
   } else if(selectedOption === 'MyCalendar'){
-    contentComponent = <CalendarContent></CalendarContent>;
+    contentComponent = <NewCalendar></NewCalendar>;
   };
 
   

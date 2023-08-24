@@ -2,7 +2,7 @@ export  function ModifyObject(data){
     const { "Donnéees Complementaires": _, ...newData } =  data;
     return newData
 }
-
+//modifier l'objet pour supprimer la partie volume de la commande
 
 export function checkValidity (order, delivery){
     const orderKeys = Object.keys(order);

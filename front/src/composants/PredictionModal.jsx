@@ -59,6 +59,7 @@ const PredictionModal = (props , {onClose}) => {
       
     try{
       const data = {
+        castingId:  props.casting_id,
         agendaId:project.agenda_id,
         timestamp: Prediction.uncasting_timestamp,
         summary : 'test',
@@ -72,7 +73,7 @@ const PredictionModal = (props , {onClose}) => {
             
       Swal.fire({
         icon: 'success',
-        title: 'nouveau casting ajouté au planning',
+        title: 'Nouveau casting ajouté au planning',
         showConfirmButton: true,
         confirmButtonColor: '#00BCB6',
         timer: 10000,
@@ -219,8 +220,8 @@ const PredictionModal = (props , {onClose}) => {
       const data = {
         'strengthClass': getConcreteStrengthValue(order['classe De Resistance']),
         'cementType': 0.25,
-        'temperature_hist': temp_next,
-        'time_hist': time_next ,
+        'temperature_hist': [],
+        'time_hist': [],
         't_cast': 0,
       };
       const PredictionResponse = await axios.post(concretePredictionUrl, data);
@@ -266,7 +267,7 @@ const PredictionModal = (props , {onClose}) => {
 
             <div className='prediction-btn'>
               <button onClick={createEvent}>
-                    Ajouter a l'agenda
+                    Ajouter à l'agenda
                 <FontAwesomeIcon icon={faCalendarDays} />
 
               </button>

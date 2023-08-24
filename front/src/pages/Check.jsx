@@ -158,7 +158,7 @@ const Check = () => {
            <Navbar currentPage='check'></Navbar>
             <div className='Checking-Page-Content'>
                 <div className='checking-page-title'>
-                    <h1>Verification de la livraison</h1>
+                    <h1>Verification du bon de livraison</h1>
                 </div>
                 <div className='checking-page-options'>
                     <div className='take-photo-content' onClick={()=>{document.querySelector('.camera-field').click()}}>

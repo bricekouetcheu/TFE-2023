@@ -8,7 +8,6 @@ exports.CreateProject  = (req, res)=>{
     //creer un middleweares d'auth
     const user_id = req.user.user_id
     const files = req.files;
-    console.log(user_id)
    
 
     const AddNewProjectRequest = 'INSERT INTO projects ( project_id, project_name, project_address, project_date, user_id , agenda_id) values(DEFAULT,$1, $2, DEFAULT, $3 , $4) RETURNING project_id;'
@@ -25,7 +24,6 @@ exports.CreateProject  = (req, res)=>{
             /*const unique_id = `${numero_modele}_projet${id_projet}`*/
             return [fileName, id_projet];
         })
-        console.log('fileData',fileData)
         //adding a new file information into table
         pool.query(format(AddNewFileRequest,fileData ))
         .then((result)=>{

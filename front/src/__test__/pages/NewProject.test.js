@@ -2,9 +2,12 @@ import React from 'react';
 import { render, fireEvent, waitFor, screen, act } from '@testing-library/react';
 import NewProject from '../../pages/NewProject';
 import { BrowserRouter } from 'react-router-dom';
+import { normalizeAddress, createAddress } from '../../composants/StepTwo';
 import axios from 'axios';
 
 jest.mock('axios');
+
+
 
 const testAgendasData = [
   { id: 1, summary: 'Agenda 1' },
@@ -28,7 +31,26 @@ beforeEach(() => {
     axios.post.mockResolvedValueOnce({});
 
     axios.defaults.withCredentials = true;
+     // Mocking the geocode API call
+  axios.get.mockImplementation((url) => {
+    if (url.includes('maps.googleapis.com')) {
+      // Simulating a successful response
+      return Promise.resolve({
+        data: {
+          results: [
+            {
+              geometry: {
+                location: { lat: 12.345, lng: 67.890 },
+              },
+            },
+          ],
+        },
+      });
+    }
   });
+});
+    
+ 
 
 afterEach(() => {
 
@@ -36,6 +58,12 @@ afterEach(() => {
 });
 
 it('renders and navigates through all steps', async () => {
+
+
+  jest.spyOn(React, 'useState').mockReturnValueOnce([
+    ['123 rue de la Test', '456 street of Test'].map(normalizeAddress),
+    jest.fn(),
+  ]);
     // simulate api call for agendas data
     axios.get.mockResolvedValueOnce({ data: testAgendasData });
   
@@ -47,16 +75,16 @@ it('renders and navigates through all steps', async () => {
     await waitFor(() => {
     
         expect(screen.getByText('Nom du Projet')).toBeInTheDocument();
-        // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+        
         expect(screen.getByTestId('agenda-select')).toBeInTheDocument();
       });
 
         
     fireEvent.change(screen.getByTestId('project-name-input'), { target: { value: 'Mon Projet Test' } });
 
-    fireEvent.change(screen.getByTestId('agenda-select'), { target: { value: 1 } });
+    /*fireEvent.change(screen.getByTestId('agenda-select'), { target: { value: 1 } });*/
 
-    
+    fireEvent.click(screen.getByText('Agenda 1'));
 
     // Cliquer sur le bouton Suivant pour passer à l'étape suivante (StepTwo)
     fireEvent.click(screen.getByTestId('btn-next'));
@@ -65,25 +93,19 @@ it('renders and navigates through all steps', async () => {
         expect(screen.getByTestId('street-input')).toBeInTheDocument();
       });
  
-   fireEvent.change(screen.getByTestId('street-input'), { target: { value: 'Ma Rue Test' } });
-
-  
-   fireEvent.change(screen.getByTestId('number-input'), { target: { value: '50' } });
-
-   
+   fireEvent.change(screen.getByTestId('street-input'), { target: { value: 'rue du midi' } });
+   fireEvent.change(screen.getByTestId('number-input'), { target: { value: '147' } });
    fireEvent.change(screen.getByTestId('city-input'), { target: { value: 'Bruxelles' } });
-
-   
-   fireEvent.change(screen.getByTestId('postalcode-input'), { target: { value: '1080' } });
+   fireEvent.change(screen.getByTestId('postalcode-input'), { target: { value: '1000' } });
 
    // Cliquer sur le bouton Suivant pour passer à l'étape suivante (StepThree)
    fireEvent.click(screen.getByTestId('btn-next'));
     
 
    await waitFor(() => {
-    expect(screen.getByText('Importez vos fichiers IFC')).toBeInTheDocument();
+    expect(screen.getByText('Importez votre fichier IFC')).toBeInTheDocument();
    
-  });
+  },{ timeout: 500 });
 
    
     const submitButton = screen.getByTestId('btn-submit');

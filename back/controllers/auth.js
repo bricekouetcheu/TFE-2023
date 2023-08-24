@@ -30,7 +30,9 @@ const client = new OAuth2Client(
     process.env.GOOGLE_ID_CLIENT,
     process.env.GOOGLE_CLIENT_SECRET,
     'postmessage',
-    ['https://www.googleapis.com/auth/calendar'])
+    ['https://www.googleapis.com/auth/calendar',
+    'https://www.googleapis.com/auth/calendar.events',
+    'https://www.googleapis.com/auth/calendar.readonly'])
 
     const getUserByEmail = 'select * from users where user_email = $1'
     const addUserRequest = 'INSERT INTO users (user_id,user_name,user_surname,user_email, access_token, refresh_token, role_id ,user_picture) values(DEFAULT,$1,$2,$3,$4,$5,2 ,$6) RETURNING  user_id';
@@ -58,7 +60,7 @@ const client = new OAuth2Client(
             //on recupere les informations envoyées par le user au moment de la connexion
             const {tokens} = await client.getToken(req.body.code)
             const {access_token,id_token,refresh_token}= tokens
-            console.log(access_token)
+          
            
             
             // on decode l'id token afin de recupere les infos user
@@ -128,15 +130,7 @@ const client = new OAuth2Client(
         }
     }
 
-    /*const updateAccessTokenInDatabase = async(userId, newAccessToken)=>{
-        try{
-            const updateTokensQuery = 'UPDATE users SET access_token = $1 WHERE user_id = $2';
-            await
 
-        }catch(err){
-            console.log(err)
-        }
-    }*/
 
 
 

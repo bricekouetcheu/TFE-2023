@@ -58,8 +58,11 @@ const LoginGoogle = () => {
             console.log(result)
 
          if(result.data === "connexion reussie"){
-               checkAuthentication()
-               Navigate('/projects')
+               
+             
+                Navigate('/')
+
+             
 
             }
     }

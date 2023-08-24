@@ -21,9 +21,9 @@ const AllRoutes = () => {
     const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`;
     const navigate = useNavigate();
     console.log(isAuthenticated)
-    const checkAuthentication = async()=>{
 
-            
+    const checkAuthentication = async()=>{
+  
         try{
             const response = await axios.get(AuthUrl,{withCredentials:true})
             
@@ -31,9 +31,8 @@ const AllRoutes = () => {
     
                 
                 setIsAuthenticated(true)
-                console.log('test1 bonjour')
             }else{
-                navigate('/')
+                navigate('/login')
                 setIsAuthenticated(false) 
                 
 
@@ -42,21 +41,22 @@ const AllRoutes = () => {
         }catch(err){
             console.log(err)
             setIsAuthenticated(false);
-            navigate('/')
+            navigate('/login')
     
         }
     }
 
+
     useEffect(()=>{
-        checkAuthentication() 
+
+        setTimeout(()=>{
+            checkAuthentication() 
+        } , 1000)
+      
        
     },[isAuthenticated])
 
-    useEffect(()=>{
-        if(!isAuthenticated){
-            navigate('/')
-        }
-    }, [])
+
 
   
     
@@ -66,13 +66,16 @@ const AllRoutes = () => {
         <Routes>
             <Route path="/rgpd" element={<Rgpd/>} />
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<LoginGoogle/>} />
+            <Route path="/login" element={<LoginGoogle/>} />
+            <Route path="/" element={<Projects />} />
+            
            
             
           {isAuthenticated ? (
             <>
+             
               <Route path="/:project_id/check/:casting_id" element={<Check />} />
-              <Route path="/projects" element={<Projects />} />
+              
               
               <Route path="/AddProject" element={<NewProject />} />
               <Route path="/Dashboard/:project_id" element={<Dashboard />} />

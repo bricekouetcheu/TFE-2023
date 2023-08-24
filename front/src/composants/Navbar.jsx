@@ -12,6 +12,7 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import userIcon from '../assets/user.png'; // process.env.REACT_HOST+assets/image.png
 import profile1 from '../assets/profile1.png';
+import { useMediaQuery } from '@mui/material';
 
 
 
@@ -23,6 +24,7 @@ const Navbar = ({currentPage}) => {
     const getUserProfileUrl = process.env.REACT_APP_API_HOST+'api/profile';
     const logoutUrl = process.env.REACT_APP_API_HOST+'api/logout';
     const Navigate = useNavigate()
+    const sm = useMediaQuery('(max-width: 750px)');
    
    
    
@@ -44,7 +46,7 @@ const Navbar = ({currentPage}) => {
         try{
             const response = await axios.get(logoutUrl, {withCredentials:true}) 
             if(response.data === "deconnexion reussie"){
-                Navigate('/')
+                Navigate('/login')
 
             }  
 
@@ -67,12 +69,9 @@ const Navbar = ({currentPage}) => {
      */
     const getUserProfile = async()=>{
         try{
-            
             const response = await axios.get(getUserProfileUrl , {withCredentials:true})
             const data = response.data
-            
-            setUserData(data)
-            
+            setUserData(data)  
 
         } catch(err){
             console.log(err)
@@ -81,11 +80,9 @@ const Navbar = ({currentPage}) => {
         
     }
 
-
     useEffect(()=>{
         getUserProfile()
-       
-        
+        console.log('sm: ', sm)
     },[])
    
   
@@ -93,19 +90,16 @@ const Navbar = ({currentPage}) => {
         setDropdownOpen(false);
       };
 
-
-
-   
-  
-   
-
     return (
-   
-        <div className='project-page-header' data-testid='navbar'>
+
+        <>
+         <div className={`project-page-header ${sm && click ? 'dynamic-class' : ''}`} data-testid='navbar'>
                 { userData && (
                         <>
                         
                 <img className = 'project-page-header-Img' src={logo} alt=""/>
+
+               
                 <div className='project-page-header-logout' >
                 {currentPage ==='home'?
 
@@ -144,6 +138,7 @@ const Navbar = ({currentPage}) => {
                 
                 <div className="nav-icon" onClick={handleClick}>
                     <FontAwesomeIcon icon={click ? faXmark : faBars} size='xl' />
+                   
                 </div></>
 
           
@@ -151,7 +146,21 @@ const Navbar = ({currentPage}) => {
       )}
        
         
-       </div>   
+       </div> 
+
+       { click && sm && (
+                       <div className='project-page-header-logout-resp'>
+                       <p className='userInfo1' onClick={()=>Navigate('/AddProject')} >Ajouter un nouveau projet</p>
+                       <div  onClick={handleLogout}>
+                            <BiLogOut size={25}/> Se deconnecter
+                        </div>
+
+                      </div>
+
+                )}
+        </>
+   
+         
        
     );
 };

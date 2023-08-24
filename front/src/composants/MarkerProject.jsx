@@ -45,7 +45,7 @@ const MarkerProject = (props) => {
           <div className='popup-content-option'>
             <h3>{props.name}</h3>
             <div className='popup-option'>
-              <button onClick={()=>{Navigate(`/Dashboard/${props.id}`)}}>Open</button>
+              <button onClick={()=>{Navigate(`/Dashboard/${props.id}`)}}>Ouvrir</button>
               <FontAwesomeIcon icon={faTrash} onClick={handleDeleteProject} />
 
             </div>

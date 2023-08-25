@@ -1,6 +1,5 @@
 import React,{ useState,useEffect } from 'react';
 import { BrowserRouter, Route , Routes, useNavigate } from "react-router-dom";
-import Register from './pages/Register';
 import Login from './pages/Login';
 import Projects from './pages/Projects';
 import NewProject from './pages/NewProject';
@@ -67,7 +66,6 @@ const AllRoutes = () => {
         
         <Routes>
             <Route path="/rgpd" element={<Rgpd/>} />
-            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LoginGoogle/>} />
             <Route path="/" element={<Projects />} />
             

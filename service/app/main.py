@@ -54,6 +54,10 @@ async def detect_text(image: UploadFile = File(...)):
 async def hello():
     return 'hello'
 
+@app.get("/health/")
+def health():
+    return('health')
+
 
 @app.post('/file')
 async def createFile(file: UploadFile):

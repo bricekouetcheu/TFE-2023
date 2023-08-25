@@ -137,7 +137,7 @@ const NewProject = () => {
        axios
        .post(NewProjectUrl,Files,{withCredentials:true})
        .then( result=>{
-        Navigate('/projects')
+        Navigate('/')
         })
         .catch(err=>{
           console.log(err)

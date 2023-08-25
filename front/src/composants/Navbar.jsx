@@ -150,7 +150,7 @@ const Navbar = ({currentPage}) => {
 
        { click && sm && (
                        <div className='project-page-header-logout-resp'>
-                       <p className='userInfo1' onClick={()=>Navigate('/AddProject')} >Ajouter un nouveau projet</p>
+                       <p className='' onClick={()=>Navigate('/AddProject')} >Ajouter un nouveau projet</p>
                        <div  onClick={handleLogout}>
                             <BiLogOut size={25}/> Se deconnecter
                         </div>

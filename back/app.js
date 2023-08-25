@@ -26,14 +26,14 @@ const limiter = rateLimit({
   max: 100, // Limits the number of requests to 100 per IP during the specified window
 });
 app.use(limiter);
-app.use(fileUpload());
+/*app.use(fileUpload());*/
 
 app.use(express.json()); // which handles incoming json type requests.
 app.use(cookieParser()); // handling cookies
 app.use(helmet()); //Using Helmet middleware to enhance HTTP header security
 
 app.use(express.static('IFC'))//which manages the folder for uploading files.
-
+app.use(express.static('images'))
 app.use(bodyParser.urlencoded({ // which handles incoming form-type requests.
   extended: true
 }));

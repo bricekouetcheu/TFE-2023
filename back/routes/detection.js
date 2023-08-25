@@ -1,10 +1,12 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const multer = require('multer');
+const {imageStorage} = require('../middleweares/multer-config'); 
 
-const {detectionTextOnFile} = require('../controllers/detection')
+const {detectionTextOnFile} = require('../controllers/detection');
 
-
-router.post('/detection' , detectionTextOnFile)
+const imageUpload = multer({ storage: imageStorage });
+router.post('/detection' ,imageUpload.single('image'), detectionTextOnFile)
 
 /**
  * @swagger

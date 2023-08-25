@@ -69,8 +69,8 @@ def prediction(concrete: ConcreteModel, target : float):
         T = np.array(concrete.temperature_hist)
  
 
-        if (tCast < np.min(t)): raise HTTPException(status_code=404, detail="tcast %f must be higher than the first timestamp %f" % (tCast, np.min(t)))
-        if (tCast > np.max(t)): raise HTTPException(status_code=404, detail="tcast must be lower than the last timestamp")
+        #if (tCast < np.min(t)): raise HTTPException(status_code=404, detail="tcast %f must be higher than the first timestamp %f" % (tCast, np.min(t)))
+        #if (tCast > np.max(t)): raise HTTPException(status_code=404, detail="tcast must be lower than the last timestamp")
 
     
     # I create a concrete cast with their properties (Strength CLass, Cement TYpe)

@@ -58,6 +58,6 @@ jobs:
           cp /home/brice/docker-compose-deployment.yml /home/brice/TFE-2023/
           cd /home/brice/TFE-2023
           docker-compose -f docker-compose-deployment.yml down
-          git pull
+          git pull origin main
           docker-compose -f docker-compose-deployment.yml up -d --build
 

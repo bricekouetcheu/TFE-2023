@@ -20,29 +20,31 @@ const AllRoutes = () => {
     const [isAuthenticated,setIsAuthenticated] = useState(false);
     const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`;
     const navigate = useNavigate();
-    console.log(isAuthenticated)
+
+        /**
+     * Vérifie l'authentification de l'utilisateur en effectuant une requête GET vers l'URL d'authentification.
+     *
+     * @async
+     * @function
+     * @name checkAuthentication
+     * @returns {void}
+     */
 
     const checkAuthentication = async()=>{
-  
         try{
             const response = await axios.get(AuthUrl,{withCredentials:true})
             
-            if(response.data === "authentifié"){
-    
-                
+            if(response.data === "authentifié"){   
                 setIsAuthenticated(true)
             }else{
                 navigate('/login')
                 setIsAuthenticated(false) 
-                
-
             }
            
         }catch(err){
             console.log(err)
             setIsAuthenticated(false);
             navigate('/login')
-    
         }
     }
 

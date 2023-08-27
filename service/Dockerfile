@@ -25,6 +25,7 @@ RUN pip3 install -r /code/requirements.txt
 # 
 COPY ./app /code/app
 
+
 # 
 WORKDIR /code/app
 

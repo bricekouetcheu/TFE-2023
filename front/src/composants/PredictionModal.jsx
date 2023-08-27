@@ -27,9 +27,12 @@ const PredictionModal = (props , {onClose}) => {
   const [project ,setProject] = useState();
 
 
+  console.log(temp_next)
+  console.log(time_next)
+
   const UpdateCastingStatus = async()=>{
     try{
-      const result = await axios.put(updateCastingUrl,{withCredentials:true});
+      await axios.put(updateCastingUrl,{withCredentials:true});
      
 
     }catch(err){
@@ -81,10 +84,6 @@ const PredictionModal = (props , {onClose}) => {
       });
 
             
-                
-
-            
-        
             
 
     }catch(err){
@@ -220,8 +219,8 @@ const PredictionModal = (props , {onClose}) => {
       const data = {
         'strengthClass': getConcreteStrengthValue(order['classe De Resistance']),
         'cementType': 0.25,
-        'temperature_hist': [],
-        'time_hist': [],
+        'temperature_hist':temp_next,
+        'time_hist': time_next,
         't_cast': 0,
       };
       const PredictionResponse = await axios.post(concretePredictionUrl, data);

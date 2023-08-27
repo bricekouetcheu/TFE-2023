@@ -17,7 +17,7 @@ const Maps = () => {
   const APIkey = process.env.REACT_APP_API_KEY 
   const getProjectUrl = process.env.REACT_APP_API_HOST+'api/projects'
   const [projects, setProjects] = useState([]);
-    console.log(projects)
+    
  
 
   /**

@@ -41,6 +41,9 @@ services:
     depends_on:
       - db2
       - backend
+    volumes:
+    - temp:/code/app/temp  
+    
     healthcheck:
       test: curl --fail http://localhost:8000/health/ || exit 1
       interval: 40s
@@ -87,3 +90,6 @@ volumes:
     driver: local
   IFC:
     driver: local
+  temp:
+    driver: local
+  

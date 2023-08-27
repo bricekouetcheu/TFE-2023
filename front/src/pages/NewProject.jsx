@@ -56,6 +56,8 @@ const NewProject = () => {
         files:[]
     })
 
+    console.log(formData)
+
   
    
    

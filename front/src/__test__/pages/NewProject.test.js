@@ -60,10 +60,7 @@ afterEach(() => {
 it('renders and navigates through all steps', async () => {
 
 
-  jest.spyOn(React, 'useState').mockReturnValueOnce([
-    ['123 rue de la Test', '456 street of Test'].map(normalizeAddress),
-    jest.fn(),
-  ]);
+  
     // simulate api call for agendas data
     axios.get.mockResolvedValueOnce({ data: testAgendasData });
   
@@ -81,24 +78,22 @@ it('renders and navigates through all steps', async () => {
 
         
     fireEvent.change(screen.getByTestId('project-name-input'), { target: { value: 'Mon Projet Test' } });
-
-    /*fireEvent.change(screen.getByTestId('agenda-select'), { target: { value: 1 } });*/
-
     fireEvent.click(screen.getByText('Agenda 1'));
 
-    // Cliquer sur le bouton Suivant pour passer à l'étape suivante (StepTwo)
+    // click to pass to step2
     fireEvent.click(screen.getByTestId('btn-next'));
       
     await waitFor(() => {
         expect(screen.getByTestId('street-input')).toBeInTheDocument();
       });
  
+      // fill address informations
    fireEvent.change(screen.getByTestId('street-input'), { target: { value: 'rue du midi' } });
    fireEvent.change(screen.getByTestId('number-input'), { target: { value: '147' } });
    fireEvent.change(screen.getByTestId('city-input'), { target: { value: 'Bruxelles' } });
    fireEvent.change(screen.getByTestId('postalcode-input'), { target: { value: '1000' } });
 
-   // Cliquer sur le bouton Suivant pour passer à l'étape suivante (StepThree)
+   // Click to pass to step 3
    fireEvent.click(screen.getByTestId('btn-next'));
     
 

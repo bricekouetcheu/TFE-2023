@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import calendar from '../assets/google-calendar.png';
 
-const StepOne = ({ onNext, handleFormData, handleSelectData, values }) => {
+const StepOne = ({ onNext, handleFormData, handleAgendaData, values }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [agendas, setAgenda] = useState([]);
   const [selectedAgenda, setSelectedAgenda] = useState(null);
@@ -23,7 +23,7 @@ const StepOne = ({ onNext, handleFormData, handleSelectData, values }) => {
     try {
       const response = await axios.get(getAgendaUrl, { withCredentials: true });
       const filteredAgenda = response.data.filter((agenda) => !agenda.primary);
-      setAgenda(response.data);
+      setAgenda(filteredAgenda);
     } catch (err) {
       console.log(err);
     }
@@ -35,14 +35,19 @@ const StepOne = ({ onNext, handleFormData, handleSelectData, values }) => {
     if (validator.isEmpty(values.projectName) || !selectedAgendaId) {
       setErrorMessage('Veuillez remplir tous les champs');
     } else {
+      
       onNext();
     }
   };
 
   useEffect(() => {
-    values.AgendaId = 'Selectionnez un agenda pour ce projet';
+    
     getAllAgendas();
   }, []);
+
+  useEffect(() => {
+    values.AgendaId = selectedAgendaId;
+  }, [selectedAgendaId]);
 
   return (
     <div className='step1'>
@@ -83,7 +88,7 @@ const StepOne = ({ onNext, handleFormData, handleSelectData, values }) => {
           <div className='step1-navigation'>
             <button
               className='btn-step1'
-              onClick={() => Navigate('/projects')}
+              onClick={() => Navigate('/')}
               data-testid='btn-home'
             >
               Acceuil<FontAwesomeIcon icon={faHouse} />

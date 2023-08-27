@@ -82,7 +82,7 @@ const Navbar = ({currentPage}) => {
 
     useEffect(()=>{
         getUserProfile()
-        console.log('sm: ', sm)
+        
     },[])
    
   

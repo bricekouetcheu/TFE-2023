@@ -111,10 +111,22 @@ exports.DeleteProject = async (req, res) => {
          const projectName = result.rows[0].project_name;
 
          // Supprimez l'enregistrement dans la table "ifc_files"
-         await client.query('DELETE FROM ifc_files WHERE project_id = $1', [projectId]);
+        await client.query('DELETE FROM ifc_files WHERE project_id = $1', [projectId]);
 
-         // Supprimez l'enregistrement dans la table "projects"
-         await client.query('DELETE FROM projects WHERE project_id = $1', [projectId]);
+        // Récupérez tous les IDs de casting associés au projet
+        const castingIds = await client.query('SELECT casting_id FROM castings WHERE project_id = $1', [projectId]);
+        
+        // delete all orders from this project
+        for (const { casting_id } of castingIds.rows) {
+            await client.query('DELETE FROM Orders WHERE casting_id = $1', [casting_id]);
+        }
+
+        // delete all castings
+        await client.query('DELETE FROM castings WHERE project_id = $1', [projectId]);
+
+        // delete all projects
+        await client.query('DELETE FROM projects WHERE project_id = $1', [projectId]);
+
 
          // Supprimez le répertoire du projet du serveur
          const directoryPath = path.join(__dirname,`../IFC/${projectName}` );

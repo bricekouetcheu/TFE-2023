@@ -171,7 +171,7 @@ const StepTwo = ({values, onNext, onPrev,handleFormData}) => {
 
         <div className='step2-navigation'>
                 <button onClick={onPrev}><FontAwesomeIcon icon={faChevronLeft} />Precedent</button>
-                <button onClick={()=>Navigate('/projects')} data-testid="btn-home">Acceuil <FontAwesomeIcon icon={faHouse} /></button>
+                <button onClick={()=>Navigate('/')} data-testid="btn-home">Acceuil <FontAwesomeIcon icon={faHouse} /></button>
                 <button onClick={handleSubmit} data-testid="btn-next">Suivant <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon></button>
 
             </div>

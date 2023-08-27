@@ -26,6 +26,7 @@ import schedule from '../assets/schedule.png';
 import logout from '../assets/logout.png';
 import dashboard from '../assets/dashboard.png';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 
 const drawerWidth = 340;
@@ -53,10 +54,11 @@ function ResponsiveDrawer(props) {
      * @returns {void}
      */
     const handleLogout = async()=>{
+      console.log('bonjour')
       try{
           const response = await axios.get(logoutUrl, {withCredentials:true}) 
           if(response.data === "deconnexion reussie"){
-              Navigate('/')
+              Navigate('/login')
 
           }  
 
@@ -125,13 +127,13 @@ function ResponsiveDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Mes Castings" />
           </ListItemButton>
-      <ListItemButton onClick={() => handleSidebarItemClick('MyCalendar')} id='sidebar-menu'>
-        <ListItemIcon>
-          <img src={schedule} alt='' className='sidebar-icon'/>
-        </ListItemIcon>
-        <ListItemText primary="Calendrier" onClick={()=> handleLogout() } />
+          <ListItemButton onClick={() => handleSidebarItemClick('MyCalendar')} id='sidebar-menu'>
+            <ListItemIcon>
+              <img src={schedule} alt='' className='sidebar-icon'/>
+            </ListItemIcon>
+          <ListItemText primary="Calendrier" />
       </ListItemButton>
-      <ListItemButton  id='sidebar-menu'>
+      <ListItemButton  id='sidebar-menu' onClick={()=> handleLogout() } >
         <ListItemIcon>
           <img src={logout} alt='' className='sidebar-icon'/>
         </ListItemIcon>

@@ -15,7 +15,7 @@ const LoginGoogle = () => {
     const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`;
     const [redirect,setRedirect] = useState(false);
 
-    console.log(redirect)
+ 
 
 
    const checkAuthentication = async()=>{
@@ -55,7 +55,7 @@ const LoginGoogle = () => {
              }
             )
 
-            console.log(result)
+            
 
          if(result.data === "connexion reussie"){
                

@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import createPDF from '../composants/CreatePdf';
 
-// Votre composant parent
+
 
 const  Order = ()=>{
   const {casting_id} = useParams();
@@ -26,10 +26,9 @@ const  Order = ()=>{
   const [submitted, setSubmitted] = useState(false);
   const scrollRef = useRef(null);
   const Navigate = useNavigate();
-  console.log(casting);
 
 
-    /**
+  /**
    * get casting data.
    *
    * @async
@@ -47,18 +46,30 @@ const  Order = ()=>{
       }
     };
 
-  
-  //handle scrolling
+
+    
+
+  /**
+   * 
+   * @function
+   * @name scrolltoLastElement
+   * @returns 
+   */
   const scrolltoLastElement = () =>{
     const lastElement = scrollRef.current?.lastElementChild ;
     lastElement?.scrollIntoView({ behavior: 'smooth' });
     
   };
 
+ 
+ /**
+  * @async
+  * @function
+  * @name UpdateCastingStatus
+  */
   const UpdateCastingStatus = async()=>{
     try{
       const result = await axios.put(updateCastingUrl,{withCredentials:true});
-      console.log(result.data);
 
     }catch(err){
       console.log(err);
@@ -67,9 +78,14 @@ const  Order = ()=>{
 
   };
   
+  
 
- 
-  //fonction permtaant de passer la commande de beton
+  /**
+   * @async 
+   * @function 
+   * @name submitOrder
+   * 
+   */
   const submitOrder = async()=>{
     try{
       const response =  await axios.post(createOrderUrl, order ,
@@ -97,6 +113,13 @@ const  Order = ()=>{
     }
   };
 
+
+  /**
+   * @function
+   * @name createOrder
+   * @param {*} initialData 
+   * @returns 
+   */
   const createOrder = (initialData) => {
 
     if(casting){
@@ -131,13 +154,13 @@ const  Order = ()=>{
         case 'e':
           if (item.requirementTitle === 'exigence_e') {
             if (Array.isArray(item.answer)) {
-              newData['Donnéees Complementaires'] = item.answer.join('<br>');
-            } else {
+              newData['Donnéees Complementaires'] = null;
+            } /*else {
               newData['Données Complementaires']  = item.answer;
-            }
+            }*/
           }
           break;
-          // ... (ajouter d'autres cas pour les autres groupes et exigences si nécessaire)
+       
         default:
           break;
         }
@@ -145,9 +168,9 @@ const  Order = ()=>{
     
       return newData;
 
-    }
   
-    
+  
+  }
 
     
     
@@ -156,7 +179,9 @@ const  Order = ()=>{
   };
   
 
-  //login pour recuperer le token d'acces a la api
+  /**
+   * 
+   */
   const login = async () => {
     const headers = {
       Accept: 'application/json',
@@ -257,8 +282,8 @@ const  Order = ()=>{
         const responseData = response.data;
         console.log('test', responseData);
         // Handle the response data as needed
-        
-        setOrder(createOrder(responseData));
+        const newOrder = createOrder(responseData);
+        setOrder( newOrder );
         setSubmitted(false);
 
        

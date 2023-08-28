@@ -154,7 +154,7 @@ const  Order = ()=>{
         case 'e':
           if (item.requirementTitle === 'exigence_e') {
             if (Array.isArray(item.answer)) {
-              newData['Donnéees Complementaires'] = null;
+              newData['Données Complementaires'] = null;
             } /*else {
               newData['Données Complementaires']  = item.answer;
             }*/

@@ -192,8 +192,6 @@ exports.createNewEvent = async(req, res)=>{
           });
 
           const createdEvent = response.data
-
-          console.log(createdEvent.id)
           await addEventToCasting(castingId, createdEvent.id);
       
 
@@ -217,17 +215,13 @@ exports.getAllEventFromCalendar = async(req, res)=>{
 
     const Events = response.data.items
 
-    console.log(Events)
-    console.log('test1',Events.length)
-    
-
-
     const enrichedEvents = await Promise.all(
       Events.map(async (Event) => {
         const event_id = Event.id; // ID de l'événement
-
-        // Obtenez les informations du projet en utilisant l'event_id
+      
+        // get informations projects
         const projectInfo = await getProjectInfosFromId(event_id);
+       
 
         // Associez les informations du projet à l'événement
         return {

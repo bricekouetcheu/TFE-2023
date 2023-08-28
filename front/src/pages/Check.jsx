@@ -26,6 +26,7 @@ const Check = () => {
   const scrollRef = useRef();
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const postImageUrl = process.env.REACT_APP_API_HOST+'api/detection';
+  console.log(order)
 
 
     
@@ -44,6 +45,7 @@ const Check = () => {
   const getOrder = async()=>{
     try{
       const response =  await axios.get(getOneOrderUrl,{withCredentials:true});
+     // console.log(response.data.order_data)
       setOrder(ModifyObject(response.data.order_data));
     }catch(err){
       console.log(err);

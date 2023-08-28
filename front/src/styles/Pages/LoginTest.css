@@ -82,11 +82,36 @@
     letter-spacing: -.05em;
     position: relative;
     text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
 
   }
 
   .login-btn{
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .login-btn p{
+    background: linear-gradient(180deg,#555,#000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 100;
+    font-size: max(13px,min(1vw,20px));
+    line-height: 1;
+    letter-spacing: -.05em;
+    position: relative;
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .login-btn p a{
+    color: blue
   }
 
    @keyframes scale-up-center{ 0%{transform:scale(.5)} 100%{transform:scale(1)}}
@@ -127,5 +152,38 @@
       .login-btn{
         margin-top: 150px;
       }
+
+      .login-btn p{
+        background: linear-gradient(180deg,#555,#000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 100;
+        font-size: max(13px,min(1vw,20px));
+        line-height: 1;
+        letter-spacing: -.05em;
+        position: relative;
+        text-align: center;
+      }
    
+  }
+
+  @media screen and (max-width: 450px) {
+    .loginTest-form-navbar img{
+      width: 50%;
+      padding-top: 9%;
+      height: 48%;
+      
+    }
+
+    .login-btn p{
+      background: linear-gradient(180deg,#555,#000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 100;
+      font-size: max(13px,min(1vw,20px));
+      line-height: 1;
+      letter-spacing: -.05em;
+      position: relative;
+      text-align: center;
+    }
   }

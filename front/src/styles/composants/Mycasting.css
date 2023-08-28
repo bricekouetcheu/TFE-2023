@@ -272,10 +272,24 @@ position: relative;
        
       
     }
+   /* .project-description h1{
+        background-image: linear-gradient(to right top, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
+        text-transform: capitalize;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+       
+       
+    }*/
 
     .project-description h1{
         text-transform: uppercase;
+        font-size: max(20px,min(1vw,50px));
         
+    }
+
+    .project-description p{
+        font-size: max(13px,min(1vw,50px));
     }
     
     .project-description div{

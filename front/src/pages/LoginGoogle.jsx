@@ -101,6 +101,8 @@ const LoginGoogle = () => {
                             onClick={() => loginF()}  
                         />
 
+                        <p>Pour en savoir plus sur notre engagement en matière de protection des données et de confidentialité, veuillez consulter notre politique de confidentialité <a href='https://bimcasting.digitalconstruction.cloud/rgpd'>ici</a>.</p>  
+
                     </div>
 
                  </div>

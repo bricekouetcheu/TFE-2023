@@ -27,6 +27,8 @@ const  Order = ()=>{
   const scrollRef = useRef(null);
   const Navigate = useNavigate();
 
+  console.log(tableData)
+
 
   /**
    * get casting data.
@@ -95,7 +97,7 @@ const  Order = ()=>{
       console.log(response);
       Swal.fire({
         icon: 'success',
-        title: 'Commande effectuée avec success!',
+        title: 'Commande effectuée avec succes!',
         showConfirmButton: true,
         confirmButtonColor: '#00BCB6',
         timer: 1500,
@@ -270,6 +272,7 @@ const  Order = ()=>{
         Authorization: 'Bearer ' + token,
       };
       const questions = ParseData(tableData);
+      console.log('test1', questions)
   
       try {
      

@@ -34,6 +34,7 @@ const NewCasting = () => {
     const createCastingUrl = process.env.REACT_APP_API_HOST+`api/projects/${project_id}/casting`;
     const [submitted, setSubmitted] = useState(false);
     const selectRef = useRef(null);
+    const [loading, setLoading] = useState(false)
     
     
 
@@ -293,7 +294,7 @@ const NewCasting = () => {
                 
                 Swal.fire({
                     icon: 'success',
-                    title: 'Nouveau casting crée !',
+                    title: 'Nouveau casting crée!',
                     showConfirmButton: true,
                     confirmButtonColor: '#00BCB6',
                     timer: 2500,

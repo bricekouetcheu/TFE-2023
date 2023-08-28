@@ -14,6 +14,10 @@ import {checkValidity} from './utils';
 import { ModifyObject } from './utils';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
+import TableResult from '../composants/TableResult';
+import OrderRecap from './OrderRecap'
+
+
 const Check = () => {
 
 
@@ -46,7 +50,7 @@ const Check = () => {
     try{
       const response =  await axios.get(getOneOrderUrl,{withCredentials:true});
      // console.log(response.data.order_data)
-      setOrder(ModifyObject(response.data.order_data));
+      setOrder(response.data.order_data);
     }catch(err){
       console.log(err);
     }
@@ -102,7 +106,8 @@ const Check = () => {
                 },
             
             }) 
-            if(response){
+            if(response.data.length > 0){
+                console.log(response.data)
                 const deliveryData = response.data
                 if(checkValidity(ModifyObject(order), deliveryData)){
                 setOpenBackdrop(false)
@@ -118,7 +123,7 @@ const Check = () => {
                 }else{
                     setOpenBackdrop(false)
                     Swal.fire({
-                        icon: 'warning',
+                        icon: 'error',
                         title: 'Les caracteristiques ne correspondent pas à la commande',
                         showConfirmButton: true,
                         confirmButtonColor: '#00BCB6',
@@ -130,6 +135,16 @@ const Check = () => {
                
                 
 
+            }else{
+              setOpenBackdrop(false)
+              Swal.fire({
+                  icon: 'error',
+                  title: 'l\'image est illisible. Veuillez réessayer!!',
+                  showConfirmButton: true,
+                  confirmButtonColor: '#00BCB6',
+                  timer: 10000,
+                  
+                });
             }
         
                
@@ -159,6 +174,13 @@ const Check = () => {
         <div className='checking-page'>
            <Navbar currentPage='check'></Navbar>
             <div className='Checking-Page-Content'>
+
+              <div className='order'>
+                <h3> Recapitulatif du bon de commande</h3>
+                
+                {order && <OrderRecap data={order} className = "order"  ref={scrollRef}/>}
+                
+              </div>
                 <div className='checking-page-title'>
                     <h1>Verification du bon de livraison</h1>
                 </div>
@@ -200,7 +222,7 @@ const Check = () => {
                                     <div></div>
                                     )} 
                   
-                        </div>
+              </div>
                         <Backdrop
                             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                             open={openBackdrop}

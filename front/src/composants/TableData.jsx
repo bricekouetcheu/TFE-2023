@@ -14,6 +14,7 @@ const TableData = ({ data, onDataChange })=> {
     // Replace the old row with the updated row
     const updatedRows = [...data];
     updatedRows[rowIndex] = updatedRow;
+    console.log('brice',updatedRows)
   
     // Update the state with the new rows
     /*setTableData(updatedRows);*/
@@ -81,7 +82,7 @@ const TableData = ({ data, onDataChange })=> {
       editable: true,
       renderCell: (params) => {
         if (params.row.question === "type_beton") {
-          // Lignes 1 et 3 auront un menu déroulant avec des options
+          
           return (
            
                  <select className='select-datagrid'
@@ -121,9 +122,7 @@ const TableData = ({ data, onDataChange })=> {
            })
          }
        >
-         <option className='option-select' value="C16/20">C16/20</option>
-         <option className='option-select' value="C20/25">C20/25</option>
-         <option className='option-select' value="C25/30">C25/30</option>
+         
          <option className='option-select' value="C30/37">C30/37</option>
          <option className='option-select' value="C70/85">C70/85</option>
          <option className='option-select' value="C80/95">C80/95</option>

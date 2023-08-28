@@ -65,7 +65,7 @@ const PredictionModal = (props , {onClose}) => {
         castingId:  props.casting_id,
         agendaId:project.agenda_id,
         timestamp: Prediction.uncasting_timestamp,
-        summary : 'test',
+        summary : 'Decoffrage',
         description : `Decoffrage beton pour ${project.project_name}`,
 
       };

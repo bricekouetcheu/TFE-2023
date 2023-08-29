@@ -3,6 +3,7 @@ const router = express.Router()
 
 const {createNewEvent } = require('../controllers/Event');
 const {getAllEventFromCalendar} = require('../controllers/Event');
+const {getFirstEventFromCalendar} = require('../controllers/Event');
 const {authMiddleware} = require('../middleweares/auth');
 
 /**
@@ -110,5 +111,6 @@ const {authMiddleware} = require('../middleweares/auth');
 
 router.post('/event' , authMiddleware, createNewEvent )
 router.get('/events/:agendaId' , authMiddleware, getAllEventFromCalendar)
+router.get('/event/:agendaId' , authMiddleware, getFirstEventFromCalendar)
 
 module.exports = router

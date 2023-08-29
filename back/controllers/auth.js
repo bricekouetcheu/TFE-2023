@@ -137,28 +137,6 @@ const client = new OAuth2Client(
 
 
 
-
-
-
-
-
-
-
-
-
-
-exports.Register = (req, res)=>{
-    
-
-}
-
-exports.Login = (req , res , next)=>{
-
-
-}
-
-
-
 exports.Logout = (req, res)=>{
     return res.clearCookie('SessionToken').status(200).send("deconnexion reussie")
 

@@ -101,8 +101,7 @@ const {googleLogin } = require('../controllers/auth')
 
 
 
-router.post('/register', Register);
-router.post('/login', Login)
+
 router.get('/logout',Logout)
 router.post('/login/google' , googleLogin )
 

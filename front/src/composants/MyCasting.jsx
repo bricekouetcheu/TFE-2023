@@ -76,7 +76,7 @@ const MyCasting = () => {
       const result = await axios.get(getProjectUrl , {withCredentials:true});
       setProject(result.data);
 
-      //getEvents(result.data.agenda_id);
+      getEvents(result.data.agenda_id);
     } catch(err){
       console.log(err);
     }
@@ -91,7 +91,7 @@ const MyCasting = () => {
    */
   const getEvents = async(agenda_id)=>{
 
-    const getEventsUrl = process.env.REACT_APP_API_HOST+`api/events/${agenda_id}`;
+    const getEventsUrl = process.env.REACT_APP_API_HOST+`api/event/${agenda_id}`;
     try{
       const response = await axios.get(getEventsUrl , {withCredentials:true});
       setFirstEvent(response.data);

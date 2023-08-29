@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import CastingModal from './CastingModal';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -65,8 +67,8 @@ const Cards = (props , {getPrediction}) => {
             case "created":
                 return (
                     <>
-                        <div onClick={OpenModal } >Ouvrir <FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
-                        <div>Supprimer <FontAwesomeIcon icon={faTrash}  className='card-icon' /></div>
+                        <div onClick={OpenModal } >Ouvrir <FontAwesomeIcon icon={faArrowRight} className='card-icon'  /></div>
+                        <div id ='delete-icon-card'> Supprimer <FontAwesomeIcon icon={faTrash}  className='card-icon' /></div>
                     </>
                 )
                
@@ -90,7 +92,7 @@ const Cards = (props , {getPrediction}) => {
             case "ongoing":
                 return (
                     <>
-                      <div  >DEMARRER PREDICTION<FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
+                      <div ><FontAwesomeIcon icon={faEye} className='card-icon'  /></div>
                     </>
 
                 )

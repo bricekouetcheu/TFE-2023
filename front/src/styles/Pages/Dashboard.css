@@ -9,7 +9,9 @@
     flex-direction: column;
     gap: 20px;
     height: 100vh;
-    background-color: #F6F8FA;
+    background-color: #fff;
+    border: none ;
+   /* background-color: #F6F8FA;*/
 }
 
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover .MuiButtonBase-root:hover{
@@ -46,6 +48,6 @@
         flex-direction: column;
         gap: 27px;
         height: 100vh;
-        background-color: #F6F8FA;
+        background-color: #fff;
     }
 }

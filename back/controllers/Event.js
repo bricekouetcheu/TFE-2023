@@ -232,7 +232,58 @@ exports.getAllEventFromCalendar = async(req, res)=>{
       })
     );
 
-    res.status(200).send(enrichedEvents);
+    res.status(200).send(Events);
+  }catch(err){
+    console.log(err)
+    res.status(500).send('erreur serveur')
+  
+  }
+
+}
+
+
+exports.getFirstEventFromCalendar = async(req, res)=>{
+
+  const {agendaId} = req.params
+  try{
+    const response = await axiosInstance.get(`https://www.googleapis.com/calendar/v3/calendars/${agendaId}/events`, {
+      userId: req.user.user_id,
+    });
+
+    const Events = response.data.items
+    Events.sort((a, b) => {
+      const dateA = new Date(a.start.dateTime);
+      const dateB = new Date(b.start.dateTime);
+      return dateA - dateB;
+    });
+
+
+
+    const enrichedEvents = await Promise.all(
+      Events.map(async (Event) => {
+        const event_id = Event.id; // ID de l'événement
+      
+        // get informations projects
+        const projectInfo = await getProjectInfosFromId(event_id);
+       
+
+        // Associez les informations du projet à l'événement
+        return {
+          ...Event,
+          project_name: projectInfo.project_name,
+          project_address: projectInfo.project_address,
+        };
+      })
+    );
+      
+    const firstUpcomingEvent = enrichedEvents.find(event => {
+      const eventDate = new Date(event.start.dateTime);
+      const currentDate = new Date();
+      return eventDate >= currentDate;
+    });
+
+    
+    res.status(200).send(firstUpcomingEvent);
   }catch(err){
     console.log(err)
     res.status(500).send('erreur serveur')

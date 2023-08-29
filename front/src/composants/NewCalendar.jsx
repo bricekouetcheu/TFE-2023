@@ -10,6 +10,7 @@ const NewCalendar = () => {
     const [events, setEvents] = useState()
     const [project, setProject]=useState();
     const getProjectUrl = process.env.REACT_APP_API_HOST+`api/project/${project_id}`;
+    console.log(events)
 
 
 
@@ -36,7 +37,6 @@ const NewCalendar = () => {
     const getEventsUrl = process.env.REACT_APP_API_HOST+`api/events/${agenda_id}`;
     try{
       const response = await axios.get(getEventsUrl , {withCredentials:true});
-      console.log(response.data)
       setEvents(formatEvents(response.data));
 
 
@@ -48,26 +48,11 @@ const NewCalendar = () => {
   };
 
   const formatEvents = (list) => {
-    const colorMap = {}; // To store colors for each project_name
-
-    return list.map((item) => {
-      const projectColor = getColorForProject(item.project_name , list); // Get color for project_name
-
-      if (!colorMap[item.project_name]) {
-        colorMap[item.project_name] = projectColor;
-      }
-
-      return {
-        title: item.summary,
-        project_address: item.project_address,
-        project_name: item.project_name,
-        start: item.start.dateTime || item.start.date,
-        end: item.end.dateTime || item.end.date,
-        color: projectColor,
-        
-       // Assign the color for this event
-      };
-    });
+    return list.map((item) => ({
+      title: item.summary,
+      start: item.start.dateTime || item.start.date,
+      end: item.end.dateTime || item.end.date,
+    }));
   };
 
     /**
@@ -82,7 +67,7 @@ const NewCalendar = () => {
         try{
           const result = await axios.get(getProjectUrl , {withCredentials:true});
           setProject(result.data);
-          console.log(result.data)
+         
     
           getEvents(result.data.agenda_id);
         } catch(err){
@@ -127,6 +112,8 @@ const NewCalendar = () => {
 
     return (
         <div className='calendar-content' >
+          {events &&
+          (
             <FullCalendar
             events = {events}
             headerToolbar={{
@@ -139,6 +126,8 @@ const NewCalendar = () => {
            initialView="dayGridMonth" 
          
             />
+          )}
+          
             
         </div>
     );

@@ -163,9 +163,12 @@ function ResponsiveDrawer(props) {
           height:'15%',
           display:'flex',
           justifyContent:'center',
-          backgroundColor: '#f6f8fa',
+          backgroundColor: '#fff',
+          boxShadow: 'none',
+          /*backgroundColor: '#f6f8fa',*/
           /*backgroundColor:' #007fae'*/
-          boxShadow: '0px 1px 1px rgba(9, 30, 66, 0.25), 0px 0px 1px 1px rgba(9, 30, 66, 0.13)',
+          /*boxShadow: '0px 1px 1px rgba(9, 30, 66, 0.25), 0px 0px 1px 1px rgba(9, 30, 66, 0.13)'*/
+          border: '1px solid #EEEEEE', 
          
         }}
       >

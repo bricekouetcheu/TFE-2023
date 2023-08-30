@@ -267,18 +267,6 @@ exports.getFirstEventFromCalendar = async (req, res) => {
         return dateA - dateB;
       });
 
-    /*const enrichedEvents = await Promise.all(
-      Events.map(async (Event) => {
-        const event_id = Event.id;
-        const projectInfo = await getProjectInfosFromId(event_id);
-        return {
-          ...Event,
-          project_name: projectInfo.project_name,
-          project_address: projectInfo.project_address,
-        };
-      })
-    );*/
-
     const firstUpcomingEvent = Events.find(event => {
       const eventDate = new Date(event.start.dateTime);
       const currentDate = new Date();

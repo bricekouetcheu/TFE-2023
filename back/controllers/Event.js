@@ -239,23 +239,6 @@ exports.getAllEventFromCalendar = async(req, res)=>{
 
     const Events = response.data.items
 
-    /*const enrichedEvents = await Promise.all(
-      Events.map(async (Event) => {
-        const event_id = Event.id; // ID de l'événement
-      
-        // get informations projects
-        const projectInfo = await getProjectInfosFromId(event_id);
-       
-
-        // Associez les informations du projet à l'événement
-        return {
-          ...Event,
-          project_name: projectInfo.project_name,
-          project_address: projectInfo.project_address,
-        };
-      })
-    );*/
-
     res.status(200).send(Events);
   }catch(err){
     console.log(err)
@@ -284,7 +267,7 @@ exports.getFirstEventFromCalendar = async (req, res) => {
         return dateA - dateB;
       });
 
-    const enrichedEvents = await Promise.all(
+    /*const enrichedEvents = await Promise.all(
       Events.map(async (Event) => {
         const event_id = Event.id;
         const projectInfo = await getProjectInfosFromId(event_id);
@@ -294,9 +277,9 @@ exports.getFirstEventFromCalendar = async (req, res) => {
           project_address: projectInfo.project_address,
         };
       })
-    );
+    );*/
 
-    const firstUpcomingEvent = enrichedEvents.find(event => {
+    const firstUpcomingEvent = Events.find(event => {
       const eventDate = new Date(event.start.dateTime);
       const currentDate = new Date();
       return eventDate >= currentDate;

@@ -212,7 +212,7 @@ const MyCasting = () => {
     
     const difference = startingDate - nowDate
 
-    const DaysRemaining = Math.ceil(difference/(1000 * 60 * 60 * 24));
+    const DaysRemaining = Math.ceil(difference/(1000 * 60 * 60 * 24))-1;
 
     return DaysRemaining
 

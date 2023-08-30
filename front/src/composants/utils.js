@@ -2,7 +2,8 @@ export function getConcreteStrengthValue (strenghtClass){
     const strengthValues = new Map([
         ["C20/25", 20.],
         ["C25/30", 25.],
-        ["C30/37", 30.],
+        ["C25/30", 25.],
+        ["C35/45", 35.],
         ["C40/50", 40.],
         ["C45/55", 45.],
         ["C50/60", 50.],

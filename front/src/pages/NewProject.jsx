@@ -56,11 +56,6 @@ const NewProject = () => {
         files:[]
     })
 
-    console.log(formData)
-
-  
-   
-   
 
     const handleInputData = input => e => {
         // input value from the form

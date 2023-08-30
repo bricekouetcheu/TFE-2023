@@ -9,13 +9,14 @@ import camera from "../assets/photo.png";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import {checkValidity} from './utils';
 import { ModifyObject } from './utils';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import TableResult from '../composants/TableResult';
 import OrderRecap from './OrderRecap'
+import { useNavigate } from 'react-router-dom';
 
 
 const Check = () => {
@@ -30,7 +31,8 @@ const Check = () => {
   const scrollRef = useRef();
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const postImageUrl = process.env.REACT_APP_API_HOST+'api/detection';
-  console.log(order)
+  const Navigate = useNavigate()
+ 
 
   /**
    * Updates the casting status using a PUT request to the API.
@@ -161,10 +163,14 @@ const Check = () => {
                     title: 'Les caracteristiques correspondent bien à la commande',
                     showConfirmButton: true,
                     confirmButtonColor: '#00BCB6',
-                    timer: 10000,
+                    timer: 3000,
                     
                   });
                   UpdateCastingStatus()
+                  setTimeout(()=>{
+                    Navigate(-1)
+                  },9000)
+
             }else{
                 setOpenBackdrop(false)
                 Swal.fire({

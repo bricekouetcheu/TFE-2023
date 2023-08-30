@@ -19,6 +19,7 @@ const AllRoutes = () => {
     const [isAuthenticated,setIsAuthenticated] = useState(false);
     const AuthUrl = process.env.REACT_APP_API_HOST+`api/auth`;
     const navigate = useNavigate();
+    console.log(isAuthenticated)
 
         /**
      * Vérifie l'authentification de l'utilisateur en effectuant une requête GET vers l'URL d'authentification.
@@ -49,12 +50,8 @@ const AllRoutes = () => {
 
 
     useEffect(()=>{
-
-       
             checkAuthentication() 
         
-      
-       
     },[])
 
 

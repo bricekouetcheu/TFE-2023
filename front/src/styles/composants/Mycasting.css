@@ -360,3 +360,11 @@ position: relative;
       
     }
 }
+
+
+@media (max-width: 450px) {
+    .home-Board{
+        padding-top: 185px;
+      
+    }
+}

@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    padding-top: 30%;
+    padding-top: 25%;
     background-image: linear-gradient(to left top, #ffffff, #fbfbfe, #f6f8fc, #f0f5fb, #e9f2f9, #e9f2f9, #e9f2f9, #e9f2f9, #f0f5fb, #f6f8fc, #fbfbfe, #ffffff);
     /*background-image: linear-gradient(to left top, #ffffff, #eff1f9, #dce4f3, #c4d8ed, #a9cde5, #a9cde5, #a9cde5, #a9cde5, #c4d8ed, #dce4f3, #eff1f9, #ffffff);*/
     /*background-color: #E0EFF5;  */

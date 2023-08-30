@@ -154,7 +154,7 @@ const Check = () => {
         
         }) 
         if(response.data.length > 0){
-            console.log(response.data)
+            
             const deliveryData = response.data
             if(checkValidity(ModifyObject(order), deliveryData)){
             setOpenBackdrop(false)
@@ -165,11 +165,10 @@ const Check = () => {
                     confirmButtonColor: '#00BCB6',
                     timer: 3000,
                     
+                  }).then(() => {
+                    UpdateCastingStatus();
+                    Navigate(-1);
                   });
-                  UpdateCastingStatus()
-                  setTimeout(()=>{
-                    Navigate(-1)
-                  },9000)
 
             }else{
                 setOpenBackdrop(false)

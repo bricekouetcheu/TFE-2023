@@ -17,55 +17,66 @@ const LoginGoogle = () => {
 
  
 
+    /**
+     * Checks user authentication status by making a GET request to the authentication URL.
+     * Updates the state to indicate if the user is authenticated or not.
+     * @async
+     * @function
+     * @name checkAuthentication
+     * @returns {void}
+     */
+    const checkAuthentication = async () => {
+        try {
+            console.log('Checking authentication...');
+            const response = await axios.get(AuthUrl, { withCredentials: true });
 
-   const checkAuthentication = async()=>{
-            
-        try{
-            console.log('trop connnn')
-            const response = await axios.get(AuthUrl,{withCredentials:true})
-            
-            if(response.data === "authentifié"){
-    
-                
-                setRedirect(true)
-                console.log('test1 bonjour')
-            }else{
-            
-                setRedirect(false) 
-                
-
+            if (response.data === "authenticated") {
+                // User is authenticated
+                setRedirect(true);
+                console.log('User authenticated');
+            } else {
+                // User is not authenticated
+                setRedirect(false);
+                console.log('User not authenticated');
             }
-           
-        }catch(err){
-            console.log(err)
-            setRedirect(false);
-    
+        } catch (err) {
+            console.log(err);
+            setRedirect(false); // Error occurred, assume user is not authenticated
         }
-    }
+    };
 
-    const getUser = async(code)=>{
-        const result = await axios.post(LoginUrl,
-            {
-                code:code,
-                grant_type: 'authorization_code',
-                
-            },
-            {
-                 withCredentials: true
-             }
-            )
 
-            
+    /**
+     * Logs in a user by sending an authorization code to the login URL.
+     * Navigates to the home page if the login is successful.
+     * @async
+     * @function
+     * @name getUser
+     * @param {string} code - The authorization code obtained during the login process.
+     * @returns {void}
+     */
+    const getUser = async (code) => {
+        try {
+            const result = await axios.post(
+                LoginUrl,
+                {
+                    code: code,
+                    grant_type: 'authorization_code'
+                },
+                {
+                    withCredentials: true
+                }
+            );
 
-         if(result.data === "connexion reussie"){
-               
-             
-                Navigate('/')
-
-             
-
+            if (result.data === "connexion reussie") {
+                // Login successful, navigate to the home page
+                Navigate('/');
             }
-    }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const loginF = useGoogleLogin({
         scope: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.readonly ',
         onSuccess: tokenResponse => getUser(tokenResponse.code),

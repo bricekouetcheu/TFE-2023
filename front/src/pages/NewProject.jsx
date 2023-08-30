@@ -85,41 +85,60 @@ const NewProject = () => {
       }
 
 
-      
-      // handle file upload
+      /**
+       * Handles file upload by filtering and updating the list of files in the form data.
+       * @function
+       * @name handleFileUpload
+       * @param {Object} e - The event object containing information about the file input.
+       * @returns {void}
+       */
       const handleFileUpload = (e) => {
         const files = Array.from(e.target.files);
-        const filteredFiles = filterIFCFiles(files);
+        const filteredFiles = filterIFCFiles(files); // Implement filterIFCFiles function
         setFormData((prevState) => ({
-          ...prevState,
-          files:filteredFiles,
+            ...prevState,
+            files: filteredFiles,
         }));
       };
 
-      
+        /**
+        * Handles deletion of a file from the list of files in the form data.
+        * @function
+        * @name handleFileDelete
+        * @param {number} index - The index of the file to be deleted.
+        * @returns {void}
+        */
+        const handleFileDelete = (index) => {
+          setFormData((prevState) => {
+              const updatedFiles = [...prevState.files];
+              updatedFiles.splice(index, 1);
+              return {
+                  ...prevState,
+                  files: updatedFiles,
+              };
+          });
+        };
 
-      //handle deleting files before submit
-      const handleFileDelete = (index) => {
-        setFormData((prevState) => {
-          const updatedFiles = [...prevState.files];
-          updatedFiles.splice(index, 1);
-          return {
-            ...prevState,
-            files: updatedFiles,
-          };
-        });
-      };
+        /**
+        * Moves the form to the next step by incrementing the current step value.
+        * @function
+        * @name nextStep
+        * @returns {void}
+        */
+        const nextStep = () => {
+          setCurrentStep(currentStep + 1);
+        };
 
-    
+        /**
+        * Moves the form to the previous step by decrementing the current step value.
+        * @function
+        * @name prevStep
+        * @returns {void}
+        */
+        const prevStep = () => {
+          setCurrentStep(currentStep - 1);
+        };
 
-    //handle navigation between different steps
-    const nextStep = ()=>{
-        setCurrentStep(currentStep+1)
-    }
-
-    const prevStep = ()=>{
-        setCurrentStep(currentStep-1)
-    }
 
     const Files = new FormData()
 
@@ -133,18 +152,25 @@ const NewProject = () => {
 
     
 
-    //submit formdata
-    const submitForm = ()=>{
     
-       axios
-       .post(NewProjectUrl,Files,{withCredentials:true})
-       .then( result=>{
-        Navigate('/')
-        })
-        .catch(err=>{
-          console.log(err)
-        })
-          }
+      /**
+     * Submits the form data to create a new project by making a POST request.
+     * Navigates to the home page upon successful submission.
+     * @function
+     * @name submitForm
+     * @returns {void}
+     */
+    const submitForm = () => {
+      axios
+          .post(NewProjectUrl, Files, { withCredentials: true })
+          .then((result) => {
+              Navigate('/');
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+    };
+
     
 
     return (

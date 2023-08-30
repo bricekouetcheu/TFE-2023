@@ -50,12 +50,12 @@ const AllRoutes = () => {
 
     useEffect(()=>{
 
-        setTimeout(()=>{
+       
             checkAuthentication() 
-        } , 1000)
+        
       
        
-    },[isAuthenticated])
+    },[])
 
 
 
@@ -80,7 +80,7 @@ const AllRoutes = () => {
               <Route path="/AddProject" element={<NewProject />} />
               <Route path="/Dashboard/:project_id" element={<Dashboard />} />
               <Route path="/test1" element={<Order />} />
-              <Route path="/:project_id/order/:casting_id" element={<Order />} />
+              <Route path="/:project_id/order/:casting_id" element={<Order />}/>
              
             </>
           ) : 

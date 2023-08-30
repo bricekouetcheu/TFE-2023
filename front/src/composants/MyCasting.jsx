@@ -91,7 +91,7 @@ const MyCasting = () => {
    */
   const getEvents = async(agenda_id)=>{
 
-    const getEventsUrl = process.env.REACT_APP_API_HOST+`api/event/${agenda_id}`;
+    const getEventsUrl = process.env.REACT_APP_API_HOST+`api/event/${agenda_id}/${project_id}`;
     try{
       const response = await axios.get(getEventsUrl , {withCredentials:true});
       setFirstEvent(response.data);

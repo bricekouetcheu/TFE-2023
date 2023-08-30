@@ -27,7 +27,6 @@ const  Order = ()=>{
   const scrollRef = useRef(null);
   const Navigate = useNavigate();
 
-  console.log(tableData)
 
 
   /**

@@ -34,7 +34,7 @@ const Maps = () => {
       .then(result => {
         const data = result.data;
 
-        // Convertir les adresses en coordonnées
+        // Convert address into coordonates
         const promises = data.map(project =>
           geocodeAddress(project.project_address)
             .then(coordinates => {

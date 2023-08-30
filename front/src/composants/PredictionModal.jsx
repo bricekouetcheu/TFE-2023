@@ -26,10 +26,6 @@ const PredictionModal = (props , {onClose}) => {
   const [time_next ,setTime_next] = useState() ;
   const [project ,setProject] = useState();
 
-
-  console.log(temp_next)
-  console.log(time_next)
-
   const UpdateCastingStatus = async()=>{
     try{
       await axios.put(updateCastingUrl,{withCredentials:true});
@@ -58,40 +54,42 @@ const PredictionModal = (props , {onClose}) => {
 
 
 
-  const createEvent = async()=>{
-      
-    try{
-      const data = {
-        castingId:  props.casting_id,
-        agendaId:project.agenda_id,
-        timestamp: Prediction.uncasting_timestamp,
-        summary : 'Decoffrage',
-        description : `Decoffrage beton pour ${project.project_name}`,
+    /**
+     * Creates a new event on the calendar with the specified details.
+     * Makes a POST request to the create event URL and updates the casting status if successful.
+     * Closes the modal and displays a success message using Swal.
+     * @async
+     * @function
+     * @name createEvent
+     * @returns {void}
+     */
+    const createEvent = async () => {
+      try {
+          const data = {
+              castingId: props.casting_id,
+              agendaId: project.agenda_id,
+              timestamp: Prediction.uncasting_timestamp,
+              summary: 'Decoffrage',
+              description: `Decoffrage beton pour ${project.project_name}`,
+          };
 
-      };
+          await axios.post(createEventUrl, data, { withCredentials: true });
+          UpdateCastingStatus();
+          handleCloseModal();
 
-      await axios.post(createEventUrl, data, { withCredentials:true});
-      UpdateCastingStatus();
-      handleCloseModal();
-            
-      Swal.fire({
-        icon: 'success',
-        title: 'Nouveau casting ajouté au planning',
-        showConfirmButton: true,
-        confirmButtonColor: '#00BCB6',
-        timer: 10000,
-                
-      });
+          Swal.fire({
+              icon: 'success',
+              title: 'Nouveau casting ajouté au planning',
+              showConfirmButton: true,
+              confirmButtonColor: '#00BCB6',
+              timer: 10000,
+          });
 
-            
-            
+      } catch (err) {
+          console.log(err);
+      }
+    };
 
-    }catch(err){
-      console.log(err);
-
-    }
-        
-  };
     
 
 
@@ -189,21 +187,28 @@ const PredictionModal = (props , {onClose}) => {
         return null;
       });
   };
+  
 
-  const getProjectInformations = async()=>{
-    try{
-      const response  = await axios.get(getOneProjectInformationsUrl , {withCredentials:true});
-      setProject(response.data);
-      const project_address = response.data.project_address;
-      const coordonnates = await geocodeAddress(project_address);
-      getTemperature(coordonnates.lat , coordonnates.lng);
-
-    }catch(err){
-      console.log(err);
-
-
+  /**
+   * Fetches project information from the API and updates the state with the retrieved data.
+   * Retrieves project address, converts it to coordinates using geocodeAddress, and fetches temperature using getTemperature.
+   * @async
+   * @function
+   * @name getProjectInformations
+   * @returns {void}
+   */
+  const getProjectInformations = async () => {
+    try {
+        const response = await axios.get(getOneProjectInformationsUrl, { withCredentials: true });
+        setProject(response.data);
+        const project_address = response.data.project_address;
+        const coordonnates = await geocodeAddress(project_address);
+        getTemperature(coordonnates.lat, coordonnates.lng);
+    } catch (err) {
+        console.log(err);
     }
   };
+
     
   /** 
    * get order information from casting

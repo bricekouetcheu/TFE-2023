@@ -111,6 +111,6 @@ const {authMiddleware} = require('../middleweares/auth');
 
 router.post('/event' , authMiddleware, createNewEvent )
 router.get('/events/:agendaId' , authMiddleware, getAllEventFromCalendar)
-router.get('/event/:agendaId' , authMiddleware, getFirstEventFromCalendar)
+router.get('/event/:agendaId/:project_id' , authMiddleware, getFirstEventFromCalendar)
 
 module.exports = router

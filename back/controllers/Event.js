@@ -21,6 +21,25 @@ const addEventToCasting = async(castId , eventId)=>{
   
 }
 
+const getAllEventIdFromProject = async (project_id)=>{
+  try{
+      const query = `
+      SELECT c.event_id
+      FROM castings c
+      JOIN projects p ON c.project_id = p.project_id
+      WHERE p.project_id = $1;
+    `;
+
+    const result = await pool.query(query, [project_id]);
+
+    return result.rows.map(row => row.event_id);
+  } catch(error) {
+console.error(error);
+throw error;
+}
+
+}
+
 
 const getProjectInfosFromId = async (event_id) => {
   try {
@@ -30,13 +49,18 @@ const getProjectInfosFromId = async (event_id) => {
       JOIN castings c ON p.project_id = c.project_id
       WHERE c.event_id = $1
     `;
+    if(event_id){
+      const getProjectInfosResult = await pool.query(getProjectInfosQuery, [event_id]);
+      const projectInfo = getProjectInfosResult.rows[0];
+      
+      
+  
+      return projectInfo;
 
-    const getProjectInfosResult = await pool.query(getProjectInfosQuery, [event_id]);
-    const projectInfo = getProjectInfosResult.rows[0];
-    
-    
-
-    return projectInfo;
+    }else{
+      return null
+    }
+ 
   } catch (error) {
     console.error('Error getting project information:', error);
     throw error;
@@ -215,7 +239,7 @@ exports.getAllEventFromCalendar = async(req, res)=>{
 
     const Events = response.data.items
 
-    const enrichedEvents = await Promise.all(
+    /*const enrichedEvents = await Promise.all(
       Events.map(async (Event) => {
         const event_id = Event.id; // ID de l'événement
       
@@ -230,7 +254,7 @@ exports.getAllEventFromCalendar = async(req, res)=>{
           project_address: projectInfo.project_address,
         };
       })
-    );
+    );*/
 
     res.status(200).send(Events);
   }catch(err){
@@ -242,32 +266,28 @@ exports.getAllEventFromCalendar = async(req, res)=>{
 }
 
 
-exports.getFirstEventFromCalendar = async(req, res)=>{
+exports.getFirstEventFromCalendar = async (req, res) => {
+  const { agendaId, project_id} = req.params;
+  
+  try {
+    const allEventIds = await getAllEventIdFromProject(project_id); // Remplacez project_id par l'ID du projet
 
-  const {agendaId} = req.params
-  try{
     const response = await axiosInstance.get(`https://www.googleapis.com/calendar/v3/calendars/${agendaId}/events`, {
       userId: req.user.user_id,
     });
 
     const Events = response.data.items
-    Events.sort((a, b) => {
-      const dateA = new Date(a.start.dateTime);
-      const dateB = new Date(b.start.dateTime);
-      return dateA - dateB;
-    });
-
-
+      .filter(event => allEventIds.includes(event.id)) 
+      .sort((a, b) => {
+        const dateA = new Date(a.start.dateTime);
+        const dateB = new Date(b.start.dateTime);
+        return dateA - dateB;
+      });
 
     const enrichedEvents = await Promise.all(
       Events.map(async (Event) => {
-        const event_id = Event.id; // ID de l'événement
-      
-        // get informations projects
+        const event_id = Event.id;
         const projectInfo = await getProjectInfosFromId(event_id);
-       
-
-        // Associez les informations du projet à l'événement
         return {
           ...Event,
           project_name: projectInfo.project_name,
@@ -275,19 +295,16 @@ exports.getFirstEventFromCalendar = async(req, res)=>{
         };
       })
     );
-      
+
     const firstUpcomingEvent = enrichedEvents.find(event => {
       const eventDate = new Date(event.start.dateTime);
       const currentDate = new Date();
       return eventDate >= currentDate;
     });
 
-    
     res.status(200).send(firstUpcomingEvent);
-  }catch(err){
-    console.log(err)
-    res.status(500).send('erreur serveur')
-  
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('erreur serveur');
   }
-
-}
+};
